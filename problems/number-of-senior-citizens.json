@@ -1,0 +1,1 @@
+{"problemName":"number-of-senior-citizens","language":"cpp","code":"class Solution {\npublic:\n    int countSeniors(vector<string>& details) {\n        vector<int>v;\n        for(auto it : details){\n            int age = stoi(it.substr(11,2));\n            if(age>60)v.push_back(age);\n        }\n        return v.size();\n    }\n};"}

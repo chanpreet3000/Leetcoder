@@ -1,0 +1,1 @@
+{"problemName":"unique-number-of-occurrences","language":"cpp","code":"class Solution {\npublic:\n    bool uniqueOccurrences(vector<int>& arr) {\n  short m[2001] = {};\n  for (auto n : arr) ++m[n + 1000];\n  sort(begin(m), end(m));\n  for (auto i = 1; i < 2001; ++i)\n      if (m[i] && m[i] == m[i - 1]) return false;\n  return true;\n\n    }\n};"}

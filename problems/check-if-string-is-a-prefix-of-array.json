@@ -1,0 +1,1 @@
+{"problemName":"check-if-string-is-a-prefix-of-array","language":"cpp","code":"class Solution {\npublic:\n    bool isPrefixString(string str, vector<string>& words) {\n        string s = \"\";\n        for(int i = 0;i<words.size();i++){\n            s+=words[i];\n            if(s == str)return true;\n        }\n        \n        return false;\n    }\n};"}

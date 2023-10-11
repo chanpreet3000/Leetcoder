@@ -1,0 +1,1 @@
+{"problemName":"remove-all-occurrences-of-a-substring","language":"cpp","code":"class Solution {\npublic:\n    string removeOccurrences(string s, string part) {\n        int pos = s.find(part);\n        while(pos!=string::npos){\n            s.erase(pos,part.length());\n            pos = s.find(part);\n        }\n        return s;\n    }\n};"}
