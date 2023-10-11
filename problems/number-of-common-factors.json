@@ -1,0 +1,1 @@
+{"problemName":"number-of-common-factors","language":"cpp","code":"class Solution {\npublic:\n    int commonFactors(int a, int b) {\n        int ans = 0;\n        for(int i = 1; i <= min(a, b); i++){\n            if(a%i == 0 && b%i == 0)ans++;\n        }\n        return ans;\n    }\n};"}

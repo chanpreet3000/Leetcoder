@@ -1,0 +1,1 @@
+{"problemName":"power-of-three","language":"cpp","code":"class Solution {\npublic:\n    bool isPowerOfThree(int n) {\n        while(n > 1){\n            if(n%3 != 0)break;\n            n /=3;\n        }\n        return n == 1;\n    }\n};"}

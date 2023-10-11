@@ -1,0 +1,1 @@
+{"problemName":"number-of-good-pairs","language":"cpp","code":"class Solution {\npublic:\n    int numIdenticalPairs(vector<int>& nums) {\n        vector<int> umap(105,0);\n        int ans = 0;\n        for(auto i : nums){\n            ans += umap[i];\n            umap[i] ++;\n        }\n        return ans;\n    }\n};"}

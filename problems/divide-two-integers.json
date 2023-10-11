@@ -1,0 +1,1 @@
+{"problemName":"divide-two-integers","language":"cpp","code":"class Solution {\npublic:\n    int divide(int x, int y) {\n        long long ans = (x * 1LL)/ y;\n        if(ans >= INT_MAX)return INT_MAX;\n        return (int)ans;\n    }\n};"}

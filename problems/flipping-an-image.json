@@ -1,0 +1,1 @@
+{"problemName":"flipping-an-image","language":"cpp","code":"class Solution {\npublic:\n    vector<vector<int>> flipAndInvertImage(vector<vector<int>>& image) {\n        for(auto &i : image){\n            reverse(i.begin(), i.end());\n            for(auto &j : i){\n                j = 1 - j;\n            }\n        }\n        return image;\n    }\n};"}

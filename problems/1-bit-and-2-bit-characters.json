@@ -1,0 +1,1 @@
+{"problemName":"1-bit-and-2-bit-characters","language":"cpp","code":"class Solution {\npublic:\n    bool isOneBitCharacter(vector<int>& bits) {\n        int i = 0;\n        for(; i < bits.size() - 1;i++)\n            if(bits[i] == 1)\n                i++;\n        return (i ==  bits.size() - 1);\n    }\n};"}

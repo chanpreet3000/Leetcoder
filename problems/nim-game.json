@@ -1,0 +1,1 @@
+{"problemName":"nim-game","language":"cpp","code":"class Solution {\npublic:\n    bool canWinNim(int n) {\n        return (n%4 != 0);\n    }\n};"}

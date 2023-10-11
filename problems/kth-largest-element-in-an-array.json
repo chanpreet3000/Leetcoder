@@ -1,0 +1,1 @@
+{"problemName":"kth-largest-element-in-an-array","language":"cpp","code":"class Solution {\npublic:\n    int findKthLargest(vector<int>& nums, int k) {\n        sort(nums.begin(), nums.end(), greater<int>());\n        return nums[k-1];\n    }\n};"}

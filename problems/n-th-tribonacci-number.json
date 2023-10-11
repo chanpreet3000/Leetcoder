@@ -1,0 +1,1 @@
+{"problemName":"n-th-tribonacci-number","language":"cpp","code":"class Solution {\npublic:\n    int dp[38];\n    int tribonacci(int n) {\n        if(n == 0) return 0;\n        if(n== 1 || n==2) return 1;\n        if(dp[n] !=0) return dp[n];\n        return dp[n] = tribonacci(n-1) + tribonacci(n-2) + tribonacci(n-3);\n    }\n};"}

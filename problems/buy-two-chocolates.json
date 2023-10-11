@@ -1,0 +1,1 @@
+{"problemName":"buy-two-chocolates","language":"java","code":"class Solution {\n    public int buyChoco(int[] prices, int money) {\n        Arrays.sort(prices);\n        int s = prices[0] + prices[1];\n        if(s > money)return money;\n        return money - s;\n    }\n}"}

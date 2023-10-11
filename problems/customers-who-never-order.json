@@ -1,0 +1,1 @@
+{"problemName":"customers-who-never-order","language":"mysql","code":"SELECT name as Customers\r\nfrom Customers\r\nwhere id not in (\r\n    select customerId\r\n    from Orders\r\n);"}

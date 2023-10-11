@@ -1,0 +1,1 @@
+{"problemName":"find-the-value-of-the-partition","language":"cpp","code":"class Solution {\npublic:\n    int findValueOfPartition(vector<int>& nums) {\n        int ans = 1e9;\n        sort(nums.begin(), nums.end());\n        for(int i = 1; i < nums.size(); i++){\n            ans = min(ans, nums[i] - nums[i - 1]);\n        }\n        return ans;\n    }\n};"}

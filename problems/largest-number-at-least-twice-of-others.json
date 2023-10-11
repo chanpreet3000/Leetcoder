@@ -1,0 +1,1 @@
+{"problemName":"largest-number-at-least-twice-of-others","language":"cpp","code":"class Solution {\npublic:\n    int dominantIndex(vector<int>& nums) {\n        int ind = max_element(nums.begin(), nums.end()) - nums.begin();\n        sort(nums.begin(), nums.end(), greater<int>());\n        if(nums[0] >= 2 * nums[1])return ind;\n        return -1;\n    }\n};"}

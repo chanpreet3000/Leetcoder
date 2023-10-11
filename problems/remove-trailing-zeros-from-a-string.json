@@ -1,0 +1,1 @@
+{"problemName":"remove-trailing-zeros-from-a-string","language":"python3","code":"class Solution:\n    def removeTrailingZeros(self, s: str) -> str:\n        while len(s) > 0 and s[len(s) - 1] == '0':\n            s = s[:-1]\n        if(len(s) == 0):\n            return \"0\"\n        return s"}

@@ -1,0 +1,1 @@
+{"problemName":"single-element-in-a-sorted-array","language":"cpp","code":"class Solution {\npublic:\n    int singleNonDuplicate(vector<int>& nums) {\n        int x =0;\n        for(auto i :nums) x ^= i;\n        return x;\n    }\n};"}

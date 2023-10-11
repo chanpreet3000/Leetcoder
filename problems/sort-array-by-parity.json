@@ -1,0 +1,1 @@
+{"problemName":"sort-array-by-parity","language":"cpp","code":"class Solution {\npublic:\n    vector<int> sortArrayByParity(vector<int>& nums) {\n        vector<int> arr;\n        for(auto i : nums)if(i%2 == 0)arr.push_back(i);\n        for(auto i : nums)if(i%2 == 1)arr.push_back(i);\n        return arr;\n    }\n};"}

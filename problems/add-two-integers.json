@@ -1,0 +1,1 @@
+{"problemName":"add-two-integers","language":"cpp","code":"class Solution {\npublic:\n    int sum(int num1, int num2) {\n        return num1 + num2;        \n    }\n};"}

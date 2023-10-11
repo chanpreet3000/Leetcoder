@@ -1,0 +1,1 @@
+{"problemName":"sign-of-the-product-of-an-array","language":"cpp","code":"class Solution {\npublic:\n    int arraySign(vector<int>& nums) {\n        long p = 0, n = 0;\n        for(auto i : nums)if(i > 0)p++;\n        else if(i < 0)n++;\n        if(p + n == nums.size()){\n            if(n%2 == 0)return 1;\n            else return -1;\n        }\n        return 0;\n    }\n};"}

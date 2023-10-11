@@ -1,0 +1,1 @@
+{"problemName":"search-in-rotated-sorted-array-ii","language":"cpp","code":"class Solution {\npublic:\n    bool search(vector<int>& nums, int target) {\n        for(auto i :nums)if(i==target)return true;\n        return false;\n    }\n};"}

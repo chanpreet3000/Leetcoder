@@ -1,0 +1,1 @@
+{"problemName":"decode-xored-array","language":"cpp","code":"class Solution {\npublic:\n    vector<int> decode(vector<int>& encoded, int first) {\n        vector<int> ans = {first};\n        int prev = first;\n        for(auto i : encoded){\n            ans.push_back((i ^ prev));\n            prev = (i ^ prev);\n        }\n        return ans;\n        \n    }\n};"}

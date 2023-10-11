@@ -1,0 +1,1 @@
+{"problemName":"minimize-string-length","language":"python3","code":"class Solution:\n    def minimizedStringLength(self, s: str) -> int:\n        st = set()\n        for i in s:\n            st.add(i)\n        return len(st)"}

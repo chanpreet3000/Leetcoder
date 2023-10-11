@@ -1,0 +1,1 @@
+{"problemName":"reverse-string","language":"cpp","code":"class Solution {\npublic:\n    void helper(vector<char> &s, int l, int r){\n        if(l>=r) return;\n        swap(s[l], s[r]);\n        helper(s,l + 1, r - 1);\n    }\n    void reverseString(vector<char>& s) {\n        helper(s,0,s.size() - 1);\n    }\n};"}

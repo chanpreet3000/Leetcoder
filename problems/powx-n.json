@@ -1,0 +1,1 @@
+{"problemName":"powx-n","language":"cpp","code":"class Solution {\npublic:\n    double myPow(double x, int n) {\n        if(n == 0){\n            return 1;\n        }\n        if(n< 0){\n            return 1/x * myPow(1/x,-(n + 1));\n        }\n        return n%2 ==0?myPow(x*x,n/2):x * myPow(x,n-1);\n    }\n};"}

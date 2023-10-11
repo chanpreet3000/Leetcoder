@@ -1,0 +1,1 @@
+{"problemName":"employees-earning-more-than-their-managers","language":"mysql","code":"SELECT e2.name as Employee\r\nFROM employee e1\r\nINNER JOIN employee e2 ON e1.id = e2.managerID\r\nWHERE\r\ne1.salary < e2.salary"}

@@ -1,0 +1,1 @@
+{"problemName":"find-the-original-array-of-prefix-xor","language":"cpp","code":"class Solution {\npublic:\n    vector<int> findArray(vector<int>& pref) {\n        vector<int> arr = pref;\n        for(int i = 1; i < arr.size();i++){\n            arr[i] = (pref[i] ^pref[i-1]);\n        }\n        return arr;\n    }\n};"}

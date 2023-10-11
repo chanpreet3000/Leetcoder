@@ -1,0 +1,1 @@
+{"problemName":"range-addition-ii","language":"cpp","code":"class Solution {\npublic:\n    int maxCount(int m, int n, vector<vector<int>>& ops) {\n        int x = m, y = n;\n        for(auto i : ops){\n            x = min(x, i[0]);\n            y = min(y, i[1]);\n        }\n        return x * y;\n    }\n};"}

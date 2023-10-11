@@ -1,0 +1,1 @@
+{"problemName":"minimum-common-value","language":"cpp","code":"class Solution {\npublic:\n    int getCommon(vector<int>& nums1, vector<int>& nums2) {\n        for(auto i : nums1){\n            if(binary_search(nums2.begin(), nums2.end(), i)){\n                return i;\n            }\n        }\n        return -1;\n    }\n};"}

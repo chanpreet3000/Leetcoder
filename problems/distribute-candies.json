@@ -1,0 +1,1 @@
+{"problemName":"distribute-candies","language":"cpp","code":"class Solution {\npublic:\n    int distributeCandies(vector<int>& candyType) {\n        map<int, int> m;\n        for(auto i : candyType)m[i]++;\n        return min(candyType.size()/2, m.size());\n    }\n};"}

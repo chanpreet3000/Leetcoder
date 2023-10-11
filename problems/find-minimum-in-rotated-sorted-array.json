@@ -1,0 +1,1 @@
+{"problemName":"find-minimum-in-rotated-sorted-array","language":"cpp","code":"class Solution {\npublic:\n    int findMin(vector<int>& nums) {\n        return *min_element(nums.begin(), nums.end());        \n    }\n};"}

@@ -1,0 +1,1 @@
+{"problemName":"keep-multiplying-found-values-by-two","language":"cpp","code":"class Solution {\npublic:\n    int findFinalValue(vector<int>& nums, int original) {\n        map<int, int> m;\n        for(auto i : nums)m[i]++;\n        int ans = original;\n        while(1){\n            if(m[ans] >= 1)ans *= 2;\n            else break;\n        }\n        return ans;\n    }\n};"}

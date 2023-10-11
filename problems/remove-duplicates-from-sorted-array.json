@@ -1,0 +1,1 @@
+{"problemName":"remove-duplicates-from-sorted-array","language":"cpp","code":"class Solution {\npublic:\n    int removeDuplicates(vector<int>& nums) {\n        map<int, int> umap;\n        for(auto i :nums){\n            umap[i]++;\n        }\n        int k = 0;\n        for(auto i :umap){\n            nums[k++] = i.first;\n        }\n        return umap.size();\n    }\n};"}

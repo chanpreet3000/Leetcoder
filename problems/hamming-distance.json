@@ -1,0 +1,1 @@
+{"problemName":"hamming-distance","language":"cpp","code":"class Solution {\npublic:\n    int hammingDistance(int x, int y) {\n        int ans = 0;\n        for(int i = 0; i < 32;i++)\n        {\n            int b1 = ((x & (1<<i))) > 0? 1: 0;\n            int b2 = ((y & (1<<i))) > 0? 1: 0;\n            if(b1 != b2)ans++;\n        }\n        return ans;\n    }\n};"}

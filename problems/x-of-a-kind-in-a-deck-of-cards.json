@@ -1,0 +1,1 @@
+{"problemName":"x-of-a-kind-in-a-deck-of-cards","language":"cpp","code":"class Solution {\npublic:\n    bool hasGroupsSizeX(vector<int>& deck) {\n        map<int, int> m;\n        for(auto i : deck)m[i]++;\n        int g = 0;\n        for(auto i : m){\n            g =__gcd(g, i.second);\n        }\n        return g > 1;\n    }\n};"}

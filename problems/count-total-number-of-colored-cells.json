@@ -1,0 +1,1 @@
+{"problemName":"count-total-number-of-colored-cells","language":"cpp","code":"class Solution {\npublic:\n    long long coloredCells(int n) {\n        long long temp = 0;\n        for(int i = n - 1; i >= 1;i--){\n            temp += (2 *(i - 1) + 1);\n        }\n        temp *= 2;\n        temp += (2 * (n - 1) + 1);\n        return temp;\n        \n    }\n};"}

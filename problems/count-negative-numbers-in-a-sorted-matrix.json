@@ -1,0 +1,1 @@
+{"problemName":"count-negative-numbers-in-a-sorted-matrix","language":"cpp","code":"class Solution {\npublic:\n    int countNegatives(vector<vector<int>>& grid) {\n        int ans = 0;\n        for(auto i : grid){\n            int ind1 = lower_bound(i.rbegin(), i.rend(), 0) - i.rbegin();\n            ans += ind1;\n        }\n        return ans;\n    }\n};"}

@@ -1,0 +1,1 @@
+{"problemName":"single-number","language":"cpp","code":"class Solution {\npublic:\n    int singleNumber(vector<int>& nums) {\n        int x = 0;\n        for(auto i :nums) x = (x ^ i);\n        return x;\n    }\n};"}

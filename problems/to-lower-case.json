@@ -1,0 +1,1 @@
+{"problemName":"to-lower-case","language":"cpp","code":"class Solution {\npublic:\n    string toLowerCase(string s) {\n        for(auto &i : s){\n            if(i >= 'A' && i<= 'Z')i = i - 'A' + 'a';\n        }\n        return s;\n    }\n};"}

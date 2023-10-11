@@ -1,0 +1,1 @@
+{"problemName":"find-lucky-integer-in-an-array","language":"cpp","code":"class Solution {\npublic:\n    int findLucky(vector<int>& arr) {\n        map<int, int> m;\n        for(auto i : arr)m[i]++;\n        int ans = -1;\n        for(auto i : m)if(i.first == i.second)ans = i.first;\n        return ans;   \n    }\n};"}

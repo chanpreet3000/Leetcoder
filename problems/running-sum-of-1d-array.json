@@ -1,0 +1,1 @@
+{"problemName":"running-sum-of-1d-array","language":"cpp","code":"class Solution {\r\npublic:\r\n    vector<int> runningSum(vector<int>& nums) {\r\n        for(int i = 1; i < nums.size();i++){\r\n            nums[i] += nums[i-1];\r\n        }\r\n        return nums;\r\n    }\r\n};"}

@@ -1,0 +1,1 @@
+{"problemName":"rotate-array","language":"cpp","code":"class Solution {\npublic:\n    void rotate(vector<int>& nums, int k) {\n        k = k % nums.size();\n        reverse(nums.begin(), nums.end() - k);\n        reverse(nums.end() - k, nums.end());\n        reverse(nums.begin(), nums.end());        \n    }\n};"}

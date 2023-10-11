@@ -1,0 +1,1 @@
+{"problemName":"robot-return-to-origin","language":"cpp","code":"class Solution {\npublic:\n    bool judgeCircle(string moves) {\n        int x = 0, y = 0;\n        for(auto i : moves){\n            if(i == 'U') x++;\n            if(i == 'D') x--;\n            if(i == 'L') y--;\n            if(i == 'R') y++;\n        }\n        return (x == 0 && y == 0);\n    }\n};"}

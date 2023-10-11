@@ -1,0 +1,1 @@
+{"problemName":"power-of-two","language":"cpp","code":"class Solution {\npublic:\n    bool isPowerOfTwo(int x) {\n        if(x <= 0) return false;\n        return ((x & (x-1)) == 0);\n    }\n};"}

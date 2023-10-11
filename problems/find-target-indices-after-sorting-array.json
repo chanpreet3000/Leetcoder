@@ -1,0 +1,1 @@
+{"problemName":"find-target-indices-after-sorting-array","language":"cpp","code":"class Solution {\npublic:\n    vector<int> targetIndices(vector<int>& nums, int target) {\n        sort(nums.begin(), nums.end());\n        vector<int> ans;\n        for(int i= 0; i < nums.size();i++){\n            if(nums[i] == target)ans.push_back(i);\n        }\n        return ans;\n    }\n};"}

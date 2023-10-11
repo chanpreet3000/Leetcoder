@@ -1,0 +1,1 @@
+{"problemName":"duplicate-emails","language":"mysql","code":"SELECT distinct p1.Email from Person p1\r\nINNER JOIN Person p2\r\nON p1.Email = p2.Email\r\nWHERE p1.Id <> p2.Id;"}

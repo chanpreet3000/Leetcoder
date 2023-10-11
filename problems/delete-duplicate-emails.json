@@ -1,0 +1,1 @@
+{"problemName":"delete-duplicate-emails","language":"mysql","code":"DELETE p1\nFROM Person p1, Person p2\nWHERE p1.Email = p2.Email AND\np1.Id > p2.Id"}

@@ -1,0 +1,1 @@
+{"problemName":"k-items-with-the-maximum-sum","language":"cpp","code":"class Solution {\npublic:\n    int kItemsWithMaximumSum(int numOnes, int numZeros, int numNegOnes, int k) {\n        if(k <= numOnes)return k;\n        if(k <= numOnes + numZeros)return numOnes;\n        int diff = k - numOnes - numZeros;\n        return numOnes - diff;\n    }\n};"}

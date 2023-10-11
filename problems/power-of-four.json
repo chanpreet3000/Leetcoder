@@ -1,0 +1,1 @@
+{"problemName":"power-of-four","language":"cpp","code":"class Solution {\npublic:\n    bool isPowerOfFour(int n) {\n        if(n <=0) return false;\n        if(n == 1) return true;\n        if(n%4 != 0) return false;\n        return isPowerOfFour(n/4);\n    }\n};"}

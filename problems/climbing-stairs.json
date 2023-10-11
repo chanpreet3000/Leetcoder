@@ -1,0 +1,1 @@
+{"problemName":"climbing-stairs","language":"cpp","code":"class Solution {\npublic:\n    int dp[50] = {0};\n    int climbStairs(int n) {\n        if(n<0)return 0;\n        if(n == 0)return 1;\n        if(dp[n] != 0)return dp[n];\n        dp[n] = climbStairs(n - 1) + climbStairs(n-2);\n        return dp[n];\n    }\n};"}

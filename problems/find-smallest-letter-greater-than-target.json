@@ -1,0 +1,1 @@
+{"problemName":"find-smallest-letter-greater-than-target","language":"cpp","code":"class Solution {\npublic:\n    char nextGreatestLetter(vector<char>& letters, char target) {\n        int ind = upper_bound(letters.begin(), letters.end(), target) - letters.begin() ;\n        return ind== letters.size()?letters[0]:letters[ind];\n    }\n};"}

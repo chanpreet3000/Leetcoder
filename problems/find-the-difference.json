@@ -1,0 +1,1 @@
+{"problemName":"find-the-difference","language":"cpp","code":"class Solution {\npublic:\n    char findTheDifference(string s, string t) {\n        sort(s.begin(), s.end());\n        sort(t.begin(), t.end());\n        for(int i = 0; i < s.length();i++){\n            if(s[i] != t[i])return t[i];\n        }\n        return t[t.length() - 1];\n    }\n};"}

@@ -1,0 +1,1 @@
+{"problemName":"sum-of-unique-elements","language":"cpp","code":"class Solution {\npublic:\n    int sumOfUnique(vector<int>& nums) {\n        map<int, int> m;\n        for(auto i : nums)m[i]++;\n        int ans = 0;\n        for(auto i : m)if(i.second == 1)ans+=i.first;\n        return ans;\n    }\n};"}

@@ -1,0 +1,1 @@
+{"problemName":"array-partition","language":"cpp","code":"class Solution {\npublic:\n    int arrayPairSum(vector<int>& nums) {\n        sort(nums.begin(), nums.end());\n        int ans=0;\n        for(int i = 0; i < nums.size();i+=2){\n            ans += min(nums[i], nums[i+1]);\n        }\n        return ans;\n    }\n};"}

@@ -1,0 +1,1 @@
+{"problemName":"smallest-even-multiple","language":"cpp","code":"class Solution {\npublic:\n    int smallestEvenMultiple(int n) {\n        if(n%2)return 2 * n;\n        return n;\n    }\n};"}

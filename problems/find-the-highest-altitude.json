@@ -1,0 +1,1 @@
+{"problemName":"find-the-highest-altitude","language":"cpp","code":"class Solution {\npublic:\n    int largestAltitude(vector<int>& gain) {\n        int _max = 0;\n        int curr = 0;\n        for(auto i : gain){\n            curr += i;\n            _max = max(_max, curr);\n        }\n        return _max;\n    }\n};"}

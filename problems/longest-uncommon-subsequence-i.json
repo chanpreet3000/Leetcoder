@@ -1,0 +1,1 @@
+{"problemName":"longest-uncommon-subsequence-i","language":"cpp","code":"class Solution {\npublic:\n    int findLUSlength(string a, string b) {\n        if(a == b)return -1;\n        return max(a.length(), b.length());\n    }\n};"}

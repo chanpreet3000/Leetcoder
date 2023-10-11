@@ -1,0 +1,1 @@
+{"problemName":"rotate-string","language":"cpp","code":"class Solution {\npublic:\n    bool rotateString(string s, string goal) {\n        for(int i = 0; i <= s.length(); i++){\n            string a = s.substr(0, i);\n            string b = s.substr(i, s.length()- i);\n            if(b + a == goal)return true;\n        }\n        return false;\n    }\n};"}

@@ -1,0 +1,1 @@
+{"problemName":"add-digits","language":"cpp","code":"class Solution {\npublic:\n    int addDigits(int num) {\n        if(num < 10)return num;\n        int temp = 0;\n        while(num > 0){\n            temp += num%10;\n            num /=10;\n        }\n        return addDigits(temp);        \n    }\n};"}

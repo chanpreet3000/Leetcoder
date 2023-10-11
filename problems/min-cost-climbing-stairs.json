@@ -1,0 +1,1 @@
+{"problemName":"min-cost-climbing-stairs","language":"cpp","code":"class Solution {\npublic:\n    int minCostClimbingStairs(vector<int>& cost) {\n        int a = cost[0], b = cost[1];\n        for(int i = 2;i<cost.size();i++){\n            int temp = min(a, b) + cost[i];\n            a = b;\n            b = temp;\n        }\n        return min(a, b);        \n    }\n};"}

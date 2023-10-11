@@ -1,0 +1,1 @@
+{"problemName":"third-maximum-number","language":"cpp","code":"class Solution {\npublic:\n    int thirdMax(vector<int>& nums) {\n        set<int> st;\n        for(auto i : nums)st.insert(i);\n        vector<int> arr;\n        for(auto i : st)arr.push_back(i);\n        if(arr.size() < 3)return arr[arr.size() - 1];\n        else return arr[arr.size() - 3];\n    }\n};"}

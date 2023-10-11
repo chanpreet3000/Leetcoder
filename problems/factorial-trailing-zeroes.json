@@ -1,0 +1,1 @@
+{"problemName":"factorial-trailing-zeroes","language":"cpp","code":"class Solution {\npublic:\n    int trailingZeroes(int n) {\n        int cnt = 0;\n        while(n>0){\n            cnt += n/5;\n            n/=5;\n        }\n        return cnt;\n    }\n};"}

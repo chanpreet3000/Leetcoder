@@ -1,0 +1,1 @@
+{"problemName":"minimum-number-of-increments-on-subarrays-to-form-a-target-array","language":"cpp","code":"class Solution {\npublic:\n     int minNumberOperations(vector<int>& A) {\n        int res = A[0];\n        for (int i = 1; i < A.size(); ++i)\n            res += max(A[i] - A[i - 1], 0);\n        return res;\n    }\n};"}

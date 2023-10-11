@@ -1,0 +1,1 @@
+{"problemName":"fibonacci-number","language":"cpp","code":"class Solution {\npublic:\n    int dp[31];\n    int fib(int n) {\n        if(n<=1)return n;\n        if(dp[n] != 0){\n            return dp[n];\n        }\n        return fib(n - 1) + fib(n - 2);\n    }\n};"}

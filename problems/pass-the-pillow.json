@@ -1,0 +1,1 @@
+{"problemName":"pass-the-pillow","language":"cpp","code":"class Solution {\npublic:\n    int passThePillow(int n, int time) {\n        int rem = time%(n-1);\n        if((time/(n-1))%2 == 0){\n            return  rem + 1;\n        }else{\n            return n - rem;\n        }\n    }\n};"}
