@@ -26,9 +26,9 @@ export const start = async (user) => {
   //   waitUntil: "networkidle2",
   // });
   await scrap(page);
-  console.log("<<<< Exiting Leetcode Questions Solver Bot >>>>");
-  await browser.close();
-  process.exit();
+  // console.log("<<<< Exiting Leetcode Questions Solver Bot >>>>");
+  // await browser.close();
+  // process.exit();
 
 
   // // Check if login or not, if not login.

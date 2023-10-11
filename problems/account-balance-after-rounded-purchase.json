@@ -1,0 +1,1 @@
+{"problemName":"account-balance-after-rounded-purchase","language":"cpp","code":"class Solution {\npublic:\n    int accountBalanceAfterPurchase(int purchaseAmount) {\n        int temp = round((purchaseAmount * 1.0)/10) * 10;\n        return 100 - temp;\n        \n    }\n};"}

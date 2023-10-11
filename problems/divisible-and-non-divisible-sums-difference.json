@@ -1,0 +1,1 @@
+{"problemName":"divisible-and-non-divisible-sums-difference","language":"cpp","code":"class Solution {\npublic:\n    int differenceOfSums(int n, int m) {\n        int n1 = 0, n2 = 0;\n        for(int i = 1; i <= n; i++){\n            if(i % m)n1 += i;\n            if(i%m == 0)n2 += i;\n        }\n        return n1 - n2;\n        \n    }\n};"}
