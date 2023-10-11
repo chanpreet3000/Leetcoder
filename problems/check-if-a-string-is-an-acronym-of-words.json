@@ -1,0 +1,5 @@
+{
+    "problemName": "check-if-a-string-is-an-acronym-of-words",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    bool isAcronym(vector<string>& words, string s) {\n        string ans = \"\";\n        for(auto it : words){\n            ans+=it[0];\n        }\n        \n        return ans == s;\n    }\n};"
+}
