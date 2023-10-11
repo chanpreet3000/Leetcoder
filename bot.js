@@ -1,5 +1,6 @@
 // add stealth plugin and use defaults (all evasion techniques)
 require("dotenv").config();
+const { getElementByXPath } = require("./utils");
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 puppeteer.use(StealthPlugin());
@@ -30,7 +31,7 @@ const start = async (user) => {
   const browser = await puppeteer.launch({
     headless: false,
     executablePath: process.env.GOOGLE_CHROME_DIRECTORY,
-    userDataDir: process.env.GOOGLE_CHROME_DATA_DIRECTORY + `/${user.phone_number}`,
+    userDataDir: `./chrome_profiles/${user.email}`,
     defaultViewport: null,
     args: ["--start-maximized"],
   });
@@ -41,19 +42,19 @@ const start = async (user) => {
     waitUntil: "networkidle2",
   });
 
-  // Check if login or not, if not login.
-  try {
-    await getElementByXPath(page, XPATH_PROFILE_BUTTON, 3);
-    await afterLogin(browser, page, user);
-  } catch (err) {
-    console.log(err);
-    //After it is logged in start the process.
-    page.on("framenavigated", async (frame) => {
-      const currentURL = await frame.evaluate(() => window.location.href);
-      if (currentURL === "https://tinder.com/app/recs") await afterLogin(browser, page, user);
-    });
-    await login(user, page);
-  }
+  // // Check if login or not, if not login.
+  // try {
+  //   await getElementByXPath(page, XPATH_PROFILE_BUTTON, 3);
+  //   await afterLogin(browser, page, user);
+  // } catch (err) {
+  //   console.log(err);
+  //   //After it is logged in start the process.
+  //   page.on("framenavigated", async (frame) => {
+  //     const currentURL = await frame.evaluate(() => window.location.href);
+  //     if (currentURL === "https://tinder.com/app/recs") await afterLogin(browser, page, user);
+  //   });
+  //   await login(user, page);
+  // }
 };
 
 module.exports = {
