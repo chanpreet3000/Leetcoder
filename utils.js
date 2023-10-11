@@ -1,8 +1,8 @@
-const sleep = async (time) => {
+export const sleep = async (time) => {
   await new Promise((resolve) => setTimeout(resolve, time * 1000));
 };
 
-const getElementByXPath = async (element, xpath, timeoutDelay = 30, delay = 1.3) => {
+export const getElementByXPath = async (element, xpath, timeoutDelay = 30, delay = 1.3) => {
   await sleep(delay);
   await element.waitForXPath(xpath, {
     visible: true,
@@ -11,7 +11,7 @@ const getElementByXPath = async (element, xpath, timeoutDelay = 30, delay = 1.3)
   return await element.$x(xpath);
 };
 
-const getElementBySelector = async (element, selector, timeoutDelay = 30, delay = 1.3) => {
+export const getElementBySelector = async (element, selector, timeoutDelay = 30, delay = 1.3) => {
   await sleep(delay);
   await element.waitForSelector(selector, {
     visible: true,

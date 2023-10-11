@@ -1,5 +1,5 @@
-const { start } = require("./bot");
-const { users } = require("./data");
+import { start } from "./bot.js";
+import { users } from "./data.js";
 (async () => {
   users.forEach(async (user) => {
     try {

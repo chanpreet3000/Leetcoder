@@ -9,9 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "clipboardy": "^3.0.0",
     "dotenv": "^16.3.1",
     "puppeteer": "^21.3.8",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2"
-  }
+  },
+  "type": "module"
 }

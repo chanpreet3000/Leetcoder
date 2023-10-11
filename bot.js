@@ -1,30 +1,14 @@
+import dotenv from "dotenv";
+dotenv.config();
 // add stealth plugin and use defaults (all evasion techniques)
-require("dotenv").config();
-const { getElementByXPath } = require("./utils");
-const puppeteer = require("puppeteer-extra");
-const StealthPlugin = require("puppeteer-extra-plugin-stealth");
+import puppeteer from "puppeteer-extra";
+import StealthPlugin from "puppeteer-extra-plugin-stealth";
 puppeteer.use(StealthPlugin());
+import { scrap } from "./scrapper.js";
 
-// Replace by your user ID, you can find it in the network tab in the requests
-async function login(user, page) {
-  console.log("Logging in user...");
-  try {
-  } catch (err) {
-    console.error("Login System Failed:", err);
-  }
-}
-const afterLogin = async (browser, page, user) => {
-  try {
-  } catch (err) {
-    console.error(err);
-  } finally {
-    console.log("<<<< Exiting Leetcode Questions Solver Bot >>>>");
-    await browser.close();
-    process.exit();
-  }
-};
 
-const start = async (user) => {
+// 
+export const start = async (user) => {
   console.log("<<<< Starting Leetcode Questions Solver Bot >>>>");
 
   // browser settings
@@ -38,9 +22,14 @@ const start = async (user) => {
 
   const [page] = await browser.pages();
 
-  await page.goto("https://leetcode.com", {
-    waitUntil: "networkidle2",
-  });
+  // await page.goto("https://leetcode.com", {
+  //   waitUntil: "networkidle2",
+  // });
+  await scrap(page);
+  console.log("<<<< Exiting Leetcode Questions Solver Bot >>>>");
+  await browser.close();
+  process.exit();
+
 
   // // Check if login or not, if not login.
   // try {
@@ -55,8 +44,4 @@ const start = async (user) => {
   //   });
   //   await login(user, page);
   // }
-};
-
-module.exports = {
-  start,
 };
