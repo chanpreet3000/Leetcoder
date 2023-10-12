@@ -1,6 +1,6 @@
 import fs from "fs";
 import { getElementByXPath, sleep } from "./utils.js";
-import { QUESTIONS_CODE_DIV_XPATH, QUESTIONS_SUBMIT_DIV_XPATH } from "./constants.js";
+import { QUESTIONS_CODE_DIV_XPATH, QUESTIONS_SUBMIT_ACCEPTED_XPATH, QUESTIONS_SUBMIT_DIV_XPATH } from "./constants.js";
 import clipboardy from "clipboardy";
 
 const getFiles = async (dir, files = []) => {
@@ -15,30 +15,37 @@ const solveProblemWithName = async (page, problem_name) => {
     waitUntil: "networkidle2",
   });
 
-  const content = fs.readFileSync(`./problems/${problem_name}`);
-  const code = JSON.parse(content).code;
-  // Copy code to clipboard
-  clipboardy.writeSync(code);
+  try {
+    await getElementByXPath(page, QUESTIONS_SUBMIT_ACCEPTED_XPATH, 2);
+    console.log(`${problem} is already SOLVED!`);
+  } catch (e) {
+    console.log(`Solving ${problem} ......`);
 
-  // Focus on the code editor
-  const code_editor = await getElementByXPath(page, QUESTIONS_CODE_DIV_XPATH, 5, 0);
-  await code_editor[0].click();
+    //
+    const content = fs.readFileSync(`./problems/${problem_name}`);
+    const code = JSON.parse(content).code;
+    // Copy code to clipboard
+    clipboardy.writeSync(code);
 
-  // Select all code to remove
-  await page.keyboard.down("Control");
-  await page.keyboard.press("KeyA");
-  await page.keyboard.up("Control");
-  // Press Backspace
-  await page.keyboard.press("Backspace");
-  // Paste the code in the editor
-  await page.keyboard.down("Control");
-  await page.keyboard.press("KeyV");
-  await page.keyboard.up("Control");
+    // Focus on the code editor
+    const code_editor = await getElementByXPath(page, QUESTIONS_CODE_DIV_XPATH, 5, 0);
+    await code_editor[0].click();
 
-  const submit_btn = await getElementByXPath(page, QUESTIONS_SUBMIT_DIV_XPATH, 5, 0);
-  await sleep(5);
-  await submit_btn[0].click();
-  await sleep(8);
+    // Select all code to remove
+    await page.keyboard.down("Control");
+    await page.keyboard.press("KeyA");
+    await page.keyboard.up("Control");
+    // Press Backspace
+    await page.keyboard.press("Backspace");
+    // Paste the code in the editor
+    await page.keyboard.down("Control");
+    await page.keyboard.press("KeyV");
+    await page.keyboard.up("Control");
+
+    const submit_btn = await getElementByXPath(page, QUESTIONS_SUBMIT_DIV_XPATH, 5, 0);
+    await submit_btn[0].click();
+    await sleep(15);
+  }
 };
 
 export const solve_questions = async (page) => {
@@ -46,5 +53,4 @@ export const solve_questions = async (page) => {
   for (var i = 0; i < problems_names.length; i++) {
     await solveProblemWithName(page, problems_names[i]);
   }
-  console.log(problems_names);
 };
