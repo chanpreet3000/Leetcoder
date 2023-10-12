@@ -57,7 +57,7 @@ const scrapSubmissionIdsFromPageId = async (page, id) => {
     waitUntil: "networkidle2",
   });
 
-  const rows = await getElementBySelector(page, ".text-success", 10);
+  const rows = await getElementBySelector(page, ".text-success", 10, 0);
   const accepted_hrefs = await Promise.all(
     rows.map(async (row) => {
       return await row.evaluate((el) => el.getAttribute("href"));
