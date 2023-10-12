@@ -1,0 +1,1 @@
+{"problemName":"calculate-delayed-arrival-time","language":"cpp","code":"class Solution {\npublic:\n    int findDelayedArrivalTime(int arrivalTime, int delayedTime) {\n        return (arrivalTime + delayedTime)%24;\n    }\n};"}

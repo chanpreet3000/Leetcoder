@@ -1,0 +1,1 @@
+{"problemName":"sum-multiples","language":"cpp","code":"class Solution {\npublic:\n    int sumOfMultiples(int n) {\n        long sum = 0;\n        for(int i = 1; i <= n;i++){\n            if(i%3 == 0 || i%5 == 0 || i%7 == 0)sum += i;\n        }\n        return sum;\n    }\n};"}

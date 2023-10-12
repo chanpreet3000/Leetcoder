@@ -1,0 +1,1 @@
+{"problemName":"find-the-maximum-achievable-number","language":"cpp","code":"class Solution {\npublic:\n    int theMaximumAchievableX(int num, int t) {\n        return num + 2 * t;\n    }\n};"}

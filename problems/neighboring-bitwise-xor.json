@@ -1,0 +1,1 @@
+{"problemName":"neighboring-bitwise-xor","language":"cpp","code":"class Solution {\npublic:\n    bool doesValidArrayExist(vector<int>& derived) {\n        int x = 0;\n        for(auto i : derived)x^=i;\n        return x == 0;\n    }\n};"}

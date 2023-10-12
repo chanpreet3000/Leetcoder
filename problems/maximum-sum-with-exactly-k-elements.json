@@ -1,0 +1,1 @@
+{"problemName":"maximum-sum-with-exactly-k-elements","language":"cpp","code":"class Solution {\npublic:\n    int maximizeSum(vector<int>& nums, int k) {\n        int _max = 0;\n        for(auto i : nums)_max = max(_max, i);\n        long sum = 0;\n        for(int i = 0; i < k; i++){\n            sum += _max + i;\n        }\n        return sum;\n    }\n};"}

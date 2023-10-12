@@ -1,0 +1,1 @@
+{"problemName":"sum-of-squares-of-special-elements","language":"cpp","code":"class Solution {\npublic:\n    int sumOfSquares(vector<int>& nums) {\n        int ans = 0;\n        for(int i = 0; i < nums.size(); i++){\n            if((nums.size())%(i + 1) == 0)ans += nums[i] * nums[i];\n        }\n        return ans;\n    }\n};"}

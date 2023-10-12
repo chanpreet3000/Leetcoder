@@ -1,0 +1,1 @@
+{"problemName":"faulty-keyboard","language":"cpp","code":"class Solution {\npublic:\n    string finalString(string s) {\n        string ans = \"\";\n        for(auto i : s){\n            if(i == 'i'){\n                reverse(ans.begin(), ans.end());\n            }else{\n                ans.push_back(i);\n            }\n        }\n        return ans;\n        \n    }\n};"}

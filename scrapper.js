@@ -89,7 +89,4 @@ const scrapCodeFromAllSubmissions = async (page) => {
 
 export const scrap = async (page) => {
   await scrapCodeFromAllSubmissions(page);
-  // var content = fs.readFileSync(filePath);
-  // content = JSON.parse(content);
-  // console.log(content.code);
 };
