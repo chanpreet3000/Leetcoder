@@ -1,0 +1,1 @@
+{"problemName":"determine-if-two-events-have-conflict","language":"cpp","code":"class Solution {\npublic:\n    bool haveConflict(vector<string>& event1, vector<string>& event2) {\n        if(event1[event1.size()-1]>=event2[0] && event1[0]<=event2[event2.size()-1]){\n            return true;\n        }\n        return false;\n    }\n};"}

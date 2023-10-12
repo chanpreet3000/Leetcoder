@@ -39,7 +39,6 @@ const scrapAndSaveCodeFromSubmissionId = async (page, id) => {
     const copiedText = clipboardy.readSync();
     var fileContent = { problemName: nameDivValue, language: languageDivValue, code: copiedText };
 
-    sleep(1.5);
     //Saving the scrap details
     const filePath = `problems/${nameDivValue}.json`;
     if (!fs.existsSync(filePath)) {

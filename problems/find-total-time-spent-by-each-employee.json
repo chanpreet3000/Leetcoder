@@ -1,0 +1,1 @@
+{"problemName":"find-total-time-spent-by-each-employee","language":"mysql","code":"# Write your MySQL query statement below\nSELECT event_day AS day, emp_id, sum(out_time-in_time) AS total_time \nFROM employees GROUP BY event_day,emp_id;"}

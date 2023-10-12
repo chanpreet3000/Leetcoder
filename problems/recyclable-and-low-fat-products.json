@@ -1,0 +1,1 @@
+{"problemName":"recyclable-and-low-fat-products","language":"mysql","code":"# Write your MySQL query statement below\nSELECT product_id FROM Products WHERE (low_fats='Y' AND recyclable='Y');"}
