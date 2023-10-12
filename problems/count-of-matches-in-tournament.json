@@ -1,0 +1,1 @@
+{"problemName":"count-of-matches-in-tournament","language":"cpp","code":"class Solution {\npublic:\n    int numberOfMatches(int n) {\n        if(n == 1) return 0;\n        if(n%2 == 0){\n            return n/2 + numberOfMatches(n/2);\n        }\n        else{\n            return (n-1)/2 + numberOfMatches((n+1)/2);\n        }\n    }\n};"}

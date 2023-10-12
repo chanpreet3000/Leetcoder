@@ -1,0 +1,1 @@
+{"problemName":"mirror-reflection","language":"cpp","code":"class Solution {\npublic:\n    int mirrorReflection(int p, int q) {\n        while (p % 2 == 0 && q % 2 == 0) p >>= 1, q >>= 1;\n        return 1 - p % 2 + q % 2;\n    }\n};"}

@@ -1,0 +1,1 @@
+{"problemName":"maximum-69-number","language":"cpp","code":"class Solution {\npublic:\n    int maximum69Number (int num) {\n        string t = to_string(num);\n        for(int i = 0; i < t.size(); i++) {\n            if(t[i] == '6') {\n                t[i] = '9';\n                return stoi(t);\n            }\n        }\n\n        return num;\n    }\n};"}

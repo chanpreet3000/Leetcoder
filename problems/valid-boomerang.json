@@ -1,0 +1,1 @@
+{"problemName":"valid-boomerang","language":"cpp","code":"class Solution {\npublic:\n    bool isBoomerang(vector<vector<int>>& p) {\n        return (p[2][0]-p[0][0])*(p[1][1]-p[0][1]) != (p[2][1]-p[0][1])*(p[1][0]-p[0][0]); \n        \n    }\n};"}

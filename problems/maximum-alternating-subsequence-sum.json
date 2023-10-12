@@ -1,0 +1,1 @@
+{"problemName":"maximum-alternating-subsequence-sum","language":"cpp","code":"class Solution {\npublic:\n \n    long long maxAlternatingSum(vector<int>& A) {\n        \n        long res = A[0];\n        for (int i = 1; i < A.size(); ++i)\n            res += max(A[i] - A[i-1], 0);\n        return res;\n        \n    }\n};"}

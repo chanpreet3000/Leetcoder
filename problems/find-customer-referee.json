@@ -1,0 +1,1 @@
+{"problemName":"find-customer-referee","language":"mysql","code":"# Write your MySQL query statement below\nselect name\nfrom Customer \nWhere referee_id IS NULL OR referee_id != 2\n"}

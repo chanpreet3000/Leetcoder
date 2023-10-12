@@ -1,0 +1,1 @@
+{"problemName":"greatest-common-divisor-of-strings","language":"cpp","code":"class Solution {\npublic:\n    string gcdOfStrings(string str1, string str2) {\n        int n = str1.size();\n        int m = str2.size();\n        return (str1 + str2 == str2 + str1 ? str1.substr(0, __gcd(n, m)) : \"\");\n    }\n};"}
