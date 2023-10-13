@@ -1,0 +1,1 @@
+{"problemName":"minimum-bit-flips-to-convert-number","language":"cpp","code":"class Solution {\npublic:\n    int minBitFlips(int st, int go) {\n        int cnt=0;\n        while(st||go)\n        {\n            if((st&1)!=(go&1)){\n                cnt++;\n            }\n            st>>=1;\n            go>>=1;\n        }\n        return cnt;\n    }\n};"}

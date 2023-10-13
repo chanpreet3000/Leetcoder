@@ -1,0 +1,1 @@
+{"problemName":"sort-the-students-by-their-kth-score","language":"cpp","code":"class Solution {\npublic:\n    vector<vector<int>> sortTheStudents(vector<vector<int>>& score, int k) {\n        auto cmp=[&k](vector<int>&x,vector<int>&y){\n            return x[k]>y[k];\n        };\n        sort(begin(score),end(score),cmp);\n        return score;\n    }\n};"}

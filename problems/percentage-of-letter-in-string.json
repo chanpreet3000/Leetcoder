@@ -1,0 +1,1 @@
+{"problemName":"percentage-of-letter-in-string","language":"cpp","code":"class Solution {\npublic:\n    int percentageLetter(string s, char letter) {\n        int cnt=0;\n        for(auto c:s){\n            if(c==letter) cnt++;\n        }\n        return ((cnt*100)/s.length());\n    }\n};"}

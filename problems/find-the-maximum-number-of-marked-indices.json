@@ -1,0 +1,1 @@
+{"problemName":"find-the-maximum-number-of-marked-indices","language":"cpp","code":"class Solution {\npublic:\n   int maxNumOfMarkedIndices(vector<int>& nums) {\n    int i = 0, n = nums.size();\n    sort(begin(nums), end(nums));\n    for (int j = n - n / 2; j < n; ++j)\n        i += 2 * nums[i] <= nums[j];\n    return i * 2;\n}\n};"}

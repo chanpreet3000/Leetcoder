@@ -1,0 +1,1 @@
+{"problemName":"minimum-cuts-to-divide-a-circle","language":"cpp","code":"class Solution {\npublic:\n    int numberOfCuts(int n) {\n        if(n==1) return 0;\n        if(n%2==0) return n/2;\n        return n;\n    }\n};"}

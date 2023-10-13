@@ -1,0 +1,1 @@
+{"problemName":"count-odd-numbers-in-an-interval-range","language":"cpp","code":"class Solution {\npublic:\n    int countOdds(int low, int high) {\n            if(low==0) low=1;\n            return ceil(high/2.0)-ceil((low-1)/2.0);\n    }\n};"}

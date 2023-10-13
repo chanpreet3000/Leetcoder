@@ -1,0 +1,1 @@
+{"problemName":"number-of-distinct-averages","language":"cpp","code":"class Solution {\npublic:\n    int distinctAverages(vector<int>& nums) {\n        sort(begin(nums),end(nums));\n        int i=0,j=nums.size()-1;\n        unordered_set<double> st;\n        while(i<j){\n            st.insert((nums[j--]+nums[i++])/2.0);\n        }\n        return st.size();\n    }\n};"}

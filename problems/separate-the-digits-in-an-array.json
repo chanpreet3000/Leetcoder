@@ -1,0 +1,1 @@
+{"problemName":"separate-the-digits-in-an-array","language":"cpp","code":"class Solution {\npublic:\n    vector<int> separateDigits(vector<int>& nums) {\n        vector<int> ans;\n        for(auto i:nums){\n            for(auto k:to_string(i)){\n                ans.push_back(k-'0');\n            }\n        }\n        return ans;\n    }\n};"}
