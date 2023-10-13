@@ -19,32 +19,35 @@ const solveProblemWithName = async (page, problem_name) => {
     await getElementByXPath(page, QUESTIONS_SUBMIT_ACCEPTED_XPATH, 2);
     console.log(`${problem} is already SOLVED!`);
   } catch (e) {
-    console.log(`Solving ${problem} ......`);
+    try {
+      //
+      console.log(`Solving ${problem} ......`);
+      const content = fs.readFileSync(`./problems/${problem_name}`);
+      const code = JSON.parse(content).code;
+      // Copy code to clipboard
+      clipboardy.writeSync(code);
 
-    //
-    const content = fs.readFileSync(`./problems/${problem_name}`);
-    const code = JSON.parse(content).code;
-    // Copy code to clipboard
-    clipboardy.writeSync(code);
+      // Focus on the code editor
+      const code_editor = await getElementByXPath(page, QUESTIONS_CODE_DIV_XPATH, 5, 0);
+      await code_editor[0].click();
 
-    // Focus on the code editor
-    const code_editor = await getElementByXPath(page, QUESTIONS_CODE_DIV_XPATH, 5, 0);
-    await code_editor[0].click();
+      // Select all code to remove
+      await page.keyboard.down("Control");
+      await page.keyboard.press("KeyA");
+      await page.keyboard.up("Control");
+      // Press Backspace
+      await page.keyboard.press("Backspace");
+      // Paste the code in the editor
+      await page.keyboard.down("Control");
+      await page.keyboard.press("KeyV");
+      await page.keyboard.up("Control");
 
-    // Select all code to remove
-    await page.keyboard.down("Control");
-    await page.keyboard.press("KeyA");
-    await page.keyboard.up("Control");
-    // Press Backspace
-    await page.keyboard.press("Backspace");
-    // Paste the code in the editor
-    await page.keyboard.down("Control");
-    await page.keyboard.press("KeyV");
-    await page.keyboard.up("Control");
-
-    const submit_btn = await getElementByXPath(page, QUESTIONS_SUBMIT_DIV_XPATH, 5, 0);
-    await submit_btn[0].click();
-    await sleep(15);
+      const submit_btn = await getElementByXPath(page, QUESTIONS_SUBMIT_DIV_XPATH, 5, 0);
+      await submit_btn[0].click();
+      await sleep(15);
+    } catch (e) {
+      console.error(`Failed to solved the question ${problem} with error ${e}`);
+    }
   }
 };
 

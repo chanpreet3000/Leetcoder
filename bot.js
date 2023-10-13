@@ -6,6 +6,7 @@ import StealthPlugin from "puppeteer-extra-plugin-stealth";
 puppeteer.use(StealthPlugin());
 import { scrap } from "./scrapper.js";
 import { solve_questions } from "./question_solver.js";
+import { loginUser } from "./login.js";
 
 
 export const start = async (user) => {
@@ -22,6 +23,7 @@ export const start = async (user) => {
 
   const [page] = await browser.pages();
 
+  await loginUser(page, user);
   // await scrap(page);
   await solve_questions(page);
   console.log("<<<< Exiting Leetcode Questions Solver Bot >>>>");
