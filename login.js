@@ -12,7 +12,7 @@ export const loginUser = async (page, user) => {
   });
 
   try {
-    const element = await getElementByXPath(page, HOMEPAGE_LOGIN_BTN_XPATH, 5, 0);
+    const element = await getElementByXPath(page, HOMEPAGE_LOGIN_BTN_XPATH, 3, 0);
     await element[0].click();
 
     //

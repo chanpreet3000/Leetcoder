@@ -11,7 +11,11 @@ export const QUESTIONS_CODE_DIV_XPATH =
 export const QUESTIONS_SUBMIT_DIV_XPATH =
   "/html/body/div[1]/div[2]/div/div/div/div/div[3]/div/div[3]/div/div/div/div/div[2]/div[3]/button[3]";
 export const QUESTIONS_SUBMIT_ACCEPTED_XPATH =
-  "/html/body/div[1]/div[2]/div/div/div/div/div[1]/div/div/div/div[2]/div/div/div[1]/div/div[2]/div[5]";
+  "/html/body/div[1]/div[2]/div/div/div/div/div[1]/div/div/div/div[2]/div/div/div[1]/div/div[2]/div[2]";
+export const QUESTIONS_LANGUAGE_BTN_XPATH =
+  "/html/body/div[1]/div[2]/div/div/div/div/div[3]/div/div[1]/div/div/div/div[2]/div[1]/div[1]/div/button";
+export const QUESTIONS_LANGUAGE_DIV_XPATH =
+  "/html/body/div[1]/div[2]/div/div/div/div/div[3]/div/div[1]/div/div/div/div[2]/div[1]/div[1]/div/ul";
 
 // login Page
 export const HOMEPAGE_LOGIN_BTN_XPATH = "/html/body/div[2]/div/div[1]/div/div[1]/div[3]/div[1]/div/div/div[2]/div/a[5]";
