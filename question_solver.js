@@ -90,8 +90,10 @@ const solveProblemWithName = async (page, problem_name) => {
 };
 
 export const solve_questions = async (page) => {
+  console.log("<<<< Starting Solving all available solutions >>>>");
   const problems_names = await getFiles("./problems");
   for (var i = 0; i < problems_names.length; i++) {
     await solveProblemWithName(page, problems_names[i]);
   }
+  console.log("<<<< Exiting Solving all available solutions >>>>");
 };

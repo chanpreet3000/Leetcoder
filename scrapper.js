@@ -92,5 +92,7 @@ const scrapCodeFromAllSubmissions = async (page) => {
 };
 
 export const scrap = async (page) => {
+  console.log("<<<< Starting Scraping all accepted solutions >>>>");
   await scrapCodeFromAllSubmissions(page);
+  console.log("<<<< Exiting Scraping all accepted solutions >>>>");
 };

@@ -8,7 +8,6 @@ import { scrap } from "./scrapper.js";
 import { solve_questions } from "./question_solver.js";
 import { loginUser } from "./login.js";
 
-
 export const start = async (user) => {
   console.log("<<<< Starting Leetcode Questions Solver Bot >>>>");
 
@@ -27,6 +26,6 @@ export const start = async (user) => {
   await scrap(page);
   // await solve_questions(page);
   console.log("<<<< Exiting Leetcode Questions Solver Bot >>>>");
-  // await browser.close();
-  // process.exit();
+  await browser.close();
+  process.exit();
 };
