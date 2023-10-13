@@ -24,8 +24,8 @@ export const start = async (user) => {
   const [page] = await browser.pages();
 
   await loginUser(page, user);
-  // await scrap(page);
-  await solve_questions(page);
+  await scrap(page);
+  // await solve_questions(page);
   console.log("<<<< Exiting Leetcode Questions Solver Bot >>>>");
   // await browser.close();
   // process.exit();
