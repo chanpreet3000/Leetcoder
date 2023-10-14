@@ -5,7 +5,7 @@ import { users } from "./data.js";
     try {
       await start(user);
     } catch (err) {
-      console.error(err);
+      console.error("Something went wrong with error : " + err);
     }
   });
 })();

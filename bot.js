@@ -17,25 +17,26 @@ const leetcoderASCII = `
     \\_____/\\___|\\___|\\___|\\__\\___\\___/ \\__,_|\\___|_|
     
     Developed by : Chanpreet Singh, Aryan Singh, Himanshu Upreti
+    Github Link : https://github.com/chanpreet3000/leetcode-bot
     `;
 
 export const start = async (user) => {
   console.log(leetcoderASCII);
   console.log("<<<< Starting Leetcoder >>>>");
 
-  const data_path = `./user_data/${user.email}`;
-  // browser settings
-  const browser = await puppeteer.launch({
-    headless: false,
-    executablePath: process.env.GOOGLE_CHROME_EXECUTABLE_PATH,
-    userDataDir: data_path,
-    defaultViewport: null,
-    args: ["--start-maximized"],
-  });
-
-  const [page] = await browser.pages();
-
   try {
+    const data_path = `./user_data/${user.email}`;
+    // browser settings
+    const browser = await puppeteer.launch({
+      headless: false,
+      executablePath: process.env.GOOGLE_CHROME_EXECUTABLE_PATH,
+      userDataDir: data_path,
+      defaultViewport: null,
+      args: ["--start-maximized"],
+    });
+
+    const [page] = await browser.pages();
+
     await loginUser(page, user, data_path);
     if (user.scrape_accepted_solutions) {
       await scrapeAllAcceptedSubmissions(page);

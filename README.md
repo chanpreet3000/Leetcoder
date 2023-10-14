@@ -38,7 +38,7 @@ export const users = [
         solve_solutions: false,
     },
     // you can add multiple users.
-    // the bot will run in parallel for al users
+    // the bot will run in parallel for all users
 ];
 
 ```
