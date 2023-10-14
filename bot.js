@@ -1,31 +1,53 @@
 import dotenv from "dotenv";
 dotenv.config();
-// add stealth plugin and use defaults (all evasion techniques)
 import puppeteer from "puppeteer-extra";
+import { scrapeAllAcceptedSubmissions } from "./scrapper.js";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
-puppeteer.use(StealthPlugin());
-import { scrap } from "./scrapper.js";
 import { solve_questions } from "./question_solver.js";
 import { loginUser } from "./login.js";
 
-export const start = async (user) => {
-  console.log("<<<< Starting Leetcode Questions Solver Bot >>>>");
+puppeteer.use(StealthPlugin());
 
+const leetcoderASCII = `
+     _                    _                _           
+    | |                  | |              | |          
+    | |     ___  ___  ___| |_ ___ ___   __| | ___ _ __ 
+    | |    / _ \\/ _ \\/ _ \\ __/ __/ _ \\ / _| |/ _ \\  __|
+    | |___|  __/  __/  __/ || (_| (_) | (_| |  __/ |   
+    \\_____/\\___|\\___|\\___|\\__\\___\\___/ \\__,_|\\___|_|
+    
+    Developed by : Chanpreet Singh, Aryan Singh, Himanshu Upreti
+    `;
+
+export const start = async (user) => {
+  console.log(leetcoderASCII);
+  console.log("<<<< Starting Leetcoder >>>>");
+
+  const data_path = `./user_data/${user.email}`;
   // browser settings
   const browser = await puppeteer.launch({
     headless: false,
-    executablePath: process.env.GOOGLE_CHROME_DIRECTORY,
-    userDataDir: `./chrome_profiles/${user.email}`,
+    executablePath: process.env.GOOGLE_CHROME_EXECUTABLE_PATH,
+    userDataDir: data_path,
     defaultViewport: null,
     args: ["--start-maximized"],
   });
 
   const [page] = await browser.pages();
 
-  await loginUser(page, user);
-  await scrap(page);
-  // await solve_questions(page);
-  console.log("<<<< Exiting Leetcode Questions Solver Bot >>>>");
+  try {
+    await loginUser(page, user, data_path);
+    if (user.scrape_accepted_solutions) {
+      await scrapeAllAcceptedSubmissions(page);
+    }
+    if (user.solve_solutions) {
+      await solve_questions(page);
+    }
+  } catch (e) {
+    console.error("Something went wrong ", e);
+  }
+
+  console.log("<<<< Exiting Leetcoder >>>>");
   await browser.close();
   process.exit();
 };

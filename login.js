@@ -6,14 +6,14 @@ import {
 } from "./constants.js";
 import { getElementByXPath, sleep } from "./utils.js";
 
-export const loginUser = async (page, user) => {
+const loginUserHandler = async (page, user) => {
   await page.goto(`https://leetcode.com/`, {
     waitUntil: "networkidle2",
   });
-
   try {
     const element = await getElementByXPath(page, HOMEPAGE_LOGIN_BTN_XPATH, 3, 0);
     await element[0].click();
+    console.log(`Logging in ${user.email}`);
 
     //
     const emailInput = await getElementByXPath(page, LOGIN_EMAIL_INPUT_XPATH, 5, 0);
@@ -28,9 +28,15 @@ export const loginUser = async (page, user) => {
     const signInBtn = await getElementByXPath(page, LOGIN_BTN_XPATH, 3, 0);
     await signInBtn[0].click();
 
-    console.log("User logged in !!");
+    console.log(`${user.email} is now logged in`);
     await sleep(4);
   } catch (e) {
-    console.log("User is already logged in...");
+    console.log(`${user.email} was already logged in`);
   }
+};
+
+export const loginUser = async (page, user) => {
+  console.log("<<<< Starting Leetcode Authenticator >>>>");
+  await loginUserHandler(page, user);
+  console.log("<<<< Exiting Leetcoder Authenticator >>>>");
 };
