@@ -1,5 +1,6 @@
 import clipboardy from "clipboardy";
-import fs from "fs";
+import fs from "fs-extra";
+import chalk from "chalk";
 import { getElementBySelector, getElementByXPath, sleep } from "./utils.js";
 import {
   SCRAPPER_SUBMITTED_CODE_DIV_XPATH,
@@ -7,7 +8,7 @@ import {
   SCRAPPER_SUBMITTED_CODE_NAME_XPATH,
 } from "./constants.js";
 
-const scrapAndSaveCodeFromSubmissionId = async (page, id) => {
+const scrapeAndSaveCodeFromSubmissionId = async (page, id, data_path) => {
   try {
     await page.goto(`https://leetcode.com/submissions/detail/${id}/`, {
       waitUntil: "networkidle2",
@@ -39,20 +40,25 @@ const scrapAndSaveCodeFromSubmissionId = async (page, id) => {
     const copiedText = clipboardy.readSync();
     var fileContent = { problemName: nameDivValue, language: languageDivValue, code: copiedText };
 
-    //Saving the scrap details
-    const filePath = `problems/${nameDivValue}.json`;
+    // Saving the scraped details
+    const directory_path = `${data_path}/leetcoder_data/accepted_solutions`;
+    const filePath = `${directory_path}/${nameDivValue}.json`;
+
+    // Ensure the directory structure exists, creating directories if they don't.
+    fs.ensureDirSync(directory_path);
+
     if (!fs.existsSync(filePath)) {
       fs.writeFileSync(filePath, JSON.stringify(fileContent));
-      console.log(`Code ${nameDivValue} saved`);
+      console.log(chalk.green(`Code ${nameDivValue} saved`));
     } else {
-      console.log(`Code ${nameDivValue} already exists.`);
+      console.log(chalk.yellow(`Code ${nameDivValue} already exists`));
     }
   } catch (e) {
-    console.error(e);
+    console.error(chalk.red(e));
   }
 };
 
-const scrapSubmissionIdsFromPageId = async (page, id) => {
+const scrapeSubmissionIdsFromPageId = async (page, id) => {
   await page.goto(`https://leetcode.com/submissions/#/${id}`, {
     waitUntil: "networkidle2",
   });
@@ -76,23 +82,23 @@ const scrapSubmissionIdsFromPageId = async (page, id) => {
   );
   return submission_ids;
 };
-const scrapCodeFromAllSubmissions = async (page) => {
+const scrapeCodeFromAllSubmissions = async (page, data_path) => {
   for (var page_no = 1; page_no <= 1000; page_no++) {
     try {
-      const submission_ids = await scrapSubmissionIdsFromPageId(page, page_no);
+      const submission_ids = await scrapeSubmissionIdsFromPageId(page, page_no);
       console.log(`Submission ids fetched from page number ${page_no}`, submission_ids);
       for (var idx = 0; idx < submission_ids.length; idx++) {
-        await scrapAndSaveCodeFromSubmissionId(page, submission_ids[idx]);
+        await scrapeAndSaveCodeFromSubmissionId(page, submission_ids[idx], data_path);
       }
     } catch (e) {
-      console.error(e + "\nMost likely invalid page id");
+      console.error(chalk.red(e + "\nMost likely invalid page id"));
       return;
     }
   }
 };
 
-export const scrapeAllAcceptedSubmissions = async (page) => {
-  console.log("<<<< Starting Solution Scrapper >>>>");
-  await scrapCodeFromAllSubmissions(page);
-  console.log("<<<< Exiting Solution Scrapper >>>>");
+export const scrapeAllAcceptedSubmissions = async (page, data_path) => {
+  console.log(chalk.red("\n<<<< Starting Solution Scrapper >>>>\n"));
+  await scrapeCodeFromAllSubmissions(page, data_path);
+  console.log(chalk.red("\n<<<< Exiting Solution Scrapper >>>>\n"));
 };

@@ -5,6 +5,7 @@ import { scrapeAllAcceptedSubmissions } from "./scrapper.js";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
 import { solve_questions } from "./question_solver.js";
 import { loginUser } from "./login.js";
+import chalk from "chalk";
 
 puppeteer.use(StealthPlugin());
 
@@ -21,8 +22,8 @@ const leetcoderASCII = `
     `;
 
 export const start = async (user) => {
-  console.log(leetcoderASCII);
-  console.log("<<<< Starting Leetcoder >>>>");
+  console.log(chalk.green(leetcoderASCII));
+  console.log(chalk.red("\n<<<< Starting Leetcoder >>>>\n"));
 
   try {
     const data_path = `./user_data/${user.email}`;
@@ -39,16 +40,16 @@ export const start = async (user) => {
 
     await loginUser(page, user, data_path);
     if (user.scrape_accepted_solutions) {
-      await scrapeAllAcceptedSubmissions(page);
+      await scrapeAllAcceptedSubmissions(page, data_path);
     }
     if (user.solve_solutions) {
       await solve_questions(page);
     }
   } catch (e) {
-    console.error("Something went wrong ", e);
+    console.error(chalk.red("Something went wrong ", e));
   }
 
-  console.log("<<<< Exiting Leetcoder >>>>");
+  console.log(chalk.red("\n<<<< Exiting Leetcoder >>>>\n"));
   await browser.close();
   process.exit();
 };

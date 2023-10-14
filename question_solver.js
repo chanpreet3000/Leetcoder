@@ -8,6 +8,7 @@ import {
   QUESTIONS_SUBMIT_DIV_XPATH,
 } from "./constants.js";
 import clipboardy from "clipboardy";
+import chalk from "chalk";
 
 const getFiles = async (dir, files = []) => {
   const fileList = fs.readdirSync(dir);
@@ -25,11 +26,11 @@ const solveProblemWithName = async (page, problem_name) => {
     const acceptedDiv = await getElementByXPath(page, QUESTIONS_SUBMIT_ACCEPTED_XPATH, 2);
     const classList = await acceptedDiv[0].evaluate((ele) => ele.classList.toString());
     if (classList.includes("dark:text-dark-green-s")) {
-      console.log(`${problem} is already SOLVED!`);
+      console.log(chalk.red(`${problem} is already SOLVED!`));
       return;
     }
 
-    console.log(`Solving ${problem} ......`);
+    console.log(chalk.green(`Solving ${problem} ......`));
     const content = fs.readFileSync(`./problems/${problem_name}`);
     const code = JSON.parse(content).code;
     const language = JSON.parse(content).language;
@@ -85,15 +86,15 @@ const solveProblemWithName = async (page, problem_name) => {
     await submit_btn[0].click();
     await sleep(10);
   } catch (e) {
-    console.error(`Failed to solved the question ${problem} with error ${e}`);
+    console.error(chalk.error(`Failed to solved the question ${problem} with error ${e}`));
   }
 };
 
 export const solve_questions = async (page) => {
-  console.log("<<<< Starting Leetcode Solver >>>>");
-  const problems_names = await getFiles("./problems");
-  for (var i = 0; i < problems_names.length; i++) {
-    await solveProblemWithName(page, problems_names[i]);
+  console.log(chalk.red("\n<<<< Starting Leetcode Solver >>>>\n"));
+  const allProblemNames = await getFiles("./problems");
+  for (var i = 0; i < allProblemNames.length; i++) {
+    await solveProblemWithName(page, allProblemNames[i]);
   }
-  console.log("<<<< Exiting Leetcode Solver >>>>");
+  console.log(chalk.red("\n<<<< Exiting Leetcode Solver >>>>\n"));
 };

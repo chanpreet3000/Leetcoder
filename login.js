@@ -5,6 +5,7 @@ import {
   LOGIN_PASSWORD_INPUT_XPATH,
 } from "./constants.js";
 import { getElementByXPath, sleep } from "./utils.js";
+import chalk from "chalk";
 
 const loginUserHandler = async (page, user) => {
   await page.goto(`https://leetcode.com/`, {
@@ -13,7 +14,7 @@ const loginUserHandler = async (page, user) => {
   try {
     const element = await getElementByXPath(page, HOMEPAGE_LOGIN_BTN_XPATH, 3, 0);
     await element[0].click();
-    console.log(`Logging in ${user.email}`);
+    console.log(chalk.green(`Logging in ${user.email}`));
 
     //
     const emailInput = await getElementByXPath(page, LOGIN_EMAIL_INPUT_XPATH, 5, 0);
@@ -28,15 +29,15 @@ const loginUserHandler = async (page, user) => {
     const signInBtn = await getElementByXPath(page, LOGIN_BTN_XPATH, 3, 0);
     await signInBtn[0].click();
 
-    console.log(`${user.email} is now logged in`);
+    console.log(chalk.green(`${user.email} is now logged in`));
     await sleep(4);
   } catch (e) {
-    console.log(`${user.email} was already logged in`);
+    console.log(chalk.green(`${user.email} was already logged in`));
   }
 };
 
 export const loginUser = async (page, user) => {
-  console.log("<<<< Starting Leetcode Authenticator >>>>");
+  console.log(chalk.red("\n<<<< Starting Leetcode Authenticator >>>>\n"));
   await loginUserHandler(page, user);
-  console.log("<<<< Exiting Leetcoder Authenticator >>>>");
+  console.log(chalk.red("\n<<<< Exiting Leetcoder Authenticator >>>>\n"));
 };
