@@ -38,7 +38,7 @@ export const start = async (user) => {
   const [page] = await browser.pages();
 
   try {
-    // await loginUser(page, user, data_path);
+    await loginUser(page, user, data_path);
     if (user.scrape_accepted_solutions) {
       await scrapeAllAcceptedSubmissions(page, data_path);
     }
