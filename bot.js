@@ -1,13 +1,11 @@
 import dotenv from "dotenv";
 dotenv.config();
-import puppeteer from "puppeteer-extra";
+import puppeteer from "puppeteer";
 import { scrapeAllAcceptedSubmissions } from "./scrapper.js";
-import StealthPlugin from "puppeteer-extra-plugin-stealth";
 import QuestionSolver from "./question_solver.js";
 import { loginUser } from "./login.js";
 import chalk from "chalk";
 
-puppeteer.use(StealthPlugin());
 
 const leetcoderASCII = `
      _                    _                _           

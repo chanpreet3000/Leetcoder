@@ -1,12 +1,13 @@
 import clipboardy from "clipboardy";
 import fs from "fs-extra";
 import chalk from "chalk";
-import { getElementBySelector, getElementByXPath, sleep } from "./utils.js";
+import { copyHelper, getElementBySelector, getElementByXPath, selectAllHelper, sleep } from "./utils.js";
 import {
   SCRAPPER_SUBMITTED_CODE_DIV_XPATH,
   SCRAPPER_SUBMITTED_CODE_LANGUAGE_XPATH,
   SCRAPPER_SUBMITTED_CODE_NAME_XPATH,
 } from "./constants.js";
+
 
 const scrapeAndSaveCodeFromSubmissionId = async (page, id, data_path) => {
   try {
@@ -29,13 +30,8 @@ const scrapeAndSaveCodeFromSubmissionId = async (page, id, data_path) => {
     const codeDiv = await getElementByXPath(page, SCRAPPER_SUBMITTED_CODE_DIV_XPATH, 3, 0);
     await codeDiv[0].click();
 
-    await page.keyboard.down("Control");
-    await page.keyboard.press("KeyA");
-    await page.keyboard.up("Control");
-
-    await page.keyboard.down("Control");
-    await page.keyboard.press("KeyC");
-    await page.keyboard.up("Control");
+    await selectAllHelper(page);
+    await copyHelper(page);
 
     const copiedText = clipboardy.readSync();
     var fileContent = { problemName: nameDivValue, language: languageDivValue, code: copiedText };

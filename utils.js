@@ -19,3 +19,23 @@ export const getElementBySelector = async (element, selector, timeoutDelay = 30,
   });
   return await element.$$(selector);
 };
+
+let cntrlKey = process.platform === "win32" ? "Control" : "Meta";
+
+export const selectAllHelper = async (page) => {
+  await page.keyboard.down(cntrlKey);
+  await page.keyboard.press("KeyA");
+  await page.keyboard.up(cntrlKey);
+};
+
+export const copyHelper = async (page) => {
+  await page.keyboard.down(cntrlKey);
+  await page.keyboard.press("KeyC");
+  await page.keyboard.up(cntrlKey);
+};
+
+export const pasteHelper = async (page) => {
+  await page.keyboard.down(cntrlKey);
+  await page.keyboard.press("KeyV");
+  await page.keyboard.up(cntrlKey);
+};

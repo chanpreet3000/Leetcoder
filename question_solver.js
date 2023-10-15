@@ -1,5 +1,5 @@
 import fs from "fs-extra";
-import { getElementBySelector, getElementByXPath, sleep } from "./utils.js";
+import { getElementBySelector, getElementByXPath, pasteHelper, selectAllHelper, sleep } from "./utils.js";
 import {
   QUESTIONS_CODE_DIV_XPATH,
   QUESTIONS_LANGUAGE_BTN_XPATH,
@@ -116,15 +116,11 @@ export default class QuestionSolver {
       await code_editor[0].click();
 
       // Select all code to remove
-      await this.page.keyboard.down("Control");
-      await this.page.keyboard.press("KeyA");
-      await this.page.keyboard.up("Control");
+      await selectAllHelper(this.page);
       // Press Backspace
       await this.page.keyboard.press("Backspace");
       // Paste the code in the editor
-      await this.page.keyboard.down("Control");
-      await this.page.keyboard.press("KeyV");
-      await this.page.keyboard.up("Control");
+      await pasteHelper(this.page);
 
       const submit_btn = await getElementByXPath(this.page, QUESTIONS_SUBMIT_DIV_XPATH, 5, 0);
       await submit_btn[0].click();
