@@ -5,20 +5,22 @@ LeetCoder is a powerful tool designed to automate your LeetCode experience, maki
 Automatically Solve LeetCode Questions
 Handle Login and Logout Seamlessly
 Scrape and Organize Your Accepted Solutions
-With its advanced capabilities, LeetCoder can solve up to 200 problems in just 60 minutes, allowing you to focus on improving your coding skills and achieving your goals on LeetCode.
-
+With its advanced capabilities, **LeetCoder can solve up to 200 problems in just 60 minutes**
 # Features
 1. **Automated Problem Solving**
-LeetCoder automates the process of solving LeetCode questions. Simply provide the problem details, and LeetCoder will generate and submit solutions for you.
+LeetCoder automates the process of solving LeetCode questions. Simply provide the user details, and LeetCoder will submit solutions for you.
 
 2. **Seamless Login and Logout**
-No more manual login and logout hassles. LeetCoder handles user authentication, ensuring you can concentrate on solving problems without interruptions.
+No more manual login and logout hassles. LeetCoder handles user authentication.
 
 3. **Solution Scraping**
 LeetCoder can scrape and organize your accepted solutions, making it easy to track your progress and maintain a personal archive of your coding accomplishments.
 
-4. **Parallel Execution**
-LeetCoder supports parallel execution, allowing multiple users to run the bot simultaneously. Each user can have their own LeetCode account configuration, and LeetCoder will manage the concurrent execution seamlessly. Ideal for collaborative coding or for users managing multiple LeetCode accounts.
+4. **Resume Solving from Where You Left Off**
+LeetCoder remembers the last problem it solved, so you can resume solving questions right from where you left off.
+
+5. **Parallel Execution of Multiple Accounts**
+LeetCoder supports parallel execution, allowing multiple users to run the bot simultaneously. Each user can have their own LeetCode account configuration, and LeetCoder will manage the concurrent execution seamlessly.
 
 # Usage Disclaimer
 LeetCoder should be used responsibly and solely for educational purposes. This bot is not intended to be used for unethical purposes, such as solving or faking solved problems on LeetCode for the purpose of gaining unfair advantages. Always follow LeetCode's terms of service and community guidelines when using this tool.
@@ -45,6 +47,11 @@ export const users = [
 - To get all your accepted submissions you can set `scrape_accepted_solutions = true`
 - To solve all available solutions set `solve_solutions: true`
 6. To start the bot run `node index.js` in the terminal.
+7. Directories for all the data stored
+    -   **Scraped Data:** `./UserData/your_email/LeetCodeData/AcceptedSolutions`
+    -   **Solver Data:** `./UserData/your_email/LeetCodeData/SolvedProblems.json`
+        *consists of array of solved problem names, so that the bot can resume where you left*
+    -   **Chrome Data:** `./UserData/your_email/ProfileData` *contains all the chrome data to make sure you don't get logged out*
 
 # Contributing
 If you'd like to contribute to the development of LeetCoder, we welcome your ideas, suggestions, and code contributions. Feel free to open issues and pull requests on our GitHub repository.
