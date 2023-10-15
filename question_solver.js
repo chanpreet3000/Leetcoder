@@ -15,7 +15,7 @@ export default class QuestionSolver {
     this.page = page;
     this.userDataPath = userDataPath;
     this.leetcodeDataDirectory = this.userDataPath;
-    this.solvedProblemsFilePath = `${this.leetcodeDataDirectory}/solvedProblems.json`;
+    this.solvedProblemsFilePath = `${this.leetcodeDataDirectory}/SolvedProblems.json`;
     this.allProblemNames = [];
   }
 
