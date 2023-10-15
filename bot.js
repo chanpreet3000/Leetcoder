@@ -6,7 +6,6 @@ import QuestionSolver from "./question_solver.js";
 import { loginUser } from "./login.js";
 import chalk from "chalk";
 
-
 const leetcoderASCII = `
      _                    _                _           
     | |                  | |              | |          
@@ -23,25 +22,26 @@ export const start = async (user) => {
   console.log(chalk.green(leetcoderASCII));
   console.log(chalk.red("\n<<<< Starting Leetcoder >>>>\n"));
 
-  const data_path = `./user_data/${user.email}`;
+  const chromeDataPath = `./UserData/${user.email}/ProfileData`;
   // browser settings
   const browser = await puppeteer.launch({
     headless: false,
     executablePath: process.env.GOOGLE_CHROME_EXECUTABLE_PATH,
-    userDataDir: data_path,
+    userDataDir: chromeDataPath,
     defaultViewport: null,
     args: ["--start-maximized"],
   });
 
   const [page] = await browser.pages();
 
+  const userDataPath = `./UserData/${user.email}/LeetCodeData`;
   try {
-    await loginUser(page, user, data_path);
+    await loginUser(page, user);
     if (user.scrape_accepted_solutions) {
-      await scrapeAllAcceptedSubmissions(page, data_path);
+      await scrapeAllAcceptedSubmissions(page, userDataPath);
     }
     if (user.solve_solutions) {
-      const questionSolver = new QuestionSolver(page, data_path);
+      const questionSolver = new QuestionSolver(page, userDataPath);
       await questionSolver.solve();
     }
   } catch (e) {

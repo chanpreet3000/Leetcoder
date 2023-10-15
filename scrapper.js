@@ -37,7 +37,7 @@ const scrapeAndSaveCodeFromSubmissionId = async (page, id, data_path) => {
     var fileContent = { problemName: nameDivValue, language: languageDivValue, code: copiedText };
 
     // Saving the scraped details
-    const directory_path = `${data_path}/leetcoderData/accepted_solutions`;
+    const directory_path = `${data_path}/accepted_solutions`;
     const filePath = `${directory_path}/${nameDivValue}.json`;
 
     // Ensure the directory structure exists, creating directories if they don't.

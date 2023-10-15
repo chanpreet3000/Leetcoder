@@ -14,8 +14,8 @@ export default class QuestionSolver {
   constructor(page, userDataPath) {
     this.page = page;
     this.userDataPath = userDataPath;
-    this.leetcoderDataDirectory = `${this.userDataPath}/leetcoderData`;
-    this.solvedProblemsFilePath = `${this.leetcoderDataDirectory}/solvedProblems.json`;
+    this.leetcodeDataDirectory = this.userDataPath;
+    this.solvedProblemsFilePath = `${this.leetcodeDataDirectory}/solvedProblems.json`;
     this.allProblemNames = [];
   }
 
@@ -39,16 +39,15 @@ export default class QuestionSolver {
   }
 
   async setSolvedProblemSet(solvedProblemSet) {
-    fs.ensureDirSync(this.leetcoderDataDirectory);
+    fs.ensureDirSync(this.leetcodeDataDirectory);
 
     const solvedProblemArray = Array.from(solvedProblemSet);
     const jsonSolvedProblems = JSON.stringify(solvedProblemArray);
-    // console.log("data", jsonSolvedProblems, "ads", solvedProblemSet);
     await fs.outputFile(this.solvedProblemsFilePath, jsonSolvedProblems, "utf-8");
   }
 
   async getSolvedProblemSet() {
-    fs.ensureDirSync(this.leetcoderDataDirectory);
+    fs.ensureDirSync(this.leetcodeDataDirectory);
 
     var solvedProblemsArray = [];
     if (fs.existsSync(this.solvedProblemsFilePath)) {
