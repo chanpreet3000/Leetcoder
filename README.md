@@ -26,7 +26,7 @@ LeetCoder supports parallel execution, allowing multiple users to run the bot si
 LeetCoder should be used responsibly and solely for educational purposes. This bot is not intended to be used for unethical purposes, such as solving or faking solved problems on LeetCode for the purpose of gaining unfair advantages. Always follow LeetCode's terms of service and community guidelines when using this tool.
 
 # Getting Started
-1. Clone the github repository using ```git clone https://github.com/chanpreet3000/leetcode-bot```
+1. Clone the github repository using ```git clone https://github.com/chanpreet3000/LeetCoder```
 2. Open the repository in a code editor
 3. Inside the Editor's terminal run `npm i`
 4. Inside `.env` file, change the value of `GOOGLE_CHROME_EXECUTABLE_PATH` (depends of Operating System)
