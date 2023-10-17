@@ -29,7 +29,13 @@ LeetCoder should be used responsibly and solely for educational purposes. This b
 1. Clone the github repository using ```git clone https://github.com/chanpreet3000/LeetCoder```
 2. Open the repository in a code editor
 3. Inside the Editor's terminal run `npm i`
-4. Inside `.env` file, change the value of `GOOGLE_CHROME_EXECUTABLE_PATH` (depends of Operating System)
+4. Create a file named `.env` and paste the following code in the file. Go to `chrome://version/` and find the executable path and set `GOOGLE_CHROME_EXECUTABLE_PATH`.
+```
+# change this according to your device
+# go to chrome://version/ and find executable path
+GOOGLE_CHROME_EXECUTABLE_PATH = "C:/Program Files/Google/Chrome/Application/chrome.exe" 
+```
+
 5. Create a `data.js` file and enter the following code
 ```
 export const users = [
@@ -52,6 +58,11 @@ export const users = [
     -   **Solver Data:** `./UserData/your_email/LeetCodeData/SolvedProblems.json`
         *consists of array of solved problem names, so that the bot can resume where you left*
     -   **Chrome Data:** `./UserData/your_email/ProfileData` *contains all the chrome data to make sure you don't get logged out*
+## Compatibility
+
+LeetCoder is designed for use on Windows operating systems. It utilizes specific functionalities that are not compatible with macOS. As such, it is not supported on macOS. 
+
+*Please ensure you are using a Windows environment when using LeetCoder for the best experience.*
 
 # Contributing
 If you'd like to contribute to the development of LeetCoder, we welcome your ideas, suggestions, and code contributions. Feel free to open issues and pull requests on our GitHub repository.
