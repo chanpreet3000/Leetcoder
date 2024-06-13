@@ -1,3 +1,10 @@
+***
+**NOTE**: It works only on windows and only on the new dynamic layout of leetcode.
+
+Check and working on 13-06-2024. Use Responsibly.
+
+Also, one more thing logging system is deprecated and will be removed in the future.
+***
 # LeetCoder
 
 LeetCoder is a powerful tool designed to automate your LeetCode experience, making problem-solving and tracking your progress more efficient than ever. Whether you're a competitive programmer or a coding enthusiast, this bot can help you:
@@ -7,7 +14,7 @@ Handle Login and Logout Seamlessly
 Scrape and Organize Your Accepted Solutions
 With its advanced capabilities, **LeetCoder can solve up to 200 problems in just 60 minutes**
 # Features
-1. **Automated Problem Solving**
+1. **Automated Problem-Solving**
 LeetCoder automates the process of solving LeetCode questions. Simply provide the user details, and LeetCoder will submit solutions for you.
 
 2. **Seamless Login and Logout**
@@ -30,28 +37,26 @@ LeetCoder should be used responsibly and solely for educational purposes. This b
 2. Open the repository in a code editor
 3. Inside the Editor's terminal run `npm i`
 4. Create a file named `.env` and paste the following code in the file. Go to `chrome://version/` and find the executable path and set `GOOGLE_CHROME_EXECUTABLE_PATH`.
-```
-# change this according to your device
-# go to chrome://version/ and find executable path
-GOOGLE_CHROME_EXECUTABLE_PATH = "C:/Program Files/Google/Chrome/Application/chrome.exe" 
-```
-
+    ```
+    # change this according to your device
+    # go to chrome://version/ and find executable path
+    GOOGLE_CHROME_EXECUTABLE_PATH = "C:/Program Files/Google/Chrome/Application/chrome.exe" 
+    ```
 5. Create a `data.js` file and enter the following code
-```
-export const users = [
-    {
-        email: "enter you leetcode email here",
-        password: "enter you leetcode password here",
-        scrape_accepted_solutions: false,
-        solve_solutions: false,
-    },
-    // you can add multiple users.
-    // the bot will run in parallel for all users
-];
-
-```
-- To get all your accepted submissions you can set `scrape_accepted_solutions = true`
-- To solve all available solutions set `solve_solutions: true`
+    ```
+    export const users = [
+        {
+            email: "enter you leetcode email here",
+            password: "enter you leetcode password here",
+            scrape_accepted_solutions: false,
+            solve_solutions: false,
+        },
+        // you can add multiple users.
+        // the bot will run in parallel for all users
+    ];
+    ```
+   - To get all your accepted submissions you can set `scrape_accepted_solutions = true`
+   - To solve all available solutions set `solve_solutions: true`
 6. To start the bot run `node index.js` in the terminal.
 7. Directories for all the data stored
     -   **Scraped Data:** `./UserData/your_email/LeetCodeData/AcceptedSolutions`

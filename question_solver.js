@@ -1,6 +1,7 @@
 import fs from "fs-extra";
-import { getElementBySelector, getElementByXPath, pasteHelper, selectAllHelper, sleep } from "./utils.js";
+import { getElementByXPath, pasteHelper, selectAllHelper, sleep } from "./utils.js";
 import {
+  IS_SOLUTION_ACCEPTED_DIV_XPATH,
   QUESTIONS_CODE_DIV_XPATH,
   QUESTIONS_LANGUAGE_BTN_XPATH,
   QUESTIONS_LANGUAGE_DIV_XPATH,
@@ -65,14 +66,16 @@ export default class QuestionSolver {
     });
 
     try {
-      const acceptedDiv = await getElementByXPath(this.page, QUESTIONS_SUBMIT_ACCEPTED_XPATH, 2);
-      const classList = await acceptedDiv[0].evaluate((ele) => ele.classList.toString());
-      if (classList.includes("dark:text-dark-green-s")) {
-        console.log(chalk.red(`${problemName} is already SOLVED!`));
-        await this.setAProblemSolved(problemName);
-        return;
+      try {
+        const acceptedDiv = await getElementByXPath(this.page, QUESTIONS_SUBMIT_ACCEPTED_XPATH, 2);
+        const acceptedText = await acceptedDiv[0].evaluate((ele) => ele.textContent);
+        if (acceptedText.includes("Solved")) {
+          console.log(chalk.red(`${problemName} is already SOLVED!`));
+          await this.setAProblemSolved(problemName);
+          return;
+        }
+      } catch (_) {
       }
-
       console.log(chalk.green(`Solving ${problemName} ......`));
       const content = fs.readFileSync(`./problems/${problemName}.json`);
       const code = JSON.parse(content).code;
@@ -84,22 +87,20 @@ export default class QuestionSolver {
       const allLanguagesBtn = await getElementByXPath(this.page, QUESTIONS_LANGUAGE_BTN_XPATH, 5, 0);
       await allLanguagesBtn[0].click();
 
-      const allLanguagesDiv = await getElementByXPath(this.page, QUESTIONS_LANGUAGE_DIV_XPATH, 5, 0);
-      const allLanguagesDivName = await getElementBySelector(allLanguagesDiv[0], "li > div > div");
-
+      const allLanguagesDivName = await getElementByXPath(this.page, QUESTIONS_LANGUAGE_DIV_XPATH, 5, 0);
       for (let index = 0; index < allLanguagesDivName.length; index++) {
         const element = allLanguagesDivName[index];
         const text = await element.evaluate((el) => el.textContent);
-        var b = false;
-        if (text == "C++" && language == "cpp") {
+        let b = false;
+        if (text === "C++" && language === "cpp") {
           b = true;
-        } else if (text == "Java" && language == "java") {
+        } else if (text === "Java" && language === "java") {
           b = true;
-        } else if (text == "Python" && language == "python") {
+        } else if (text === "Python" && language === "python") {
           b = true;
-        } else if (text == "Python3" && language == "python3") {
+        } else if (text === "Python3" && language === "python3") {
           b = true;
-        } else if (text == "MySQL" && language == "mysql") {
+        } else if (text === "MySQL" && language === "mysql") {
           b = true;
         }
         if (b) {
@@ -123,7 +124,16 @@ export default class QuestionSolver {
 
       const submit_btn = await getElementByXPath(this.page, QUESTIONS_SUBMIT_DIV_XPATH, 5, 0);
       await submit_btn[0].click();
-      await sleep(10);
+
+      const isSolutionAccepted = await getElementByXPath(this.page, IS_SOLUTION_ACCEPTED_DIV_XPATH, 15, 0);
+      const solutionAcceptedText = await isSolutionAccepted[0].evaluate((ele) => ele.textContent);
+
+      if(solutionAcceptedText === 'Accepted'){
+        console.log(chalk.green(`${problemName} ACCEPTED`));
+      }else{
+        console.log(chalk.red(`${problemName} ${solutionAcceptedText}. Looks like the solution is old, contact the developer to fix this.`));
+      }
+      await sleep(1);
       await this.setAProblemSolved(problemName);
     } catch (e) {
       console.error(chalk.red(`Failed to solved the question ${problemName} with error ${e}`));
