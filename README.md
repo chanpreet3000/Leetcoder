@@ -1,7 +1,7 @@
 ***
-**NOTE**: It works only on windows and only on the new dynamic layout of leetcode.
+**NOTE**: It works only on Windows and only on the new dynamic layout of leetcode.
 
-Check and working on 13-06-2024. Use Responsibly.
+Checked and working on 13-06-2024. Use Responsibly.
 
 Also, one more thing logging system is deprecated and will be removed in the future.
 ***
