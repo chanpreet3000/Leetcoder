@@ -3,7 +3,6 @@ node_modules/
 
 # Chrome profiles
 UserData
-data.js
 
 .env
 

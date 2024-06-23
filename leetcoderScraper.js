@@ -1,18 +1,18 @@
 import clipboardy from "clipboardy";
 import fs from "fs-extra";
-import chalk from "chalk";
-import { copyHelper, getElementBySelector, getElementByXPath, selectAllHelper } from "./utils.js";
+import {copyHelper, getElementBySelector, getElementByXPath, selectAllHelper} from "./utils.js";
 import {
   SCRAPER_SUBMITTED_CODE_DIV_XPATH,
   SCRAPER_SUBMITTED_CODE_LANGUAGE_XPATH,
   SCRAPER_SUBMITTED_CODE_NAME_XPATH,
 } from "./constants.js";
+import {LEETCODE_DATA_PATH} from "./data.js";
+import Logger from "./Logger.js";
 
-export default class Scraper {
-  constructor(page, userDataPath) {
+class LeetcoderScraper {
+  constructor(page) {
     this.page = page;
-    this.userDataPath = userDataPath;
-    this.acceptedSolutionDirectory = `${userDataPath}/AcceptedSolutions`;
+    this.acceptedSolutionDirectory = `${LEETCODE_DATA_PATH}/AcceptedSolutions`;
   }
 
   async scrapeAndSaveCodeFromSubmissionId(id) {
@@ -40,21 +40,21 @@ export default class Scraper {
       await copyHelper(this.page);
 
       const copiedText = clipboardy.readSync();
-      var fileContent = { problemName: nameDivValue, language: languageDivValue, code: copiedText };
+      let fileContent = {problemName: nameDivValue, language: languageDivValue, code: copiedText};
 
       // Ensure the directory structure exists, creating directories if they don't.
       fs.ensureDirSync(this.acceptedSolutionDirectory);
-      
+
       // Saving the scraped details
       const filePath = `${this.acceptedSolutionDirectory}/${nameDivValue}.json`;
       if (!fs.existsSync(filePath)) {
         fs.writeFileSync(filePath, JSON.stringify(fileContent));
-        console.log(chalk.green(`[SAVED] ${nameDivValue}`));
+        Logger.success(`[SAVED] ${nameDivValue}`);
       } else {
-        console.log(chalk.yellow(`[EXISTS] ${nameDivValue}`));
+        Logger.warn(`[EXISTS] ${nameDivValue}`);
       }
-    } catch (e) {
-      console.error(chalk.red(e));
+    } catch (err) {
+      Logger.error('Something went wrong!', err);
     }
   }
 
@@ -74,33 +74,32 @@ export default class Scraper {
         return await row.evaluate((el) => el.getAttribute("href"));
       })
     );
-    const submission_ids = await Promise.all(
+    return await Promise.all(
       accepted_hrefs.map(async (href) => {
         const arr = await href.split("/");
         return arr[arr.length - 2];
       })
     );
-    return submission_ids;
   }
 
   async scrapeCodeFromAllSubmissions() {
-    for (var page_no = 1; page_no <= 1000; page_no++) {
+    for (let page_no = 1; page_no <= 1000; page_no++) {
       try {
         const submission_ids = await this.scrapeSubmissionIdsFromPageId(page_no);
-        console.log(`Submission ids fetched from page number ${page_no}`, submission_ids);
-        for (var idx = 0; idx < submission_ids.length; idx++) {
+        Logger.success(`Submission ids fetched from page number ${page_no}`, submission_ids);
+        for (let idx = 0; idx < submission_ids.length; idx++) {
           await this.scrapeAndSaveCodeFromSubmissionId(submission_ids[idx]);
         }
-      } catch (e) {
-        console.error(chalk.red(e, "\nMost likely invalid this.page id"));
+      } catch (err) {
+        Logger.error('Something went wrong, Most Likely Invalid page id', err);
         return;
       }
     }
   }
 
   async scrapeAllAcceptedSubmissions() {
-    console.log(chalk.red("\n<<<< Starting Solution Scraper >>>>\n"));
     await this.scrapeCodeFromAllSubmissions();
-    console.log(chalk.red("\n<<<< Exiting Solution Scraper >>>>\n"));
   }
 }
+
+export default LeetcoderScraper;

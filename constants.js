@@ -18,8 +18,15 @@ export const QUESTIONS_LANGUAGE_DIV_XPATH =
   "/html/body/div[1]/div[2]/div/div/div[4]/div/div/div[8]/div/div[1]/div[1]/div[1]/div/div/div[2]/div/div/div/div/div/div/div";
 export const IS_SOLUTION_ACCEPTED_DIV_XPATH= "/html/body/div[1]/div[2]/div/div/div[4]/div/div/div[11]/div/div/div/div[2]/div/div[1]/div[1]/div[1]/span";
 
-// login Page
-export const HOMEPAGE_LOGIN_BTN_XPATH = "/html/body/div[2]/div/div[1]/div/div[1]/div[3]/div[1]/div/div/div[2]/div/a[5]";
-export const LOGIN_EMAIL_INPUT_XPATH = "/html/body/div[1]/div/div[4]/div/div[2]/div/div/div/form/span[1]/input";
-export const LOGIN_PASSWORD_INPUT_XPATH = "/html/body/div[1]/div/div[4]/div/div[2]/div/div/div/form/span[2]/input";
-export const LOGIN_BTN_XPATH = "/html/body/div[1]/div/div[4]/div/div[2]/div/div/div/button";
+
+export const LEETCODER_ASCII_ART = `
+     _                    _                _           
+    | |                  | |              | |          
+    | |     ___  ___  ___| |_ ___ ___   __| | ___ _ __ 
+    | |    / _ \\/ _ \\/ _ \\ __/ __/ _ \\ / _| |/ _ \\  __|
+    | |___|  __/  __/  __/ || (_| (_) | (_| |  __/ |   
+    \\_____/\\___|\\___|\\___|\\__\\___\\___/ \\__,_|\\___|_|
+    
+    Developed by : Chanpreet Singh, Aryan Singh, Himanshu Upreti
+    Github Link : https://github.com/chanpreet3000/leetcode-bot
+    `;
