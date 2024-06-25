@@ -1,12 +1,6 @@
-/**
- * Go to chrome://version/ replace the below string with `Executable Path`
- */
-export const GOOGLE_CHROME_EXECUTABLE_PATH = "C:/Program Files/Google/Chrome/Application/chrome.exe";
+import dotenv from 'dotenv';
 
-/**
- * Please change this for your convenience, will be only used to create google profile.
- */
-export const USER_EMAIL = 'temp@temp.com';
+dotenv.config();
 
 /**
  *  Try not to change anything below, if you don't know what are you messing with!
@@ -21,6 +15,9 @@ export const USER_EMAIL = 'temp@temp.com';
  *
  *
  */
+export const GOOGLE_CHROME_EXECUTABLE_PATH = process.env.GOOGLE_CHROME_EXECUTABLE_PATH || "C:/Program Files/Google/Chrome/Application/chrome.exe";
+
+export const USER_EMAIL = process.env.USER_EMAIL || 'temp@temp.com';
 
 /**
  * Chrome Profile directory

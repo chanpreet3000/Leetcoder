@@ -43,11 +43,16 @@ Always follow Leetcode\'s terms of service and community guidelines when using t
 
 2. Open Leetcoder in a code editor.
 3. Inside the Editor's terminal run `yarn install`.
-4. Go to `data.js` file
-    - Set `USER_EMAIL` to your email.
-    - Update `GOOGLE_CHROME_EXECUTABLE_PATH`. (steps in `data.js`)
-5. To start the bot run `node index.js` in the terminal.
-6. Directories for all the data stored
+4. Make a file `.env` inside of root's directory.
+5. Inside `.env` file copy and paste the text as it is.
+   ```text
+   ; Please change this for your convenience, will be only used to create google profile.
+   USER_EMAIL=your_email_here
+   ; Open Chrome, type chrome://version/ in url, replace the below string with `Executable Path`
+   GOOGLE_CHROME_EXECUTABLE_PATH=C:/Program Files/Google/Chrome/Application/chrome.exe
+   ```
+6. To start the bot run `node index.js` in the terminal.
+7. Directories for all the data stored
     - **Scraped Data** `./UserData/your_email/LeetcoderData/ScrapedSolutions`
     - **Solver Data** `./UserData/your_email/LeetcoderData/SolvedProblems.json`
       *consists of array of solved problem names, so that the bot can resume where you left*
