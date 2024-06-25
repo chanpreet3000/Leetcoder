@@ -30,3 +30,12 @@ export const LEETCODER_ASCII_ART = `
     Developed by : Chanpreet Singh, Aryan Singh, Himanshu Upreti
     Github Link : https://github.com/chanpreet3000/leetcode-bot
     `;
+
+export const LEETCODER_MODE_QUESTION = `
+     Select a mode
+     [1] Start Leetcode Bot.
+     [2] Scrape Solved Leetcode Problems.
+     [other] Exit.
+    `;
+
+export const EXITING_LEETCODER = `Thanks for using Leetcoder. Please report any bugs/issues Github Link : https://github.com/chanpreet3000/leetcode-bot`;

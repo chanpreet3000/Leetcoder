@@ -1,6 +1,3 @@
-import puppeteer from "puppeteer";
-import {CHROME_PROFILE_PATH, GOOGLE_CHROME_EXECUTABLE_PATH} from "./data.js";
-
 export const sleep = async (time) => {
   await new Promise((resolve) => setTimeout(resolve, time * 1000));
 };
@@ -42,16 +39,3 @@ export const pasteHelper = async (page) => {
   await page.keyboard.press("KeyV");
   await page.keyboard.up(cntrlKey);
 };
-
-export const getPage = async () => {
-  const browser = await puppeteer.launch({
-    headless: false,
-    executablePath: GOOGLE_CHROME_EXECUTABLE_PATH,
-    userDataDir: CHROME_PROFILE_PATH,
-    defaultViewport: null,
-    args: ["--start-maximized"],
-  });
-
-  const [page] = await browser.pages();
-  return {page, browser};
-}

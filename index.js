@@ -1,18 +1,10 @@
-import Logger from "./Logger.js";
+import Logger from "./utils/Logger.js";
 import readline from 'readline';
-import LeetcoderBot from "./LeetcoderBot.js";
 import LeetcoderAuthenticator from "./LeetcoderAuthenticator.js";
-import {LEETCODER_ASCII_ART} from "./constants.js";
-
-const leetcoderModeString = `
-     Select a mode
-     [1] Login leetcode (login if this is your first time or if you logged out).
-     [2] Start Leetcode Bot.
-     [3] Scrape Solved Leetcode Problems.
-     [any other] Exit.
-    `;
-
-const exitingLeetcode = `Thanks for using Leetcoder. Please report any bugs/issues Github Link : https://github.com/chanpreet3000/leetcode-bot`;
+import {EXITING_LEETCODER, LEETCODER_ASCII_ART, LEETCODER_MODE_QUESTION} from "./constants.js";
+import LeetcoderSolver from "./LeetcoderSolver.js";
+import {closeBrowser} from "./managers/BrowserManager.js";
+import LeetcoderScraper from "./leetcoderScraper.js";
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -26,21 +18,22 @@ const question = (query) => {
 (async () => {
   try {
     Logger.success(LEETCODER_ASCII_ART);
-    Logger.error(leetcoderModeString);
-    const type = await question('Select mode (1, 2, 3 or other): ');
+    Logger.success(LEETCODER_MODE_QUESTION);
+    const type = await question('Select mode (1, 2 or other): ');
 
     if (type === '1') {
       await LeetcoderAuthenticator.loginUser();
+      await LeetcoderSolver.solve();
     } else if (type === '2') {
-      await LeetcoderBot.solve();
-    } else if (type === '3') {
-      await LeetcoderBot.scrape();
+      await LeetcoderAuthenticator.loginUser();
+      await LeetcoderScraper.scrapeAcceptedSolutions();
     }
   } catch (err) {
     Logger.error('Something went wrong!', err);
   } finally {
-    Logger.error(exitingLeetcode);
+    Logger.error(EXITING_LEETCODER);
     rl.close();
+    await closeBrowser();
     process.exit();
   }
 })();
