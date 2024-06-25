@@ -11,7 +11,8 @@ import FileManager from "./managers/FileManager.js";
 
 class LeetcoderScraper {
   static async #scrapeAndSaveCodeFromSubmissionId(id) {
-    const {page} = getBrowserDetails();
+    const {page} = await getBrowserDetails();
+
     try {
       await page.goto(`https://leetcode.com/submissions/detail/${id}/`, {
         waitUntil: "networkidle2",
@@ -43,7 +44,7 @@ class LeetcoderScraper {
     }
   }
 
-  async #scrapeSubmissionIdsFromPageId(id) {
+  static async #scrapeSubmissionIdsFromPageId(id) {
     const {page} = await getBrowserDetails();
     await page.goto(`https://leetcode.com/submissions/#/${id}`, {
       waitUntil: 'networkidle2',

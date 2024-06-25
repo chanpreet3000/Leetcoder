@@ -43,7 +43,7 @@ class FileManager {
   }
 
   static async saveScrapedSolution(fileContent) {
-    const name = fileContent.name;
+    const name = fileContent.problemName;
     await fs.mkdir(LEETCODER_SCRAPED_SOLUTIONS_PATH, {recursive: true});
     const filePath = path.join(LEETCODER_SCRAPED_SOLUTIONS_PATH, `${name}.json`);
 
@@ -51,8 +51,13 @@ class FileManager {
       await fs.access(filePath);
       Logger.warn(`[ALREADY_SCRAPPED]\t\t:${name}`);
     } catch (error) {
-      await fs.writeFile(filePath, JSON.stringify(fileContent, null, 4));
-      Logger.success(`[SAVED]\t\t\t:${name}`);
+      Logger.warn(`[SAVING]\t\t\t:${name}`);
+      try {
+        await fs.writeFile(filePath, JSON.stringify(fileContent, null, 4));
+        Logger.success(`[SAVED]\t\t\t\t:${name}`);
+      } catch (err) {
+        Logger.success(`[FAILED]\t\t\t:${name}`, err);
+      }
     }
   }
 }
