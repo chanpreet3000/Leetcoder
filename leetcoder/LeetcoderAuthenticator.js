@@ -1,7 +1,7 @@
-import {getElementBySelector} from "./utils/utils.js";
-import Logger from "./utils/Logger.js";
-import {LEETCODER_ASCII_ART} from "./constants.js";
-import {getBrowserDetails} from "./managers/BrowserManager.js";
+import {getElementBySelector} from "../utils/utils.js";
+import Logger from "../utils/Logger.js";
+import {LEETCODER_ASCII_ART} from "../utils/constants.js";
+import {getBrowserDetails} from "../managers/BrowserManager.js";
 
 class LeetcoderAuthenticator {
   static #loginUserHandler = async () => {

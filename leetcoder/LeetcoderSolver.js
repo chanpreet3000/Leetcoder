@@ -1,4 +1,4 @@
-import {getElementByXPath, pasteHelper, selectAllHelper, sleep} from "./utils/utils.js";
+import {getElementByXPath, pasteHelper, selectAllHelper, sleep} from "../utils/utils.js";
 import {
   IS_SOLUTION_ACCEPTED_DIV_XPATH,
   QUESTIONS_CODE_DIV_XPATH,
@@ -6,11 +6,11 @@ import {
   QUESTIONS_LANGUAGE_DIV_XPATH,
   QUESTIONS_SUBMIT_ACCEPTED_XPATH,
   QUESTIONS_SUBMIT_DIV_XPATH,
-} from "./constants.js";
+} from "../utils/constants.js";
 import clipboardy from "clipboardy";
-import Logger from "./utils/Logger.js";
-import FileManager from "./managers/FileManager.js";
-import {getBrowserDetails} from "./managers/BrowserManager.js";
+import Logger from "../utils/Logger.js";
+import FileManager from "../managers/FileManager.js";
+import {getBrowserDetails} from "../managers/BrowserManager.js";
 
 class LeetcoderSolver {
   static async #checkIfSolvedEarlier(problemName) {

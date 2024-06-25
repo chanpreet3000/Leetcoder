@@ -1,13 +1,13 @@
 import clipboardy from "clipboardy";
-import {copyHelper, getElementBySelector, getElementByXPath, selectAllHelper} from "./utils/utils.js";
+import {copyHelper, getElementBySelector, getElementByXPath, selectAllHelper} from "../utils/utils.js";
 import {
   SCRAPER_SUBMITTED_CODE_DIV_XPATH,
   SCRAPER_SUBMITTED_CODE_LANGUAGE_XPATH,
   SCRAPER_SUBMITTED_CODE_NAME_XPATH,
-} from "./constants.js";
-import Logger from "./utils/Logger.js";
-import {getBrowserDetails} from "./managers/BrowserManager.js";
-import FileManager from "./managers/FileManager.js";
+} from "../utils/constants.js";
+import Logger from "../utils/Logger.js";
+import {getBrowserDetails} from "../managers/BrowserManager.js";
+import FileManager from "../managers/FileManager.js";
 
 class LeetcoderScraper {
   static async #scrapeAndSaveCodeFromSubmissionId(id) {

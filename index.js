@@ -1,10 +1,10 @@
 import Logger from "./utils/Logger.js";
 import readline from 'readline';
-import LeetcoderAuthenticator from "./LeetcoderAuthenticator.js";
-import {EXITING_LEETCODER, LEETCODER_ASCII_ART, LEETCODER_MODE_QUESTION} from "./constants.js";
-import LeetcoderSolver from "./LeetcoderSolver.js";
+import LeetcoderAuthenticator from "./leetcoder/LeetcoderAuthenticator.js";
+import {EXITING_LEETCODER, LEETCODER_ASCII_ART, LEETCODER_MODE_QUESTION} from "./utils/constants.js";
+import LeetcoderSolver from "./leetcoder/LeetcoderSolver.js";
 import {closeBrowser} from "./managers/BrowserManager.js";
-import LeetcoderScraper from "./leetcoderScraper.js";
+import LeetcoderScraper from "./leetcoder/LeetcoderScraper.js";
 
 const rl = readline.createInterface({
   input: process.stdin,
