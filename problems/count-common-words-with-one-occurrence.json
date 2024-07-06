@@ -1,0 +1,5 @@
+{
+    "problemName": "count-common-words-with-one-occurrence",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int countWords(vector<string>& words1, vector<string>& words2) {\n        map<string, int> mp1, mp2;\n        for(auto i : words1)mp1[i]++;\n        for(auto i : words2)mp2[i]++;\n        int ans = 0;\n        for(auto i : words1)if(mp1[i] == 1 && mp2[i] == 1)ans++;\n        return ans;\n    }\n};"
+}

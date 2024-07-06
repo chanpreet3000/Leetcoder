@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-good-subarray-sum",
+    "language": "cpp",
+    "code": "typedef long long int ll;\nclass Solution {\npublic:\n    ll maximumSubarraySum(vector<int>& nums, int k) {\n        ll sum = 0;\n        int n = nums.size();\n        vector<ll> pre;\n        for(auto i : nums){\n            sum += i;\n            pre.push_back(sum);\n        }\n        map<ll, set<ll>> mp;\n        long long ans = -1e18;\n        for(ll i = 0; i < n; i++){\n            if(mp.count(nums[i] + k) > 0){\n                ans = max(ans, pre[i] - *mp[nums[i] + k].begin());\n            }\n            if(mp.count(nums[i] - k) > 0){\n                ans = max(ans,  pre[i] - *mp[nums[i] - k].begin());\n            }\n            if(i == 0){\n                mp[nums[i]].insert(0);\n            }else{\n                mp[nums[i]].insert(pre[i - 1]);\n            }\n        }\n        if(ans == -1e18)return 0;\n        return ans;\n    }\n};"
+}

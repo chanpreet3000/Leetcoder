@@ -1,0 +1,5 @@
+{
+    "problemName": "construct-k-palindrome-strings",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    bool canConstruct(string s, int k) {\n        if(k > s.length())return false;\n        map<char, int> mp;\n        for(auto i :s){\n            mp[i]++;\n        }\n        int e = 0, o = 0;\n        for(auto i : mp){\n            o += i.second%2;\n            e += i.second/2;\n        }\n        return o <= k;\n    }\n};"
+}

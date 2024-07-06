@@ -1,0 +1,5 @@
+{
+    "problemName": "unique-length-3-palindromic-subsequences",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int countPalindromicSubsequence(string s) {\n      int n=s.length();\n      int result=0;\n      vector<pair<int,int>>indi(26,{-1,-1});\n      for(int i=0;i<n;i++){\n         char ch=s[i];\n         int idx=ch-'a';\n          if(indi[idx].first==-1){\n              indi[idx].first=i;\n          }\n          indi[idx].second=i;\n      }\n      for(int i=0;i<26;i++){\n          if(indi[i]==make_pair(-1,-1)){\n              continue;\n          }\n          unordered_set<char>st;\n          for(int count =indi[i].first+1;count<=indi[i].second-1;count++){\n              st.insert(s[count]);\n          }\n          result+=st.size();\n      }  \n      return result;\n    }\n};"
+}

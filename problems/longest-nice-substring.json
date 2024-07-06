@@ -1,0 +1,5 @@
+{
+    "problemName": "longest-nice-substring",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    bool check(string &s){\n        map<int, int> mp;\n        for(auto i : s)mp[i]++;\n        for(auto i : mp){\n            if(i.first >= 'a' && i.first <= 'z'){\n                if(mp[i.first - 'a' + 'A'] == 0)return false;\n            }else{\n                if(mp[i.first - 'A' + 'a'] == 0)return false;\n            }\n        }\n        return true;\n    }\n    string longestNiceSubstring(string s) {\n        string ans = \"\";\n       for(int i = 0; i < s.length(); i++){\n           string t = \"\";\n           for(int j = i; j < s.length(); j++){\n               t.push_back(s[j]);\n               if(check(t) && t.length() > ans.length()){\n                   ans = t;\n               }\n           }\n       }\n        return ans;\n    }\n};"
+}

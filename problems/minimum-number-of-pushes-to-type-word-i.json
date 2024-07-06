@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-number-of-pushes-to-type-word-i",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minimumPushes(string word) {\n        map<char, int> mp;\n        for(auto i : word)mp[i]++;\n        int ans = 0;\n        for(int i = 1; i <= mp.size(); i++){\n            ans += (int)(ceil(i/8.0));\n        }\n        return ans;\n    }\n};"
+}

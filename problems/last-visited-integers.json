@@ -1,0 +1,5 @@
+{
+    "problemName": "last-visited-integers",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<int> lastVisitedIntegers(vector<string>& words) {\n        vector<int> arr;\n        vector<int> ans;\n        int curr = 0;\n        for(auto i : words){\n            if(i == \"prev\"){\n                curr++;\n                // cout<<curr<<\" \"<<arr.size()<<endl;\n                if(curr > arr.size()){\n                    ans.push_back(-1);\n                }else{\n                    ans.push_back(arr[arr.size() - curr]);\n                }\n            }else{\n                curr = 0;\n                arr.push_back(stoi(i));\n            }\n        }\n        return ans;\n    }\n};"
+}

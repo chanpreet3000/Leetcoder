@@ -1,0 +1,5 @@
+{
+    "problemName": "most-frequent-ids",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<long long> mostFrequentIDs(vector<int>& nums, vector<int>& freq) {\n        set<pair<long long, long long>> mst;\n        map<long long, long long> mp;\n        for(auto i : nums){\n            mst.insert({0, i});\n            mp[i] = 0;\n        }\n        vector<long long> ans;\n        for(long long i = 0; i < nums.size(); i++){\n            mst.erase(make_pair(mp[nums[i]], nums[i]));\n            mp[nums[i]] += freq[i];\n            mst.insert(make_pair(mp[nums[i]], nums[i]));\n            ans.push_back((*mst.rbegin()).first);\n        }\n        return ans;\n    }\n};"
+}

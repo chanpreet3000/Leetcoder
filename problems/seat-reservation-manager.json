@@ -1,0 +1,5 @@
+{
+    "problemName": "seat-reservation-manager",
+    "language": "cpp",
+    "code": "class SeatManager {\npublic:\n    set<int> st;\n    SeatManager(int n) {\n        st.clear();\n        for(int i = 1; i <= n; i++)st.insert(i);\n    }\n    \n    int reserve() {\n        int temp = *st.begin();\n        st.erase(st.begin());\n        return temp;\n    }\n    \n    void unreserve(int seatNumber) {\n        st.insert(seatNumber);\n    }\n};\n\n/**\n * Your SeatManager object will be instantiated and called as such:\n * SeatManager* obj = new SeatManager(n);\n * int param_1 = obj->reserve();\n * obj->unreserve(seatNumber);\n */"
+}

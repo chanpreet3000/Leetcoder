@@ -1,0 +1,5 @@
+{
+    "problemName": "reformat-phone-number",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    string reformatNumber(string number) {\n        string s = \"\";\n        for(auto i : number)if(i >= '0' && i <='9')s += i;\n        int n = s.size();\n        string ans = \"\";\n        for(int i = 0; i < n;){\n            if(n - i > 4){\n                ans += s.substr(i, 3) + \"-\" ;\n                i += 3;\n            }else if(n - i == 4){\n                ans += s.substr(i, 2) + \"-\" + s.substr(i + 2, 2);\n                return ans;\n            }else if(n - i == 3){\n                ans += s.substr(i, 3);\n                return ans;\n            }else if(n - i == 2){\n                ans += s.substr(i, 2);\n                return ans;\n            }\n        }\n        return ans;        \n    }\n};"
+}

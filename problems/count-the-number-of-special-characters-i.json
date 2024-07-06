@@ -1,0 +1,5 @@
+{
+    "problemName": "count-the-number-of-special-characters-i",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int numberOfSpecialChars(string word) {\n        map<char, int> mp;\n        for(auto i : word){\n            mp[i]++;\n        }\n        int ans =  0;\n        for(int i = 0; i < 26; i++){\n            if(mp[i + 'a'] && mp[i + 'A'])ans++;\n        }\n        return ans;\n    }\n};"
+}

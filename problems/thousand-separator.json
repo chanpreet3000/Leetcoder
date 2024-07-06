@@ -1,0 +1,5 @@
+{
+    "problemName": "thousand-separator",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    string thousandSeparator(int n) {\n        string a = to_string(n);\n        reverse(a.begin(), a.end());\n        string t = \"\";\n        int ind = 0;\n        for(auto i : a){\n            if(ind%3 == 0){\n                t.push_back('.');\n            }\n            ind++;\n            t.push_back(i);\n        }\n        if(t.back() == '.')t.pop_back();\n        reverse(t.begin(), t.end());\n        t.pop_back();\n        return t;\n    }\n};"
+}

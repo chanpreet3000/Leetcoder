@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-xor-product",
+    "language": "cpp",
+    "code": "const long long MOD = 1e9 + 7;\nclass Solution {\npublic:\n    int maximumXorProduct(long long a, long long b, int n) {\n        long long x = 0;\n        long long ind = -1;\n        for(long long i = 55; i >=0; i--){\n            long long dig1 = ((a & (1LL<<i))) > 0?1:0;\n            long long dig2 = ((b & (1LL<<i))) > 0?1:0;\n            \n            if(i > n - 1){\n                if(dig1 != dig2){\n                    if(ind == -1)\n                        ind = (dig1 == 0)?1:2;\n                }\n                continue;\n            }\n            \n            if(dig1 == dig2){\n                x |= ((1 - dig1)<<i);\n            }else{\n                if(ind == -1){\n                    ind = (dig1 == 0)?1:2;\n                }else if(ind == 1){\n                     x |= ((1 - dig1)<<i);\n                }else{\n                     x |= ((1 - dig2)<<i);\n                }\n            }\n            // cout<<dig1<<\" \"<<dig2<<\" \"<<ind<<endl;\n        }\n        // cout<<x<<endl;\n        // cout<<endl;\n        return (((a^x)%MOD) * ((b^x)%MOD))%MOD;\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "count-days-without-meetings",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int countDays(int days, vector<vector<int>>& meetings) {\n        sort(meetings.begin(), meetings.end());\n        vector<vector<int>> arr;\n        vector<int> p = meetings[0];\n        for(int i = 1; i < meetings.size(); i++){\n            if(p[1] >= meetings[i][0]){\n                p[1] = max(p[1], meetings[i][1]);\n            }else{\n                arr.push_back(p);\n                p = meetings[i];\n            }\n        }\n        arr.push_back(p);\n        for(auto i : arr){\n            cout<<i[0]<<\" \"<<i[1]<<endl;\n        }\n        int ans = 0, prev = 0;\n        for(int i = 0; i < arr.size(); i++){\n            ans += arr[i][0] - prev - 1;\n            prev = arr[i][1];\n        }\n        ans += days - prev;\n        return ans;\n    }\n};"
+}

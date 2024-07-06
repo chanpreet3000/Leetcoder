@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-number-of-chairs-in-a-waiting-room",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minimumChairs(string s) {\n        int _max = 0;\n        int ans = 0;\n        for(auto i : s){\n            if(i == 'E')ans++;\n            else ans--;\n            _max= max(_max, ans);\n        }\n        return _max;\n    }\n};"
+}

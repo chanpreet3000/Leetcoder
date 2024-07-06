@@ -1,0 +1,5 @@
+{
+    "problemName": "count-of-range-sum",
+    "language": "cpp",
+    "code": "typedef long long int ll;\n#include <ext/pb_ds/assoc_container.hpp>\n#include <ext/pb_ds/tree_policy.hpp>\nusing namespace std;\nusing namespace __gnu_pbds;\ntypedef tree<ll, null_type, less_equal<ll>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;\n\nclass Solution {\npublic:\n    int countRangeSum(vector<int>& nums, int lower, int upper) {\n        ll sum = 0;\n        ll n = nums.size();\n        vector<ll> pre(n, 0);\n        for(ll i = 0; i < n; i++){\n            sum += nums[i];\n            pre[i] = sum;\n        }\n        ordered_set st;\n        st.insert(0);\n        int ans = 0;\n        for(ll i = 0; i < n; i++){\n            ll hi = st.order_of_key(pre[i] - lower + 1);\n            ll lo = st.order_of_key(pre[i] - upper);\n            ans += hi - lo;\n            st.insert(pre[i]);\n        }\n        return ans;\n    }\n};"
+}

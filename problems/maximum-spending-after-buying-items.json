@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-spending-after-buying-items",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    long long maxSpending(vector<vector<int>>& values) {\n        vector<int> arr;\n        for(auto i : values)for(auto j : i)arr.push_back(j);\n        long long int ans = 0;\n        sort(arr.begin(), arr.end());\n        for(int i = 0; i < arr.size(); i++){\n            ans += arr[i] * 1LL * (i + 1);\n        }\n        return ans;\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-number-of-non-overlapping-subarrays-with-sum-equals-target",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int maxNonOverlapping(vector<int>& nums, int target) {\n        int n = nums.size();\n        long long sum = 0;\n        vector<long long> pre;\n        for(auto i : nums){\n            sum += i;\n            pre.push_back(sum);\n        }\n        int ans = 0;\n        int ind = -1;\n        map<long long, vector<int>> mp;\n        mp[0].push_back(-1);\n        for(int i = 0; i < n; i++){\n            long long s = pre[i] - target;\n            auto it = lower_bound(mp[s].begin(), mp[s].end(), ind);\n            // cout<<s<<\" \"<<i<<\" \"<<ind << \" \" << it - mp[s].begin()<<endl;\n            if(it != mp[s].end() && *it >= ind){\n                ans ++;\n                ind = i;\n            }\n            mp[pre[i]].push_back(i);\n        }\n        return ans;\n    }\n};"
+}

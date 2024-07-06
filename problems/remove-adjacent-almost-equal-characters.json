@@ -1,0 +1,5 @@
+{
+    "problemName": "remove-adjacent-almost-equal-characters",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int removeAlmostEqualCharacters(string word) {\n        int ans = 0;\n        for(int i = 1; i < word.length(); i++){\n            if(word[i] + 1 == word[i - 1] || word[i] - 1 == word[i - 1] || word[i] == word[i - 1])ans++, i++;\n        }\n        return ans;\n    }\n};"
+}

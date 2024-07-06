@@ -1,0 +1,5 @@
+{
+    "problemName": "find-the-number-of-good-pairs-i",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int numberOfPairs(vector<int>& nums1, vector<int>& nums2, int k) {\n        int ans = 0;\n        for(int i = 0; i < nums1.size(); i++){\n            for(int j = 0; j < nums2.size(); j++){\n                if(nums1[i]%(nums2[j] *k) == 0)ans++;\n            }\n        }\n        return ans;\n    }\n};"
+}

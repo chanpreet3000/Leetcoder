@@ -1,0 +1,5 @@
+{
+    "problemName": "camelcase-matching",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<bool> camelMatch(vector<string>& queries, string pattern) {\n        vector<bool> ans;\n        for(auto &s : queries){\n            int i = 0, j = 0;\n            int f = 1;\n            while(i < s.length() && j < pattern.length()){\n                if(s[i] == pattern[j])\n                    j++;\n                else if(isupper(s[i]))f = 0;\n                i++;\n            }\n            while(i < s.length()){\n                if(isupper(s[i]))f = 0;\n                i++;\n            }\n            if(f == 1 && j == pattern.length())ans.push_back(true);\n            else ans.push_back(false);\n        }\n        return ans;\n    }\n};"
+}

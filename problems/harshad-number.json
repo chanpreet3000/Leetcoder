@@ -1,0 +1,5 @@
+{
+    "problemName": "harshad-number",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int sumOfTheDigitsOfHarshadNumber(int x) {\n        string s = to_string(x);\n        int ans = 0;\n        for(auto i : s){\n            ans += (i - '0');\n        }\n        if(x%ans == 0)return ans;\n        return -1;\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "minimize-or-of-remaining-elements-using-operations",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minOrAfterOperations(vector<int>& nums, int k) {\n        int ans = 0;\n        int temp = 0;\n        for(int i = 30; i >= 0; i--){\n            temp |= (1<<i);\n\n            int mask = temp;\n            int cnt = 0;\n            for(auto it : nums){\n                mask &= it;\n\n                if((mask | ans) != ans){\n                    cnt++;\n                }else{\n                    mask = temp;\n                }\n            }\n            if(cnt > k){\n                ans |= (1<<i);\n            }\n        }\n        return ans;\n    }\n};"
+}

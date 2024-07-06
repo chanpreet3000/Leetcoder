@@ -1,0 +1,5 @@
+{
+    "problemName": "prime-arrangements",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    const int MOD = 1e9 + 7;\n    long long int fact(int n){\n        long long int fact = 1;\n        for(int i = 1; i <= n; i++){\n            fact *= i;\n            fact %= MOD;\n        }\n        return fact;\n    }\n    bool prime(int n){\n        if(n == 1)return false;\n        for(int i = 2; i <= sqrt(n); i++){\n            if(n%i == 0)return false;\n        }\n        return true;\n    }\n    int numPrimeArrangements(int n) {\n        long long int temp = 0;\n        for(int i = 1; i <= n; i++){\n            if(prime(i)){\n                temp++;\n            }\n        }\n        return (fact(n - temp) * fact(temp))%MOD;\n    }\n};"
+}

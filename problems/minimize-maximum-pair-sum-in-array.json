@@ -1,0 +1,5 @@
+{
+    "problemName": "minimize-maximum-pair-sum-in-array",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minPairSum(vector<int>& nums) {\n        sort(nums.begin(), nums.end());\n        int diff = 0;\n        for(int i = 0; i < nums.size()/2 ;i++){\n            diff = max(diff, nums[i] + nums[nums.size() - i - 1]);\n        }\n        return diff;\n    }\n};"
+}

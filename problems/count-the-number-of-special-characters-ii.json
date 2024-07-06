@@ -1,0 +1,5 @@
+{
+    "problemName": "count-the-number-of-special-characters-ii",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int numberOfSpecialChars(string word) {\n        map<char, vector<int>> mp;\n        for(int i = 0; i < word.size(); i++){\n            mp[word[i]].push_back(i);\n        }\n        int ans = 0;\n        for(int i = 0; i < 26; i++){\n            if(mp[i + 'a'].size() == 0 || mp[i + 'A'].size() == 0)continue;\n            int ind = mp[i + 'a'].back();\n            auto  ind2 = lower_bound(mp[i + 'A'].begin(), mp[i + 'A'].end(), ind);\n            if(ind2 == mp[i + 'A'].begin())ans++;\n        }\n        return ans;\n    }\n};"
+}

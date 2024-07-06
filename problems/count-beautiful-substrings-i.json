@@ -1,0 +1,5 @@
+{
+    "problemName": "count-beautiful-substrings-i",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    \n    bool isvowel(char c){\n        return (c=='a' || c =='e' || c == 'i' || c =='o' || c =='u');\n    }\n    int beautifulSubstrings(string s, int k) {\n        \n        int ans = 0;\n        for(int i = 0; i < s.length(); i++){\n                int c = 0,v = 0;\n            for(int j = i; j < s.length(); j++){\n                v += isvowel(s[j]);\n                c += !isvowel(s[j]);\n                if(v == c && (c * v)%k == 0)ans++;\n            }\n        }\n        return ans;        \n    }\n};"
+}

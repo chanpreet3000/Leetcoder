@@ -1,0 +1,5 @@
+{
+    "problemName": "divide-an-array-into-subarrays-with-minimum-cost-i",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minimumCost(vector<int>& nums) {\n        int ans = 1e9;\n        for(int i = 1; i < nums.size() - 1; i ++){\n            for(int j = i + 1; j < nums.size(); j++){\n                ans = min(ans, nums[0] + nums[i] + nums[j]);\n            }\n        }\n        return ans;\n    }\n};"
+}

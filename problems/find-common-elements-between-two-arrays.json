@@ -1,0 +1,5 @@
+{
+    "problemName": "find-common-elements-between-two-arrays",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<int> findIntersectionValues(vector<int>& nums1, vector<int>& nums2) {\n        map<int, int> mp1, mp2;\n        for(auto i : nums1)mp1[i]++;\n        for(auto i : nums2)mp2[i]++;\n        int a = 0, b = 0;\n        for(auto i : nums1){\n            if(mp2.find(i) != mp2.end())a++;\n        }\n        for(auto i : nums2){\n            if(mp1.find(i) != mp1.end())b++;\n        }\n        return {a, b};\n    }\n};"
+}

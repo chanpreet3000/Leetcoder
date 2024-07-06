@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-time-to-revert-word-to-initial-state-ii",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<int> zalgo(string &s){\n        int n = s.length();\n        int l = 0, r = 0;\n        vector<int> z(n, 0);\n        for(int i = 1; i < n; i++){\n            if(i > r){\n                l = r = i;\n                while(r < n && s[r] == s[r - l])r++;\n                z[i] = r - l;\n                r--;\n            }else{\n                int ind = i - l;\n                if(i + z[ind] <= r){\n                    z[i] = z[ind];\n                }else{\n                    l = i;\n                    while(r < n && s[r] == s[r - l])r++;\n                    z[i] = r - l;\n                    r--;\n                }\n            }\n        }\n        return z;\n    }\n    int minimumTimeToInitialState(string s, int k) {\n        int n = s.length();\n        auto z = zalgo(s);\n        int len = 0;\n        int ans = 1;\n        for(int i = k; i < n; i+= k){\n            if(i + z[i] == n){\n                return ans;\n            }\n            ans++;\n        }\n        return ans;\n    }\n};"
+}

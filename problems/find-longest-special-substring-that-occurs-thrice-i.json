@@ -1,0 +1,5 @@
+{
+    "problemName": "find-longest-special-substring-that-occurs-thrice-i",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int maximumLength(string s) {\n        int n = s.length();\n        map<string, int> mp;\n        for(int i = 0; i < n; i++){\n            string temp = \"\";\n            for(int j = i; j < n; j++){\n                temp.push_back(s[j]);\n                mp[temp]++;\n            }\n        }\n        int ans = -1;\n        for(auto i : mp){\n            if(i.second > 2){\n                map<char, int> umap;\n                for(auto j : i.first)umap[j]++;\n                if(umap.size() == 1){\n                    ans = max(ans, (int)i.first.size());\n                }\n            }\n        }\n        return ans;\n    }\n};"
+}

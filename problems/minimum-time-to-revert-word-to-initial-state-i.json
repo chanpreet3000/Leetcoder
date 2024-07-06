@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-time-to-revert-word-to-initial-state-i",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minimumTimeToInitialState(string s, int k) {\n        int n = s.length();\n        int ans = 1;\n        string a, b;\n        for(int i = k; i < n; i += k){\n            b = s.substr(0, n - i);\n            a = s.substr(i, n - i ); \n            if(a == b) return ans;\n            else ans++;\n        }\n        \n        return ans;\n    }\n};"
+}

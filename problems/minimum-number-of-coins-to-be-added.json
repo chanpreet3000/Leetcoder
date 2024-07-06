@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-number-of-coins-to-be-added",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minimumAddedCoins(vector<int>& arr, int target) {\n        int n = arr.size();\n        sort(arr.begin(), arr.end());\n        int curr = 0, ans = 0, ind = 0;\n        for(int i = 1; i <= target; i++){\n            if(curr >= i)continue;\n            \n            if(ind < n){\n                if(curr + 1 == arr[ind]){\n                    curr += arr[ind];\n                    ind++;\n                }else if(curr >= arr[ind]){\n                    curr += arr[ind];\n                    ind++;\n                }else{\n                    curr += (curr + 1);\n                    ans ++;\n                }\n            }else{\n                curr += (curr + 1);\n                ans++;\n            }\n        }\n        return ans;\n    }\n};"
+}

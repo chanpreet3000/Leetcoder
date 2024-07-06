@@ -1,0 +1,5 @@
+{
+    "problemName": "lexicographically-minimum-string-after-removing-stars",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    string clearStars(string s) {\n        set<pair<char, int>> st;\n        for(int i = 0; i < s.length(); i++){\n            if(s[i] =='*'){\n                st.erase(st.begin());\n            }else{\n                st.insert({s[i], -i});\n            }\n        }\n        map<int, int> mp;\n        for(auto i : st)mp[i.second * -1]++;\n        string ans = \"\";\n        for(int i = 0; i < s.length(); i++){\n            if(mp[i] > 0)ans.push_back(s[i]);\n        }\n        return ans;\n    }\n};"
+}

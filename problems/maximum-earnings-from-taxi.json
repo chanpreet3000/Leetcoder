@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-earnings-from-taxi",
+    "language": "cpp",
+    "code": "long long dp[30005];\nclass Solution {\npublic:\n    long long helper(vector<vector<int>> &rides, int ind){\n        if(ind == rides.size())return 0;\n        if(dp[ind] != -1)return dp[ind];\n        long long ans = 0;\n        long long nt = helper(rides, ind + 1);\n        vector<int> t = {rides[ind][1], -1, -1};\n        long long tk = helper(rides, lower_bound(rides.begin(), rides.end(), t) - rides.begin()) + rides[ind][1] - rides[ind][0] + rides[ind][2];\n        return dp[ind] = max(nt, tk);\n    }\n    long long maxTaxiEarnings(int n, vector<vector<int>>& rides) {\n        memset(dp, -1, sizeof dp);\n        long long ans = 0;\n        sort(rides.begin(), rides.end());\n        return helper(rides, 0);\n    }\n};"
+}

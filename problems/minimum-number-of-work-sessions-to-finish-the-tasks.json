@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-number-of-work-sessions-to-finish-the-tasks",
+    "language": "cpp",
+    "code": "int dp[1<<15][16];\nclass Solution {\npublic:\n    int helper(vector<int> &tasks, int &s, int vis, int t){\n        if(vis == (1 << tasks.size()) - 1)return 0;\n        if(dp[vis][t] != -1)return dp[vis][t];\n        int ans = 1e9;\n        for(int i = 0; i < tasks.size(); i++){\n            if((vis & (1<<i)))continue;\n            if(t + tasks[i] > s){\n                ans = min(ans, 1 + helper(tasks, s, vis, 0));\n            }else{\n                ans = min(ans, helper(tasks, s, (vis | (1<<i)), t + tasks[i]));\n            }\n        }\n        return dp[vis][t] = ans;\n    }\n    int minSessions(vector<int>& tasks, int sessionTime) {\n        memset(dp, -1, sizeof dp);\n        sort(tasks.begin(), tasks.end());\n        return helper(tasks, sessionTime, 0, 0) + 1;\n    }\n};"
+}

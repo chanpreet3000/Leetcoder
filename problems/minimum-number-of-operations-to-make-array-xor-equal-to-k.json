@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-number-of-operations-to-make-array-xor-equal-to-k",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minOperations(vector<int>& nums, int k) {\n        vector<int> pre(32, 0);\n        for(int i = 0; i < 32; i ++){\n            for(auto j : nums){\n                if((j & (1<<i))){\n                    pre[i]++;\n                    pre[i]%=2;\n                }\n            }\n        }\n        int ans = 0;\n        for(int i = 0; i < 32; i++){\n            int dig1 = (k & (1<<i))>0?1:0;\n            int dig2 = pre[i];\n            if(dig1 != dig2)ans++;\n        }\n        return ans;\n    }\n};"
+}

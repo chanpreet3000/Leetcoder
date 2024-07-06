@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-operations-to-exceed-threshold-value-ii",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minOperations(vector<int>& nums, int k) {\n        priority_queue<long long int, vector<long long int>, greater<long long int>> pq;\n        for(auto i : nums){\n            pq.push(i);\n        }\n        long long int ans = 0;\n        while(pq.size() >= 2 && pq.top() <  k){\n            long long int t1 = pq.top();\n            pq.pop();\n            long long int t2 = pq.top();\n            pq.pop();\n            long long int temp = min(t1, t2) * 2LL + max(t1, t2);\n            pq.push(temp);\n            ans++;\n        }\n        return ans;\n    }\n};"
+}

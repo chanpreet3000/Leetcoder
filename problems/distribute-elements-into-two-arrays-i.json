@@ -1,0 +1,5 @@
+{
+    "problemName": "distribute-elements-into-two-arrays-i",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<int> resultArray(vector<int>& nums) {\n        vector<int> a = {nums[0]};\n        vector<int> b = {nums[1]};\n        for(int i = 2; i < nums.size(); i++){\n            if(a.back() > b.back()){\n                a.push_back(nums[i]);\n            }else{\n                b.push_back(nums[i]);\n            }\n        }\n        vector<int> c;\n        for(auto i : a)c.push_back(i);\n        for(auto i : b)c.push_back(i);\n        return c;\n\n    }\n};"
+}

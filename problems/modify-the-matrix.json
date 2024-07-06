@@ -1,0 +1,5 @@
+{
+    "problemName": "modify-the-matrix",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<vector<int>> modifiedMatrix(vector<vector<int>>& matrix) {\n        vector<vector<int>> ans= matrix;\n        for(int i = 0; i < matrix[0].size(); i++){\n            int _max = -1;\n            for(int j = 0; j < matrix.size(); j++){\n                _max = max(_max, matrix[j][i]);\n            }\n            for(int j = 0; j < matrix.size(); j++){\n                if(matrix[j][i] == -1)ans[j][i] = _max; \n            }\n        }\n        return ans;\n    }\n};"
+}

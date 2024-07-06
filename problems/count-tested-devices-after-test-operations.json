@@ -1,0 +1,5 @@
+{
+    "problemName": "count-tested-devices-after-test-operations",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int countTestedDevices(vector<int>& batteryPercentages) {\n      int testedDevices = 0;\n      for (int i = 0; i < batteryPercentages.size(); ++i) {\n        if (batteryPercentages[i] > 0) {\n          ++testedDevices;\n          for (int j = i + 1; j < batteryPercentages.size(); ++j) {\n            if (batteryPercentages[j] > 0) {\n              --batteryPercentages[j];\n            }\n          }\n        }\n      }\n      return testedDevices;\n    }\n\n};"
+}

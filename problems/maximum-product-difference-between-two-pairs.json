@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-product-difference-between-two-pairs",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int maxProductDifference(vector<int>& nums) {\n        sort(nums.begin(), nums.end());\n        return nums[nums.size() - 1] * nums[nums.size() - 2] - nums[0] * nums[1];\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-size-of-a-set-after-removals",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int maximumSetSize(vector<int>& nums1, vector<int>& nums2) {\n        map<int, int> mp1, mp2;\n        int n = nums1.size();\n        for(auto i : nums1)mp1[i]++;\n        for(auto i : nums2)mp2[i]++;\n        int a = mp1.size(), b = mp2.size();\n        for(auto i : mp1)a += i.second - 1;\n        for(auto i : mp2)b += i.second - 1;\n        map<int, int> mp3;\n        for(auto i : nums1)mp3[i] = 1;\n        for(auto i : nums2)if(mp3[i] == 1)mp3[i] = 2;\n        int com = 0;\n        for(auto i : mp3)if(i.second == 2)com++;\n        \n        int da = min((int)mp1.size() - com, n/2);\n        int db = min((int)mp2.size() - com, n/2);\n        return min(da + db + com, n);\n    }\n};"
+}

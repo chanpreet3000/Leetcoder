@@ -1,0 +1,5 @@
+{
+    "problemName": "make-three-strings-equal",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int findMinimumOperations(string s1, string s2, string s3) {\n        int x = min({s2.length(), s1.length(), s3.length()});\n        \n        int ans = -1;\n        for(int i = 0; i < x; i++){\n            if(s1[i] == s2[i] && s1[i] == s3[i]){\n                ans = i + 1;\n            }else{\n                break;\n            }\n        }\n        if(ans == -1)return -1;\n        return  (s1.length() + s2.length() + s3.length()) - 3 * ans;\n    }\n};"
+}

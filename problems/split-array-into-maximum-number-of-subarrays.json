@@ -1,0 +1,5 @@
+{
+    "problemName": "split-array-into-maximum-number-of-subarrays",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int maxSubarrays(vector<int>& nums) {\n        int a = INT_MAX;\n        for(auto i : nums) a &= i;\n        if(a == 0){\n            int ans = 0, ad = INT_MAX;\n            for(auto i : nums){\n                if((i & ad) == a){\n                    ans++;\n                    ad = INT_MAX;\n                }else{\n                    ad = (i & ad);\n                }\n            }\n            return ans;\n        }\n        return 1;\n    }\n};"
+}

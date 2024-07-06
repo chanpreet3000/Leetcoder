@@ -1,0 +1,5 @@
+{
+    "problemName": "minimize-length-of-array-using-operations",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minimumArrayLength(vector<int>& nums) {\n        sort(nums.begin(),nums.end());\n        int n = nums.size();\n        if(n> 2 && nums[0] != nums[1] && n > 2)return 1;\n        int g = 0;\n        for(auto i : nums)g = __gcd(g, i);\n        \n        int c = 0;\n        for(auto i:nums)if(i == g)c++;\n        \n        return max(1,(c+1)/2);\n    }\n};"
+}

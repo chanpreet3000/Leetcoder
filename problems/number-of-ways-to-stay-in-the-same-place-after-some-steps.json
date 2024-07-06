@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-ways-to-stay-in-the-same-place-after-some-steps",
+    "language": "cpp",
+    "code": "int dp[505][505];\nconst int MOD = 1e9 + 7;\nclass Solution {\npublic:\n    int helper(int steps, int diff, int n){\n        if(diff < 0 || diff >= n)return 0;\n        if(steps == 0) return (diff == 0);\n        if(dp[steps][diff] != -1)return dp[steps][diff];\n        int ans = 0;\n        ans += helper(steps - 1 ,diff + 1, n);\n        ans%=MOD;\n        ans += helper(steps - 1, diff, n);\n        ans%=MOD;\n        ans += helper(steps - 1, diff - 1, n);\n        ans%=MOD;\n        return dp[steps][diff] = ans%MOD;\n    }\n    int numWays(int steps, int n) {\n        memset(dp, -1, sizeof dp);\n        return helper(steps, 0, n)%MOD;\n    }\n};"
+}

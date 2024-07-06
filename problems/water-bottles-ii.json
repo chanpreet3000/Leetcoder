@@ -1,0 +1,5 @@
+{
+    "problemName": "water-bottles-ii",
+    "language": "cpp",
+    "code": "map<int, map<int, map<int, int>>> dp;\nclass Solution {\npublic:\n    int helper(int  a, int b, int c){\n        int d = 0, e = 0;\n        if(dp[a][b].count(c) > 0)return dp[a][b][c];\n        if(a > 0)\n            d = 1 + helper(a - 1, b + 1, c);\n        if(b >= c){\n            e = helper(a + 1, b - c, c + 1);\n        }\n        return dp[a][b][c] = max(d, e);\n    }   \n    int maxBottlesDrunk(int numBottles, int numExchange) {\n        dp.clear();\n        return helper(numBottles, 0, numExchange);\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "last-moment-before-all-ants-fall-out-of-a-plank",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int getLastMoment(int n, vector<int>& left, vector<int>& right) {\n        sort(left.begin(), left.end());\n        sort(right.begin(), right.end());\n        int ans = -1e9;\n        if(right.size() > 0){\n            ans = max(ans, n - right[0]);\n        }\n        if(left.size() > 0){\n            ans = max(ans, left.back());\n        }\n        return ans;\n    }\n};"
+}

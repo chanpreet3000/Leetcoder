@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-palindromes-after-operations",
+    "language": "cpp",
+    "code": "typedef long long int ll;\nclass Solution {\npublic:\n    int maxPalindromesAfterOperations(vector<string>& words) {\n        map<char, ll> cnt;\n\n        for(auto i : words){\n            for(auto j : i){\n                cnt[j]++;\n            }\n        }\n        ll even = 0, odd = 0;\n\t\tfor(auto i : cnt){\n\t\t\teven += i.second%2;\n\t\t\todd += i.second/2;\n\t\t}\n\n        sort(words.begin(), words.end(), [&](string &a, string &b){\n\t\t\treturn a.length() < b.length();\n\t\t});\n        ll ans = 0;\n        \n        for (ll i = 0; i < words.size(); i++)\n        {\n            ll len = words[i].length();\n            ll reqOdd = len / 2;\n            ll reqEven = len % 2;\n            if (reqOdd <= odd && reqEven <= even)\n            {\n                ans++;\n                odd -= reqOdd;\n                even -= reqEven;\n            }\n            else if (reqOdd < odd)\n            {\n                odd -= reqOdd;\n                even++;\n                odd--;\n                ans++;\n            }\n        }\n        return ans;\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k",
+    "language": "cpp",
+    "code": "typedef long long int ll;\nclass Solution {\npublic:\n    bool good(ll k, ll x, ll mid){\n        mid++;\n        ll pow = 2;\n        ll ans = 0;\n        for (ll i = 0; i < 60; i++)\n        {\n            ll sz = pow;\n            if ((i + 1) % x == 0)\n            {\n                ll full = mid / sz;\n                ll rem = max(0LL, mid % sz - pow / 2);\n\n                ll tot = (pow / 2) * (full) + rem;\n                ans += tot;\n            }\n            pow *= 2;\n        }\n        return ans <= k;\n    }\n    long long findMaximumNumber(long long k, int x) {\n        ll lo = 0, hi = 1e15, ans = -1;\n        while(lo <= hi){\n            ll mid = (lo + hi + 1)/2;\n            if(good(k, x, mid)){\n                lo = mid + 1;\n                ans = mid;\n            }else{\n                hi = mid - 1;\n            }\n        }\n        return ans;\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "split-the-array",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    bool isPossibleToSplit(vector<int>& nums) {\n        map<int, int> mp;\n        for(auto i : nums)mp[i]++;\n        for(auto i : mp)if(i.second > 2)return false;\n        return true;\n    }\n};"
+}

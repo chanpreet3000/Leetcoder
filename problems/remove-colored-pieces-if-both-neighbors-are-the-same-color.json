@@ -1,0 +1,5 @@
+{
+    "problemName": "remove-colored-pieces-if-both-neighbors-are-the-same-color",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    bool winnerOfGame(string s) {\n        char c = s[0];\n        int cnt = 0, a = 0, b = 0;\n        for(int i = 0; i < s.length(); i++){\n            if(s[i] == c){\n                cnt++;\n            }else{\n                if(c == 'A'){\n                    a += max(0, cnt - 2);\n                }else{\n                    b += max(0, cnt - 2);\n                }\n                c = s[i];\n                cnt = 1;\n            }\n        }\n        if(c == 'A'){\n            a += max(0, cnt - 2);\n        }else{\n            b += max(0, cnt - 2);\n        }\n        if(b >= a)return false;\n        return true;\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-length-of-string-after-deleting-similar-ends",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minimumLength(string s) {\n        int i = 0, j = s.length() - 1;\n        int ans = s.length();\n        while(i < j){\n            if(s[i] != s[j])break;\n            ans -= 2;\n            while(i + 1 < j && s[i] == s[i + 1]){\n                ans--;\n                i++;\n            }\n            while(j - 1 > i && s[j] == s[j - 1]){\n                ans--;\n                j--;\n            }\n            i++;\n            j--;\n        }\n        return ans;\n    }\n};"
+}

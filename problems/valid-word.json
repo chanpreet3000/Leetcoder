@@ -1,0 +1,5 @@
+{
+    "problemName": "valid-word",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    bool isValid(string word) {\n        if(word.size() < 3)return false;\n        int a = 0, b = 0, c = 0, d = 0, e=  0;\n        for(auto i : word){\n            if(i >= '0' && i <='9'){\n                a++;\n                continue;\n            }else if(i >='A' && i <='Z'){\n                b++;\n            }else if(i >='a' && i <='z'){\n                c++;\n            }else{\n                return false;\n            }\n            i = tolower(i);\n            if(i == 'a' || i == 'e' || i == 'i' || i == 'o' || i == 'u'){\n                d++;\n            }else{\n                e++;\n            }\n        }\n        return (d > 0 && e > 0);\n    }\n};"
+}

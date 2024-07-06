@@ -1,0 +1,5 @@
+{
+    "problemName": "special-array-i",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    bool isArraySpecial(vector<int>& nums) {\n        for(int i = 0; i < nums.size() - 1; i++){\n            if(nums[i]%2 == nums[i + 1]%2)return false;\n        }\n        return true;\n    }\n};"
+}

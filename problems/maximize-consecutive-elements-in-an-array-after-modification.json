@@ -1,0 +1,5 @@
+{
+    "problemName": "maximize-consecutive-elements-in-an-array-after-modification",
+    "language": "cpp",
+    "code": "int dp[1000002];\nclass Solution {\npublic:\n    int maxSelectedElements(vector<int>& nums) {\n        sort(nums.begin(), nums.end());\n        memset(dp, 0, sizeof dp);\n        int _max = 0;\n        for(int i = 0; i < nums.size(); i++){\n            int a = nums[i], b = nums[i] + 1;\n            dp[b] = max(dp[b], dp[b - 1] + 1);\n            dp[a] = max(dp[a], dp[a - 1] + 1);\n            _max = max({_max, dp[a], dp[b]});\n        }\n        return _max;\n    }\n};"
+}

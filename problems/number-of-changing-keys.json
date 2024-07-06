@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-changing-keys",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int countKeyChanges(string s) {\n        char prev = s[0];\n        int cnt = 0;\n        for(int i = 0; i < s.length(); i++){\n            if(s[i] == prev || tolower(s[i]) == prev){\n                \n            }else{\n                cnt++;\n            }\n            prev = tolower(s[i]);\n        }\n        return cnt;\n    }\n};"
+}

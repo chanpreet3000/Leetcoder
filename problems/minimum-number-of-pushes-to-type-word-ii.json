@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-number-of-pushes-to-type-word-ii",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minimumPushes(string word) {\n        map<char, int> mp;\n        for(auto i : word)mp[i]++;\n        vector<pair<int, int>> arr;\n        for(auto i : mp)arr.push_back({i.second, i.first});\n        sort(arr.begin(), arr.end(), [&](pair<int, int> &a, pair<int, int> &b){\n            if(a.first != b.first)return a.first > b.first;\n            return a.second < b.second;\n        });\n        int ans = 0;\n        int ind = 1;\n        for(auto i : arr){\n            ans += i.first * (int)(ceil(ind/8.0));\n            ind++;\n        }\n        return ans;\n    }\n};"
+}

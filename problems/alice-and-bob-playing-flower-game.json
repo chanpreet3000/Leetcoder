@@ -1,0 +1,5 @@
+{
+    "problemName": "alice-and-bob-playing-flower-game",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    long long flowerGame(int n, int m) {\n        if(n == 1 && m == 1)return 0;\n        long long int ans = 0;\n        int o = (m - 1)/2;\n        int e = (m/2);\n        for(int i = 1; i <= n;i++){\n            if(i%2 == 0){\n                if(o > 0)\n                ans += o;\n                o--;\n            }else{\n                if(e > 0)\n                ans += e;\n                e--;\n            }\n        }\n        cout<<ans<<endl;\n        o = (n - 1)/2;\n        e = (n/2);\n        for(int i = 1; i <= m;i++){\n            if(i%2 == 0){\n                if(o > 0)\n                ans += o;\n                o--;\n            }else{\n                if(e > 0)\n                ans += e;\n                e--;\n            }\n        }\n        return ans;\n    }\n};"
+}

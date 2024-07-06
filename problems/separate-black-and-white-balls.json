@@ -1,0 +1,5 @@
+{
+    "problemName": "separate-black-and-white-balls",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    long long helper(string &s, char c){\n        int ind = 0;\n        long long ans = 0;\n        for(int i = 0; i < s.length(); i++){\n            if(s[i] == c){\n                ans += (i - ind);\n                ind ++;\n            }\n        }\n        return ans;\n    }\n    long long minimumSteps(string s) {\n        return helper(s, '0');\n    }\n};"
+}

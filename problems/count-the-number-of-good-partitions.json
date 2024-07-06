@@ -1,0 +1,5 @@
+{
+    "problemName": "count-the-number-of-good-partitions",
+    "language": "cpp",
+    "code": "typedef long long int ll;\nconst ll MOD = 1e9 + 7;\nll power(ll a, ll b, ll m)\n{\n    ll res = 1;\n    while (b > 0)\n    {\n        if (b % 2 == 1)\n            res = ((res % m) * (a % m)) % m;\n        b = b >> 1;\n        a = ((a % m) * (a % m)) % m;\n    }\n    return res % m;\n}\nclass Solution {\npublic:\n    int numberOfGoodPartitions(vector<int>& nums) {\n        int temp = 0;\n        map<int, int> mp;\n        for(int i = 0; i < nums.size(); i++){\n            mp[nums[i]] = i;\n        }\n        int _max = -1e9;\n        for(int i = 0; i < nums.size(); i++){\n            _max = max(_max, mp[nums[i]]);\n            if(_max == i){\n                temp++;\n            }\n        }\n        return power(2, temp - 1, MOD);\n    }\n};"
+}

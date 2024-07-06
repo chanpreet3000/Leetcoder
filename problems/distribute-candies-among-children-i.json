@@ -1,0 +1,5 @@
+{
+    "problemName": "distribute-candies-among-children-i",
+    "language": "cpp",
+    "code": "int dp[55][3];\nclass Solution {\npublic:\n    int helper(int n, int limit, int ind){\n        if(n < 0)return 0;\n        if(ind == 3)return n == 0;\n        if(dp[n][ind] != -1)return dp[n][ind];\n        int ans = 0;\n        \n        for(int i = 0; i <= limit; i++){\n            ans += helper(n - i, limit, ind + 1);\n        }\n        return dp[n][ind] = ans;\n    }\n    int distributeCandies(int n, int limit) {\n        memset(dp,-1, sizeof dp);\n        return helper(n, limit, 0);\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "find-the-number-of-ways-to-place-people-ii",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int numberOfPairs(vector<vector<int>>& points) {\n        sort(points.begin(), points.end(), [&](vector<int> &a, vector<int>&b){\n            if(a[0] != b[0])return a[0] < b[0];\n            return a[1] > b[1];\n        });\n        int ans = 0;\n        for(int i=0; i < points.size();i++){\n            int _min = -1e9 - 1;\n            for(int j = i + 1;j < points.size();j++){\n                if(points[j][1] > _min && points[j][1] <= points[i][1]){\n                    ans++;\n                    _min=points[j][1];\n                }\n            }\n        }\n        return ans;\n    }\n};"
+}

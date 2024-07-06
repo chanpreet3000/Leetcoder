@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-element-after-decreasing-and-rearranging",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int maximumElementAfterDecrementingAndRearranging(vector<int>& arr) {\n        sort(arr.begin(), arr.end());\n        arr[0] = 1;\n        for(int i = 1; i < arr.size(); i++){\n            if(arr[i] - arr[i - 1] > 1){\n                arr[i] = arr[i - 1] + 1;\n            }\n        }\n        return arr.back();\n    }\n};"
+}

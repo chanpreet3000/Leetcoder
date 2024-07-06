@@ -11,7 +11,8 @@ import FileManager from "../managers/FileManager.js";
 
 class LeetcoderScraper {
   static async #scrapeAndSaveCodeFromSubmissionId(id) {
-    const {page} = await getBrowserDetails();
+    const {browser} = await getBrowserDetails();
+    const page = await browser.newPage();
 
     try {
       await page.goto(`https://leetcode.com/submissions/detail/${id}/`, {
@@ -41,6 +42,8 @@ class LeetcoderScraper {
       await FileManager.saveScrapedSolution(fileContent);
     } catch (err) {
       Logger.error('Something went wrong!', err);
+    } finally {
+      await page.close();
     }
   }
 
@@ -62,14 +65,18 @@ class LeetcoderScraper {
     }));
   }
 
-  static async #scrapeCodeFromAllSubmissions() {
+  static async #scrapeCodeFromAllSubmissions(browser) {
     for (let page_no = 1; page_no <= 1000; page_no++) {
       try {
-        const submission_ids = await this.#scrapeSubmissionIdsFromPageId(page_no);
+        const submission_ids = await this.#scrapeSubmissionIdsFromPageId(page_no, browser);
         Logger.success(`Submission ids fetched from page number ${page_no}`, submission_ids);
+
+        const promises = [];
         for (let idx = 0; idx < submission_ids.length; idx++) {
-          await this.#scrapeAndSaveCodeFromSubmissionId(submission_ids[idx]);
+          promises.push(this.#scrapeAndSaveCodeFromSubmissionId(submission_ids[idx], browser));
         }
+        await Promise.all(promises);
+        promises.length = 0;
       } catch (err) {
         Logger.error('Something went wrong, Most Likely Invalid page id', err);
         return;

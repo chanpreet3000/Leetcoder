@@ -1,0 +1,5 @@
+{
+    "problemName": "apply-operations-to-make-sum-of-array-greater-than-or-equal-to-k",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minOperations(int k) {\n        int ans = 1e9;\n        for(int i = 1; i <= 1e5; i++){\n            int req = ceil(k/(i * 1.0));\n            ans = min(ans, i - 1 + (req - 1));\n        }\n        return ans;\n    }\n};"
+}

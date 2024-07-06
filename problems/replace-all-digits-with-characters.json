@@ -1,0 +1,5 @@
+{
+    "problemName": "replace-all-digits-with-characters",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    string replaceDigits(string s) {\n        for(int i = 1; i < s.length(); i += 2){\n            s[i] = (s[i - 1] + (s[i] - '0'));\n        }\n        return s;\n    }\n};"
+}

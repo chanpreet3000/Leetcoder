@@ -1,0 +1,5 @@
+{
+    "problemName": "water-bottles",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int numWaterBottles(int numBottles, int numExchange) {\n        int ans = 0;\n        while(numBottles > 0){\n            int temp = numBottles%numExchange;\n            int temp2 = numBottles/numExchange;\n            if(temp2 == 0)return ans + numBottles;\n            ans += (numBottles - temp);\n            numBottles = temp + temp2;\n        }\n        return ans;\n    }\n};"
+}

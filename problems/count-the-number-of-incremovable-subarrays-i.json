@@ -1,0 +1,5 @@
+{
+    "problemName": "count-the-number-of-incremovable-subarrays-i",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int incremovableSubarrayCount(vector<int>& nums) {\n        int res = 0;\n        for(int i = 0; i < nums.size(); i++){\n            for(int j = i ; j < nums.size(); j++){\n                int f = 1, _max = -1;\n                for(int k = 0; k < nums.size(); k++){\n                    if(k >= i && k <= j){\n                        continue;\n                    }else{\n                        if(nums[k] > _max){\n                            _max = nums[k];\n                        }else{\n                            f = 0;\n                        }\n                    }\n                }\n                res += f;\n            }\n        }\n        return res;        \n    }\n};"
+}

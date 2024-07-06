@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-number-of-operations-with-the-same-score-i",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int maxOperations(vector<int>& nums) {\n        int temp = nums[1] + nums[0];\n        int ans = 0;\n        for(int i = 0; i < nums.size() - 1; i+= 2){\n            if(nums[i] + nums[i + 1] == temp){\n                ans++;\n            }else{\n                break;\n            }\n        }\n        return ans;\n    }\n};"
+}

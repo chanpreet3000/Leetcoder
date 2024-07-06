@@ -1,0 +1,5 @@
+{
+    "problemName": "apply-operations-to-make-string-empty",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    string lastNonEmptyString(string s) {\n        map<char, int> cnt;\n        for(auto i : s){\n            cnt[i]++;\n        }\n        int _max = 0;\n        for(auto i : cnt)_max = max(_max, i.second);\n        \n        map<char, int> mp;\n        int n = s.length();\n        for(int i = 0; i < n; i++){\n            if(cnt[s[i]] == _max)\n                mp[s[i]] = i;\n        }\n        vector<pair<int, char>> arr;\n        for(auto i : mp){\n            arr.push_back({i.second, i.first});\n        }\n        sort(arr.begin(), arr.end());\n        string ans = \"\";\n        for(auto i : arr){\n            ans.push_back(i.second);\n        }\n        return ans;\n    }\n};"
+}

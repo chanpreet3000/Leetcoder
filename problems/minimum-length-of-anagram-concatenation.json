@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-length-of-anagram-concatenation",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minAnagramLength(string s) {\n        map<char, int> mp;\n        for(auto i : s)mp[i]++;\n        int g = 0;\n        for(auto i : mp)g = __gcd(g, i.second);\n        return s.length()/g;\n    }\n};"
+}

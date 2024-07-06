@@ -1,0 +1,5 @@
+{
+    "problemName": "ant-on-the-boundary",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int returnToBoundaryCount(vector<int>& nums) {\n        int ans = 0;\n        int curr = 0;\n        for(auto i : nums){\n            curr += i;\n            if(curr == 0)ans++;\n        }\n        return ans;\n    }\n};"
+}

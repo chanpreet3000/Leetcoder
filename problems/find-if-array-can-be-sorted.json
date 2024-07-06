@@ -1,0 +1,5 @@
+{
+    "problemName": "find-if-array-can-be-sorted",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    bool canSortArray(vector<int>& nums) {\n        for(int i = 0; i < nums.size(); i++){\n            int ind = i;\n            for(int j = i; j < nums.size(); j++){\n                if(nums[ind] > nums[j]){\n                    ind = j;\n                }                \n            }\n            for(int j = ind; j > i; j--){\n                int c1 = __builtin_popcount(nums[j]);\n                int c2 = __builtin_popcount(nums[j - 1]);\n                if(c1 != c2){\n                    return false;\n                }\n                swap(nums[j], nums[j - 1]);\n            }\n        }\n        return true;\n    }\n};"
+}

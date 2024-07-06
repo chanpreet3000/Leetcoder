@@ -1,0 +1,5 @@
+{
+    "problemName": "count-prefix-and-suffix-pairs-i",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    \n    int countPrefixSuffixPairs(vector<string>& words) {\n        int ans = 0;\n        for(int i = 0; i < words.size(); i++){\n            for(int j = i + 1; j < words.size(); j++){\n                int len = words[i].length();\n                if(words[i].length() <= words[j].length()){\n                string a = words[j].substr(0, len);\n                string b = words[j].substr(words[j].size() - len, len);\n                if(a == words[i] && a == b){\n                    ans++;\n                    // cout<<a<<\" \"<<b<<\" \"<<words[i]<<\" \"<<words[j]<<endl;\n                }\n                }\n            }\n        }\n        return ans;\n    }\n};"
+}

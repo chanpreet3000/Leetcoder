@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-number-of-operations-to-satisfy-conditions",
+    "language": "cpp",
+    "code": "int dp[1005][15];\nclass Solution {\npublic:\n    int n, m;\n    int helper(vector<vector<int>> &arr, int ind, int prev){\n        if(ind == m)return 0;\n        if(dp[ind][prev + 1] != -1)return dp[ind][prev + 1];\n        int ans = 1e9;\n        for(int i = 0; i < 10; i++){\n            if(i != prev){\n                ans = min(ans, helper(arr, ind + 1, i) + (n - arr[ind][i]));\n            }\n        }\n        return dp[ind][prev + 1] = ans;\n    }\n    int minimumOperations(vector<vector<int>>& grid) {\n        n = grid.size();\n        m = grid[0].size();\n        vector<vector<int>> arr(m, vector<int>(10, 0));\n        for(int i = 0; i < m; i++){\n            for(int j = 0; j < n; j++){\n                arr[i][grid[j][i]]++;\n            }\n        }\n        memset(dp, -1, sizeof dp);\n        return helper(arr, 0, -1);\n    }\n};"
+}

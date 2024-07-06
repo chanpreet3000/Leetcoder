@@ -1,0 +1,5 @@
+{
+    "problemName": "find-indices-with-index-and-value-difference-ii",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<int> findIndices(vector<int>& nums, int indexDifference, int valueDifference) {\n        int n = nums.size();\n        if(indexDifference == 0 && valueDifference == 0)return {0, 0};\n        \n        set<int> st;\n        map<int, int> mp;\n        int j = 0;\n        for(int i = indexDifference; i < n; i++){\n            st.insert(nums[j]);\n            mp[nums[j]] = j;\n            j++;\n            \n            auto r = st.lower_bound(nums[i] + valueDifference);\n            if(r != st.end()){\n                return {mp[*r], i};\n            }\n            \n            auto l = st.upper_bound(nums[i] - valueDifference);\n            if(l != st.begin()){\n                --l;\n                return {mp[*l], i};\n            }\n        }\n        return {-1, -1};\n    }\n};"
+}

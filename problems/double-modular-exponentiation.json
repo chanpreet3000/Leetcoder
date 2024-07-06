@@ -1,0 +1,5 @@
+{
+    "problemName": "double-modular-exponentiation",
+    "language": "cpp",
+    "code": "typedef long long int ll;\nll power(ll a, ll b, ll m)\n{\n    ll res = 1;\n    while (b > 0)\n    {\n        if (b % 2 == 1)\n            res = ((res % m) * (a % m)) % m;\n        b = b >> 1;\n        a = ((a % m) * (a % m)) % m;\n    }\n    return res % m;\n}\nclass Solution {\npublic:\n    vector<int> getGoodIndices(vector<vector<int>>& variables, int target) {\n        vector<int> ans;\n        int ind = 0;\n        for(auto i : variables){\n            int a = i[0];\n            int b = i[1];\n            int c = i[2];\n            int m = i[3];\n            int t = power(a, b, 10);\n            int t2 = power(t, c, m);\n            if(t2 == target)ans.push_back(ind);\n            ind++;\n        }\n        return ans;\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "apple-redistribution-into-boxes",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minimumBoxes(vector<int>& apple, vector<int>& capacity) {\n        int s= accumulate(apple.begin(), apple.end(), 0);\n        sort(capacity.begin(), capacity.end());\n        int ans = 0;\n        int ind = capacity.size() - 1;\n        while(s > 0){\n            s -= capacity[ind];\n            ind--;\n            ans++;\n        }\n        return ans;\n    }\n};"
+}

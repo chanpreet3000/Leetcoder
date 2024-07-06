@@ -1,0 +1,5 @@
+{
+    "problemName": "rearrange-words-in-a-sentence",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    string arrangeWords(string text) {\n        vector<pair<pair<int, int>, string>> arr;\n        string temp = \"\";\n        int ind = 0;\n        for(int i = 0; i < text.length(); i++){\n            if(text[i] == ' '){\n                arr.push_back({{temp.length(), ind}, temp});\n                temp = \"\";\n                ind++;\n            }else{\n                temp.push_back(tolower(text[i]));\n            }\n        }\n        arr.push_back({{temp.length(), ind}, temp});\n        sort(arr.begin(), arr.end(), [](pair<pair<int, int>, string> &a, pair<pair<int, int>, string> &b){\n            if(a.first.first != b.first.first)return a.first.first < b.first.first;\n            return a.first.second < b.first.second;\n        });\n        string ans = \"\";\n        for(auto i : arr){\n            ans += i.second;\n            ans += \" \";\n        }\n        ans.pop_back();\n        ans[0] = ans[0] - 'a' + 'A';\n        return ans;\n    }\n};"
+}

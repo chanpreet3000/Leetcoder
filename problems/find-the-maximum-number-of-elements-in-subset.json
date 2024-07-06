@@ -1,0 +1,5 @@
+{
+    "problemName": "find-the-maximum-number-of-elements-in-subset",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int maximumLength(vector<int>& nums) {\n        int ans = 1;\n        map<int, int> mp;\n        set<int> st;\n        for(auto i : nums)mp[i]++, st.insert(i);\n        \n        st.erase(1);\n        vector<int> arr(st.begin(), st.end());\n        \n        for(int i = 0; i < arr.size(); i ++){\n            long long int p = arr[i];\n            for(int j = 1; j < 32; j ++){\n                if(p > 1e9)break;\n                if(mp[p] >= 1){\n                    ans = max(ans, 2 * (j - 1) + 1);\n                }\n                if(mp[p] <= 1)break;\n                p *= p;\n            }\n        }\n        \n        \n        \n        \n        if(mp[1]%2 == 0)return max(ans, mp[1] - 1);\n        else return max(ans, mp[1]);\n    }\n};"
+}

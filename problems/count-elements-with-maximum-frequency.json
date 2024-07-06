@@ -1,0 +1,5 @@
+{
+    "problemName": "count-elements-with-maximum-frequency",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int maxFrequencyElements(vector<int>& nums) {\n        map<int, int> mp;\n        for(auto i : nums)mp[i]++;\n        int ans = 0, _max = 0;\n        for(auto i : mp)_max= max(_max, i.second);\n        for(auto i : mp)if(i.second == _max)ans += _max;\n        return ans;\n        \n    }\n};"
+}

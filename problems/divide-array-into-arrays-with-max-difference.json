@@ -1,0 +1,5 @@
+{
+    "problemName": "divide-array-into-arrays-with-max-difference",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<vector<int>> divideArray(vector<int>& nums, int k) {\n        sort(nums.begin(), nums.end());\n        vector<vector<int>> ans;\n        for(int i = 0; i < nums.size(); i += 3){\n            if(nums[i + 2] - nums[i] > k){return {}; };\n            ans.push_back({nums[i], nums[i + 1], nums[i + 2]});\n        }\n        return ans;\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "string-compression-iii",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    string compressedString(string word) {\n        char c = word[0];\n        int cnt = 0;\n        string ans = \"\";\n        for(auto i : word){\n            if(i == c){\n                cnt++;\n                if(cnt == 10){\n                    ans.push_back('9');\n                    ans.push_back(c);\n                    cnt = 1;\n                }\n            }else{\n                ans.push_back(cnt + '0');\n                ans.push_back(c);\n                c = i;\n                cnt = 1;\n            }\n        }\n        ans.push_back(cnt + '0');\n        ans.push_back(c);\n        return ans;\n    }\n};"
+}

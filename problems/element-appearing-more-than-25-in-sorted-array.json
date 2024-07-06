@@ -1,0 +1,5 @@
+{
+    "problemName": "element-appearing-more-than-25-in-sorted-array",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int findSpecialInteger(vector<int>& arr) {\n        map<int, int> mp;\n        for(auto i : arr)mp[i]++;\n        for(auto i : mp)if(i.second > arr.size()/4.0)return i.first;\n        \n        return -1;\n    }\n};"
+}

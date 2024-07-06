@@ -1,0 +1,5 @@
+{
+    "problemName": "find-the-peaks",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<int> findPeaks(vector<int>& arr) {\n        vector<int> ans;\n        for(int i = 1; i < arr.size() - 1; i ++){\n            if(arr[i] > arr[i - 1] && arr[i] > arr[i + 1])ans.push_back(i);\n        }\n        return ans;\n    }\n};"
+}

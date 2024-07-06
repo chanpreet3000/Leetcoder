@@ -1,0 +1,5 @@
+{
+    "problemName": "count-alternating-subarrays",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    long long countAlternatingSubarrays(vector<int>& nums) {\n        long long ans = 0;\n        long long j = 0;\n        long long prev = -1;\n        for(long long i = 0; i < nums.size(); i++){\n            if(nums[i] == prev){\n                long long len = i - j;\n                ans += (len * (len + 1))/2;\n                j = i;\n            }\n            prev = nums[i];\n        }\n        long long len = nums.size() - j;\n        ans += (len * (len + 1))/2;\n        return ans;\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-wonderful-substrings",
+    "language": "cpp",
+    "code": "class Solution {\r\npublic:\r\n    long long wonderfulSubstrings(string word) {\r\n        map<int, int> mp;\r\n        mp[0]++;\r\n        long long ans = 0, temp = 0;\r\n        for(auto i : word){\r\n            int ind = i - 'a';\r\n            temp = (temp ^ (1<<ind));\r\n\r\n            ans += mp[temp];\r\n            for(int i = 0; i < 10; i++){\r\n                int temp2 = (temp ^ (1<<i));\r\n                ans += mp[temp2];\r\n            }\r\n            mp[temp]++;\r\n        }\r\n        return ans;\r\n    }\r\n};"
+}

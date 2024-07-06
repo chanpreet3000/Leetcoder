@@ -1,0 +1,5 @@
+{
+    "problemName": "find-kth-bit-in-nth-binary-string",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    char findKthBit(int n, int k) {\n        vector<string> arr = {\"0\"};\n        for(int i = 1;  i < n; i++){\n            string s = arr[i -1];\n            for(auto &i : s){\n                i = 1 - (i - '0') + '0';\n            }\n            reverse(s.begin(), s.end());\n            arr.push_back(arr[i - 1] + \"1\" + s);\n        }\n        // cout<<arr[n - 1]<<endl;\n        return arr[n - 1][k - 1];\n    }\n};"
+}

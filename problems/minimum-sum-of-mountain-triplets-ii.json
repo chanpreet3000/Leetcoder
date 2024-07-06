@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-sum-of-mountain-triplets-ii",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minimumSum(vector<int>& nums) {\n        multiset<int> left, right;\n        for(auto i : nums)right.insert(i);\n        int ans = 1e9;\n        right.erase(right.find(nums[0]));\n        left.insert(nums[0]);\n        for(int i = 1; i < nums.size() - 1; i ++){\n            right.erase(right.find(nums[i]));\n            if(*(left.begin()) < nums[i] && *(right.begin()) < nums[i]){\n                ans = min(ans, *(left.begin()) + nums[i] + *(right.begin()));\n            }\n            \n            left.insert(nums[i]);\n        }\n        if(ans == 1e9)return -1;\n        return ans;\n    }\n};"
+}

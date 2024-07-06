@@ -1,0 +1,5 @@
+{
+    "problemName": "finding-the-users-active-minutes",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<int> findingUsersActiveMinutes(vector<vector<int>>& logs, int k) {\n        map<int, set<int>> mp;\n        for(auto i : logs){\n            mp[i[0]].insert(i[1]);\n        }\n        vector<int> arr(k, 0);\n        for(auto i : mp){\n            arr[i.second.size() - 1]++;\n        }\n        return arr;\n    }\n};"
+}

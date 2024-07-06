@@ -1,0 +1,5 @@
+{
+    "problemName": "clear-digits",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    string clearDigits(string s) {\n        stack<int> st;\n        map<int, int> mp;\n        for(int i = 0; i < s.length(); i++){\n            if(s[i] >= '0' && s[i] <= '9'){\n                if(!st.empty()){\n                    mp[i]++;\n                    mp[st.top()]++;\n                    st.pop();\n                }\n            }else{\n                st.push(i);\n            }\n        }\n        string ans = \"\";\n        for(int i = 0; i < s.length(); i++){\n            if(mp[i] == 0)ans += s[i];\n        }\n        return ans;\n    }\n};"
+}

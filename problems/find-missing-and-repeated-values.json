@@ -1,0 +1,5 @@
+{
+    "problemName": "find-missing-and-repeated-values",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<int> findMissingAndRepeatedValues(vector<vector<int>>& grid) {\n        int n = grid.size();\n        vector<int> arr(n * n + 1, 1);\n        for(auto i : grid){\n            for(auto j : i){\n                arr[j] --;\n            }\n        }\n        vector<int> d(2, 0);\n        for(int i = 1; i <= n * n; i++){\n            if(arr[i] == -1){\n                d[0] = i;\n            }else if(arr[i] == 1){\n                d[1] = i;\n            }\n        }\n        return d;\n    }\n};"
+}

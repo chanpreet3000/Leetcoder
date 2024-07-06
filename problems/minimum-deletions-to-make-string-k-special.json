@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-deletions-to-make-string-k-special",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minimumDeletions(string word, int k) {\n        map<char, int> mp;\n        for(auto i : word)mp[i]++;\n        int ans = 1e9;\n        for(char i = 'a'; i <= 'z'; i++){\n            int res = 0;\n            for(char j = 'a'; j <= 'z'; j++){\n                if(mp[j] < mp[i]){\n                    res += mp[j];\n                }else if (mp[j] <= mp[i] + k){\n                    continue;\n                }else{\n                    res += (mp[j] - (mp[i] + k));\n                }\n            }\n            ans  = min(ans, res);\n        }\n        return ans;\n    }\n};"
+}

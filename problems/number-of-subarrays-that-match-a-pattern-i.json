@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-subarrays-that-match-a-pattern-i",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    bool check(vector<int> &nums, vector<int> & pattern){\n        for(int i = 0; i < pattern.size(); i++){\n            if(pattern[i] == 1){\n                if(nums[i + 1] <= nums[i])return false;\n            }else if(pattern[i] == 0){\n                if(nums[i + 1] != nums[i])return false;\n            }else{\n                if(nums[i + 1] >= nums[i])return false;\n            }\n        }\n        return true;\n    }\n    int countMatchingSubarrays(vector<int>& nums, vector<int>& pattern) {\n        int ans = 0;\n        for(int i = 0; i < nums.size(); i++){\n            vector<int> arr;\n            for(int j = i; j < nums.size(); j++){\n                arr.push_back(nums[j]);\n                if(arr.size() == pattern.size() + 1 && check(arr, pattern)){\n                    ans++;\n                }\n            }\n        }\n        return ans;\n    }\n};"
+}

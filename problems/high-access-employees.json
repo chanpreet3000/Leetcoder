@@ -1,0 +1,5 @@
+{
+    "problemName": "high-access-employees",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<string> findHighAccessEmployees(vector<vector<string>>& access_times) {\n        map<string, multiset<int>> mp;\n        for(auto i : access_times){\n            mp[i[0]].insert(stoi(i[1]));\n        }\n        vector<string> ans;\n        for(auto it : mp){\n            // cout<<it.first<<\": \";\n            vector<int> temp(it.second.begin(), it.second.end());\n            // for(auto i : temp){\n            //     cout<<i<<\" \";\n            // }\n            // cout<<endl;\n            for(int i = 2; i < temp.size(); i++){\n                if(temp[i] - temp[i - 2] < 100){\n                    ans.push_back(it.first);\n                    break;\n                }\n            }\n        }\n        return ans;\n    }\n};"
+}

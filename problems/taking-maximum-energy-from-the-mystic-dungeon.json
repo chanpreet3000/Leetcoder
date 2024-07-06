@@ -1,0 +1,5 @@
+{
+    "problemName": "taking-maximum-energy-from-the-mystic-dungeon",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int maximumEnergy(vector<int>& energy, int k) {\n        int ans = -1e9;\n        int n = energy.size();\n        vector<int> arr(n, 0);\n        for(int i = n - 1; i >= 0; i--){\n            arr[i] += energy[i];\n            if(i + k < n)\n            arr[i] += arr[i + k];\n            ans = max(arr[i], ans);\n        }\n        return ans;\n    }\n};"
+}

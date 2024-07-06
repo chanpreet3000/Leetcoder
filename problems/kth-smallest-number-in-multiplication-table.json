@@ -1,0 +1,5 @@
+{
+    "problemName": "kth-smallest-number-in-multiplication-table",
+    "language": "cpp",
+    "code": "typedef long long int ll;\nclass Solution {\npublic:\n    bool good(ll n, ll m, ll k, ll mid)\n    {\n        ll small = 0;\n        for (ll i = 1; i <= n; i++)\n        {\n            ll l = 1, r = m, ans = 0;\n            while (l <= r)\n            {\n                ll mid2 = (l + r + 1) / 2;\n                if (i * mid2 < mid)\n                {\n                    l = mid2 + 1;\n                    ans = mid2;\n                }\n                else\n                {\n                    r = mid2 - 1;\n                }\n            }\n            small += ans;\n        }\n        return small <= k;\n    }\n    int findKthNumber(int m, int n, int k) {\n        ll l = 1, r = n * m, ans = 0;\n        while (l <= r)\n        {\n            ll mid = (l + r + 1) / 2;\n            if (good(n, m, k - 1, mid))\n            {\n                l = mid + 1;\n                ans = mid;\n            }\n            else\n            {\n                r = mid - 1;\n            }\n        }\n        return ans;\n    }\n};"
+}

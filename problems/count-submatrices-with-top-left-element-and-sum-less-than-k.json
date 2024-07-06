@@ -1,0 +1,5 @@
+{
+    "problemName": "count-submatrices-with-top-left-element-and-sum-less-than-k",
+    "language": "cpp",
+    "code": "typedef long long ll;\nclass Solution {\npublic:\n    int countSubmatrices(vector<vector<int>>& grid, int k) {\n        ll n = grid.size(), m = grid[0].size();\n        vector<vector<ll>> pre(n + 1, vector<ll>(m + 1, 0));\n        pre[0][0] = grid[0][0];\n \n        for (ll i = 1; i < m; i++)\n        pre[0][i] = pre[0][i - 1] + grid[0][i];\n        for (ll i = 1; i < n; i++)\n            pre[i][0] = pre[i - 1][0] + grid[i][0];\n        for (ll i = 1; i < n; i++) {\n            for (ll j = 1; j < m; j++)\n                pre[i][j] = pre[i - 1][j] + pre[i][j - 1]\n                            - pre[i - 1][j - 1] + grid[i][j];\n        }\n        ll ans = 0;\n        for(ll i = 0; i < n; i++){\n            for(ll j = 0; j < m; j++){\n                if(pre[i][j] <= k){\n                    ans++;\n                }\n            }\n        }\n        return ans;\n    }\n};"
+}

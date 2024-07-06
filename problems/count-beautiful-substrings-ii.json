@@ -1,0 +1,5 @@
+{
+    "problemName": "count-beautiful-substrings-ii",
+    "language": "cpp",
+    "code": "typedef long long int ll;\nclass Solution {\npublic:\n    bool vow(char c){\n        return (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');\n    }\n    long long beautifulSubstrings(string s, int k) {\n        ll n = s.length();\n        ll c = 0, v = 0, ans = 0;\n        map<ll, map<ll, ll>> mp;\n        mp[0][0] = 1;\n        for(ll i = 0; i < n; i++){\n            if(vow(s[i]))v++;else c++;\n            for(auto it : mp[v - c]){\n                if(((v - it.first) * (v - it.first))%k == 0)ans += it.second;\n            }\n            mp[v - c][v%k]++;\n        }\n        return ans;\n    }\n};"
+}

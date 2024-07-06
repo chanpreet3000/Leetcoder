@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-operations-to-exceed-threshold-value-i",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minOperations(vector<int>& nums, int k) {\n        multiset<int> mst;\n        for(auto i : nums){\n            mst.insert(i);\n        }\n        int ans = 0;\n        while(!mst.empty() && (*mst.begin()) <  k){\n            mst.erase(mst.begin());\n            ans++;\n        }\n        return ans;\n    }\n};"
+}

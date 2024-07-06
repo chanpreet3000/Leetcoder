@@ -1,0 +1,5 @@
+{
+    "problemName": "find-polygon-with-the-largest-perimeter",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    long long largestPerimeter(vector<int>& nums) {\n        long long ans = -1;\n        sort(nums.begin(), nums.end());\n        vector<long long> pre(nums.size(), 0);\n        for(long long i = 0; i < nums.size(); i++){\n            if(i == 0){\n                pre[i] = nums[i];\n            }else\n            pre[i] += pre[i - 1] + nums[i];\n        }\n        for(long long i = 2; i < nums.size(); i++){\n            if(pre[i - 1] > nums[i]){\n                ans = max(ans, pre[i]);\n            }\n        }\n        return ans;\n        \n    }\n};"
+}

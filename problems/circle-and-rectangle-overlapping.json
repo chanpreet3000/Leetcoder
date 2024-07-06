@@ -1,0 +1,5 @@
+{
+    "problemName": "circle-and-rectangle-overlapping",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    bool checkOverlap(int radius, int xCenter, int yCenter, int x1, int y1, int x2, int y2) {\n        \n        for(int i = x1; i <= x2; i++){\n            for(int j = y1; j <= y2; j++){\n                \n                if((xCenter - i) * (xCenter - i) + (yCenter - j) * (yCenter - j) <= radius * radius)return true;\n            }\n        }\n        return false;\n    }\n};"
+}

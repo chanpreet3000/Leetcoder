@@ -1,0 +1,5 @@
+{
+    "problemName": "find-the-integer-added-to-array-i",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int addedInteger(vector<int>& nums1, vector<int>& nums2) {\n        sort(nums1.begin(), nums1.end());\n        sort(nums2.begin(), nums2.end());\n        return nums2[0] - nums1[0];\n    }\n};"
+}

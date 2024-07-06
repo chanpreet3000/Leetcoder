@@ -1,0 +1,5 @@
+{
+    "problemName": "form-array-by-concatenating-subarrays-of-another-array",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    bool canChoose(vector<vector<int>>& groups, vector<int>& nums) {\n        int i = 0, j = 0, ans = 0;\n        while(i < groups.size() && j < nums.size()){\n            int k = j;\n            while(k < nums.size() && k - j < groups[i].size() && groups[i][k - j] == nums[k]){\n                k++;\n            }\n            if(k - j == groups[i].size()){\n                ans++;\n                j = k;\n                i++;\n            }else{\n                j++;\n            }\n        }\n        return ans == groups.size();\n    }\n};"
+}
