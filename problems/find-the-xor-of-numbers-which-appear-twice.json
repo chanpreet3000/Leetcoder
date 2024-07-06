@@ -1,0 +1,5 @@
+{
+    "problemName": "find-the-xor-of-numbers-which-appear-twice",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int duplicateNumbersXOR(vector<int>& nums) {\n        map<int, int> mp;\n        for(auto i : nums)mp[i]++;\n        int x = 0;\n        for(auto i : mp)if(i.second == 2)x ^= i.first;\n        return x;\n    }\n};"
+}

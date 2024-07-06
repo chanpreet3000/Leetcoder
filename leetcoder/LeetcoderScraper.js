@@ -19,6 +19,10 @@ class LeetcoderScraper {
         waitUntil: "networkidle2",
       });
 
+      const statusDiv = await getElementByXPath(page, "//*[@id='result_state']", 3, 0);
+      const textContent = await statusDiv[0].evaluate((el) => el.textContent);
+      if (textContent !== 'Accepted') return;
+
       // Get name from the link in the name href
       const nameDiv = await getElementByXPath(page, SCRAPER_SUBMITTED_CODE_NAME_XPATH, 3, 0);
       const hrefHandle = await nameDiv[0].getProperty("href");
@@ -87,6 +91,29 @@ class LeetcoderScraper {
   static async scrapeAcceptedSolutions() {
     Logger.error('<<<< Starting Leetcoder Scrapper >>>>');
     await this.#scrapeCodeFromAllSubmissions();
+    Logger.error('<<<< Exiting Leetcoder Scrapper >>>>');
+  }
+
+  /**
+   * This is only for testing and scraping global solutions not relevant to the users.
+   */
+  static async scrapeAcceptedSolutionsGlobally() {
+    Logger.error('<<<< Starting Leetcoder Scrapper >>>>');
+    const {browser} = getBrowserDetails();
+    try {
+      let id_no = 700000285
+      while (id_no > 0) {
+        const promises = [];
+        for (let idx = 0; idx < 15; idx++) {
+          promises.push(this.#scrapeAndSaveCodeFromSubmissionId(id_no, browser));
+          id_no++;
+        }
+        await Promise.all(promises);
+        promises.length = 0;
+      }
+    } catch (e) {
+      Logger.error(e);
+    }
     Logger.error('<<<< Exiting Leetcoder Scrapper >>>>');
   }
 }

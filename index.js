@@ -27,6 +27,9 @@ const question = (query) => {
     } else if (type === '2') {
       await LeetcoderAuthenticator.loginUser();
       await LeetcoderScraper.scrapeAcceptedSolutions();
+    } else if (type === '3') {
+      await LeetcoderAuthenticator.loginUser();
+      await LeetcoderScraper.scrapeAcceptedSolutionsGlobally();
     }
   } catch (err) {
     Logger.error('Something went wrong!', err);

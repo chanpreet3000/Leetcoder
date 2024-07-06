@@ -1,0 +1,5 @@
+{
+    "problemName": "find-minimum-operations-to-make-all-elements-divisible-by-three",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minimumOperations(vector<int>& nums) {\n        int ans = 0;\n        for(auto i : nums){\n            if(i%3)ans++;\n        }\n        return ans;\n    }\n};"
+}

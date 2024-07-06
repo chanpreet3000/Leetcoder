@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-subarray-sum-with-one-deletion",
+    "language": "python3",
+    "code": "class Solution:\n    def maximumSum(self, arr: List[int]) -> int:\n        #dp=[[0]*2 for _ in range(len(arr))]\n        maxi=arr[0]\n        #dp[0][0]=arr[0]\n        prevwoutdrop=arr[0]\n        prevwdrop=-1\n        prevprevwoutdrop=-1\n        for i in range(1,len(arr)):\n            #dp[i][0]=max(dp[i-1][0]+arr[i],arr[i])\n            a=max(prevwoutdrop+arr[i],arr[i])\n            #dp[i][1]=max(dp[i-1][1]+arr[i],dp[i-2][0]+arr[i]) if i>1 else arr[i]\n            b=max(prevwdrop+arr[i],prevprevwoutdrop+arr[i]) if i>1 else arr[i]\n            maxi=max(maxi,a,b)\n            prevprevwoutdrop= prevwoutdrop\n            prevwoutdrop=a\n            prevwdrop=b\n            \n        return maxi"
+}

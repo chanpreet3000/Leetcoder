@@ -1,0 +1,5 @@
+{
+    "problemName": "swim-in-rising-water",
+    "language": "python3",
+    "code": "class Solution:\n    def swimInWater(self, grid: List[List[int]]) -> int:\n        ROWS, COLS = len(grid), len(grid[0])\n        \n        minHeap = [[grid[0][0], 0, 0]] # maxHeight, r, c\n        visit = set([0, 0])\n        \n        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]\n        \n        while minHeap:\n            maxHeight, r, c = heappop(minHeap)\n            if (r, c) in visit:\n                continue\n            if r == ROWS - 1 and c == COLS - 1:\n                return maxHeight\n            visit.add((r, c))\n            for dr, dc in directions:\n                row, col = r + dr, c + dc \n                if row < 0 or col < 0 or row == ROWS or col == COLS or (row, col) in visit:\n                    continue\n                heappush(minHeap, [max(maxHeight, grid[row][col]), row, col])\n                "
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "primary-department-for-each-employee",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect employee_id, department_id from Employee where primary_flag = 'Y' \nunion\nselect employee_id, department_id from Employee \ngroup by employee_id having count(department_id) = 1; \n\n"
+}

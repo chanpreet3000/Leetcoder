@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-operations-to-make-binary-array-elements-equal-to-one-ii",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minOperations(vector<int>& nums) {\n        int ans = 0, tot = 0;\n        for(int i = 0; i < nums.size(); i++){\n            nums[i] ^= tot;\n            if(nums[i] == 0){\n                // cout<<i<<\" \";\n                nums[i] = 1;\n                tot++;\n                tot %= 2;\n                ans++;\n            }\n        }\n        for(auto i : nums){\n            if(i == 0)return -1;\n        }\n        // cout<<endl;\n        return ans;\n    }\n};"
+}

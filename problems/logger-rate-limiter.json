@@ -1,0 +1,5 @@
+{
+    "problemName": "logger-rate-limiter",
+    "language": "java",
+    "code": "class Logger {\n    \n    Map<String, Integer> map;\n\n    public Logger() {\n        this.map = new HashMap<>();\n    }\n    \n    public boolean shouldPrintMessage(int timestamp, String message) {\n        if(this.map.containsKey(message) && timestamp - map.get(message) <10){\n            return false;\n        }\n        map.put(message, timestamp);\n        return true;\n    }\n}\n\n/**\n * Your Logger object will be instantiated and called as such:\n * Logger obj = new Logger();\n * boolean param_1 = obj.shouldPrintMessage(timestamp,message);\n */"
+}

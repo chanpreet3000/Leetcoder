@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-length-of-subarray-with-positive-product",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    #define ll int\n    ll fun(ll n){\n        if(n<0)return -1;\n        else return 1;\n    }\n    int getMaxLen(vector<int>& v) {\n        vector<ll>a;\n        ll ans=0;\n        ll mul=1;\n        for(ll i=0;i<v.size();i++){\n            if(v[i]!=0){\n                a.push_back(fun(v[i]));\n                mul*=fun(v[i]);\n                if(mul==1)ans=max(ans,(ll)a.size());\n            }\n            else{\n                mul=1;\n                for(ll j=(ll)a.size()-1;j>=0;j--){\n                    mul*=a[j];\n                    if(mul==1)ans=max(ans,(ll)a.size()-j);\n                }\n                a.clear();\n                mul=1;\n                \n            }\n        }\n         mul=1;\n        for(ll j=(ll)a.size()-1;j>=0;j--){\n             mul*=a[j];\n             if(mul==1)ans=max(ans,(ll)a.size()-j);\n        }\n        return ans;\n        \n    }\n};"
+}

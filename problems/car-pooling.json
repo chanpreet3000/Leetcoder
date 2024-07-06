@@ -1,0 +1,5 @@
+{
+    "problemName": "car-pooling",
+    "language": "python3",
+    "code": "class Solution:\n    def carPooling(self, trips: List[List[int]], capacity: int) -> bool:\n        trips.sort(key=lambda x: x[1])\n        heap = []\n        for p, f, t in trips:\n            while heap and heap[0][0] <= f:\n                _, num = heapq.heappop(heap)\n                capacity += num\n            capacity -= p\n            if capacity < 0:\n                return False\n            heapq.heappush(heap, [t, p])\n        return True\n                "
+}

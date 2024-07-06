@@ -1,0 +1,5 @@
+{
+    "problemName": "capital-gainloss",
+    "language": "mssql",
+    "code": "SELECT stock_name , sum(price) as capital_gain_loss FROM (\nSELECT stock_name,\nCASE WHEN operation = 'Sell' then price\nWHEN operation = 'Buy' then (-1 * price)\nEND AS price\nFROM Stocks) as tb \nGROUP BY stock_name"
+}

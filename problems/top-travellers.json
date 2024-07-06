@@ -1,0 +1,5 @@
+{
+    "problemName": "top-travellers",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\n-- name | travelled_distance \nSELECT u.name,\n    IFNULL(SUM(distance),0) AS travelled_distance\nFROM Users u\nLEFT JOIN Rides r\nON u.id = r.user_id\nGROUP BY u.id\nORDER BY travelled_distance DESC, name; "
+}
