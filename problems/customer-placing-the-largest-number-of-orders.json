@@ -1,0 +1,5 @@
+{
+    "problemName": "customer-placing-the-largest-number-of-orders",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect customer_number\nfrom Orders\ngroup by customer_number\norder by count(order_number) desc\nlimit 1;"
+}

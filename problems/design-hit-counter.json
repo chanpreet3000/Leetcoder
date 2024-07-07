@@ -1,0 +1,5 @@
+{
+    "problemName": "design-hit-counter",
+    "language": "python3",
+    "code": "class HitCounter:\n    def __init__(self):\n        \"\"\"\n        Initialize your data structure here.\n        \"\"\"\n        self.hits = {}\n\n\n    def hit(self, timestamp: int) -> None:\n        \"\"\"\n        Record a hit.\n        @param timestamp - The current timestamp (in seconds granularity).\n        \"\"\"\n        if timestamp not in self.hits:\n            self.hits[timestamp] = 0\n        self.hits[timestamp] += 1\n\n\n    def getHits(self, timestamp: int) -> int:\n        \"\"\"\n        Return the number of hits in the past 5 minutes.\n        @param timestamp - The current timestamp (in seconds granularity).\n        \"\"\"\n        begin = timestamp - 300\n        hits_for_ts = 0\n        for i in range(begin+1, timestamp+1):\n            if i in self.hits:\n                hits_for_ts += self.hits[i]\n        return hits_for_ts\n\n\n\n# Your HitCounter object will be instantiated and called as such:\n# obj = HitCounter()\n# obj.hit(timestamp)\n# param_2 = obj.getHits(timestamp)"
+}

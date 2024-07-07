@@ -1,0 +1,5 @@
+{
+    "problemName": "average-waiting-time",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    double averageWaitingTime(vector<vector<int>>& customers) {\n        double ans = 0;\n        long long sum = 0;\n        int prev = 0;\n        for(int i = 0;i<customers.size();i++)\n        {\n            prev = max(customers[i][0], prev) + customers[i][1];\n            // prev = customers[i][0] + customers[i][1];\n            int temp = prev - customers[i][0];\n            sum += temp;\n        }\n        ans = (double)sum / (double)customers.size();\n        return ans;\n    }\n};"
+}

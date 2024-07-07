@@ -1,0 +1,5 @@
+{
+    "problemName": "lowest-common-ancestor-of-deepest-leaves",
+    "language": "java",
+    "code": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\n\nclass Solution {\n\tpublic TreeNode lcaDeepestLeaves(TreeNode root) {\n\t\tif(root == null){\n\t\t\treturn null;\n\t\t}\n\n\t\tint left = height(root.left);\n\t\tint right = height(root.right);\n\t\tif(left == right){\n\t\t\treturn root;\n\t\t} else if(left > right){\n\t\t\treturn lcaDeepestLeaves(root.left);\n\t\t} else{\n\t\t\treturn lcaDeepestLeaves(root.right);\n\t\t}\n\t}\n\n\tpublic int height(TreeNode root){\n\t\tif(root == null){\n\t\t\treturn 0;\n\t\t}\n\t\treturn 1 + Math.max(height(root.left), height(root.right));\n\t}\n}"
+}

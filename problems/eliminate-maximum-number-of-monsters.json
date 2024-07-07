@@ -1,0 +1,5 @@
+{
+    "problemName": "eliminate-maximum-number-of-monsters",
+    "language": "javascript",
+    "code": "\nfunction eliminateMaximum (dist, speed) {\n  for (let i = 0; i < dist.length; i++) {\n    dist[i] = (dist[i] - 1) / speed[i];\n  }\n  dist.sort((a, b) => a - b);\n  for (let i = 0; i < dist.length; i++) {\n    if (i > dist[i]) {\n      return i;\n    }\n  }\n  return dist.length;\n}\n"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "bank-account-summary",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith pay as (\n    select paid_by, -1*sum(amount) as payed\n    from Transactions\n    group by 1\n),\n rec as (\n    select paid_to, sum(amount) as received\n    from Transactions\n    group by 1\n )\n \nselect u.user_id, u.user_name, \n      (u.credit + IFNULL(p.payed, 0) + IFNULL(r.received, 0)) as credit,\n      case when (u.credit + IFNULL(p.payed, 0) + IFNULL(r.received, 0)) > 0 then 'No'\n           else 'Yes' END as credit_limit_breached\nfrom Users u\nleft join pay as p\non u.user_id = p.paid_by\nleft join rec r\non u.user_id = r.paid_to\n "
+}

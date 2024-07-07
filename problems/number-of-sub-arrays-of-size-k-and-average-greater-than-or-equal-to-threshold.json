@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold",
+    "language": "python3",
+    "code": "class Solution:\n    def numOfSubarrays(self, arr: List[int], k: int, threshold: int) -> int:\n        count = 0\n        max_sum = k*threshold\n        curr_avg = sum(arr[:k])\n        if curr_avg>=max_sum:\n            count=1\n        print(curr_avg,max_sum)   \n        for i in range(k,len(arr)):\n            curr_avg = curr_avg+arr[i]-arr[i-k]\n            print(curr_avg)\n            if curr_avg>=max_sum:\n                count=count+1\n            print(count)\n        return count"
+}

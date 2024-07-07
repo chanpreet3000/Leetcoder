@@ -1,0 +1,5 @@
+{
+    "problemName": "airplane-seat-assignment-probability",
+    "language": "java",
+    "code": "class Solution {\n    public double nthPersonGetsNthSeat(int n) {\n        return n == 1 ? 1.0 : 0.5;\n    }\n}"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "reported-posts",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT extra AS report_reason, COUNT(DISTINCT post_id) AS report_count\nFROM Actions\nWHERE action = 'report' AND action_date = '2019-07-04'\nGROUP BY extra"
+}

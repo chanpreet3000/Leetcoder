@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-product-of-splitted-binary-tree",
+    "language": "cpp",
+    "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    long long findTotal(TreeNode* root,  vector<long long>& rec) {\n        if (!root) return 0;\n        int l = findTotal(root->left,  rec);\n        int r = findTotal(root->right,  rec);\n        int sum = l + r + root->val;\n        rec.push_back(sum);\n        return sum;\n    }\n    int maxProduct(TreeNode* root) {\n        const int m = 1e9+7;\n        vector<long long> rec;\n        long long ans = 0;\n        long long totalSum = findTotal(root, rec);\n        for (int i = 0; i < rec.size(); i++) {\n            ans = max(ans, (totalSum - rec[i]) * rec[i]);\n        }\n        \n        return (ans % m);\n    }\n};"
+}

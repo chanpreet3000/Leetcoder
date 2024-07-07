@@ -1,0 +1,5 @@
+{
+    "problemName": "remove-interval",
+    "language": "java",
+    "code": "class Solution {\n    public List<List<Integer>> removeInterval(int[][] intervals, int[] toBeRemoved) {\n        List<List<Integer>> res = new ArrayList<>();\n        \n        int i = 0;\n        \n        while (i < intervals.length && toBeRemoved[0] > intervals[i][1]) {\n            res.add(Arrays.stream(intervals[i++]).boxed().collect(Collectors.toList()));\n        }\n        \n        while (i < intervals.length && intervals[i][0] <= toBeRemoved[1]) {\n            if (intervals[i][0] < toBeRemoved[0]) {\n                res.add(Arrays.asList(intervals[i][0], toBeRemoved[0]));\n            }\n            \n            if (intervals[i][1] > toBeRemoved[1]) {\n                res.add(List.of(toBeRemoved[1], intervals[i][1]));\n            }\n            i++;\n        }\n        \n        while (i < intervals.length) {                                        res.add(Arrays.stream(intervals[i++]).boxed().collect(Collectors.toList()));\n        }\n        \n        return res;\n    }\n}"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-time-to-type-word-using-special-typewriter",
+    "language": "java",
+    "code": "class Solution {\n    public int minTimeToType(String word) {\n        int cost = word.length();\n        int pre = 0;\n        for (int i = 0; i < word.length(); i++) {\n            int cur = word.charAt(i) - 'a';\n            //clockwise\n            int cw = Math.abs(cur - pre);\n            int ccw = 26 - Math.abs(pre - cur);\n\n            cost += Math.min(cw, ccw);\n            pre = cur;\n        }\n        return cost;\n    }\n}"
+}

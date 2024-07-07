@@ -1,0 +1,5 @@
+{
+    "problemName": "classes-more-than-5-students",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nSELECT a.class \nFROM (\nSELECT class, \n\t   count(distinct student) as students\nFROM courses\nGROUP BY class\n) AS a\nWHERE a.students  >= 5;"
+}

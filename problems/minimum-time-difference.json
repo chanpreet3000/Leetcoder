@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-time-difference",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int findMinDifference(vector<string>& timePoints) {\n      sort(begin(timePoints), end(timePoints));\n      int minDiff = INT_MAX;\n      const auto dayMinutes = 24 * 60;\n      auto toMinutes = [] (const string& s) {\n        auto m = (s[0] - '0') * 10 + (s[1] - '0');\n        m *= 60;\n        m += (s[3] - '0') * 10 + (s[4] - '0');\n        return m;\n      };\n      auto pr = toMinutes(timePoints.front());\n      const auto fr = pr + dayMinutes;\n      for (auto i = 1; i < timePoints.size(); ++i) {\n        auto cur = toMinutes(timePoints[i]);\n        minDiff = min(minDiff, cur - pr);\n        pr = cur;\n      }\n      minDiff = min(minDiff, fr - pr);\n      return minDiff;\n    }\n};"
+}

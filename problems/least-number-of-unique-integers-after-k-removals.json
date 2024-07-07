@@ -1,0 +1,5 @@
+{
+    "problemName": "least-number-of-unique-integers-after-k-removals",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    \n    int findLeastNumOfUniqueInts(vector<int>& arr, int k) {\n        \n        map<int,int>m;\n        priority_queue<int,vector<int>,greater<int>>q;\n        \n        for(int x:arr){\n            m[x]++;\n        }\n        \n        for(auto x:m){\n            q.push(x.second);\n        }\n        \n        while(k>=0 && !q.empty()){\n            k-=q.top();\n            if(k<0)break;\n            q.pop();   \n        }\n        \n        return q.size();\n    }\n};"
+}

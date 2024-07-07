@@ -1,0 +1,5 @@
+{
+    "problemName": "map-sum-pairs",
+    "language": "python3",
+    "code": "class MapSum:\n\n    def __init__(self):\n        self.map = {}\n\n    def insert(self, key: str, val: int) -> None:\n        self.map[key] = val\n\n    def sum(self, prefix: str) -> int:\n        l = len(prefix)\n        ans = 0\n        tmap = self.map\n        for i in tmap:\n            if i[:l] == prefix:\n                ans += tmap[i]\n        return ans\n\n\n# Your MapSum object will be instantiated and called as such:\n# obj = MapSum()\n# obj.insert(key,val)\n# param_2 = obj.sum(prefix)"
+}

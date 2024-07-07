@@ -1,0 +1,5 @@
+{
+    "problemName": "patients-with-a-condition",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nselect patient_id , patient_name , conditions \nfrom patients\nwhere conditions like 'DIAB1%' OR conditions like '% DIAB1%';"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "group-sold-products-by-the-date",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nselect \nsell_date, \ncount(distinct product) as num_sold,\ngroup_concat(distinct product order by product) as products\nfrom Activities  \ngroup by sell_date\norder by sell_date;"
+}

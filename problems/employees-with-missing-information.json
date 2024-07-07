@@ -1,0 +1,5 @@
+{
+    "problemName": "employees-with-missing-information",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT EMPLOYEE_ID \nFROM EMPLOYEES\nWHERE EMPLOYEE_ID NOT IN (\n                          SELECT EMPLOYEE_ID FROM SALARIES)\nUNION\nSELECT EMPLOYEE_ID \nFROM SALARIES\nWHERE EMPLOYEE_ID NOT IN (\n                          SELECT EMPLOYEE_ID FROM EMPLOYEES)\nORDER BY EMPLOYEE_ID;"
+}

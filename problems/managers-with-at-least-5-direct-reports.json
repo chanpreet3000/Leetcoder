@@ -1,0 +1,5 @@
+{
+    "problemName": "managers-with-at-least-5-direct-reports",
+    "language": "mssql",
+    "code": "/* Write your T-SQL query statement below */\n\n\n;WITH Emp_5_Or_More_Reportee AS (\n\tSELECT E.managerId  \n\tFROM dbo.Employee AS E  \n\tGROUP BY E.managerId\n\tHAVING\tCOUNT(*) > 4\n)\n\nSELECT E.name\nFROM dbo.Employee AS E\nJOIN Emp_5_Or_More_Reportee E5 ON E5.managerId = E.id"
+}

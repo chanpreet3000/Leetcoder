@@ -1,0 +1,5 @@
+{
+    "problemName": "graph-valid-tree",
+    "language": "python",
+    "code": "class Solution(object):\n    def DFS(self, adj, node, visited):\n        if node in visited:\n            return visited\n        visited.add(node)\n        for item in adj[node]:\n            visited = self.DFS(adj, item, visited)\n        return visited\n    def validTree(self, n, edges):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :rtype: bool\n        \"\"\"\n        \n        if n-1 != len(edges):\n            return False\n        \n        adj = {}\n        \n        for edge in edges:\n            \n            if edge[0] not in adj:\n                adj[edge[0]] = [edge[1]]\n            else:\n                adj[edge[0]].append(edge[1])\n        \n            if edge[1] not in adj:\n                adj[edge[1]] = [edge[0]]\n            else:\n                adj[edge[1]].append(edge[0])\n        \n        visited = set()\n        cnt = 0\n        \n        for i in adj:\n            if i not in visited:\n                visited = self.DFS(adj, i, visited)\n                cnt+=1\n        return cnt + n-len(adj) == 1"
+}

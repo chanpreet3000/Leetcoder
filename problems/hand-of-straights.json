@@ -1,0 +1,5 @@
+{
+    "problemName": "hand-of-straights",
+    "language": "java",
+    "code": "class Solution {\n    public boolean isNStraightHand(int[] hand, int groupSize) {\n        int n = hand.length;\n        if (n % groupSize != 0) return false;\n        \n        Map<Integer, Integer> counter = new TreeMap<>();\n        for (int card : hand) {\n            counter.put(card, counter.getOrDefault(card, 0) + 1);\n        }\n        \n        for (int card : counter.keySet()) {\n            if (counter.get(card) > 0) {\n                for (int i = groupSize - 1; i > 0; i--) {\n                    if (counter.getOrDefault(card + i, 0) < counter.get(card)) {\n                        return false;\n                    }\n                    \n                    counter.put(card + i, counter.get(card + i) - counter.get(card));\n                }\n            }\n        }\n        \n        return true;\n    }\n}"
+}

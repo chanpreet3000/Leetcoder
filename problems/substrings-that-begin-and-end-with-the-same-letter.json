@@ -1,0 +1,5 @@
+{
+    "problemName": "substrings-that-begin-and-end-with-the-same-letter",
+    "language": "python3",
+    "code": "class Solution:\n    def numberOfSubstrings(self, s: str) -> int:\n        freq_map=[0]*26\n        for c in s:\n            freq_map[ord(c)-97]+=1\n        \n        total_count=len(s)\n        for i in range(26):\n            total_count+=(freq_map[i]*(freq_map[i]-1))/2\n        return int(total_count)"
+}

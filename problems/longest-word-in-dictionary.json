@@ -1,0 +1,5 @@
+{
+    "problemName": "longest-word-in-dictionary",
+    "language": "java",
+    "code": "class Solution {\n    public String longestWord(String[] words) {\n\n        Arrays.sort(words);\n        Set<String> hashSet = new HashSet<>();\n        \n        String result = \"\";\n        for(String word : words){\n            if(word.length() == 1 || hashSet.contains(word.substring(0, word.length() - 1)) ){\n                \n                if(result.length() < word.length()) result = word;\n                hashSet.add(word);\n            }\n        }\n        \n        return result;\n    }\n}"
+}

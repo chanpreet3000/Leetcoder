@@ -1,0 +1,5 @@
+{
+    "problemName": "increasing-decreasing-string",
+    "language": "java",
+    "code": "class Solution {\n    public String sortString(String s) {\n        char[] chars = s.toCharArray();\n        char[][] cs = new char[26][500];\n        int[] count = new int[26];\n        for (char c : chars) {\n            cs[c - 'a'][count[c - 'a']++] = c;\n        }\n        StringBuilder sb = new StringBuilder();\n        for (int i = 0; i < 500; i++) {\n            for (int j = 0; j < 26; j++) {\n                if (cs[j][i] >= 'a') {\n                    sb.append(cs[j][i]);\n                }\n            }\n            i++;\n            for (int j = 25; j >=0; j--) {\n                if (cs[j][i] >= 'a') {\n                    sb.append(cs[j][i]);\n                }\n            }\n        }\n        return sb.toString();\n    }\n}"
+}

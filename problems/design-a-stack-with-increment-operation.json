@@ -1,0 +1,5 @@
+{
+    "problemName": "design-a-stack-with-increment-operation",
+    "language": "python3",
+    "code": "class CustomStack:\n      \n\n    def __init__(self, maxSize: int):\n        self.maxSize=maxSize\n        self.a=[]\n        self.count=0\n        \n\n    def push(self, x: int) -> None:\n        if self.count<self.maxSize:\n            self.a.append(x)\n            self.count+=1\n        return\n        \n        \n\n    def pop(self) -> int:\n\n        if self.count==0:\n            return -1\n        self.count-=1\n        return(self.a.pop())\n    def increment(self, k: int, val: int) -> None:\n        if self.count<k:\n            for i in range(len(self.a)):\n                self.a[i]=self.a[i]+val\n            return\n        for i in range(0,k):\n            self.a[i]+=val\n        return\n        \n\n\n# Your CustomStack object will be instantiated and called as such:\n# obj = CustomStack(maxSize)\n# obj.push(x)\n# param_2 = obj.pop()\n# obj.increment(k,val)"
+}

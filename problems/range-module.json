@@ -1,0 +1,5 @@
+{
+    "problemName": "range-module",
+    "language": "python3",
+    "code": "class RangeModule:\n\n    def __init__(self):\n        self.track = []\n\n    def addRange(self, left, right):\n        start = bisect.bisect_left(self.track, left)\n        end = bisect.bisect_right(self.track, right)\n        \n        subtrack = []\n        if start % 2 == 0:\n            subtrack.append(left)\n        if end % 2 == 0:\n            subtrack.append(right)\n\t\t\t\n        self.track[start:end] = subtrack\n\n    def removeRange(self, left, right):\n        start = bisect.bisect_left(self.track, left)\n        end = bisect.bisect_right(self.track, right)\n        \n        subtrack = []\n        if start % 2 == 1:\n            subtrack.append(left)\n        if end % 2 == 1:\n            subtrack.append(right)\n\t\t\t\n        self.track[start:end] = subtrack\n\t\t\n    def queryRange(self, left, right):\n        start = bisect.bisect_right(self.track, left)\n        end = bisect.bisect_left(self.track, right)\n\t\t\n        return start == end and start % 2 == 1"
+}

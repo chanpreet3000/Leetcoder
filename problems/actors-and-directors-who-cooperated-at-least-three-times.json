@@ -1,0 +1,5 @@
+{
+    "problemName": "actors-and-directors-who-cooperated-at-least-three-times",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect actor_id, director_id  from ActorDirector\ngroup by actor_id, director_id\nhaving count(*)>=3"
+}

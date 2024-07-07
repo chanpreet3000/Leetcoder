@@ -1,0 +1,5 @@
+{
+    "problemName": "rank-scores",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nselect score, Dense_rank() over(order by score desc) as 'rank' from Scores;"
+}

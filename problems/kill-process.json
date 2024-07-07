@@ -1,0 +1,5 @@
+{
+    "problemName": "kill-process",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    void go(int node, vector<int>& ans, vector<vector<int>>& adj) {\n        ans.push_back(node);\n        for (auto child : adj[node]) {\n            go(child, ans, adj);\n        }\n    }\n    vector<int> killProcess(vector<int>& pid, vector<int>& ppid, int kill) {\n        int n = pid.size();\n        vector<vector<int>> adj(5e4 + 33);\n        for (int i = 0; i < n; i++) {\n            int curId = pid[i];\n            int parentId = ppid[i];\n            if (parentId != 0) {\n                adj[parentId].push_back(curId);\n            }\n        }\n        vector<int> ans;\n        go(kill, ans, adj);\n        return ans;\n    }\n};"
+}

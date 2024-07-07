@@ -1,0 +1,5 @@
+{
+    "problemName": "consecutive-numbers",
+    "language": "mssql",
+    "code": "SELECT DISTINCT NUM AS ConsecutiveNums\nFROM(\n    SELECT NUM, LEAD(NUM) OVER(ORDER BY ID) AS LEAD, LAG(NUM) OVER(ORDER BY ID) AS LAG\n    FROM LOGS) AS TEMP\nWHERE NUM = TEMP.LEAD AND NUM = TEMP.LAG"
+}

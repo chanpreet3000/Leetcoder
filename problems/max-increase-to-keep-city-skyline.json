@@ -1,0 +1,5 @@
+{
+    "problemName": "max-increase-to-keep-city-skyline",
+    "language": "python3",
+    "code": "class Solution:\n    def maxIncreaseKeepingSkyline(self, grid: List[List[int]]) -> int:\n        \n        res = 0\n        for i in range(len(grid)):\n            for j in range(len(grid[0])):\n                h = max([grid[x][j] for x in range(len(grid))])\n                l = max(grid[i])\n                res += min(h,l) - grid[i][j]\n                \n        return res\n        "
+}

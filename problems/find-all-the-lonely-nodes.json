@@ -1,0 +1,5 @@
+{
+    "problemName": "find-all-the-lonely-nodes",
+    "language": "java",
+    "code": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n    public List<Integer> getLonelyNodes(TreeNode root) {\n        List<Integer> list = new ArrayList<>();\n        method(list, root, false);\n        return list;\n    }\n    \n    private void method(List<Integer> list, TreeNode root, boolean flag) {\n        if (root != null) {\n            if (flag){\n                list.add(root.val);\n            }\n            if (root.left == null || root.right == null) {\n                flag = true;\n            } else if (root.left != null && root.right != null) {\n                flag = false;\n            }\n            method(list, root.left, flag);\n            method(list, root.right, flag);\n        }\n    }\n}"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-number-of-operations-to-move-all-balls-to-each-box",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<int> minOperations_newschool(string boxes) {\n        int n=boxes.size();\n        vector<int>out(n);\n        vector<int>left(n);\n        vector<int>right(n);\n\n        int count_one=boxes[0]-'0';\n        for(int i=1;i<n;i++)\n        {\n            left[i]+=left[i-1]+count_one;\n            count_one+=boxes[i]-'0';\n        }\n\n        count_one=boxes[n-1]-'0'; \n        for(int i=n-2;i>=0;i--)\n        {\n            right[i]+=right[i+1]+count_one;\n            count_one+=boxes[i]-'0';\n        }\n\n        for(int i=0;i<n;i++)\n            out[i]=left[i]+right[i];\n        \n        \n        return out;\n    }\n    \n    vector<int> minOperations(string boxes) {\n\n        return minOperations_newschool(boxes);\n\n    }\n};"
+}

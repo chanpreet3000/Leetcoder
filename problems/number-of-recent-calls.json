@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-recent-calls",
+    "language": "cpp",
+    "code": "class RecentCounter {\npublic:\n    deque<int> dq;\n    RecentCounter() {\n        \n    }\n    \n    int ping(int t) {\n        dq.push_back(t);\n        while(dq.front()<t-3000) dq.pop_front();\n        return dq.size();\n    }\n};\n\n/**\n * Your RecentCounter object will be instantiated and called as such:\n * RecentCounter* obj = new RecentCounter();\n * int param_1 = obj->ping(t);\n */"
+}

@@ -1,5 +1,5 @@
 import clipboardy from "clipboardy";
-import {copyHelper, getElementBySelector, getElementByXPath, selectAllHelper} from "../utils/utils.js";
+import {copyHelper, getElementBySelector, getElementByXPath, selectAllHelper, sleep} from "../utils/utils.js";
 import {
   SCRAPER_SUBMITTED_CODE_DIV_XPATH,
   SCRAPER_SUBMITTED_CODE_LANGUAGE_XPATH,
@@ -101,14 +101,16 @@ class LeetcoderScraper {
     Logger.error('<<<< Starting Leetcoder Scrapper >>>>');
     const {browser} = getBrowserDetails();
     try {
-      let id_no = 700000285
+      let id_no = 700004980
       while (id_no > 0) {
         const promises = [];
-        for (let idx = 0; idx < 15; idx++) {
+        for (let idx = 0; idx < 30; idx++) {
           promises.push(this.#scrapeAndSaveCodeFromSubmissionId(id_no, browser));
           id_no++;
         }
         await Promise.all(promises);
+        await sleep(3)
+        Logger.warn('LAST FETCHED IS ', id_no);
         promises.length = 0;
       }
     } catch (e) {

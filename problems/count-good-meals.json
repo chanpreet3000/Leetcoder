@@ -1,0 +1,5 @@
+{
+    "problemName": "count-good-meals",
+    "language": "python3",
+    "code": "class Solution:\n    def countPairs(self, deliciousness: List[int]) -> int:\n        counts = collections.defaultdict(int)\n        MOD = 10**9 + 7 \n        \n        total = 0\n        for x in deliciousness:\n            for y in range(0, 22):\n                target = 2**y - x\n                \n                if target in counts:\n                    total += counts[target]\n            counts[x] += 1\n        return total % MOD\n        "
+}

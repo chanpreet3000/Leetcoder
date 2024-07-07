@@ -1,0 +1,5 @@
+{
+    "problemName": "find-minimum-time-to-finish-all-jobs",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minimumTimeRequired(vector<int>& jobs, int k) {\n        int sum = 0;\n        for(int j:jobs)\n            sum += j;\n        sort(jobs.begin(),jobs.end(),greater<int>());\n        int l = jobs[0], r = sum;\n        while(l<r){\n            int mid = (l+r)>>1;\n            vector<int> worker(k,0);\n            if(dfs(jobs,worker,0,mid))\n                r = mid;\n            else\n                l = mid + 1;\n        }\n        return l;\n    }\n    bool dfs(vector<int>& jobs, vector<int>& worker, int step, int target){\n        if(step>=jobs.size())\n            return true;\n        int cur = jobs[step];\n        // assign cur to worker i \n        for(int i=0;i<worker.size();i++){\n            if(worker[i] + cur <= target){\n                worker[i] += cur;\n                if(dfs(jobs,worker,step+1,target))\n                    return true;\n                worker[i] -= cur;\n            }\n            if(worker[i]==0)\n                break;\n        }\n        return false;\n    }\n};"
+}

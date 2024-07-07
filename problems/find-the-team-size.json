@@ -1,0 +1,5 @@
+{
+    "problemName": "find-the-team-size",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nWITH team_sizes AS (\n    SELECT\n        team_id,\n        COUNT(team_id) as team_size\n    FROM\n        Employee\n    GROUP BY\n        team_id\n)\n\nSELECT\n    Employee.employee_id,\n    team_sizes.team_size\nFROM\n    Employee\nJOIN\n    team_sizes\nON\n    Employee.team_id = team_sizes.team_id"
+}

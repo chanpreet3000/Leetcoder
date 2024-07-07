@@ -1,0 +1,5 @@
+{
+    "problemName": "diagonal-traverse",
+    "language": "python3",
+    "code": "class Solution:\n    def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:\n        strw = 0\n        erw = len(mat)\n        stcl = 0\n        ecl = len(mat[0])\n        l = []\n        up = True\n        while(strw < erw and stcl<ecl):\n            if up:\n                while(stcl<ecl-1 and strw > 0 ):\n                    l.append(mat[strw][stcl])\n                    strw-=1\n                    stcl+=1\n                l.append(mat[strw][stcl])\n                if stcl == ecl-1:\n                    strw+=1\n                else:\n                    stcl+=1\n            else:\n                while(stcl>0 and strw < erw-1 ):\n                    l.append(mat[strw][stcl])\n                    strw+=1\n                    stcl-=1\n                l.append(mat[strw][stcl])\n                if strw == erw-1:\n                    stcl+=1\n                else:\n                    strw+=1\n            up = not up\n        return l\n                \n                    \n                    \n                    \n            #up\n            "
+}

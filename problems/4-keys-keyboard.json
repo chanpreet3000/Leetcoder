@@ -1,0 +1,5 @@
+{
+    "problemName": "4-keys-keyboard",
+    "language": "python3",
+    "code": "class Solution:\n    def maxA(self, n: int) -> int:\n        dp = [0] * (n + 1)\n        return dp_helper(dp, n)\n\ndef dp_helper(dp, i):\n    if i <= 0:\n        return 0\n    if i == 1:\n        return 1\n\n    if dp[i] != 0:\n        return dp[i]\n\n    l = [dp_helper(dp, i - 3) * 2,\n         dp_helper(dp, i - 4) * 3,\n         dp_helper(dp, i - 5) * 4,\n         dp_helper(dp, i - 1) + 1\n         ]\n    out = max(l)\n    dp[i] = out\n    return out"
+}

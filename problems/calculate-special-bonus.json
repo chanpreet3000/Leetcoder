@@ -1,0 +1,5 @@
+{
+    "problemName": "calculate-special-bonus",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT \n    employee_id,\n    CASE\n        WHEN (employee_id%2=1) AND (LEFT(name,1)!=\"M\") THEN salary\n        ELSE 0 END \n    as 'bonus'\nFROM Employees\nORDER BY employee_id ASC"
+}

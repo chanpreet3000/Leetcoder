@@ -1,0 +1,5 @@
+{
+    "problemName": "longest-happy-string",
+    "language": "python3",
+    "code": "class Solution:\n    def longestDiverseString(self, a: int, b: int, c: int) -> str:\n        res = \"\"\n        maxHeap = []\n        for count, char in [(-a,'a'), (-b,'b'), (-c,'c')]:\n            if count != 0: heappush(maxHeap, (count, char))\n                \n        while maxHeap:\n            count, char = heappop(maxHeap)\n            \n            if len(res) > 1 and res[-2] == res[-1] == char:\n                if not maxHeap: break\n                count2, char2 = heappop(maxHeap)\n                res += char2\n                count2 += 1\n                if count2 != 0: heappush(maxHeap, (count2, char2))\n            else:\n                res += char\n                count += 1\n            \n            if count != 0: heappush(maxHeap, (count, char))\n        \n        return res"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "distance-between-bus-stops",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int distanceBetweenBusStops(vector<int>& distance, int start, int destination) {\n        int total = accumulate(distance.begin(), distance.end(), 0);\n        int ans = 0;\n        if(start > destination){\n            int tmp = start;\n            start = destination;\n            destination = tmp;\n        }\n        for(int i = start; i < destination; i++){\n            ans += distance[i];\n        }\n        \n        ans = min(ans, total - ans);\n        \n        return ans;\n    }\n};"
+}

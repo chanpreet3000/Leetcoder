@@ -1,0 +1,5 @@
+{
+    "problemName": "find-followers-count",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT user_id, COUNT(DISTINCT follower_id) AS followers_count\nFROM Followers\nGROUP BY user_id"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "odd-even-jump",
+    "language": "java",
+    "code": "class Solution {\n    public int oddEvenJumps(int[] arr) {\n\tint n = arr.length, count = 1;\n\tboolean[] oddJump = new boolean[n];\n\tboolean[] evenJump = new boolean[n];\n\t\n\tTreeMap<Integer, Integer> map = new TreeMap();\n\tmap.put(arr[n-1], n-1);\n\toddJump[n-1] = true;\n\tevenJump[n-1] = true;\n\t\n\tfor (int i = n-2; i>=0; i--) {\n\t\tMap.Entry<Integer, Integer> hi = map.ceilingEntry(arr[i]);\n\t\tMap.Entry<Integer, Integer> lo = map.floorEntry(arr[i]);\n\t\tif (hi != null) {\n\t\t\toddJump[i] = evenJump[hi.getValue()];\n\t\t}\n\t\t\n\t\tif (lo != null) {\n\t\t\tevenJump[i] = oddJump[lo.getValue()];\n\t\t}\n\t\t\n\t\tif (oddJump[i]) count++;\n\t\tmap.put(arr[i], i);\n\t}\n\t\n\treturn count;\n}\n}"
+}

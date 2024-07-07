@@ -1,0 +1,5 @@
+{
+    "problemName": "detect-squares",
+    "language": "java",
+    "code": "class DetectSquares {\n    List<int[]> coordinates;\n    Map<String, Integer> counts;\n    \n    public DetectSquares() {\n        coordinates = new ArrayList<>();\n        counts = new HashMap<>();\n    }\n    \n    public void add(int[] point) {\n        coordinates.add(point);\n        String key = point[0] + \"-\" + point[1];\n        counts.put(key, counts.getOrDefault(key, 0) + 1);\n    }\n    \n    public int count(int[] point) {\n        int sum = 0;\n        int px = point[0];\n        int py = point[1];\n        for (int[] coordinate : coordinates) {\n            int x = coordinate[0];\n            int y = coordinate[1];\n            if (px == x || py == y || (Math.abs(px - x) != Math.abs(py - y))) {\n                continue;\n            }\n            sum += counts.getOrDefault(x + \"-\" + py, 0) * counts.getOrDefault(px + \"-\" + y, 0);\n        }\n        \n        return sum;\n    }\n}\n\n/**\n * Your DetectSquares object will be instantiated and called as such:\n * DetectSquares obj = new DetectSquares();\n * obj.add(point);\n * int param_2 = obj.count(point);\n */"
+}

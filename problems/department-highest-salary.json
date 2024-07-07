@@ -1,0 +1,5 @@
+{
+    "problemName": "department-highest-salary",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith cte as(\nselect d.name AS Department,\n        e.name AS Employee,\n        e.salary,\nrank() over(partition by d.id order by e.salary desc) as rnk\nfrom Employee e\ninner join Department d on e.departmentId = d.id\n    )\nselect Department,\n    Employee,\n    Salary\nfrom   cte \n    where rnk=1"
+}

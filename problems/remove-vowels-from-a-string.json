@@ -1,0 +1,5 @@
+{
+    "problemName": "remove-vowels-from-a-string",
+    "language": "csharp",
+    "code": "\npublic class Solution {\n    public string RemoveVowels(string s) {\n        char[] vowels = {'a', 'e', 'i', 'o', 'u'};\n        \n        List<char> vowelList = vowels.OfType<char>().ToList();\n        \n        StringBuilder sb = new StringBuilder(s);\n        \n      \n        for(int i = 0; i < sb.Length; i++)\n        {\n            if(vowelList.Contains(sb[i]))\n            {\n                sb.Replace(sb[i].ToString(), \"\");\n                i--;\n            }\n        }\n        \n        return sb.ToString();\n    }\n}"
+}

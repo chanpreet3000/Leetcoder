@@ -1,0 +1,5 @@
+{
+    "problemName": "largest-sum-of-averages",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    double largestSumOfAverages(vector<int>& nums, int k) {\n        int n = nums.size();\n        double preSum[n];\n        double dp[k+1][n];\n        memset(dp, 0, sizeof dp);\n        \n        preSum[0] = nums[0];\n        dp[1][0] = nums[0];\n        for (int i=1; i<n; i++) {\n            preSum[i] = nums[i] + preSum[i-1];\n            dp[1][i] = preSum[i]/(i+1);\n        }\n        \n        for (int m = 2; m <= k; m++) {\n            for (int i=0; i<n; i++) {\n                for (int j=0; j<i; j++) {\n                    dp[m][i] = max(dp[m][i], max(dp[m-1][j] + (preSum[i] - preSum[j])/(i - j), preSum[i]/(i+1)));\n                }\n            }\n        }\n        return dp[k][n-1];\n    }\n};"
+}

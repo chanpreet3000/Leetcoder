@@ -1,0 +1,5 @@
+{
+    "problemName": "subarrays-with-k-different-integers",
+    "language": "python3",
+    "code": "from collections import Counter\nclass Solution:\n    def subarraysWithKDistinct(self, A, K):\n        \n        def atmost(arr, num):\n            ref = Counter()\n            \n            left = 0\n            res = 0\n            for right, val in enumerate(arr):\n                if ref[val] == 0:\n                    num -= 1\n                ref[val] += 1\n                \n                while num < 0:\n                    ref[arr[left]] -= 1\n                    if ref[arr[left]] == 0:\n                        num += 1\n                    left += 1\n            \n                res += right - left + 1\n            return res\n                \n        return atmost(A, K) - atmost(A, K-1)"
+}

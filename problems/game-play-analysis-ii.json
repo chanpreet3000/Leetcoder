@@ -1,0 +1,5 @@
+{
+    "problemName": "game-play-analysis-ii",
+    "language": "mssql",
+    "code": "/* Write your T-SQL query statement below */\nSELECT\n    player_id,\n    device_id\nFROM(\n    \n\nSELECT\n    player_id,\n    device_id,\n    DENSE_RANK()\n    OVER(PARTITION BY player_id ORDER BY event_date ASC) as rank\nFROM Activity) sub\nWHERE rank = 1\n        "
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "max-consecutive-ones-ii",
+    "language": "java",
+    "code": "class Solution {\n    public int findMaxConsecutiveOnes(int[] nums) {\n        int start = 0;\n      int end = 0;\n        \n      int zeroIndex = -1;\n      int result = 0;\n      while (end < nums.length) {\n          if (nums[end] == 0) {\n              start = zeroIndex + 1;\n              zeroIndex = end;\n          }\n            \n          result = Math.max(result, end - start + 1);\n          end++;\n      }\n  \n      return result;\n    }\n}"
+}

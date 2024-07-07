@@ -1,0 +1,5 @@
+{
+    "problemName": "remove-all-ones-with-row-and-column-flips",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    bool valid (vector<vector<int>>& grid, int row, bool flip) {\n        int n = grid[0].size();\n        for (int j = 0; j < n; j++) {\n            // reverse the pattern, compare with the first row\n            // 0 1 0\n            // 1 0 1\n            int val = (flip)? 1-grid[0][j] : grid[0][j];\n            if (grid[row][j] != val) {\n                return false;\n            }\n        }\n        return true;\n    }\n    bool removeOnes(vector<vector<int>>& grid) {\n        // goal: check if the code block can be whole\n        // idea: if the pattern same => after we done flip should be the same\n        // time: O(n)\n        int m = grid.size(), n = grid[0].size();\n        for (int i = 1; i < m; i++) {\n            if (!(valid(grid, i, true) || valid(grid, i, false))) {\n                return false;\n            }\n        }\n        return true;\n    }\n};"
+}

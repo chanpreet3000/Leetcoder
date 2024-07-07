@@ -1,0 +1,5 @@
+{
+    "problemName": "fix-names-in-a-table",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect user_id, CONCAT(UPPER(LEFT(name,1)),LOWER(SUBSTRING(name,2))) AS name\nfrom Users\nOrder By user_id"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "rearrange-products-table",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT s.product_id, s.store, s.price\nFROM (SELECT product_id, 'store1' as store, store1 as price\n     from products\n     UNION \n     SELECT product_id, 'store2' as store, store2 as price\n     from products\n     UNION\n     SELECT product_id, 'store3' as store, store3 as price\n     from products) as s\nWHERE s.price IS NOT NULL"
+}

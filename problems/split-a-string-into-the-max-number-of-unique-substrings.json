@@ -1,0 +1,5 @@
+{
+    "problemName": "split-a-string-into-the-max-number-of-unique-substrings",
+    "language": "java",
+    "code": "class Solution {\n    public int maxUniqueSplit(String s) {\n        return helper(s, 0, new HashSet<>());\n    }\n    \n    public int helper(String s, int pos, Set<String> st) {\n        if(pos >= s.length())\n            return 0;\n        int res = -1;\n        for(int i=pos+1; i<=s.length(); i++) {\n            String sub = s.substring(pos, i);\n            if(!st.add(sub)) continue;\n            int cur = helper(s, i, st);\n            res = Math.max(res, 1+cur);\n            st.remove(sub);\n        }\n        \n        return res;\n    }\n}"
+}

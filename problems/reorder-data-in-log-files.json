@@ -1,0 +1,5 @@
+{
+    "problemName": "reorder-data-in-log-files",
+    "language": "python3",
+    "code": "class Solution:\n    def reorderLogFiles(self, logs: List[str]) -> List[str]:\n        def get_key(log):\n            _id, rest = log.split(\" \", maxsplit=1)\n            return (0, rest, _id) if rest[0].isalpha() else (1, )\n\n        return sorted(logs, key=get_key)"
+}

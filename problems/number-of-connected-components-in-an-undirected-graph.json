@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-connected-components-in-an-undirected-graph",
+    "language": "python3",
+    "code": "class Solution:\n    def countComponents(self, n: int, edges: List[List[int]]) -> int:\n        union_find = UnionFind()\n        for i in range(n):\n            union_find.add(i)\n        \n        for x, y in edges:\n            union_find.unite(x, y)\n        \n        return union_find.count\n\n        \n\nclass UnionFind:\n    def __init__(self) -> None:\n        self.id = {}\n        # self.size = {}\n        self.count = 0\n    \n    def add(self, x) -> None:\n        self.id[x] = x\n        # self.size[x] += 1\n        self.count += 1\n    \n    def root(self, x) -> int:\n        while self.id[x] != x:\n            x = self.id[x]\n        return x\n    \n    def unite(self, x, y) -> None:\n        x_id, y_id = self.root(x), self.root(y)\n        if x_id == y_id:\n            return\n        \n        self.id[y_id] = x_id\n        self.count -= 1\n        \n        \n    "
+}

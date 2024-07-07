@@ -1,0 +1,5 @@
+{
+    "problemName": "nth-highest-salary",
+    "language": "mysql",
+    "code": "CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT\nBEGIN\nSET N = N-1;\n  RETURN (\n      SELECT DISTINCT(salary)\n      FROM employee \n      ORDER BY salary DESC\n      LIMIT N,1\n  );\nEND"
+}

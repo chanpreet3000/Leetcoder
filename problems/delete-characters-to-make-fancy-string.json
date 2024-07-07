@@ -1,0 +1,5 @@
+{
+    "problemName": "delete-characters-to-make-fancy-string",
+    "language": "python3",
+    "code": "class Solution:\n    def makeFancyString(self, s: str) -> str:\n        l = []\n\n\n        for i in range(len(s)):\n            if(len(l)>=2):\n                if(s[i] == l[-1] == l[-2]):\n                    continue\n                else:\n                    l.append(s[i])\n            else:\n                l.append(s[i])\n        return(\"\".join(l))\n"
+}

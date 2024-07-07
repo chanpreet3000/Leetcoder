@@ -1,0 +1,5 @@
+{
+    "problemName": "amount-of-new-area-painted-each-day",
+    "language": "python3",
+    "code": "\nclass Solution:\n    def amountPainted(self, paint: List[List[int]]) -> List[int]:\n        painted = [0] * 50000\n        paintedAmountEachDay = []\n        for start, end in paint:\n            notPaintedYet = 0            \n            # Paint\n            while start < end:\n                if painted[start] == 0:\n                    notPaintedYet += 1\n                    painted[start] = end\n                    start += 1\n                else:\n                    start = painted[start]\n            paintedAmountEachDay.append(notPaintedYet)\n        return paintedAmountEachDay"
+}

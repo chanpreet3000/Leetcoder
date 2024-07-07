@@ -1,0 +1,5 @@
+{
+    "problemName": "tree-node",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nSELECT id,\nCASE\n    WHEN p_id is null THEN 'Root'\n    when id in (select p_id from Tree) then 'Inner'\n    ELSE 'Leaf'\nEND AS type\nFROM Tree\n"
+}

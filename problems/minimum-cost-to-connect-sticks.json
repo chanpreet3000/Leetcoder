@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-cost-to-connect-sticks",
+    "language": "python3",
+    "code": "class Solution:\n    def connectSticks(self, sticks: List[int]) -> int:\n        ans = 0\n        heapq.heapify(sticks)\n        \n        while len(sticks) > 1:\n            stickOne = heapq.heappop(sticks)\n            stickTwo = heapq.heappop(sticks)\n            combo = stickOne + stickTwo\n            ans += combo\n            heapq.heappush(sticks, combo)\n        \n        return ans"
+}

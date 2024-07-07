@@ -1,0 +1,5 @@
+{
+    "problemName": "leetcodify-friends-recommendations",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nWITH\ndata AS (\n    SELECT DISTINCT\n        l1.user_id,\n        l2.user_id AS recommended_id \n    FROM\n        Listens l1\n    INNER JOIN\n        Listens l2\n    ON\n        l2.user_id > l1.user_id AND\n        l2.song_id = l1.song_id AND\n        l2.day = l1.day\n    LEFT JOIN\n        Friendship f\n    ON\n        f.user1_id = l1.user_id AND\n        f.user2_id = l2.user_id\n    WHERE\n        f.user1_id IS NULL\n    GROUP BY\n        l1.user_id,\n        l2.user_id,\n        l1.day\n    HAVING\n        COUNT(DISTINCT l1.song_id) >= 3\n    )\n\nSELECT \n    *\nFROM\n    data\n\nUNION ALL\n\nSELECT\n    recommended_id AS user_id,\n    user_id AS recommended_id\nFROM\n    data"
+}

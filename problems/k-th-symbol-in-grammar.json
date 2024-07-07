@@ -1,0 +1,5 @@
+{
+    "problemName": "k-th-symbol-in-grammar",
+    "language": "java",
+    "code": "class Solution {\n    public int kthGrammar(int n, int k) {\n        \n        if(n==1 || k==1)\n        {\n            return 0;\n        }\n        \n        int mid = (int)Math.pow(2 , n-1)/2;\n        \n        if(k<=mid)\n        {\n            return kthGrammar(n-1 , k);\n        }\n        else\n        {\n            return (kthGrammar(n-1 , k-mid)^1) ;\n        }\n        \n        \n\n    }\n}"
+}

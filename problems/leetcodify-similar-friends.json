@@ -1,0 +1,5 @@
+{
+    "problemName": "leetcodify-similar-friends",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nSELECT DISTINCT\n    l1.user_id AS user1_id,\n    l2.user_id AS user2_id\nFROM\n    Listens l1\nINNER JOIN\n    Listens l2\nON\n    l2.user_id > l1.user_id AND\n    l2.song_id = l1.song_id AND\n    l2.day = l1.day\nINNER JOIN\n    Friendship f\nON\n    f.user1_id = l1.user_id AND\n    f.user2_id = l2.user_id\nGROUP BY\n    1,\n    2,\n    l1.day\nHAVING\n    COUNT(DISTINCT l1.song_id) >= 3"
+}

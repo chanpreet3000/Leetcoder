@@ -1,0 +1,5 @@
+{
+    "problemName": "ads-performance",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nSELECT \n  ad_id,\n  ROUND(100*COALESCE(SUM(CASE WHEN action = 'Clicked' THEN 1 ELSE 0 END)/\n           SUM(CASE WHEN action = 'Clicked' OR action = 'Viewed' THEN 1 \n               ELSE 0 END), 0), 2) AS ctr\nFROM Ads\nGROUP BY ad_id\nORDER BY 2 DESC, 1 ASC"
+}

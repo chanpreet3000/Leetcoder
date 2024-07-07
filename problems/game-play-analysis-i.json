@@ -1,0 +1,5 @@
+{
+    "problemName": "game-play-analysis-i",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect\n player_id,\n min(event_date) as first_login\nfrom activity\ngroup by 1"
+}

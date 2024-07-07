@@ -1,0 +1,5 @@
+{
+    "problemName": "customer-who-visited-but-did-not-make-any-transactions",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect customer_id, count(*) as count_no_trans\nfrom visits \nwhere visit_id not in(select visit_id from transactions )\ngroup by customer_id\n"
+}

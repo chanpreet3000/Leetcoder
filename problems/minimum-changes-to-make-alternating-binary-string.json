@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-changes-to-make-alternating-binary-string",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minOperations(string s) {\n        int zero = 0;\n\t\tint one = 0;\n\n\t\tfor(int i=0; i<s.length(); i++){\n\t\t\tif(i%2){\n\t\t\t\ts[i]=='1' ? one++ : zero++;\n\t\t\t}\n\t\t\telse{\n\t\t\t\ts[i]=='0' ? one++ : zero++;\n\t\t\t}\n\t\t}\n\t\treturn min(one, zero);\n    }\n};"
+}

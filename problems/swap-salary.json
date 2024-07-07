@@ -1,0 +1,5 @@
+{
+    "problemName": "swap-salary",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nupdate salary\nset\n    sex = case sex\n        when 'm' then 'f'\n        else 'm'\n    end;"
+}

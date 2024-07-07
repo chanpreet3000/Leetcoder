@@ -1,0 +1,5 @@
+{
+    "problemName": "countries-you-can-safely-invest-in",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\n\n\nselect f.name as country from\n\n(select c.name, avg(wrapper.duration)\n    from \n    (\n    select  p.phone_number,calls.duration\n    from person p inner join calls on p.id=calls.caller_id\n    union all\n    \n    select  p.phone_number,calls.duration\n    from person p inner join calls on p.id=calls.callee_id\n    ) wrapper left outer join country  c on wrapper.phone_number like concat(c.country_code,'-%') group by c.name \n\nhaving avg(wrapper.duration) > \n(select avg(duration)\nfrom calls\n )\n) f\n"
+}

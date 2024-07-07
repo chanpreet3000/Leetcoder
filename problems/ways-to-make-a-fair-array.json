@@ -1,0 +1,5 @@
+{
+    "problemName": "ways-to-make-a-fair-array",
+    "language": "python3",
+    "code": "class Solution:\n    def waysToMakeFair(self, nums: List[int]) -> int:\n        even_sum, odd_sum, total = 0, 0, 0\n    \n        for i in range(len(nums)):\n            if i%2 == 0:\n                even_sum += nums[i]\n            else:\n                odd_sum += nums[i]\n\n\n        for i in range(len(nums)-1,-1,-1):\n            # print(nums[i])\n            if i%2 == 0:\n                even_sum -= nums[i]\n                if even_sum == odd_sum:\n                    total += 1\n                odd_sum += nums[i]\n            else:\n                odd_sum -= nums[i]\n                if even_sum == odd_sum:\n                    total += 1\n                even_sum += nums[i]\n\n        return total\n        "
+}

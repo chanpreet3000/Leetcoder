@@ -1,0 +1,5 @@
+{
+    "problemName": "find-leaves-of-binary-tree",
+    "language": "cpp",
+    "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    vector<vector<int>> findLeaves(TreeNode* root) {       \n        std::function<int(TreeNode*)> dfs;\n    \n        vector<vector<int>> res;\n        dfs = [&](TreeNode* n) -> int {\n            if (n == nullptr) {\n                return 0;\n            }\n            auto l = dfs(n->left);\n            auto r = dfs(n->right);\n            auto m = std::max(l, r);\n            if (res.size() < m + 1) {\n                res.push_back({});\n            }\n            res[m].push_back(n->val);\n            return m+1;\n        };\n        \n        \n        dfs(root);\n        \n        return res;\n    }\n};"
+}

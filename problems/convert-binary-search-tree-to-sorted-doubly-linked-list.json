@@ -1,0 +1,5 @@
+{
+    "problemName": "convert-binary-search-tree-to-sorted-doubly-linked-list",
+    "language": "cpp",
+    "code": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    Node* left;\n    Node* right;\n\n    Node() {}\n\n    Node(int _val) {\n        val = _val;\n        left = NULL;\n        right = NULL;\n    }\n\n    Node(int _val, Node* _left, Node* _right) {\n        val = _val;\n        left = _left;\n        right = _right;\n    }\n};\n*/\n\nclass Solution {\npublic:\n    Node *head, *tail, *prev;\n    Node* treeToDoublyList(Node* root) {\n        if (!root) return NULL;\n        dfs(root);\n        head->left = tail;\n        tail->right = head;\n        return head;\n    }\n    \nprivate:\n    void dfs(Node *node){\n        // base\n        if (!node) return;\n        // logic\n        dfs(node->left);\n        if (!prev){\n            head = node;\n        }\n        else{\n            node->left = prev;\n            prev->right = node;\n        }\n        prev = node;\n        tail = node;\n        dfs(node->right);\n    }\n};\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+}

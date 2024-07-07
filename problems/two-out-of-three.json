@@ -1,0 +1,5 @@
+{
+    "problemName": "two-out-of-three",
+    "language": "java",
+    "code": "class Solution {\n    public List<Integer> twoOutOfThree(int[] nums1, int[] nums2, int[] nums3) {\n        List<Integer> ans = new ArrayList<>();\n        Set<Integer> set1 = new HashSet<>(), set2 = new HashSet<>(), set3 = new HashSet<>();\n        for(int num : nums1) set1.add(num);\n        \n        for(int num : nums2) set2.add(num);\n        \n        for(int num : nums3) set3.add(num);\n        \n        for(int num : nums1)\n        {\n            if(set2.contains(num) || set3.contains(num)) \n            {\n                if(!ans.contains(num)) ans.add(num);\n            }\n        }\n        \n        for(int num : nums2)\n        {\n            if(set3.contains(num) && !ans.contains(num)) ans.add(num);\n        }\n        \n        return ans;\n    }\n}"
+}

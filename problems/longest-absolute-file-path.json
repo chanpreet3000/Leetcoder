@@ -1,0 +1,5 @@
+{
+    "problemName": "longest-absolute-file-path",
+    "language": "python3",
+    "code": "class Solution:\n    def lengthLongestPath(self, input: str) -> int:\n        q = []\n        max_len = 0\n        for path in input.split('\\n'):\n            tmp = []\n            cnt = 0\n            path_len = 0\n            while cnt<len(path) and path[cnt]=='\\t':\n                path_len+=len(q[cnt])\n                tmp.append(q[cnt])\n                cnt+=1\n            if len(q)<=cnt:\n                q.append(path[cnt:])\n            else:\n                q[cnt] = path[cnt:]\n            if '.' in path[cnt:]:\n                max_len = max(max_len, path_len + len(path[cnt:]) + cnt)\n            tmp.append(path[cnt:])\n        \n        return max_len"
+}

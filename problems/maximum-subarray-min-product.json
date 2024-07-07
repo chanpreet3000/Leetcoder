@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-subarray-min-product",
+    "language": "python3",
+    "code": "class Solution:\n    def maxSumMinProduct(self, nums: List[int]) -> int:\n        ans = 0\n        stack = []\n        prefix = [0]\n        for i in nums:\n            prefix.append(prefix[-1]+i)\n        for i,n in enumerate(nums):\n            start = i\n            while stack and stack[-1][1] > n:\n                index,value = stack.pop()\n                sumi = prefix[i]-prefix[index]\n                ans = max(ans,sumi*value)\n                start = index\n            stack.append((start,n))\n        for i,n in stack:\n            value = prefix[len(nums)] - prefix[i]\n            ans = max(ans,value*n)\n        return ans%(10**9 + 7)\n            "
+}

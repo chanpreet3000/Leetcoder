@@ -1,0 +1,5 @@
+{
+    "problemName": "sort-features-by-popularity",
+    "language": "java",
+    "code": "class Solution {\n    public String[] sortFeatures(String[] features, String[] responses) {\n        if (null == features || null == responses) return new String[0];\n        \n        Map<String, Integer> featureMap = new HashMap<>();\n        Map<String, Integer> popularityMap = new HashMap<>();\n        for (int i = 0; i < features.length; i++) {\n            featureMap.put(features[i], i);\n            popularityMap.put(features[i], 0);\n        }\n        \n        for (String response : responses) {\n            Set<String> featureSet = new HashSet<>();\n            featureSet.addAll(Arrays.asList(response.split(\" \")));\n            \n            for (String feature : featureSet) {\n                popularityMap.put(feature, popularityMap.getOrDefault(feature, 0) + 1);\n            }\n        }\n        \n        Arrays.sort(features, (a, b) -> popularityMap.get(a) == popularityMap.get(b) ? \n                    featureMap.get(a) - featureMap.get(b) : popularityMap.get(b) - popularityMap.get(a));\n        \n        return features;\n    }\n}"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-number-of-steps-to-make-two-strings-anagram",
+    "language": "java",
+    "code": "class Solution {\n    public int minSteps(String s, String t) {\n        int[] counts = new int[26];\n        \n        s.chars().forEach(x -> counts[x-'a']++);\n        \n        t.chars().forEach(x -> counts[x-'a']--);\n        \n        return IntStream.of(counts).map(a -> Math.abs(a)).sum() /2 ;\n    }\n}"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "longer-contiguous-segments-of-ones-than-zeros",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    bool checkZeroOnes(string s) {\n        int maxLength_0 = 0, length_0 = 0;\n        int maxLength_1 = 0, length_1 = 0;\n        if (s.size() == 1 && s[0] == '1') return true;\n        for (int index = 0; index <= s.size()-1; ++index){\n            if (s[index] == '0'){\n                length_0++;\n                if (maxLength_1 < length_1) maxLength_1 = length_1;\n                length_1 = 0;\n            } else {\n                length_1++;\n                if (maxLength_0 < length_0) maxLength_0 = length_0;\n                length_0 = 0;\n            }\n            // cout << \"#0: \" << length_0 << \" | #1: \" << length_1 << \" | 0: \" << maxLength_0 << \" | 1: \" << maxLength_1 << endl;\n        }\n        if (maxLength_0 < length_0) maxLength_0 = length_0;\n        if (maxLength_1 < length_1) maxLength_1 = length_1;\n        return maxLength_1 > maxLength_0;\n    }\n};"
+}

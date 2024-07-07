@@ -1,0 +1,5 @@
+{
+    "problemName": "random-pick-index",
+    "language": "java",
+    "code": "class Solution {\n\n    private HashMap<Integer, List<Integer>> map;\n    private Random rand;\n    \n    public Solution(int[] nums) {\n        this.rand = new Random();\n        this.map = new HashMap<Integer, List<Integer>>();\n        int n = nums.length;\n        for (int i = 0; i < n; ++i) {\n            this.map.putIfAbsent(nums[i], new ArrayList<>());\n            this.map.get(nums[i]).add(i);\n        }\n    }\n    \n    public int pick(int target) {\n        int l = map.get(target).size();\n        // pick an index at random\n        int randomIndex = map.get(target).get(rand.nextInt(l));\n        return randomIndex;\n    }\n}\n\n/**\n * Your Solution object will be instantiated and called as such:\n * Solution obj = new Solution(nums);\n * int param_1 = obj.pick(target);\n */"
+}

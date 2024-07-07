@@ -1,0 +1,5 @@
+{
+    "problemName": "reach-a-number",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int reachNumber(int target) {\n        target = abs(target);\n        if(target<=1)\n        {\n            return target;\n        }\n        int res = 0;\n        int n = 0;\n        while(res<target)\n        {\n            n++;\n            res+=n;\n        }\n        int del = res-target;\n        if(del%2==0)\n        {\n            return n;\n        }\n        else\n        {\n            return n%2+n+1;\n        }\n    }\n};"
+}

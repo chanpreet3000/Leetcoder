@@ -1,0 +1,5 @@
+{
+    "problemName": "intersection-of-three-sorted-arrays",
+    "language": "python3",
+    "code": "class Solution:\n    def arraysIntersection(self, arr1: List[int], arr2: List[int], arr3: List[int]) -> List[int]:\n        \n        from collections import Counter\n        \n        counter=Counter(arr1+arr2+arr3)\n        \n        res=[]\n        \n        for x in counter:\n            if counter[x]==3:\n                res.append(x)\n                \n        return res"
+}

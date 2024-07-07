@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-increment-to-make-array-unique",
+    "language": "java",
+    "code": "class Solution {\n    public int minIncrementForUnique(int[] nums) {\n      \n        Arrays.sort(nums);\n        int count = 0;\n        int pre = nums[0];\n        for(int i=1; i<nums.length; i++){\n            pre = Math.max(pre+1, nums[i]);\n            count += pre - nums[i];\n        }\n        \n        return count;\n        \n     // 1 1 2 2 3 7\n    //  1 2 2 2 3 7\n     // 1 2 3 2 3 7\n    }\n}"
+}

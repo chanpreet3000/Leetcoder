@@ -1,0 +1,5 @@
+{
+    "problemName": "moving-average-from-data-stream",
+    "language": "java",
+    "code": "class MovingAverage {\n    Deque<Integer> deq;\n    int k;\n    int sum ;\n    public MovingAverage(int size) {\n        deq = new ArrayDeque<Integer>();\n        k = size;\n        sum = 0;\n    }\n    \n    public double next(int val) {\n        if(deq.size() == k){\n            sum = sum- deq.pollFirst();\n        }\n        sum += val;\n        deq.addLast(val);\n        return sum/(deq.size()*1.0);\n    }\n}\n\n/**\n * Your MovingAverage object will be instantiated and called as such:\n * MovingAverage obj = new MovingAverage(size);\n * double param_1 = obj.next(val);\n */"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "binary-subarrays-with-sum",
+    "language": "java",
+    "code": "class Solution {\n    public int numSubarraysWithSum(int[] A, int S) {\n        return atMost(A, S) - atMost(A, S - 1);\n    }\n\n    public int atMost(int[] A, int S) {\n        if (S < 0) return 0;\n        int l = 0, r = 0, sum = 0, res = 0;\n        while(r < A.length) {\n            sum = sum + A[r];\n            while(sum > S) {\n                sum -= A[l];\n                l++;\n            }\n            res = res + r - l + 1;\n            r++;\n        }      \n        return res;\n    }\n}"
+}

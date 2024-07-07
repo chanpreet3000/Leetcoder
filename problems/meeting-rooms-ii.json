@@ -1,0 +1,5 @@
+{
+    "problemName": "meeting-rooms-ii",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minMeetingRooms(vector<vector<int>>& intervals) {\n        int n= intervals.size();\n        if(n<=1) return n;\n        \n        priority_queue<int, vector<int>, greater<int> > pq;\n        \n        sort(intervals.begin(), intervals.end());\n        int maxSize=0;\n        \n        for(int i=0;i<n;i++)\n        {\n            while(!pq.empty() && pq.top()<= intervals[i][0])\n                pq.pop();\n            pq.push(intervals[i][1]);\n            int pqSize= pq.size();\n            maxSize=std::max(maxSize, pqSize);\n        }\n        return maxSize;\n        \n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "paint-fence",
+    "language": "python3",
+    "code": "from functools import lru_cache\n\n\nclass Solution:\n    def numWays(self, n: int, k: int) -> int:\n\n        @lru_cache(None)\n        def dp(i):\n            if i == 1:\n                return k\n            elif i == 2:\n                return k*k\n            return (k-1)*(dp(i-1)+dp(i-2))\n\n        return dp(n)"
+}
