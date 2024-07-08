@@ -1,0 +1,5 @@
+{
+    "problemName": "grand-slam-titles",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nWITH tab AS (\nSELECT year, Wimbledon AS player_id FROM Championships\nUNION ALL\nSELECT year, Fr_open AS player_id FROM Championships\nUNION ALL\nSELECT year, US_open AS player_id FROM Championships\nUNION ALL\nSELECT year, Au_open AS player_id FROM Championships)\n\nSELECT tab.player_id, player_name, COUNT(*) AS grand_slams_count\nFROM tab\nLEFT JOIN Players p\nON tab.player_id = p.player_id\nGROUP BY player_id"
+}

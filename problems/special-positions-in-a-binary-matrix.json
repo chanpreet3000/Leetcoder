@@ -1,0 +1,5 @@
+{
+    "problemName": "special-positions-in-a-binary-matrix",
+    "language": "c",
+    "code": "\n\nint numSpecial(int** mat, int matSize, int* matColSize){\n    int count=0,c1=0;\n    for(int i=0;i<matSize;i++)\n    {\n        for(int j=0;j<*matColSize;j++)\n        {\n            if(mat[i][j]==1)\n            {\n                c1=0;\n                for(int k=0;k<matSize;k++)\n                {\n                    if(mat[k][j]==1 && k!=i)\n                        c1++;\n                }\n                if(c1==0)\n                {\n                    for(int l=0;l<*matColSize;l++)\n                    {\n                        if(mat[i][l]==1 && l!=j)\n                            c1++;\n                    }\n                }\n                if(c1==0)\n                    count++;\n            }\n        }\n    }\n    return count;\n}"
+}

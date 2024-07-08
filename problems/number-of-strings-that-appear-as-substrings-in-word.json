@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-strings-that-appear-as-substrings-in-word",
+    "language": "java",
+    "code": "class Solution {\n    public int numOfStrings(String[] patterns, String word) {\n        int result = 0;\n\n        for(String pattern : patterns) {\n           if(word.contains(pattern)) result++; \n        }\n        \n        return result;\n    }\n}"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "rearrange-string-k-distance-apart",
+    "language": "python3",
+    "code": "class Solution:\n    def rearrangeString(self, s, k):\n        n = len(s)\n        if not k: return s\n        count = collections.Counter(s)\n        maxf = max(count.values())\n        if (maxf - 1) * k + list(count.values()).count(maxf) > len(s):\n            return \"\"\n        res = list(s)\n        i = (n - 1) % k\n        for c in sorted(count, key=lambda i: -count[i]):\n            for j in range(count[c]):\n                res[i] = c\n                i += k\n                if i >= n:\n                    i = (i - 1) % k\n        return \"\".join(res)"
+}

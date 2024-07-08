@@ -1,0 +1,5 @@
+{
+    "problemName": "remove-all-ones-with-row-and-column-flips-ii",
+    "language": "java",
+    "code": "class Solution {\n    \n    // https://leetcode.com/problems/remove-all-ones-with-row-and-column-flips-ii/discuss/2064870/DFS-with-bactracking-Java\n    public int removeOnes(int[][] grid) {\n        return dfs(grid, new HashSet<>(), new HashSet<>());\n    }\n    \n    int dfs(int[][] grid, Set<Integer> xVisited, Set<Integer> yVisited) {\n        int min = Integer.MAX_VALUE;\n        \n        for (int i = 0; i < grid.length; i += 1) {\n            if (xVisited.contains(i)) continue;\n            xVisited.add(i);\n            for (int j = 0; j < grid[0].length; j += 1) {\n                if (yVisited.contains(j) || grid[i][j] == 0) continue;\n                yVisited.add(j);\n                min = Math.min(min, 1 + dfs(grid, xVisited, yVisited));\n                yVisited.remove(j);\n            }\n            xVisited.remove(i);\n        }\n        return min == Integer.MAX_VALUE ? 0 : min;\n    }\n}"
+}

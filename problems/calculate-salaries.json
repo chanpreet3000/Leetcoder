@@ -1,0 +1,5 @@
+{
+    "problemName": "calculate-salaries",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT company_id, employee_id, employee_name\n,ROUND(CASE\n    WHEN MAX(salary) over(PARTITION BY company_id) < 1000 THEN salary\n    WHEN MAX(salary) over(PARTITION BY company_id) BETWEEN 1000 AND 10000 THEN salary-(salary*.24) \n    ELSE salary-(salary*.49)\nEND,0) salary\nFROM salaries"
+}

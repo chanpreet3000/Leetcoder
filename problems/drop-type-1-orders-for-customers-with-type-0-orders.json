@@ -1,0 +1,5 @@
+{
+    "problemName": "drop-type-1-orders-for-customers-with-type-0-orders",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT order_id, customer_id, order_type\nFROM orders\nWHERE order_type = 0\nUNION\nSELECT order_id, customer_id, order_type\nFROM orders\nWHERE order_type = 1\nAND customer_id\nNOT IN\n(SELECT DISTINCT customer_id\nFROM orders\nWHERE order_type = 0);"
+}

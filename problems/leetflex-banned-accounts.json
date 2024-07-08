@@ -1,0 +1,5 @@
+{
+    "problemName": "leetflex-banned-accounts",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT l1.account_id\nFROM LogInfo l1, LogInfo l2\nWHERE l1.account_id = l2.account_id AND l1.ip_address != l2.ip_address\nGROUP BY l1.account_id\nHAVING SUM(l2.login BETWEEN l1.login AND l1.logout)>= 1;"
+}

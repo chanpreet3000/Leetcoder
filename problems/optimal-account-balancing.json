@@ -1,0 +1,5 @@
+{
+    "problemName": "optimal-account-balancing",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minTransfers(vector<vector<int>>& trans) \n\t{\n        unordered_map<int, long> bal; // each person's overall balance\n        for(auto& t: trans) {\n\t\t  bal[t[0]] -= t[2];\n\t\t  bal[t[1]] += t[2];\n\t\t}\n\t\t\n        for(auto& p: bal) // only deal with non-zero debts\n\t\t  if(p.second) debt.push_back(p.second);\n\t\t  \n        return dfs(0);\n    }\n    \nprivate:\n    int dfs(int s) // min number of transactions to settle starting from debt[s]\n\t{ \n    \twhile (s < debt.size() && !debt[s]) ++s; // get next non-zero debt\n\t\t\n    \tint res = INT_MAX;\n    \tfor (long i = s+1, prev = 0; i < debt.size(); ++i)\n    \t  if ( debt[i]*debt[s] < 0) // skip already tested or same sign debt\n\t\t  {\n\t\t    debt[i] += debt[s]; \n\t\t\tres = min(res, 1+dfs(s+1)); \n            debt[i] -= debt[s]; \n\t\t  }\n    \t    \n    \treturn res < INT_MAX? res : 0;\n    }\n    \n    vector<long> debt;\n};"
+}

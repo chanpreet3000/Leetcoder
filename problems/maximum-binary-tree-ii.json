@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-binary-tree-ii",
+    "language": "cpp",
+    "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\n   \npublic:\n    TreeNode* insertIntoMaxTree(TreeNode* root, int val) {\n        if (root && root->val > val) {\n            root->right = insertIntoMaxTree(root->right, val);\n            return root;\n        }\n        TreeNode* x = new TreeNode(val);\n        x->left = root;\n        return x;\n    }\n};"
+}

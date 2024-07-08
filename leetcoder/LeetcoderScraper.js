@@ -101,7 +101,7 @@ class LeetcoderScraper {
     Logger.error('<<<< Starting Leetcoder Scrapper >>>>');
     const {browser} = getBrowserDetails();
     try {
-      let id_no = 700016650
+      let id_no = 750001890
       while (id_no > 0) {
         const promises = [];
         for (let idx = 0; idx < 30; idx++) {

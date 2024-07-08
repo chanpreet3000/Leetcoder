@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-factorization",
+    "language": "java",
+    "code": "class Solution {\n    public int smallestFactorization(int num) {\n        if(num >= 1 && num <=9 ) return num;\n        List <Integer> arr = new ArrayList<>();\n        arr = factors(num);\n        System.out.println(arr);\n        long result = 0;\n        for(int i =arr.size()-1; i>=0; i--){\n            result = result * 10 + arr.get(i);\n            if (result > Integer.MAX_VALUE) return 0;\n        }\n        return (int)result;\n    }\n    public List<Integer> factors(int n){\n        List<Integer> list = new ArrayList<>();\n        for(int i = 9; i> 1; i--){\n            while (n % i == 0) {\n                n = n / i;\n                list.add(i);\n            }\n         \n        }\n        if(n != 1) return Collections.emptyList();\n           return list;\n    }\n\n}"
+}

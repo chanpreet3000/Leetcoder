@@ -1,0 +1,5 @@
+{
+    "problemName": "high-five",
+    "language": "python3",
+    "code": "from bisect import insort\nclass Solution:\n    def highFive(self, items: List[List[int]]) -> List[List[int]]:\n        d=defaultdict(list)\n        for id,score in items:\n            d[id].append(score)\n    \n        for i in d:\n            scores=d[i]\n            scores.sort(reverse=True)\n            newScore=sum(scores[:5])//5\n            d[i]=newScore\n        return sorted(d.items())"
+}

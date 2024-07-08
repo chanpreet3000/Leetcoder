@@ -1,0 +1,5 @@
+{
+    "problemName": "max-difference-you-can-get-from-changing-an-integer",
+    "language": "java",
+    "code": "class Solution {\n    public int maxDiff(int num) {\n        String n=\"\"+num;\n        String a= \"\"+num;\n        \n        // maximize number replace first non 9 with 9\n        for(var x: n.toCharArray()){\n            if(x!='9'){\n                a= n.replace(x,'9');\n                break;\n            }\n        }\n        \n        String b= \"\"+num;        \n        // minimize number without leading zeros\n        for(var x: n.toCharArray()){\n            if(x==n.charAt(0) && x!='1'){\n                b= n.replace(x,'1');\n                break;\n            }\n            if(x!=n.charAt(0) && x!='0'){\n                b= n.replace(x,'0');\n                break;\n            }\n        }\n        //System.out.println(a+\" \"+b);\n        return Integer.parseInt(a)-Integer.parseInt(b);\n    }\n}"
+}

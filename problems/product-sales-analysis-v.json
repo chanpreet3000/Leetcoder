@@ -1,0 +1,5 @@
+{
+    "problemName": "product-sales-analysis-v",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT Sales.user_id, SUM(price*quantity) AS spending\nFROM Product\nINNER JOIN Sales\nON Product.product_id = Sales.product_id\nGROUP BY 1\nORDER BY spending DESC, user_id"
+}

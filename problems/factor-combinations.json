@@ -1,0 +1,5 @@
+{
+    "problemName": "factor-combinations",
+    "language": "java",
+    "code": "class Solution {\n    public List<List<Integer>> getFactors(int n) {\n        List<List<Integer>> res = new ArrayList<>();\n        if (n <= 1) {\n            return res;\n        }\n        dfs(res, new ArrayList<>(), n, 2);\n        return res;\n    }\n    \n    private void dfs(List<List<Integer>> res, List<Integer> combo, int n, int start) {\n        if (n == 1) {\n            if (combo.size() > 1) {\n                res.add(new ArrayList<>(combo));\n            }\n            return;\n        }\n        for (int i = start; i <= n; i++) {\n            if (n % i != 0) {\n                continue;\n            }\n            combo.add(i);\n            dfs(res, combo, n / i, i);\n            combo.remove(combo.size() - 1);\n        }\n    }\n}"
+}

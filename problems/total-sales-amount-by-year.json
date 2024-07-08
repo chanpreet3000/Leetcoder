@@ -1,0 +1,5 @@
+{
+    "problemName": "total-sales-amount-by-year",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT t1.product_id, product_name, report_year, total_amount\nFROM (\nSELECT product_id, '2018' report_year,  average_daily_sales*(DATEDIFF(LEAST(period_end, '2018-12-31'), GREATEST(period_start, '2018-01-01'))+1) AS total_amount\nFROM Sales\nWHERE YEAR(period_start) = 2018 OR YEAR(period_end) = 2018\nUNION ALL\nSELECT product_id, '2019' report_year, average_daily_sales*(DATEDIFF(LEAST(period_end, '2019-12-31'), GREATEST(period_start, '2019-01-01'))+1) AS total_amount\nFROM Sales\nWHERE YEAR(period_start) <= 2019 AND YEAR(period_end) >= 2019\nUNION ALL\nSELECT product_id, '2020' report_year, average_daily_sales*(DATEDIFF(LEAST(period_end, '2020-12-31'), GREATEST(period_start, '2020-01-01'))+1) AS total_amount\nFROM Sales\nWHERE YEAR(period_start) = 2020 OR YEAR(period_end) = 2020) t1\nLEFT JOIN Product p\nON p.product_id = t1.product_id\nORDER BY 1, 3"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "longest-line-of-consecutive-one-in-matrix",
+    "language": "ruby",
+    "code": "\n# @param {Integer[][]} mat\n# @return {Integer}\ndef longest_line(mat)\n    dp = Array.new(mat.size) { Array.new(mat.first.size) { Array.new(4) { 0 } } }\n    best = 0\n    \n    (0..(mat.size - 1)).each do |i|\n        (0..(mat.first.size - 1)).each do |j|\n            if mat[i][j] == 1\n                dp[i][j][0] = i > 0 ? dp[i - 1][j][0] + 1 : 1\n                dp[i][j][1] = j > 0 ? dp[i][j - 1][1] + 1 : 1\n                dp[i][j][2] = i > 0 && j > 0 ? dp[i - 1][j - 1][2] + 1 : 1\n                dp[i][j][3] = i > 0 && j < mat.first.size - 1 ? dp[i - 1][j + 1][3] + 1 : 1\n                best = [best, *dp[i][j]].max\n            end\n        end\n    end\n    \n    best\nend"
+}

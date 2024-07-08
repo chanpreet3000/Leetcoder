@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-number-of-events-that-can-be-attended",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    static bool comp(vector<int>& a,vector<int>& b){\n        if(a[1]<b[1]) return true;\n        else if(a[1]==b[1]) return a[0]<b[0];\n        else return false;\n    }\n    int maxEvents(vector<vector<int>>& events) {\n        sort(events.begin(),events.end(),comp);\n        set<int> days;\n        int ans=0;\n        for(int i=1;i<=events[events.size()-1][1];i++) days.insert(i);\n        for(vector<int>& event:events){\n            auto it = days.lower_bound(event[0]);\n            if(it!=days.end() and *it <= event[1]){\n                ans++;\n                days.erase(it);\n            }\n        }\n        return ans;\n    }\n};"
+}

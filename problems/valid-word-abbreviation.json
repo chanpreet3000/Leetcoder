@@ -1,0 +1,5 @@
+{
+    "problemName": "valid-word-abbreviation",
+    "language": "python",
+    "code": "class Solution(object):\n    def validWordAbbreviation(self, word, abbr):\n        #i12iz4n internationalization\n        wordIndex = 0\n        index = 0\n        while index < len(abbr):\n            if abbr[index].isdigit():\n                if abbr[index] == '0':\n                    return False\n                number = 0\n                while index < len(abbr) and abbr[index].isdigit():\n                    number = number * 10 + int(abbr[index])\n                    index += 1\n                wordIndex += number\n            else:\n                if wordIndex >= len(word):\n                    return False\n                if abbr[index] != word[wordIndex]:\n                    return False\n                else:\n                    index += 1\n                    wordIndex += 1\n        \n        return wordIndex == len(word)\n                \n        \"\"\"\n        :type word: str\n        :type abbr: str\n        :rtype: bool\n        \"\"\"\n        "
+}
