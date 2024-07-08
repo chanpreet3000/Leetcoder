@@ -1,0 +1,5 @@
+{
+    "problemName": "shuffle-an-array",
+    "language": "python",
+    "code": "class Solution(object):\n\n    def __init__(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        \"\"\"\n        self.nums=nums\n        self.arr=nums\n        \n\n    def reset(self):\n        \"\"\"\n        :rtype: List[int]\n        \"\"\"\n        self.nums[:]=self.arr\n        return self.nums\n        \n\n    def shuffle(self):\n        \"\"\"\n        :rtype: List[int]\n        \"\"\"\n        ans=self.arr[:]\n        random.shuffle(ans)\n        return ans\n        \n        \n    \"\"\" def __init__(self, nums: List[int]):\n        self.nums = nums\n        self.arr = nums.copy()\n\n    def reset(self) -> List[int]:\n        self.nums[:] = self.arr\n        return self.nums\n\n    def shuffle(self) -> List[int]:\n        # shuffle returns none, so copy and shuffle \n        \n        # approach 1 \n        ans = self.arr[:]\n        random.shuffle(ans)\n        return ans\"\"\"\n        \n\n\n# Your Solution object will be instantiated and called as such:\n# obj = Solution(nums)\n# param_1 = obj.reset()\n# param_2 = obj.shuffle()"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "largest-bst-subtree",
+    "language": "java",
+    "code": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n    public int largestBSTSubtree(TreeNode root) {\n        int[] ret = largestBST(root);\n        return ret[2];\n    }\n    \n    private int[] largestBST(TreeNode node) {\n        if (node == null) {\n            return new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE, 0};\n        }\n        int[] left = largestBST(node.left);\n        int[] right = largestBST(node.right);\n        if (node.val > left[1] && node.val < right[0]) {\n            return new int[] {Math.min(node.val, left[0]), Math.max(node.val, right[1]), left[2] + right[2] + 1}; \n        } else {\n            return new int[]{Integer.MIN_VALUE, Integer.MAX_VALUE, Math.max(left[2], right[2])};\n        }\n    }\n}"
+}

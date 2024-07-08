@@ -1,0 +1,5 @@
+{
+    "problemName": "sales-analysis-iii",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT product_id, product_name FROM Product\nJOIN Sales using(product_id)\nGROUP BY product_id\nHAVING \"2019-01-01\" <= MIN(sale_date) and MAX(sale_date) < \"2019-04-01\""
+}

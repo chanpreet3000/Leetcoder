@@ -1,0 +1,5 @@
+{
+    "problemName": "immediate-food-delivery-i",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT (\n    ROUND(SUM(order_date = customer_pref_delivery_date) / COUNT(delivery_id) * 100, 2)\n) AS immediate_percentage\nFROM Delivery\n\n"
+}

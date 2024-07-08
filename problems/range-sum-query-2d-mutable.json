@@ -1,0 +1,5 @@
+{
+    "problemName": "range-sum-query-2d-mutable",
+    "language": "java",
+    "code": "class NumMatrix \n{\n    private int[][] matrix; \n    public NumMatrix(int[][] matrix)\n    {\n        this.matrix = matrix;\n    }\n    \n    public void update(int row, int col, int val) \n    {\n        this.matrix[row][col] = val;\n    }\n    \n    public int sumRegion(int row1, int col1, int row2, int col2) \n    {\n        int sum = 0;\n        for(int i = row1 ; i <= row2; i++)\n        {\n            for(int j = col1; j <= col2; j++)\n            {\n                sum += this.matrix[i][j];\n            }\n        }\n        \n        return sum;\n    }\n}\n\n/**\n * Your NumMatrix object will be instantiated and called as such:\n * NumMatrix obj = new NumMatrix(matrix);\n * obj.update(row,col,val);\n * int param_2 = obj.sumRegion(row1,col1,row2,col2);\n */"
+}

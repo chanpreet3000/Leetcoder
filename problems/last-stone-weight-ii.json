@@ -1,0 +1,5 @@
+{
+    "problemName": "last-stone-weight-ii",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int lastStoneWeightII(vector<int>& arr) {\n        int n=arr.size();\n        int sum=0;\n        for(int i=0;i<n;i++){\n            sum+=arr[i];\n        }\n        bool dp[n + 1][sum + 1];\n \n    // Initialize first column as true. sum 0 is possible\n    for (int i = 0; i <= n; i++)\n        dp[i][0] = true;\n \n    // Initialize top row, except dp[0][0], as false. With\n    // 0 elements, no other sum except 0 is possible\n    for (int i = 1; i <= sum; i++)\n        dp[0][i] = false;\n\n    for(int i=1;i<n+1;i++){\n        for(int j=1;j<sum+1;j++){\n            if(arr[i-1]<=j){\n                dp[i][j]=dp[i-1][j-arr[i-1]] + dp[i-1][j];\n            }else{\n                dp[i][j]=dp[i-1][j];\n            }\n        }\n    }\n\n    int diff=INT_MAX;\n    for(int i=sum/2;i>=0;i--){\n        if(dp[n][i]==true){\n            diff=sum-2*i;\n            break;\n        }\n    }\n    return diff;\n    }\n};"
+}

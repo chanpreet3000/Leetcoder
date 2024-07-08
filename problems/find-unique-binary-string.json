@@ -1,0 +1,5 @@
+{
+    "problemName": "find-unique-binary-string",
+    "language": "python3",
+    "code": "class Solution:\n    def findDifferentBinaryString(self, nums: List[str]) -> str:\n        def binary(n):\n            def help(n):\n                if n == 0:\n                    return [\"0\"]\n                if n == 1:\n                    return [\"0\",\"1\"]\n                res = help(n-1)\n                return [\"0\" + s for s in res] + [\"1\" + s for s in res]\n            return help(n)\n        r = \"\"\n        n = len(nums[0])\n        res = binary(n)\n\n        for s in res:\n            if s not in nums:\n                r = s\n                break\n\n        return(r)\n\n"
+}

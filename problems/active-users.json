@@ -1,0 +1,5 @@
+{
+    "problemName": "active-users",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect distinct A.id, A.name from Accounts A join Logins L1 on A.id = L1.id join Logins L2 on L1.id = L2.id and datediff(L1.login_date,L2.login_date) between 1 and 4 \ngroup by L1.id, L1.login_date having count(distinct L2.login_date) = 4  order by A.id\n\n\n\n"
+}

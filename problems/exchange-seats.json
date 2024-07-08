@@ -1,0 +1,5 @@
+{
+    "problemName": "exchange-seats",
+    "language": "mysql",
+    "code": "SELECT  \n    CASE\n        WHEN MOD(id, 2) != 0 AND counts != id THEN id + 1\n        WHEN MOD(id, 2) != 0 AND counts = id THEN id\n        ELSE id - 1\n    END AS id,\n    student\nFROM (\n    SELECT\n        COUNT(*) AS counts\n    FROM\n        seat\n) AS seat_counts,\nseat\nORDER BY id ASC;"
+}

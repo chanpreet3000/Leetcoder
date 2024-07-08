@@ -1,0 +1,5 @@
+{
+    "problemName": "couples-holding-hands",
+    "language": "java",
+    "code": "class Solution {\n    public void swap(int a,int b, int[]row){\n        int val = row[b];\n        row[b] = row[a];\n        row[a] = val;\n        return;\n    }\n    public int minSwapsCouples(int[] row) {\n        int n = row.length;\n        int []track = new int[n];\n        int cnt = 0;\n        for(int i=0;i<n;i++){\n            track[row[i]] = i;\n        }\n        for(int i=0;i<n;i++){\n            if(row[i]%2 == 0 ){\n                int index = track[row[i]+1];\n                if(index > i+1){\n                    track[row[i+1]] = index;\n                    track[row[index]] = i+1;\n                    swap(i+1, index, row);\n                    cnt++;\n                }\n            }\n            else{\n                int index = track[row[i]-1];\n                if(index > i+1){\n                    track[row[i+1]] = index;\n                    track[row[index]] = i+1;\n                    swap(i+1, index, row);\n                    cnt++;\n                }\n            }\n        }\n        return cnt;\n    }\n}"
+}

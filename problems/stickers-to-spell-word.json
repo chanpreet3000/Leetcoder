@@ -1,0 +1,5 @@
+{
+    "problemName": "stickers-to-spell-word",
+    "language": "python3",
+    "code": "class Solution:\n    def minStickers(self, stickers: List[str], target: str) -> int:\n        \n        # stickers = [Counter(s) for s in stickers]\n        # target = Counter(target)\n        # print(stickers)\n        # print(target)\n        \n        # alphabet = defaultdict(set)\n        # for idx, sticker in enumerate(stickers):\n        #     for letter in sticker:\n        #         alphabet[letter].add(idx)\n        # print(alphabet)\n        \n        stack = [(target, 0)]\n        visit = set()\n        while stack:\n            sticker, total = stack.pop(0)\n            if len(sticker)==0: return total\n            \n            for s in stickers:\n                ss = Counter(s)\n                diff = \"\"\n                for char in sticker:\n                    if char in ss and ss[char]>0: ss[char]-=1\n                    else: diff += char\n                \n                if diff not in visit:\n                    visit.add(diff)\n                    stack.append((diff, total+1))\n        return -1\n"
+}

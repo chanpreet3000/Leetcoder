@@ -1,0 +1,5 @@
+{
+    "problemName": "find-greatest-common-divisor-of-array",
+    "language": "python3",
+    "code": "from math import gcd\nclass Solution:\n    def findGCD(self, nums: List[int]) -> int:\n        return gcd(max(nums),min(nums))"
+}

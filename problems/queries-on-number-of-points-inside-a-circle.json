@@ -1,0 +1,5 @@
+{
+    "problemName": "queries-on-number-of-points-inside-a-circle",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<int> countPoints(vector<vector<int>>& points, vector<vector<int>>& queries) {\n          vector<int>v;\n        for(int i=0;i<queries.size();i++)\n        {\n            int flag=0;\n            int a=queries[i][0],b=queries[i][1],c=queries[i][2];\n            for(int j=0;j<points.size();j++)\n            {\n                int l=points[j][0],m=points[j][1];\n                if(((a-l)*(a-l))+((b-m)*(b-m))<=c*c)\n                {\n                    flag++;\n                }\n            }\n            v.push_back(flag);\n        }\n        return v;\n    }\n};"
+}

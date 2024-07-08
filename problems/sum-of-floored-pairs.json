@@ -1,0 +1,5 @@
+{
+    "problemName": "sum-of-floored-pairs",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int sumOfFlooredPairs(vector<int>& nums) {\n        int upper=*max_element(nums.begin(),nums.end());\n        vector<int>num(upper+1,0);\n        for(int n:nums)\n        {\n            num[n]++;\n        }\n        vector<int>presum(upper+2,0);\n        for(int i=1;i<=upper+1;i++)\n        {\n            presum[i]=presum[i-1]+num[i-1];\n        }\n        long long ans=0;\n        for(int x=1;x<=upper;x++)\n        {\n            if(num[x])\n            {\n               // cout<<x<<endl;\n                for(int d=1;d*x<=upper;d++)\n                {\n                  ///  cout<<(presum[min( (d+1)*x,upper+1)]-presum[d*x])<<endl;\n                   long long a=(long long)(presum[min( (d+1)*x, upper+1)]-presum[d*x])*d*num[x];\n                   ans=(ans+a)%1000000007;\n                }\n            }\n        }\n        return ans;\n    }\n};"
+}

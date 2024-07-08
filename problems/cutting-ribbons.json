@@ -1,0 +1,5 @@
+{
+    "problemName": "cutting-ribbons",
+    "language": "java",
+    "code": "/*\n\n3, 4, 5, 6 \n\n\nK = 1\n\nminL = 1\nmaxL = 6\n\nM\n1,2,3,4,5,6\n*/\n\nclass Solution {\n    public int maxLength(int[] nums, int k) {\n        int minLen = 1;\n        int maxLen = 0;\n        for (int n : nums) {\n            maxLen = Math.max(maxLen, n);\n        }\n        int result = 0;\n        // O(N) + Log(MaxLen)\n\n        while (minLen <= maxLen) {\n            int length = (maxLen - minLen) / 2 + minLen;\n            int pieces = cut(nums, length);\n\n            if (pieces >= k) {\n                result = length;\n                minLen = length + 1;\n            } else {\n                maxLen = length - 1;\n            }\n        }\n\n        return result;\n    }     \n\n    private int cut(int[] nums, int length) {\n        int pieces = 0;\n\n        for (int n : nums) {\n            pieces += n / length;\n        }\n\n        return pieces;\n    }\n\n}"
+}

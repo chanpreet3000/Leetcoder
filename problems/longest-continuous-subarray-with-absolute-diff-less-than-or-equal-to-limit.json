@@ -1,0 +1,5 @@
+{
+    "problemName": "longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit",
+    "language": "python3",
+    "code": "from sortedcontainers import SortedList\n\nclass Solution:\n    def longestSubarray(self, nums: List[int], limit: int) -> int:\n        \n        tmp = SortedList()\n        res = 0\n        \n        pos = 0\n        \n        for n in nums:\n            tmp.add(n)\n            while tmp and tmp[-1] - tmp[0] > limit:\n                tmp.discard(nums[pos])\n                pos += 1\n            res = max(res, len(tmp))\n        \n        return res"
+}

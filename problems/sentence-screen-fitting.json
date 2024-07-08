@@ -1,0 +1,5 @@
+{
+    "problemName": "sentence-screen-fitting",
+    "language": "golang",
+    "code": "func wordsTyping(sentence []string, rows int, cols int) int {\n\tspace := (rows * cols) - cols\n    curr := cols\n\tidx := 0\n\toccurrence := 0\n\tfor space >= 0 {\n\t\tfor curr >= len(sentence[idx]) {\n\t\t\tcurr = curr - len(sentence[idx]) -1 \n\t\t\tidx++\n\t\t\tif idx == len(sentence) {\n\t\t\t\toccurrence++\n\t\t\t\tidx = 0\n\t\t\t}\n\t\t}\n\t\tspace = space - cols\n\t\tcurr = cols\n\n\t}\n\treturn occurrence\n}"
+}

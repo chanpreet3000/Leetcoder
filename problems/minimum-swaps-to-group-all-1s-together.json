@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-swaps-to-group-all-1s-together",
+    "language": "java",
+    "code": "class Solution {\n  public int minSwaps(int[] data) {\n    int count = 0;\n    for(int i = 0;  i < data.length; i++) {\n      if(data[i] == 1) {\n        count++;\n      }\n    }\n    \n    if(count == 0 || count == 1 || count == data.length - 1) { return 0; }\n    \n    int h = 0;\n    int t = 0;\n    int swaps = 0;\n    int minSwaps = data.length;\n    \n    while(t < data.length) {\n      if(t - h < count) {\n        if(data[t] == 0) {\n          swaps++;\n        }\n        t++;\n      } else {\n        minSwaps = Math.min(minSwaps, swaps);\n        if(data[h] == 0) { swaps--; }\n        h++;\n      }\n    }\n    minSwaps = Math.min(minSwaps, swaps);\n    return minSwaps;\n  }\n}\n\n/*\n\n[1,0,1,0,1]\n[1,1,1,0,0]\n[-,x,-,-,x]\n\n[1,0,1,0,1,0,0,1,1,0,1]\n[1,1,1,1,1,1,0,0,0,0,0]\n[-,x,-,x,-,x,-,x,x,-,x]\n\n[1,0,1,0,1,0,0,1,1,1,1]\n[1,1,1,1,1,1,1,0,0,0,0]\n[-,x,-,x,-,x,x,x,x,-,x]\n\n*/"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-equivalent-domino-pairs",
+    "language": "java",
+    "code": "class Solution {\n    public int numEquivDominoPairs(int[][] dominoes) {\n        HashMap<String, Integer> map = new HashMap();\n        int sum = 0;\n        for(int[] i : dominoes){\n            int a = i[0];\n            int b = i[1];\n            StringBuilder str = new StringBuilder();\n            if(a < b ){\n                str.append(a+\" \"+b);\n                \n            }\n            else{\n                str.append(b+\" \"+a);\n            }\n            map.put(str.toString(), map.getOrDefault(str.toString(), 0) + 1);\n        }\n        for(String k : map.keySet()){\n            int n = map.get(k);\n            sum += ((n*(n-1))/2);\n        }\n        return sum;\n        \n    }\n}"
+}

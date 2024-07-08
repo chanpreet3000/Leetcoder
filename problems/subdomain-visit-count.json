@@ -1,0 +1,5 @@
+{
+    "problemName": "subdomain-visit-count",
+    "language": "python3",
+    "code": "class Solution:\n    def subdomainVisits(self, cpdomains: List[str]) -> List[str]:\n        hmap = defaultdict(int)\n        \n        result = []\n        for cpdomain in cpdomains:\n            count, domain = cpdomain.split(' ')\n            \n            while True:\n                hmap[domain] += int(count)\n                \n                nextDotIdx = domain.find('.')\n                if nextDotIdx == -1:\n                    break\n                    \n                domain = domain[nextDotIdx+1:]\n        \n        for key in hmap.keys():\n            result.append(str(hmap[key]) + ' ' + key)\n            \n        return result"
+}

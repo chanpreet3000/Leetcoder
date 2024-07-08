@@ -1,0 +1,5 @@
+{
+    "problemName": "restore-the-array-from-adjacent-pairs",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    void recur(vector<int> &ans,set<int>& vis, int node,unordered_map<int,vector<int>>& um)\n    {\n        if(vis.find(node)!=vis.end()) return;\n        \n        vis.insert(node);\n        \n        \n        ans.push_back(node);\n        \n        for(auto a : um[node]) recur(ans,vis,a,um);\n    }\n    \n    \n    \n    vector<int> restoreArray(vector<vector<int>>& adj) {\n        \n        \n        unordered_map<int,vector<int>> um;\n        \n        for(int i=0;i<adj.size();i++)\n        {\n            um[adj[i][0]].push_back(adj[i][1]);\n            um[adj[i][1]].push_back(adj[i][0]);\n        }\n        \n        \n        int head;\n        vector<int> ans;\n        set<int> vis;\n        for(auto a: um)\n        {\n            if(a.second.size()==1)\n            {\n                head = a.first;\n                break;\n                \n            }\n        }\n        recur(ans,vis,head,um);\n        return ans;\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "unique-substrings-in-wraparound-string",
+    "language": "java",
+    "code": "class Solution {\n    public int findSubstringInWraproundString(String p) {\n        int[] count = new int[26];\n        \n        int i=0;\n        while (i<p.length()) {\n            int j=i+1;\n            while (j < p.length() && ((p.charAt(j) - 'a') % 26 == (p.charAt(j-1) + 1 - 'a') % 26)) {\n                j++;\n            }\n                   \n            int len = j-i;\n            \n            for (int k=0; k<Math.min(len, 26); k++) {\n                count[(p.charAt(i) + k - 'a') % 26] = Math.max(count[(p.charAt(i) + k - 'a') % 26], len - k);\n            }\n            \n            i = j;\n        }\n        \n        int result = 0;\n        for (int c: count) result+=c;\n        return result;\n    }\n}"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "sorting-the-sentence",
+    "language": "python3",
+    "code": "class Solution:\n    def sortSentence(self, s: str) -> str:\n        input=s.split()\n        out=[\"Null\"]*len(input)\n        out1=\" \"\n        for i in input:\n            out[int(i[-1])-1]=i[:-1]\n        return out1.join(out)"
+}

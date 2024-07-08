@@ -1,0 +1,5 @@
+{
+    "problemName": "length-of-longest-fibonacci-subsequence",
+    "language": "python",
+    "code": "class Solution(object):\n    def lenLongestFibSubseq(self, arr):\n        n=len(arr)\n        \n        if n<2:\n            return 0\n        \n        d={}\n        maxlen=0\n        dp = [[0 for _ in range(n)] for _ in range(n)]\n        \n        for j in range(n):\n            d[arr[j]]=j\n            for i in range(j):\n                k = -1 if (arr[j]-arr[i] not in d) else d[arr[j]-arr[i]]\n                dp[i][j] = dp[k][i]+1 if (arr[j]-arr[i]<arr[i] and k>=0) else 2 \n                maxlen = max(maxlen, dp[i][j])\n        return maxlen if maxlen>2 else 0"
+}

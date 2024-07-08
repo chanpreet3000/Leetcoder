@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-calls-between-two-persons",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\n\nSELECT\nfrom_id AS person1,\nto_id AS person2,\nCOUNT(*) AS call_count,\nSUM(duration) AS total_duration\nFROM\n    (SELECT\n    CASE\n        WHEN from_id > to_id\n        THEN to_id\n        ELSE from_id END AS from_id,\n    CASE\n        WHEN from_id > to_id\n        THEN from_id\n        ELSE to_id END AS to_id,\n    duration\n    FROM calls) SUB\n\nGROUP BY from_id,to_id"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "super-pow",
+    "language": "python3",
+    "code": "class Solution:\n    def superPow(self, a: int, b: List[int]) -> int:\n        res = a**b[-1]\n        tag = a**10 % 1337\n        for i in range(len(b)-2,-1,-1):\n            res = res*tag**b[i] % 1337\n            tag = tag**10 % 1337\n        return res"
+}

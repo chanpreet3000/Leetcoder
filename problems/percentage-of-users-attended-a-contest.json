@@ -1,0 +1,5 @@
+{
+    "problemName": "percentage-of-users-attended-a-contest",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect distinct contest_id, round(100*count(contest_id)/(select count(*) from users),2) as 'percentage'\nfrom register\ngroup by contest_id\norder by percentage desc,contest_id asc;\n\n\n\n\n\n\n"
+}

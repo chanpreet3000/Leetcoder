@@ -1,0 +1,5 @@
+{
+    "problemName": "palindrome-permutation",
+    "language": "javascript",
+    "code": "/**\n * @param {string} s\n * @return {boolean}\n */\nvar canPermutePalindrome = function(s) {\n    \n   var set = new Set()\n    \n   for (var i=0;i<s.length;i++) {\n       if (!(set.has(s[i]))) {\n           set.add(s[i])\n       } else {\n           set.delete(s[i])\n       }\n   }\n    \n   return (set.size <= 1)\n    \n};"
+}

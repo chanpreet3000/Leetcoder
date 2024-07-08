@@ -1,0 +1,5 @@
+{
+    "problemName": "longest-word-in-dictionary-through-deleting",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    string findLongestWord(string s, vector<string>& nums) {\n     \n        sort(nums.begin(),nums.end());\n        string ans=\"\";int len=0;\n       \n       \n        for(int i=0;i<nums.size();i++)\n        {\n           string k=nums[i];\n            int c=0;int j=0;int f=0;\n            while(j<s.length())\n            {\n               if(k[c]==s[j])\n               {\n                   c++;\n                   j++;\n               }\n                else{\n                    j++;\n                }\n                if(c==k.length())\n                {\n                    f=1;\n                    break;\n                }\n            }\n            if(f==1)\n            {\n                if(c>len)\n                {\n                    len=c;\n                    ans=k;\n                }\n            }\n            \n            \n            \n        }\n        return ans;\n        \n        \n    }\n};"
+}

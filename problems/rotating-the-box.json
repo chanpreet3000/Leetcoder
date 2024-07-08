@@ -1,0 +1,5 @@
+{
+    "problemName": "rotating-the-box",
+    "language": "python3",
+    "code": "class Solution:\n    def rotateTheBox(self, box: List[List[str]]) -> List[List[str]]:\n        rows, cols = len(box), len(box[0])\n        ans = [['.' for _ in range(cols)] for _ in range(rows)]\n        for i,row in enumerate(box):\n            last_empty = cols-1\n            for j in range(len(row)-1,-1,-1):\n                if row[j] == '.':\n                    continue\n                elif row[j] == '*':\n                    last_empty = j-1\n                    ans[i][j] = '*'\n                else:\n                    ans[i][last_empty] = '#'\n                    last_empty -= 1\n        \n        rotated = []\n        for i in range(cols):\n            rotated.append([])\n            for j in range(rows-1,-1,-1):\n                rotated[i].append(ans[j][i])\n        return rotated"
+}

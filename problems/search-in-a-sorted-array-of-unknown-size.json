@@ -1,0 +1,5 @@
+{
+    "problemName": "search-in-a-sorted-array-of-unknown-size",
+    "language": "java",
+    "code": "/**\n * // This is ArrayReader's API interface.\n * // You should not implement it, or speculate about its implementation\n * interface ArrayReader {\n *     public int get(int index) {}\n * }\n */\n\nclass Solution {\n    public int search(ArrayReader reader, int target) {\n        int left = 0, right = target - reader.get(0);\n                \n        while(left <= right) {\n            int piv = (left + right) / 2, num = reader.get(piv);\n            if(num == target)\n                return piv;\n            else if(num > target)\n                right = piv - 1;\n            else\n                left = piv + 1;\n        }\n        return -1;\n    }\n}"
+}

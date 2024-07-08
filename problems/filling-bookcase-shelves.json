@@ -1,0 +1,5 @@
+{
+    "problemName": "filling-bookcase-shelves",
+    "language": "python3",
+    "code": "class Solution:\n    def minHeightShelves(self, books: List[List[int]], shelfWidth: int) -> int:\n        self.n = len(books)\n        memo = {}\n        self.w = shelfWidth\n        \n        def bookshelf(i, maxH, curW):\n            if i==self.n:\n                return 0\n            getC = str(i)+\" \"+str(maxH)+\" \"+str(curW)\n            if getC in memo:\n                return memo[getC]\n            sameShelf = sys.maxsize\n            \n            nextShelf = maxH + max(books[i][1], bookshelf(i+1,books[i][1],books[i][0]))\n            if curW + books[i][0]<=self.w:\n                sameShelf = max(maxH, books[i][1])\n                sameShelf = max(sameShelf, bookshelf(i+1, sameShelf, curW+books[i][0]))\n            memo[getC] = min(sameShelf,nextShelf)\n            return memo[getC]\n        \n        return bookshelf(0,0,0)\n            "
+}

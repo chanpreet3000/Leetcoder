@@ -1,0 +1,5 @@
+{
+    "problemName": "stone-game-vii",
+    "language": "java",
+    "code": "class Solution {\n    public int stoneGameVII(int[] stones) {\n        int sum =0;\n        for(int e: stones) sum+=e;\n        return help(stones,new Integer[stones.length][stones.length],sum,0,stones.length-1);\n    }\n    public int help(int[] st, Integer[][] a ,int sum,int s,int e){\n       if(s>e) return 0;\n      // if(al==1) return a[i];\n        if(a[s][e]!=null) return a[s][e];\n        return a[s][e]=Math.max(sum-st[s]-help(st,a,sum-st[s],s+1,e),sum-st[e]-help(st,a,sum-st[e],s,e-1));\n                                       \n    }\n}\n"
+}

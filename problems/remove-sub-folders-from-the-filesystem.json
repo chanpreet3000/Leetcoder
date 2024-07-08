@@ -1,0 +1,5 @@
+{
+    "problemName": "remove-sub-folders-from-the-filesystem",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<string> removeSubfolders(vector<string>& folder) {\n        sort(folder.begin(),folder.end());\n        set<string> answer;\n        for(string s:folder){\n            string temp =\"\";\n            temp+=s[0];\n            int f = 0;\n            for(int i=1;i<s.size();i++){\n                if(s[i] == '/' && answer.find(temp) != answer.end()){\n                   f=1; break;\n                } \n                else{\n                    temp+=s[i];\n                }\n            }\n            if(f==0)\n                answer.insert(temp);\n        }\n        vector v(answer.begin(),answer.end());\n        return v;\n    }\n};"
+}

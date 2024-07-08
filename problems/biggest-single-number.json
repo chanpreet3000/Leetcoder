@@ -1,0 +1,5 @@
+{
+    "problemName": "biggest-single-number",
+    "language": "mysql",
+    "code": "(\nSELECT num\nFROM MyNumbers\nGROUP BY num\nHAVING count(num) = 1\nORDER BY num DESC LIMIT 1\n)\nUNION \n(SELECT NULL)\nLIMIT 1;"
+}

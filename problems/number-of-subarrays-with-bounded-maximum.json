@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-subarrays-with-bounded-maximum",
+    "language": "python3",
+    "code": "class Solution:\n    def numSubarrayBoundedMax(self, nums: List[int], left: int, right: int) -> int:\n        i = 0\n        j = 0\n        count = 0\n        maxi = 0\n        while j < len(nums):\n            if left <= nums[j]<= right:\n                maxi = j - i +1\n                \n            elif nums[j] > right:\n                maxi = 0\n                i = j + 1\n            count += maxi\n            j +=1\n        return count \n        "
+}

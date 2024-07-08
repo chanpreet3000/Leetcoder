@@ -1,0 +1,5 @@
+{
+    "problemName": "duplicate-zeros",
+    "language": "python",
+    "code": "class Solution(object):\n    def duplicateZeros(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: None Do not return anything, modify arr in-place instead.\n        \"\"\"\n        i = 0;\n        while(i < len(arr)):\n            if arr[i] == 0:\n                for j in range(len(arr)-1, i+1, -1):\n                    arr[j] = arr[j-1];\n                if i+1 < len(arr):\n                    arr[i+1] = 0; #duplicate 0\n                    i+= 1; #skip iteration for newly added 0\n            i+= 1;\n                \n                \n            \n        "
+}

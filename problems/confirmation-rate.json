@@ -1,0 +1,5 @@
+{
+    "problemName": "confirmation-rate",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nSELECT\n    s.user_id,\n    IFNULL(ROUND(SUM(CASE WHEN c.action = 'confirmed' THEN 1 ELSE 0 END) / COUNT(c.action), 2), 0.00) AS confirmation_rate\nFROM\n    Signups s\nLEFT JOIN\n    Confirmations c\nUSING\n    (user_id)\nGROUP BY\n    1"
+}

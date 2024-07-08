@@ -1,0 +1,5 @@
+{
+    "problemName": "the-latest-login-in-2020",
+    "language": "mssql",
+    "code": "/* Write your T-SQL query statement below */\nselect user_id  ,(select top 1 time_stamp last_stamp          \nfrom Logins   ll    \nwhere ll.user_id =l.user_id and time_stamp like '%2020%' \norder by    time_stamp desc                \n)  last_stamp          \nfrom Logins l\nwhere\ntime_stamp like '%2020%'         \ngroup by user_id\norder by user_id\n\n"
+}

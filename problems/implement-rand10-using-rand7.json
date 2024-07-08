@@ -1,0 +1,5 @@
+{
+    "problemName": "implement-rand10-using-rand7",
+    "language": "java",
+    "code": "/**\n * The rand7() API is already defined in the parent class SolBase.\n * public int rand7();\n * @return a random integer in the range 1 to 7\n */\nclass Solution extends SolBase {\n    public int rand10() {\n        int v1 = 0;\n        while(true){\n            v1 = this.rand7();\n            if(v1 <= 5){\n                break;\n            }\n        }\n        \n        int v2;\n        while(true){\n            v2 = this.rand7();\n            if(v2 <= 6){\n                break;\n            }\n        }\n        \n        if(v2 <= 3){\n            return v1;\n        }\n        else{\n            return v1+5;\n        }\n    }\n}"
+}

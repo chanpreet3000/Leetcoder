@@ -1,0 +1,5 @@
+{
+    "problemName": "strobogrammatic-number",
+    "language": "java",
+    "code": "class Solution {\n    public boolean isStrobogrammatic(String num) {\n        HashMap<Character, Character> map = new HashMap<>();\n        map.put('0','0');map.put('1','1');map.put('8','8');map.put('6','9');\n        map.put('9','6');\n        \n        int i=0, j = num.length()-1;\n        while(i <= j){\n            char ch = num.charAt(i);\n            if(!map.containsKey(ch))\n                return false;\n            if(map.get(ch) != num.charAt(j)) \n                return false;\n            \n            i++;\n            j--;\n        }\n        return true;\n    }\n}"
+}

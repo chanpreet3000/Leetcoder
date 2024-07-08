@@ -1,0 +1,5 @@
+{
+    "problemName": "k-empty-slots",
+    "language": "python3",
+    "code": "from sortedcontainers import SortedList\n\nclass Solution:\n    \n    def kEmptySlots(self, bulbs: List[int], k: int) -> int:\n        self.sl = SortedList()\n        for (i, b) in enumerate(bulbs):\n            pos = self.sl.bisect_left(b)\n            # check with right\n            if pos < len(self.sl):\n                right = self.sl[pos]\n                if right - b - 1 == k:\n                    return i+1\n            # check with left\n            if pos > 0 and self.sl:\n                left = self.sl[pos-1]\n                # print(b, left)\n                if b - left - 1 == k:\n                    return i+1\n            self.sl.add(b)\n        \n        return -1"
+}

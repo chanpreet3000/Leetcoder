@@ -1,0 +1,5 @@
+{
+    "problemName": "calculate-money-in-leetcode-bank",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n\tint totalMoney(int n) {\n\t\tint amount = 0;\n    \n\t\tfor(int i=0; i<n; i++){\n\t\t\tamount += i%7 + i/7 + 1;    \n\t\t}\n\t\treturn amount;\n\t}\n};\n"
+}

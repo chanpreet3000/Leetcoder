@@ -1,0 +1,5 @@
+{
+    "problemName": "paint-house-ii",
+    "language": "java",
+    "code": "class Solution {\n    public int minCostII(int[][] costs) {\n        int n = costs.length;\n        int k = costs[0].length;\n        int[] pre = new int[k];\n        for(int i=0; i<n; i++){\n            int[] tmp = new int[k];\n            for(int j=0; j<k; j++){\n                int cur = Integer.MAX_VALUE;\n                for(int a=0; a<k; a++){\n                    if(a == j)\n                        continue;\n                    cur = Math.min(cur, pre[a]+costs[i][j]);\n                }\n                tmp[j] = cur;\n            }\n            pre = tmp;\n        }\n        return Arrays.stream(pre).min().getAsInt();\n    }\n}"
+}

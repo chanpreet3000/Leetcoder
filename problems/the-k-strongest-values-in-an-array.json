@@ -1,0 +1,5 @@
+{
+    "problemName": "the-k-strongest-values-in-an-array",
+    "language": "java",
+    "code": "class Solution {\n    public int[] getStrongest(int[] arr, int k) {\n        Arrays.sort(arr);\n        int start = 0;\n        int end = arr.length - 1;\n        int median = arr[end/2];\n        int[] result = new int[k];\n        while(start <= end && k > 0) {\n            if(Math.abs(arr[end] - median) >= Math.abs(arr[start] - median)) {\n                result[result.length - k] = arr[end];\n                end--;\n            } else {\n                result[result.length - k] = arr[start];\n                start++;\n            }\n            k--;\n        }\n        return result;\n    }\n}"
+}

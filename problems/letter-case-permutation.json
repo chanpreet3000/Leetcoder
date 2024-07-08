@@ -1,0 +1,5 @@
+{
+    "problemName": "letter-case-permutation",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n     void backtrack(string &s, int i, vector<string> &res) {\n        if (i == s.size()) {\n            res.push_back(s);\n            return;\n        }\n        backtrack(s, i + 1, res);\n        if (isalpha(s[i])) {\n            // toggle case\n            s[i] ^= (1 << 5);\n            backtrack(s, i + 1, res);\n        }\n    }\n    vector<string> letterCasePermutation(string s) {\n        vector<string> res;\n        backtrack(s,0,res);\n        return res;\n    }\n};"
+}

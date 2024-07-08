@@ -1,0 +1,5 @@
+{
+    "problemName": "students-and-examinations",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nWITH cte1 as (\nSELECT student_id, subject_name, COUNT(*) as attended_exams FROM Examinations\nGROUP BY student_id, subject_name),\ncte2 as (\nSELECT student_id, student_name, subject_name FROM Students, Subjects)\n\n\nSELECT cte2.student_id, student_name, cte2.subject_name, IFNULL(attended_exams,0) AS attended_exams FROM cte2 LEFT JOIN cte1  ON cte1.student_id = cte2.student_id and cte1.subject_name = cte2.subject_name\nORDER BY cte2.student_id, subject_name\n\n\n"
+}

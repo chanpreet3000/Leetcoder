@@ -1,0 +1,5 @@
+{
+    "problemName": "two-furthest-houses-with-different-colors",
+    "language": "python",
+    "code": "class Solution(object):\n    def maxDistance(self, colors):\n        \"\"\"\n        :type colors: List[int]\n        :rtype: int\n        \n        [4,4,4,11,4,4,11,4,4,4,4,4]\n                3.               11    \n                \n        [1,1,1,6,1,1,1]\n        \n        \n        \"\"\"\n        base = colors[0]\n        \n        furthest = 0 \n        for right in range(len(colors)-1, 0, -1):\n            if colors[right] != base:\n                furthest = right\n                break\n        print(furthest)\n        base = colors[-1]\n        \n        for left in range(len(colors)-1):\n            if colors[left] != base:\n                return max(len(colors) -1 - left , furthest)\n        "
+}

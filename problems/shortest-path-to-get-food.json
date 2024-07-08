@@ -1,0 +1,5 @@
+{
+    "problemName": "shortest-path-to-get-food",
+    "language": "python3",
+    "code": "class Solution:\n    def getFood(self, grid: List[List[str]]) -> int:\n        path = deque()\n        for y in range(len(grid)):\n            for x in range(len(grid[0])):\n                if grid[y][x] == '*':\n                    path.append((0, x, y))\n                    break\n\n        dir = [(1, 0), (-1, 0), (0, 1), (0, -1)]\n        while path:\n            step, x, y = path.popleft()\n            for cord_x, cord_y in dir:\n                next_x = x + cord_x\n                next_y = y + cord_y\n                if 0 <= next_x < len(grid[0]) and 0 <= next_y < len(grid) and grid[next_y][next_x] in ('O', '#'):\n                    if grid[next_y][next_x] == '#':\n                        return step + 1\n                    grid[next_y][next_x] = 'X'\n                    path.append((step + 1, next_x, next_y))\n        else:\n            return -1"
+}

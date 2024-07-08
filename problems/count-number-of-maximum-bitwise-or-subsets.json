@@ -1,0 +1,5 @@
+{
+    "problemName": "count-number-of-maximum-bitwise-or-subsets",
+    "language": "python3",
+    "code": "class Solution:\n    def countMaxOrSubsets(self, nums: List[int]) -> int:\n        return self.cnt_max_or_subsets__combinations(nums)\n    \n    def cnt_max_or_subsets__combinations(self, nums: List[int]) -> int:\n        max_bitwise_or = reduce(lambda x, y: x | y, nums)\n        cnt = 0\n        for subset_size in range(1, len(nums) + 1):\n            for sub_arr in combinations(nums, subset_size):\n                bitwise_or_res = reduce(lambda x, y: x | y, sub_arr)\n                if bitwise_or_res == max_bitwise_or:\n                    cnt += 1\n        return cnt\n    "
+}

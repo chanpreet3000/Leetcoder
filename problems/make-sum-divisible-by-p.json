@@ -1,0 +1,5 @@
+{
+    "problemName": "make-sum-divisible-by-p",
+    "language": "java",
+    "code": "class Solution {\n    public int minSubarray(int[] nums, int p) {\n        \n        int n = nums.length;\n        int sum = 0;\n        \n        for(int x: nums)\n            sum = (sum+x)%p;\n        \n        int targetMod = sum%p;\n        if(targetMod==0)\n            return 0;\n        \n        Map<Integer,Integer> map = new HashMap();\n        map.put(0,-1);\n        \n        int pSum = 0;\n        int result = n;\n        for(int i=0;i<n;i++)\n        {\n            pSum=(pSum+nums[i])%p;\n            int correspondingMod = (pSum-targetMod+p)%p;\n            if(map.get(correspondingMod)!=null)\n                result=Math.min(result,i-map.get(correspondingMod));\n            map.put(pSum,i);\n        }\n        \n        return result==n? -1: result;\n    }\n}"
+}

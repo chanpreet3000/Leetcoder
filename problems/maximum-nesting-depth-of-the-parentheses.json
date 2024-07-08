@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-nesting-depth-of-the-parentheses",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int maxDepth(string s) {\n        int ans=0,k=0;\n    for(int i=0;i<s.length();i++)\n    {\n        if(s[i]=='(')k++;\n        else if(s[i]==')')k--;\n        ans=ans>k?ans:k;\n    }\n    return ans;\n    }\n};"
+}

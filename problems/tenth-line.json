@@ -1,0 +1,5 @@
+{
+    "problemName": "tenth-line",
+    "language": "bash",
+    "code": "# Read from the file file.txt and output the tenth line to stdout.\n\ntail -n +10 file.txt |head -1"
+}

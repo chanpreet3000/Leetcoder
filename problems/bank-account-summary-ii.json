@@ -1,0 +1,5 @@
+{
+    "problemName": "bank-account-summary-ii",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT name, ifnull(SUM(amount),0) as balance FROM Users U\nLEFT JOIN Transactions T ON T.account = U.account\nGROUP BY name\nHAVING balance > 10000"
+}

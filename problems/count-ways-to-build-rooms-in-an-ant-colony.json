@@ -1,0 +1,5 @@
+{
+    "problemName": "count-ways-to-build-rooms-in-an-ant-colony",
+    "language": "python3",
+    "code": "class Solution:\n    def waysToBuildRooms(self, prevRoom: List[int]) -> int:\n        n = len(prevRoom)\n        mod = 10**9+7\n        \n        after = [[] for _ in range(n)]\n        for i in range(1,n):\n            after[prevRoom[i]].append(i)\n        \n        def f(i):\n            if not after:\n                return 1,1\n            ways,num_of_rooms=[],[]\n            for j in after[i]:\n                a,b = f(j)\n                ways.append(a)\n                num_of_rooms.append(b)\n            s = sum(num_of_rooms)\n            ans = 1\n            for i in range(len(num_of_rooms)):\n                ans*=math.comb(s,num_of_rooms[i])*ways[i]\n                s-=num_of_rooms[i]\n                ans%=mod\n            return ans,sum(num_of_rooms)+1\n        return f(0)[0]"
+}

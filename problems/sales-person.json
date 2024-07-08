@@ -1,0 +1,5 @@
+{
+    "problemName": "sales-person",
+    "language": "mssql",
+    "code": "/* Write your T-SQL query statement below */\nSELECT name FROM SalesPerson\nWHERE sales_id NOT IN (SELECT sales_id FROM Orders\nWHERE com_id = (SELECT com_id FROM Company WHERE name = 'RED'))"
+}

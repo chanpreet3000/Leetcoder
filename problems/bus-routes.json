@@ -1,0 +1,5 @@
+{
+    "problemName": "bus-routes",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int numBusesToDestination(vector<vector<int>>& routes, int source, int target) {\n        unordered_map<int, vector<int>> graph;\n        queue<int> q;\n        vector<int> visit(1000000, 0);\n        \n        for (int k = 0; k < routes.size(); k++) {\n            for (auto& st : routes[k]) {\n                graph[st].push_back(k);\n            }\n        }\n        \n        q.push(source);\n        int step = 0;\n        while (!q.empty()) {\n            int size = q.size();\n            while (size--) {\n                int cur = q.front();\n                q.pop();\n                \n                if (cur == target) return step;\n                \n                for(auto& bus : graph[cur]) {\n                    for (auto& st : routes[bus]) {\n                        if(visit[st]) continue;\n                        visit[st] = 1;\n                        q.push(st);\n                    }\n                    routes[bus].clear();\n                }\n            }\n            ++step;\n        }\n        \n        return -1;\n    } \n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "find-all-groups-of-farmland",
+    "language": "java",
+    "code": "class Solution {\n   \n    \n    public int[][] findFarmland(int[][] land) {\n    List<int[]> resultList = new ArrayList<>();\n\tfor (int i=0;i<land.length;i++) \n\t\tfor (int j=0;j<land[0].length;j++)\n\t\t\tif (land[i][j]==1 && (i==0||land[i-1][j]==0) && (j==0 ||land[i][j-1]==0)) {\n\t\t\t\tint i2 = i, j2 = j;\n\t\t\t\twhile (i2<land.length && land[i2][j] == 1) i2++;\n\t\t\t\twhile (j2<land[0].length && land[i][j2] == 1) j2++;\n\t\t\t\tresultList.add(new int[]{i,j,i2-1,j2-1}); // we can have j = j2-1; after here as improvement\n\t\t\t}\n\treturn resultList.toArray(new int[0][]);    \n        }\n        \n    }\n    "
+}

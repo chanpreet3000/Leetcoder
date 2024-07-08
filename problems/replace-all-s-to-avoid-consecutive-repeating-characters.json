@@ -1,0 +1,5 @@
+{
+    "problemName": "replace-all-s-to-avoid-consecutive-repeating-characters",
+    "language": "python3",
+    "code": "class Solution:\n    def modifyString(self, s: str) -> str:\n        letters = string.ascii_lowercase\n        s = \" \" + s + \" \"\n        #final = \"\"\n        \n        for i in range(1, len(s)-1):\n            selectLetters = letters\n            print(\"Iteration: \" + str(i))\n            if s[i] == '?':\n                if s[i-1] in letters:\n                    selectLetters = selectLetters.replace(s[i-1], \"\")\n                \n                if s[i+1] in letters:\n                    selectLetters = selectLetters.replace(s[i+1], \"\")\n                \n                print(selectLetters)\n                s = s[:i] + random.choice(selectLetters) + s[i+1:]\n                \n        return s[1:len(s) - 1]"
+}

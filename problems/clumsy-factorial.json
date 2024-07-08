@@ -1,0 +1,5 @@
+{
+    "problemName": "clumsy-factorial",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int sub_res(int n){\n        \n        if (n == 1)\n            return 1;\n        else if ( n == 2)\n            return 2;\n        else{\n            return n * (n-1) / (n-2);\n        }        \n    }\n    \n    int clumsy(int n) {\n        \n        int op = 0;\n        int result = n--;\n        \n        for ( int i = n; i >= 1; i-- ){\n            \n            if ( op % 4 == 0 ) {\n                result *= i;\n            }\n            else if ( op % 4 == 1 ) {\n                result /= i;\n            }\n            else if ( op % 4 == 2){\n                result += i;\n            }\n            else {\n                result -= sub_res(i);\n                op += 2;\n                i -= 2;\n            }\n            op++;\n        }\n        return result;\n    }\n};"
+}

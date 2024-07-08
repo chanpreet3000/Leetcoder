@@ -1,0 +1,5 @@
+{
+    "problemName": "inorder-successor-in-bst-ii",
+    "language": "java",
+    "code": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public Node left;\n    public Node right;\n    public Node parent;\n};\n*/\n\nclass Solution {\n    public Node inorderSuccessor(Node node) {\n        if (node.right != null) {\n            node = node.right;\n            while (node.left != null) {\n                node = node.left;\n            }\n            return node;\n        } else {\n            Node parent = node.parent;\n            while (parent != null && parent.right == node) {\n                node = parent;\n                parent = node.parent;\n            }\n            return parent;\n        }\n    }\n}"
+}

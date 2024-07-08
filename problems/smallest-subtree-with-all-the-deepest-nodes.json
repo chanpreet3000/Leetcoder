@@ -1,0 +1,5 @@
+{
+    "problemName": "smallest-subtree-with-all-the-deepest-nodes",
+    "language": "java",
+    "code": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n    int deepestLevel = 0;\n    TreeNode res = null;\n    \n    public TreeNode subtreeWithAllDeepest(TreeNode root) {\n        dfs(root, 0);\n        return res;\n    }\n    \n    private int dfs(TreeNode root, int level) {\n        if (root == null) return level;\n        int leftLevel = dfs(root.left, level + 1);\n        int rightLevel = dfs(root.right, level + 1);\n        int curLevel = Math.max(leftLevel, rightLevel);\n        deepestLevel = Math.max(deepestLevel, curLevel);\n        if (leftLevel == deepestLevel && rightLevel == deepestLevel) {\n            res = root;\n        }\n        return curLevel;\n    }\n}"
+}

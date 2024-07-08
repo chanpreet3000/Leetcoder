@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-steps-to-reduce-a-number-in-binary-representation-to-one",
+    "language": "javascript",
+    "code": "/**\n * @param {string} s\n * @return {number}\n */\n// Time: O(n)\n// Memory: O(1)\nvar numSteps = function(s) {\n    let res = 0, carry = 0;\n    for (let i = s.length - 1; i > 0; i--) {\n        //0+1 = > 1, one addition + div/2(s= 0 , carry = 1) odd\n        //1+0 = > 1 , one addition + div/2(s= 1 , carry = 0) odd\n        if (s[i]-'0' + carry == 1) {\n            res+=2\n            carry = 1;\n        } else {\n            //only divide by 2\n            // carry moves forward\n            res++;\n        }\n    }\n    return carry +res\n};"
+}

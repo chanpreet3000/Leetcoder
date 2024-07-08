@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-insertions-to-balance-a-parentheses-string",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minInsertions(string s) {\n        int insert = 0;\n        int left_need = 0;\n        for (auto& ch : s) {\n            if (ch == '(') {\n                left_need += 2;\n                if (left_need % 2 == 1) {\n                    insert++;\n                    left_need--;\n                }\n            } else {\n                if (left_need == 0) {\n                    insert++;\n                    left_need = 1;\n                } else {\n                    left_need--;\n                }\n            }\n        }\n        return insert + left_need;\n    }\n};"
+}

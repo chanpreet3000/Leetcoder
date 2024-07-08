@@ -1,0 +1,5 @@
+{
+    "problemName": "sum-of-all-subset-xor-totals",
+    "language": "java",
+    "code": "class Solution {\n    public int subsetXORSum(int[] nums) {\n        return calculator(nums, 0, 0);\n    }\n    \n    public int calculator(int[] nums, int level, int curXOR) \n    {\n    if(level == nums.length) \n    {\n        return curXOR;\n    }\n    int include = calculator(nums, level+1, curXOR^nums[level]);\n    int exclude = calculator(nums, level+1, curXOR);\n    return include + exclude;\n}\n}"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-cost-to-move-chips-to-the-same-position",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minCostToMoveChips(vector<int>& position) {\n        int oddcnt = 0, evencnt=0;\n        for(int i=0; i<position.size(); ++i)\n            if (position[i]%2 ==0)\n                oddcnt += 1;\n            else\n                evencnt += 1;\n        return std::min(oddcnt, evencnt);\n    }\n};"
+}

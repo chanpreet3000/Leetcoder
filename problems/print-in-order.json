@@ -1,0 +1,5 @@
+{
+    "problemName": "print-in-order",
+    "language": "cpp",
+    "code": "class Foo {\n    std::promise<void> first_done;\n    \n    std::promise<void> second_done;\npublic:\n    Foo() {\n        \n    }\n\n    void first(function<void()> printFirst) {\n        \n        // printFirst() outputs \"first\". Do not change or remove this line.\n        printFirst();\n        \n        first_done.set_value();\n    }\n\n    void second(function<void()> printSecond) {\n        first_done.get_future().wait();\n        \n        // printSecond() outputs \"second\". Do not change or remove this line.\n        printSecond();\n        \n        second_done.set_value();\n    }\n\n    void third(function<void()> printThird) {\n        second_done.get_future().wait();\n        \n        // printThird() outputs \"third\". Do not change or remove this line.\n        printThird();\n    }\n};"
+}

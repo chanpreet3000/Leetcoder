@@ -1,0 +1,5 @@
+{
+    "problemName": "check-if-one-string-swap-can-make-strings-equal",
+    "language": "python3",
+    "code": "class Solution:\n    def areAlmostEqual(self, s1: str, s2: str) -> bool:\n        if len(s1) != len(s2):\n            return False\n        temp1 = []\n        temp2 = []\n        for i in range(len(s1)):\n            if s1[i] != s2[i]:\n                temp1.append(s1[i])\n                temp2.append(s2[i])\n                if len(temp1) > 2:\n                    return False\n        temp1.sort()\n        temp2.sort()\n        if temp1 == temp2:\n            return True\n        return False"
+}

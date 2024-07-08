@@ -1,0 +1,5 @@
+{
+    "problemName": "time-needed-to-buy-tickets",
+    "language": "java",
+    "code": "class Solution {\n    public int timeRequiredToBuy(int[] tickets, int k) {\n     \n        int time = 0;\n        for(int i = 0; i < tickets.length; i++) {\n            if(i <= k) {\n                time += Math.min(tickets[i], tickets[k]);\n            } else {\n                time += Math.min(tickets[i], tickets[k] - 1);\n            }\n        }\n        return time;\n    }\n}"
+}

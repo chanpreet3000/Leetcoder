@@ -1,0 +1,5 @@
+{
+    "problemName": "sum-of-digits-in-the-minimum-number",
+    "language": "python3",
+    "code": "class Solution:\n    def sumOfDigits(self, nums: List[int]) -> int:\n        mn=nums[0]\n        for i,c in enumerate(nums):\n            mn=min(mn,c)\n        digs=0\n        while mn:\n            digs+=mn%10\n            mn=mn//10\n        \n        return 1-digs%2"
+}

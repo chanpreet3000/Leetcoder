@@ -1,0 +1,5 @@
+{
+    "problemName": "article-views-i",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nselect distinct author_id as id from Views where author_id=viewer_id order by author_id\n"
+}

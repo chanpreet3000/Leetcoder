@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-sum-score-of-array",
+    "language": "java",
+    "code": "class Solution {\n    public long maximumSumScore(int[] nums) {\n        long res = Long.MIN_VALUE;\n        int left = 0;\n        int right = nums.length - 1;\n        long ls = 0;\n        long rs = 0;\n        \n        while(left < nums.length){\n            ls += nums[left++];\n            rs += nums[right--];\n            \n            long max = Math.max(ls, rs);\n            res = Math.max(res, max);\n        }\n        \n        return res;\n    }\n}"
+}

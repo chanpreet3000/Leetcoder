@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-pairs-of-strings-with-concatenation-equal-to-target",
+    "language": "kotlin",
+    "code": "class Solution {\n    fun numOfPairs(nums: Array<String>, target: String): Int {\n        var count = 0\n        for(i in 0 until nums.size) {\n            val first = nums[i]\n            if(!target.startsWith(first)) continue\n            for(j in 0 until nums.size) {\n                if(j != i) {\n                    val second = nums[j]\n                    if(first + second == target) {\n                        count++\n                    }\n                }\n                \n            }\n        }\n        return count\n    }\n}"
+}

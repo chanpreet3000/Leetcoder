@@ -1,0 +1,5 @@
+{
+    "problemName": "team-scores-in-football-tournament",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nselect t1.team_id, t1.team_name,\ncase when t2.pnt is null then 0 else sum(t2.pnt) end as num_points\nfrom teams t1 left join\n\n((select host_team as team,\nsum(case\n    when host_goals > guest_goals then 3\n    when host_goals = guest_goals then 1\n    else 0 end) as pnt\nfrom matches\ngroup by team\norder by team)\n\nunion all\n\n(select guest_team as team,\n sum(case\n    when host_goals < guest_goals then 3\n    when host_goals = guest_goals then 1\n    else 0 end) as pnt\n from matches\n group by team\n order by team)) as t2\n on t1.team_id = t2.team\n group by t1.team_id, t1.team_name\n order by num_points desc, t1.team_id"
+}

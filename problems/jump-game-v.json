@@ -1,0 +1,5 @@
+{
+    "problemName": "jump-game-v",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int dp[1001];\n    int maxJumps(vector<int>& arr, int d) {\n        \n        memset(dp, -1, sizeof(dp));\n        int ans=0;\n        for(int i=0;i<arr.size(); ++i){\n            ans=max(ans, _maxJumps(arr, d, i));\n        }\n        \n        return ans+1;\n        \n    }\n    \n    int _maxJumps(vector<int>& arr, int d, int idx) {\n        \n        int ans=0;\n        \n        if(dp[idx]!=-1){\n            return dp[idx];\n        }\n        \n        for(int i=idx+1;i<min((int)arr.size(), idx+d+1);++i){\n            if(arr[i]<arr[idx]){\n                ans=max(ans, 1+_maxJumps(arr, d, i));\n            }\n            else{\n                break;\n            }\n        }\n        \n        for(int i=idx-1;i>=max(0, idx-d);--i){\n            if(arr[i]<arr[idx]){\n                ans=max(ans, 1+_maxJumps(arr, d, i));\n            }\n            else{\n                break;\n            }\n        }\n        \n        return dp[idx]=ans;\n        \n    }\n};"
+}

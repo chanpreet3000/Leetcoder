@@ -1,0 +1,5 @@
+{
+    "problemName": "the-maze-ii",
+    "language": "python3",
+    "code": "class Solution:\n    def shortestDistance(self, maze: List[List[int]], start: List[int], destination: List[int]) -> int:\n        \n        n_row, n_col = len(maze), len(maze[0])\n        direct = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n        \n        def walk(r, c, dr, dc, path):\n            while n_row > r+dr >= 0 <= c+dc < n_col and maze[r+dr][c+dc] == 0:\n                r += dr\n                c += dc\n                path += 1\n            \n            return path, (r, c)\n        \n        bfs = []\n        heappush(bfs, (0, tuple(start)))\n        seen = set()\n        dest = tuple(destination)\n        \n        while bfs:\n            curr, (r, c) = heappop(bfs)\n            if (r, c) == dest:\n                return curr\n            seen.add((r, c))\n            \n            for dr, dc in direct:\n                n_path, (nr, nc) = walk(r, c, dr, dc, curr)\n                if (nr, nc) not in seen:\n                    heappush(bfs, (n_path, (nr, nc)))\n        \n        return -1"
+}

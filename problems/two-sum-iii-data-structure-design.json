@@ -1,0 +1,5 @@
+{
+    "problemName": "two-sum-iii-data-structure-design",
+    "language": "python3",
+    "code": "class TwoSum:\n\n    def __init__(self):\n        self.nums = []\n\n    def add(self, number: int) -> None:\n        self.nums.append(number)\n\n    def find(self, value: int) -> bool:\n        d = set()\n        for num in self.nums:\n            if num in d:\n                return True\n            else:\n                d.add(value - num)\n        return False\n        \n        \n        \n\n\n# Your TwoSum object will be instantiated and called as such:\n# obj = TwoSum()\n# obj.add(number)\n# param_2 = obj.find(value)"
+}

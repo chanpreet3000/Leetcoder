@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-orders-in-the-backlog",
+    "language": "python3",
+    "code": "class Solution:\n    def getNumberOfBacklogOrders(self, orders: List[List[int]]) -> int:\n        \n        b = []\n        s = []\n        mod = 10**9 + 7\n        \n        for p, a , o in orders:\n            if o == 0:\n                heappush(b, [-p, a])\n            else:\n                heappush(s, [p, a])\n                \n                \n            while s and b and s[0][0] <= -b[0][0]:\n                k = min(s[0][1], b[0][1])\n                \n                s[0][1] -= k\n                b[0][1] -= k\n                \n                if not s[0][1]: heappop(s)\n                if not b[0][1]: heappop(b)\n                    \n        return sum( a for p, a in s+b) % mod\n            "
+}

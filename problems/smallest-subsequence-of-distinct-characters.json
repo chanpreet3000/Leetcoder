@@ -1,0 +1,5 @@
+{
+    "problemName": "smallest-subsequence-of-distinct-characters",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    string smallestSubsequence(string s) {\n        map<char,int>mp,mp1;\n        string t;\n        for(auto &i:s)mp[i]++;\n        for(auto &i:s){\n            mp[i]--;\n              if(!mp1[i]){\n                  while(t.size() and t.back()>i and mp[t.back()]){\n                              \n                      mp1[t.back()]=0; t.pop_back();\n                  }  \n                  t.push_back(i);\n                  mp1[i]=1;\n              }\n        }\n        return t;\n    \n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "next-closest-time",
+    "language": "python3",
+    "code": "class Solution(object):\n    def nextClosestTime(self, time):\n        \"\"\"\n        :type time: str\n        :rtype: str\n        \"\"\"\n        hour, minute = time.split(\":\")\n        \n        # Generate all possible 2 digit values\n        # There are at most 16 sorted values here\n        nums = sorted(set(hour + minute))\n        two_digit_values = [a+b for a in nums for b in nums]\n\n        # Check if the next valid minute is within the hour\n        i = two_digit_values.index(minute)\n        if i + 1 < len(two_digit_values) and two_digit_values[i+1] < \"60\":\n            return hour + \":\" + two_digit_values[i+1]\n\n        # Check if the next valid hour is within the day\n        i = two_digit_values.index(hour)\n        if i + 1 < len(two_digit_values) and two_digit_values[i+1] < \"24\":\n            return two_digit_values[i+1] + \":\" + two_digit_values[0]\n        \n        # Return the earliest time of the next day\n        return two_digit_values[0] + \":\" + two_digit_values[0]"
+}

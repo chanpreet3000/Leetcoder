@@ -1,0 +1,5 @@
+{
+    "problemName": "buildings-with-an-ocean-view",
+    "language": "python3",
+    "code": "class Solution:\n    def findBuildings(self, heights: List[int]) -> List[int]:\n        c=len(heights)-1\n        tallest=0\n        ans=[]\n        while c>=0:\n            if heights[c]>tallest:\n                ans.append(c)\n            tallest=max(heights[c], tallest)\n            c-=1\n        return ans[::-1]"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "count-positions-on-street-with-required-brightness",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    \nint meetRequirement(int n, vector<vector<int>>& lights, vector<int>& reqs) {\nmap<int, int> xToPower;\n    //return 2;\nfor(auto & light : lights) {\nxToPower[max(0, light[0]-light[1])]++;\nxToPower[min(n, light[0]+light[1]+1)]--;\t\n}\nint i = 0;\nint sol = 0;\nint curr = 0;\n    \nfor(auto & [x, power] : xToPower) {\n\t//cout << x << \" \" << power << \" \" << i << endl;\n\tif(i == n)\n        break;\n    while(x > i) {\n        if(curr >= reqs[i])\n            sol++;\n        i++;\n    }\n    curr += power;\n    if(i < n && curr >= reqs[i++])\n        sol++;\n}\n    while(i < n) {\n        if(curr >= reqs[i++])\n            sol++;\n    }\nreturn sol;      \n}\n\n};"
+}

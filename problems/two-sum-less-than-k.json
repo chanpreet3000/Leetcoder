@@ -1,0 +1,5 @@
+{
+    "problemName": "two-sum-less-than-k",
+    "language": "python3",
+    "code": "class Solution:\n    def twoSumLessThanK(self, nums: List[int], k: int) -> int:\n        nums.sort()\n        ans = -1\n\n        left = 0\n        right = len(nums) - 1\n\n        while left < right:\n            Sum = nums[left] + nums[right]\n            if Sum < k:\n                ans = max(ans, Sum)\n                left += 1\n            else:\n                right -= 1\n\n        return ans"
+}

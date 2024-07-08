@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-elements-to-add-to-form-a-given-sum",
+    "language": "python3",
+    "code": "class Solution:\n    def minElements(self, nums: List[int], limit: int, goal: int) -> int:\n        su = sum(nums)\n        dis = su - goal\n        return ceil(abs(dis)/limit)"
+}

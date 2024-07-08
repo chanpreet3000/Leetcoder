@@ -1,0 +1,5 @@
+{
+    "problemName": "parsing-a-boolean-expression",
+    "language": "python3",
+    "code": "class Solution:\n    def parseBoolExpr(self, expression: str) -> bool:\n        stack = []\n        for c in expression:\n            if c == ')':\n                visited = set()\n                while stack[-1] != '(':\n                    visited.add(stack.pop())\n                stack.pop()\n                operator = stack.pop()\n                stack.append(all(visited) if operator == '&' else any(visited) if operator == '|' else not visited.pop())\n            elif c != ',':\n                stack.append(True if c == 't' else False if c == 'f' else c)\n        return stack.pop()\n                \n            "
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "check-if-all-1s-are-at-least-length-k-places-away",
+    "language": "python3",
+    "code": "class Solution:\n    def kLengthApart(self, nums: List[int], k: int) -> bool:\n        if k == 0:\n            return True\n        prev = None\n        for i, num in enumerate(nums):\n            if num == 1:\n                if prev is not None and i - prev <= k:\n                    return False\n                prev = i\n        return True\n\n"
+}

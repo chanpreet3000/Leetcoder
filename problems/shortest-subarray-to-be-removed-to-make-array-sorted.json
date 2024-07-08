@@ -1,0 +1,5 @@
+{
+    "problemName": "shortest-subarray-to-be-removed-to-make-array-sorted",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int findLengthOfShortestSubarray(vector<int>& arr) { int n=arr.size();\n        if(n==1) return 0;\n        int l=0,r=n-1; vector<int>a,b;\n        a.push_back(arr[0]); b.push_back(arr[n-1]);\n        for(int i=1;i<arr.size();i++)\n        {\n            if(arr[i]>=arr[i-1])\n            {a.push_back(arr[i]);l=i;}\n            else\n                break;\n        }\n        if(l==n-1) {return 0;}\n           for(int i=n-2;i>=0;i--)\n        {\n            if(arr[i]<=arr[i+1])\n            {b.push_back(arr[i]);r=i;}\n            else\n                break;\n        }\n      reverse(b.begin(),b.end());\n     //  cout<<l<<\" \"<<r<<endl;\n        int ans=INT_MAX,zz=a.size();\n      for(int i=0;i<a.size();i++)\n        {  \n            int p=lower_bound(b.begin(),b.end(),a[i])-b.begin();\n         // cout<<a[i]<<\" \"<<p<<endl;\n            ans=min(ans,p+zz-1-i);\n        }  \n             ans=min(ans,zz);\n   ans+=r-l-1;\n                  return ans;\n    }\n};"
+}

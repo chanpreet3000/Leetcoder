@@ -1,0 +1,5 @@
+{
+    "problemName": "the-category-of-each-member-in-the-store",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nselect\n    m.member_id,\n    m.name,\n    case when count(v.visit_id)=0 then 'Bronze'\n        else (case when count(p.visit_id) / count(v.visit_id)*100 >= 80 then 'Diamond'\n                    when count(p.visit_id) / count(v.visit_id)*100 >=50 then 'Gold'\n                    else 'Silver' end) end as category\n              \nfrom members m\nleft join visits v\non m.member_id = v.member_id\nleft join purchases p\non v.visit_id = p.visit_id\ngroup by m.member_id\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n# select\n#     m.member_id,\n#     m.name,\n#     if(count(v.visit_id)=0,'Bronze',\n#         case when 100*count(p.visit_id)/count(v.visit_id)>=80 then 'Diamond'\n#         when 100*count(p.visit_id)/count(v.visit_id)>=50 and 100*count(p.visit_id)/count(v.visit_id)<80 then 'Gold'\n#        else 'Silver' end) as category\n\n# from members m\n# left join visits v\n# on m.member_id=v.member_id\n# left join purchases p\n# on v.visit_id=p.visit_id\n# group by m.member_id"
+}

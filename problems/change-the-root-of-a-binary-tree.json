@@ -1,0 +1,5 @@
+{
+    "problemName": "change-the-root-of-a-binary-tree",
+    "language": "python3",
+    "code": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val):\n        self.val = val\n        self.left = None\n        self.right = None\n        self.parent = None\n\"\"\"\n\nclass Solution:\n    def flipBinaryTree(self, root: 'Node', leaf: 'Node') -> 'Node':\n        cur = leaf\n        prevNode = None\n        \n        i = 0\n        while cur:\n            oldPar = cur.parent\n            cur.parent = prevNode\n            \n            #break the linkage between oldPar and cur\n            if not oldPar:\n                break\n            \n            if oldPar.left and oldPar.left == cur:\n                oldPar.left = None\n            if oldPar.right and oldPar.right == cur:\n                oldPar.right = None\n            \n            if cur.left:\n                cur.right = cur.left\n                \n            cur.left = oldPar\n            prevNode = cur\n            cur = oldPar\n\n            # print(cur.val)\n            # print('_'*40)\n\n        return leaf\n\n            \n        "
+}

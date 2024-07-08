@@ -1,0 +1,5 @@
+{
+    "problemName": "flip-game",
+    "language": "python3",
+    "code": "class Solution:\n    def generatePossibleNextMoves(self, s: str) -> List[str]:\n        n = len(s)\n        s = list(s)\n        moves = []\n\n        for i in range(n-1):\n            if s[i] == \"+\" and s[i+1] == \"+\":\n                s[i] = \"-\"\n                s[i+1] = \"-\"\n                moves.append(\"\".join(s))\n                ##Recovery\n                s[i] = \"+\"\n                s[i+1] = \"+\"\n        return moves"
+}

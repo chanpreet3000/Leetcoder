@@ -1,0 +1,5 @@
+{
+    "problemName": "form-largest-integer-with-digits-that-add-up-to-target",
+    "language": "python3",
+    "code": "class Solution:\n    def largestNumber(self, cost: List[int], target: int) -> str:\n        table = [[] for _ in range(target + 1)]\n        table[0] = [\"0\"]\n        \n        for num in range(1, 10):\n            for pre_cost in range(0, target - cost[num - 1] + 1):\n                if table[pre_cost] and len(table[pre_cost]) + 1 >= len(table[pre_cost + cost[num - 1]]):\n                    table[pre_cost + cost[num - 1]] = table[pre_cost] + [str(num)]\n        \n        return ''.join(sorted(table[target], reverse = True)[:-1]) if table[target] else \"0\""
+}

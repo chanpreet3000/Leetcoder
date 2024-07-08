@@ -1,0 +1,5 @@
+{
+    "problemName": "longest-substring-with-at-most-two-distinct-characters",
+    "language": "python3",
+    "code": "class Solution:\n    def lengthOfLongestSubstringTwoDistinct(self, s: str) -> int:\n        start = 0\n        end = 0\n        dict1 = {}\n        maxLen = 0\n        while end < len(s):\n            dict1[s[end]] = end\n            if len(dict1) > 2:\n                minIdex = min(dict1.values())\n                del dict1[s[minIdex]]\n                start = minIdex + 1\n\n            maxLen = max(maxLen, end - start + 1)\n            end += 1\n        return maxLen"
+}

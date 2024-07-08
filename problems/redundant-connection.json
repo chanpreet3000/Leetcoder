@@ -1,0 +1,5 @@
+{
+    "problemName": "redundant-connection",
+    "language": "javascript",
+    "code": "/**\n * @param {number[][]} edges\n * @return {number[]}\n */\nvar findRedundantConnection = function(edges) {\n    let parent = [...Array(edges.length + 1).keys()]\n    let rank = Array(edges.length + 1).fill(1)\n    \n    const find = n => {\n        let p = parent[n]\n        while(p !== parent[p]){\n            parent[p] = parent[parent[p]]\n            p = parent[p]\n        }\n        return p\n    }\n    \n    const union = (n1, n2) => {\n        let p1 = find(n1)\n        let p2 = find(n2)\n        \n        if(p1 === p2){\n            return false\n        }\n        \n        if(rank[p1] > rank[p2]){\n            parent[p2] = p1\n            rank[p1] += rank[p2]\n        }\n        else{\n            parent[p1] = p2\n            rank[p2] += rank[p1]\n        }\n        return true\n    }\n    \n    for(let [n1, n2] of edges){\n        if(!union(n1, n2)){\n            return [n1, n2]\n        }\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "path-in-zigzag-labelled-binary-tree",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<int> pathInZigZagTree(int label) {\n        int level = 0;\n        while (1 << level <= label)\n            level++;\n        level-=2;\n        \n        vector<int> ans;\n        int cv = label;\n        for(int i=level; i>=0; i--){\n            ans.push_back((1<<i) + (1<<(i+1)) - 1 - cv/2);\n            cv = ans.back();\n        }\n        reverse(ans.begin(), ans.end());\n        ans.push_back(label);\n        return ans;\n    }\n};"
+}

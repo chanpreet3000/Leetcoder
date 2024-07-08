@@ -1,0 +1,5 @@
+{
+    "problemName": "pancake-sorting",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n     void flip(vector<int>& A, int idx){\n        for(int i = 0; i <= idx/2; ++i){\n            int tmp = A[i];\n            A[i] = A[idx-i];\n            A[idx-i] = tmp;\n        }\n    }\n    vector<int> pancakeSort(vector<int>& A) {\n        vector<int> result;\n        for(int i = A.size()-1; i > 0; --i){\n            for(int j = 1; j <= i; ++j){\n                if(A[j] == i+1){\n                    flip(A, j);\n                    result.push_back(j+1);\n                    break;\n                }\n            }\n            flip(A, i);\n            result.push_back(i+1);\n        }\n        return result;\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "inorder-successor-in-bst",
+    "language": "cpp",
+    "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}\n * };\n */\nclass Solution {\npublic:\n    TreeNode* inorderSuccessor(TreeNode* root, TreeNode* p) {\n        TreeNode* prev=nullptr;\n        return traverse(root,prev,p);\n        \n    }\n    TreeNode* traverse(TreeNode* curr, TreeNode* &prev,TreeNode* p){\n        if(curr->left){\n            TreeNode* ret=traverse(curr->left, prev,p);\n            if(ret!=nullptr) return ret;\n        }\n        if(prev==p) return curr;\n        prev=curr;\n        if(curr->right){\n            TreeNode* ret=traverse(curr->right, prev,p);\n            if(ret!=nullptr) return ret;\n        }\n        return nullptr;\n    }\n    \n};"
+}

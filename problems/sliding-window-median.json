@@ -1,0 +1,5 @@
+{
+    "problemName": "sliding-window-median",
+    "language": "java",
+    "code": "class Solution {\n   public double[] medianSlidingWindow(int[] nums, int k) {\n        PriorityQueue<Integer> min = new PriorityQueue<Integer>();\n        PriorityQueue<Integer> max = new PriorityQueue<Integer>(Collections.reverseOrder());\n        double[] res = new double[nums.length-k+1];\n        for(int i=0;i<nums.length;i++){\n            max.offer(nums[i]);\n            min.offer(max.poll());\n            if(max.size()<min.size()){\n                max.offer(min.poll());\n            }\n            if(min.size()+max.size()==k){\n                if(k%2==0){\n                    res[i-k+1] = min.peek()*0.5+max.peek()*0.5;\n                }else{\n                    res[i-k+1] = max.peek()*1.0;\n                }\n                if(!min.remove(nums[i-k+1])){\n                    max.remove(nums[i-k+1]);\n                }\n            }\n        }\n        return res;\n    }\n}"
+}

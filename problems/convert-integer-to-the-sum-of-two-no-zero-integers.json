@@ -1,0 +1,5 @@
+{
+    "problemName": "convert-integer-to-the-sum-of-two-no-zero-integers",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<int> getNoZeroIntegers(int n) {\n        for(int i=1; i<n; i++)\n        {\n            if(noZero(i) && noZero(n-i))\n                return {i, n-i};\n        }\n        return {};\n    }\n    bool noZero(int n)\n    {\n        while(n > 0)\n        {\n            if(n%10 == 0)\n                return false;\n             n /= 10;\n        }\n        return true;\n    }\n};"
+}

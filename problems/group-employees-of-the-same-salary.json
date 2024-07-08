@@ -1,0 +1,5 @@
+{
+    "problemName": "group-employees-of-the-same-salary",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith sal as (\n    select salary\n    from Employees\n    group by 1\n    having count(distinct employee_id) > 1\n),\n\n emp as (\n    select e.employee_id, e.name, e.salary\n    from Employees e\n    join sal s\n    on e.salary = s.salary\n)\n\n\nselect e.employee_id, e.name, e.salary,\n      dense_rank() over (order by salary asc) as team_id\nfrom emp e\n"
+}
