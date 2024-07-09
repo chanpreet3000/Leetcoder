@@ -1,0 +1,5 @@
+{
+    "problemName": "beautiful-array",
+    "language": "python3",
+    "code": "#class Solution:\n#    def beautifulArray(self, n: int) -> List[int]:\n        \n    \n#\"\"\"\nclass Solution:\n    def beautifulArray(self, N):\n        res = [1]\n        while len(res) < N:\n            res = [i * 2 - 1 for i in res] + [i * 2 for i in res]\n        return [i for i in res if i <= N]\n#\"\"\"\n\n\"\"\"\nclass Solution:\n    def beautifulArray(self, N):\n        memo = {1: [1]}\n        \n        def f(N):\n            if N not in memo:\n                odds = f((N+1)//2)\n                evens = f(N//2)\n                memo[N] = [2*x-1 for x in odds] + [2*x for x in evens]\n            return memo[N]\n        \n        return f(N)\n\"\"\""
+}

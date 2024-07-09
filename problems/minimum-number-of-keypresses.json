@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-number-of-keypresses",
+    "language": "python3",
+    "code": "from collections import Counter\nclass Solution:\n    def minimumKeypresses(self, s: str) -> int:\n        dic = Counter(s)\n        tup = [(chr(ord_ch),dic[chr(ord_ch)]) for ord_ch in range(ord('a'),ord('z')+1)]\n        tup.sort(key=lambda x:x[1],reverse=True)\n        return sum([tup[i][1] for i in range(9)])+2*sum([tup[i][1] for i in range(9,18)])+3*sum([tup[i][1] for i in range(18,26)])\n        "
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "missing-number-in-arithmetic-progression",
+    "language": "python3",
+    "code": "class Solution:\n    def missingNumber(self, arr: List[int]) -> int:\n        diff1 = arr[0] - arr[1]\n        diff2 = arr[1] - arr[2]\n        if diff1 == diff2:\n            diff = diff1\n        else:\n            if len(arr) == 3:\n                if abs(diff1) < abs(diff2):\n                    return arr[1] - diff1\n                return arr[0] - diff2\n            diff3 = arr[2] - arr[3]\n            if diff2 == diff3:\n                return arr[0] - diff2\n            else:\n                return arr[1] - diff1\n        for i in range(len(arr) - 1):\n            if arr[i] - arr[i + 1] != diff:\n                return arr[i] - diff\n        return arr[0]"
+}

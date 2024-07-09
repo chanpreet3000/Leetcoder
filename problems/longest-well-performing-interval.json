@@ -1,0 +1,5 @@
+{
+    "problemName": "longest-well-performing-interval",
+    "language": "python3",
+    "code": "class Solution:\n    def longestWPI(self, hours: List[int]) -> int:\n        tmp = [1 if i > 8 else -1 for i in hours]\n        print(tmp)\n        prefix = 0  # net tired value\n        wpi = 0\n        dic = {} \n        for i,j in enumerate(tmp):\n            prefix += j\n            if prefix > 0:\n                wpi = i + 1  # enumerate start from 0\n            if prefix not in dic:\n                dic[prefix] = i\n            if prefix - 1 in dic:\n                wpi = max(wpi,i - dic[prefix - 1])\n        return wpi\n     "
+}

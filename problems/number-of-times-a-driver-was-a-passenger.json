@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-times-a-driver-was-a-passenger",
+    "language": "mysql",
+    "code": "select a.driver_id, ifnull(count(distinct b.ride_id), 0) as cnt\nfrom Rides a left join Rides b on a.driver_id = b.passenger_id\ngroup by a.driver_id"
+}

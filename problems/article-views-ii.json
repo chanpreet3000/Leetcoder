@@ -1,0 +1,5 @@
+{
+    "problemName": "article-views-ii",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect distinct viewer_id as id\nfrom Views\ngroup by viewer_id, view_date\nhaving count(distinct article_id) > 1\n# order by view_date\n"
+}

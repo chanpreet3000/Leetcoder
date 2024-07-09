@@ -1,0 +1,5 @@
+{
+    "problemName": "day-of-the-year",
+    "language": "python3",
+    "code": "class Solution:\n    def dayOfYear(self, date: str) -> int:\n        year, month, date = (int(num) for num in date.split(\"-\"))\n        if month == 1: return date\n        leap = 0\n        if year % 400 == 0 or (year % 100 != 0 and year % 4 == 0): leap = 1\n        months = [31, 28+leap, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n        return sum(months[0:month-1]) + date"
+}

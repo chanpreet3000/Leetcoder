@@ -1,0 +1,5 @@
+{
+    "problemName": "verify-preorder-serialization-of-a-binary-tree",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    bool isValidSerialization(string preorder) {    \n        int unclosed_nodes = 0;\n        for(int i=0; i<preorder.size(); i++) {\n            if(preorder[i] == '#') {\n                unclosed_nodes--;\n                if(unclosed_nodes < 0 && i!=preorder.size()-1) {\n                    return false;\n                }\n                i++;\n            }\n            else {\n                unclosed_nodes++;\n                i++;\n                while(i < preorder.size() && preorder[i] != ',') {\n                    i++;\n                }\n            }\n            \n        }\n        if(unclosed_nodes != -1) {\n            return false;\n        }\n        return true;\n    }\n};"
+}

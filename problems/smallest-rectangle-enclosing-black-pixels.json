@@ -1,0 +1,5 @@
+{
+    "problemName": "smallest-rectangle-enclosing-black-pixels",
+    "language": "java",
+    "code": "public class Solution {\n    public int minArea(char[][] image, int x, int y) {\n        int top = x, bottom = x;\n        int left = y, right = y;\n        for (x = 0; x < image.length; ++x) {\n            for (y = 0; y < image[0].length; ++y) {\n                if (image[x][y] == '1') {\n                    top = Math.min(top, x);\n                    bottom = Math.max(bottom, x + 1);\n                    left = Math.min(left, y);\n                    right = Math.max(right, y + 1);\n                }\n            }\n        }\n        return (right - left) * (bottom - top);\n    }\n}"
+}

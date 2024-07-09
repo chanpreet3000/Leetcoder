@@ -1,0 +1,5 @@
+{
+    "problemName": "sentence-similarity-iii",
+    "language": "java",
+    "code": "class Solution {\n    public boolean areSentencesSimilar(String sentence1, String sentence2) {\n        String[] s1 = sentence1.split(\" \");\n        String[] s2 = sentence2.split(\" \");\n        \n        int i = 0, j = 0;\n        while (i < s1.length && j < s2.length){\n            if (!s1[i].equals(s2[j])) break;\n            i++;\n            j++;\n        }\n        \n        if (i == s1.length || j == s2.length) return true;\n        int len1 = s1.length - 1, len2 = s2.length - 1;\n        \n        while(len1 >= i && len2 >= j){\n            if(!s1[len1].equals(s2[len2])) return false;\n            len1--;\n            len2--;\n        }\n        \n        return len1 < i || len2 < j;        \n    }\n}"
+}

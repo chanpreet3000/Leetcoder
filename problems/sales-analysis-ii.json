@@ -1,0 +1,5 @@
+{
+    "problemName": "sales-analysis-ii",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT S.buyer_id\nFROM Sales AS S\nLEFT JOIN Product AS P\n    ON S.product_id = P.product_id\nGROUP BY S.buyer_id\nHAVING SUM(IF(P.product_name = 'S8', 1, 0)) > 0    \n    AND\n    SUM(IF(P.product_name = 'iPhone', 1, 0)) = 0;\n\n\n"
+}

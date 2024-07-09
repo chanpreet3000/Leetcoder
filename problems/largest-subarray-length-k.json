@@ -1,0 +1,5 @@
+{
+    "problemName": "largest-subarray-length-k",
+    "language": "python3",
+    "code": "class Solution:\n    def largestSubarray(self, nums: List[int], k: int) -> List[int]:\n        \n        left=0\n        right=1\n        while(right+k<=len(nums)):\n            if nums[left]<nums[right]:   \n                left=right  \n            right+=1        \n        return nums[left:left+k]\n            \n        "
+}

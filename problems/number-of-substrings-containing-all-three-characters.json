@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-substrings-containing-all-three-characters",
+    "language": "python3",
+    "code": "def idx(c):\n    return ord(c) - ord('a')\n\n\nclass Solution:\n    def numberOfSubstrings(self, s: str) -> int:\n        cnts = [0] * 3\n        pos = -1\n        \n        result = 0\n        for i, c in enumerate(s):\n            cnts[idx(c)] += 1\n            \n            if pos == -1 and all(cnt > 0 for cnt in cnts):\n                pos = 0\n                \n            while pos != -1 and pos < len(s):\n                if cnts[idx(s[pos])] >= 2:\n                    cnts[idx(s[pos])] -= 1\n                    pos += 1\n                else:\n                    break\n                \n            # assert: s[pos: i+1] is the shortest legal string\n            # print(pos)\n            result += pos + 1\n        \n        return result\n            "
+}

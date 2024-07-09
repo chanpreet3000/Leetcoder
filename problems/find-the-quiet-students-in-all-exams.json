@@ -1,0 +1,5 @@
+{
+    "problemName": "find-the-quiet-students-in-all-exams",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nWITH A AS (\n    SELECT \n        student_id, score,\n        MIN(score) OVER(PARTITION BY exam_id) as mi,\n        MAX(score) OVER(PARTITION BY exam_id) as ma\n    FROM Exam\n),\n  B AS (\n      SELECT DISTINCT(student_id)\n      FROM Exam\n      WHERE student_id NOT IN (\n            SELECT DISTINCT(student_id)\n            FROM A\n            WHERE score = mi OR score = ma\n      )\n)\n\nSELECT B.student_id, s.student_name\nFROM B\nLEFT JOIN Student s ON B.student_id = s.student_id\nORDER BY B.student_id ASC\n\n"
+}

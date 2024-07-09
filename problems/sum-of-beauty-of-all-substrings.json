@@ -1,0 +1,5 @@
+{
+    "problemName": "sum-of-beauty-of-all-substrings",
+    "language": "python3",
+    "code": "class Solution:\n    def beautySum(self, s: str) -> int:\n        res = 0\n        for i in range(len(s) - 2):\n            d = defaultdict(int)\n            for j in range(i, len(s)):\n                d[s[j]] += 1\n                # print(d)\n                max_val = max(d.values())\n                min_val = min(d.values())\n                res += max_val - min_val\n                # print(max_val, min_val)\n                           \n        return res"
+}

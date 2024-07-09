@@ -1,0 +1,5 @@
+{
+    "problemName": "investments-in-2016",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nWith tmp as \n(\nSelect distinct(I1.pid) as PID,\n    I1.tiv_2016\nfrom Insurance I1 join Insurance I2\non(I1.tiv_2015=I2.tiv_2015 and I1.pid!=I2.pid)), tmp2 as \n(Select distinct(I1.pid)\nfrom Insurance I1 join Insurance I2\n on(I1.lat=I2.lat and I1.lon=I2.lon and I1.pid!=I2.pid))\n  \n Select round(sum(tiv_2016),2) as tiv_2016\n  from tmp\n  where PID not in (Select * from tmp2);"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "correct-a-binary-tree",
+    "language": "python3",
+    "code": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def correctBinaryTree(self, root: TreeNode) -> TreeNode:\n        seen = set()\n        def dfs(node):\n            if not node:\n                return False\n            \n            if node.right and node.right.val in seen:\n                return True\n            \n            seen.add(node.val)\n            if dfs(node.right):\n                node.right = None\n                return False\n                \n            if dfs(node.left):\n                node.left = None\n                return False\n        \n        dfs(root)\n        return root"
+}

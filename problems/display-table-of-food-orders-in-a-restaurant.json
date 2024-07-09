@@ -1,0 +1,5 @@
+{
+    "problemName": "display-table-of-food-orders-in-a-restaurant",
+    "language": "python3",
+    "code": "class Solution:\n    def displayTable(self, orders: List[List[str]]) -> List[List[str]]:\n        \n        tables = defaultdict(lambda : defaultdict(int))\n        items = set()\n        \n        for _, table, item in orders:\n            tables[table][item] = tables[table][item] + 1\n            items.add(item)\n            \n        output = [[\"Table\", *sorted(items)]]\n        for table in sorted(tables.keys(), key = lambda x: int(x)):\n            line = [str(table)]\n            for item in output[0][1:]:\n                line.append(str(tables[table][item]))\n            output.append(line)\n            \n        return output\n            "
+}

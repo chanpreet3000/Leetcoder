@@ -1,0 +1,5 @@
+{
+    "problemName": "corporate-flight-bookings",
+    "language": "python3",
+    "code": "class Solution:\n    def corpFlightBookings(self, bookings: List[List[int]], n: int) -> List[int]:\n        addition = [0] * (n+1)\n        sub = [0] * (n+1)\n        \n        res=[0] * (n)\n        \n        for interval in bookings:\n            lower, upper, amount = interval\n            \n            addition[lower]+=amount\n            if upper+1 < n+1:\n                sub[upper+1]-=amount\n        print(addition, sub)\n        s = 0\n        for i in range(1, n+1):\n            s+=addition[i]\n            s+=sub[i]\n            res[i-1] = s\n        return res"
+}

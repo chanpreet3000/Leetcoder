@@ -1,0 +1,5 @@
+{
+    "problemName": "k-similar-strings",
+    "language": "python3",
+    "code": "class Solution:\n    def kSimilarity(self, s1: str, s2: str) -> int:\n        def getNei(s: List[str]) -> str:\n            i = 0\n            while s[i] == s2[i]:\n                i += 1\n            \n            for j in range(i + 1, len(s)):\n                if s[j] == s2[i] and s[j] != s2[j]:\n                    s[i], s[j] = s[j], s[i]\n                    yield \"\".join(s)\n                    s[i], s[j] = s[j], s[i]\n                    \n        \n        q = deque([(s1, 0)])\n        seen = {s1}\n        while q:\n            s, d = q.popleft()\n            if s == s2:\n                return d\n            \n            for nei in getNei(list(s)):\n                if nei not in seen:\n                    seen.add(nei)\n                    q.append((nei, d + 1))\n        return -1"
+}

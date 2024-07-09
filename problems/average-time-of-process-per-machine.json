@@ -1,0 +1,5 @@
+{
+    "problemName": "average-time-of-process-per-machine",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith tbl as (select machine_id,process_id,\nmax(case when activity_type=\"end\" then timestamp end)-\nmax(case when activity_type=\"start\" then timestamp end) as time_diff\nfrom Activity\ngroup by 1,2)\nselect machine_id,\ncoalesce(round(sum(time_diff)/count(distinct process_id),3),0) as processing_time\nfrom tbl\ngroup by machine_id"
+}

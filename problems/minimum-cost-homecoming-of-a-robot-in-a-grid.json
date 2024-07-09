@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-cost-homecoming-of-a-robot-in-a-grid",
+    "language": "golang",
+    "code": "func minCost(startPos []int, homePos []int, rowCosts []int, colCosts []int) int {\n  var res int\n  startx, starty := startPos[0], startPos[1]\n  endx, endy := homePos[0], homePos[1]\n  if startx <= endx {\n    for i := startx+1; i <= endx; i++ {\n      res += rowCosts[i]\n    }\n  } else {\n    for i := startx-1; i >= endx; i-- {\n      res += rowCosts[i]\n    }\n  }\n  if starty <= endy {\n    for j := starty+1; j <= endy; j++ {\n      res += colCosts[j]\n    }\n  } else {\n    for j := starty-1; j >= endy; j-- {\n      res += colCosts[j]\n    }\n  }\n  return res\n}"
+}

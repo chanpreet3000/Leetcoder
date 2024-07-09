@@ -1,0 +1,5 @@
+{
+    "problemName": "find-the-minimum-and-maximum-number-of-nodes-between-critical-points",
+    "language": "javascript",
+    "code": "/**\n * Definition for singly-linked list.\n * function ListNode(val, next) {\n *     this.val = (val===undefined ? 0 : val)\n *     this.next = (next===undefined ? null : next)\n * }\n */\n/**\n * @param {ListNode} head\n * @return {number[]}\n */\nconst nodesBetweenCriticalPoints = function(head) {\n  const arr = []\n  let cur = head\n  while(cur) {\n    arr.push(cur.val)\n    cur = cur.next\n  }\n  const idxArr = []\n  const n = arr.length\n  for(let i = 1; i < n - 1; i++) {\n    if((arr[i] > arr[i - 1] && arr[i] > arr[i + 1]) || (arr[i] < arr[i - 1] && arr[i] < arr[i + 1])) {\n      idxArr.push(i)\n    }\n  }\n  \n  let min = Infinity, max = -1\n  for(let i = 1; i < idxArr.length; i++) {\n    if(idxArr[i] - idxArr[i - 1] < min) min = idxArr[i] - idxArr[i - 1]\n  }\n  if(idxArr.length > 1) max = idxArr[idxArr.length - 1] - idxArr[0]\n  return [min === Infinity ? -1 : min, max]\n};"
+}

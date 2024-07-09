@@ -1,0 +1,5 @@
+{
+    "problemName": "order-two-columns-independently",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n \n select first_col, second_col\n from\n (select \n row_number()over(order by first_col) as id, first_col\n from data) sub1\n join \n  (select \n row_number()over(order by  second_col desc) as id, second_col\n from data) sub2\n on sub1.id=sub2.id\n "
+}

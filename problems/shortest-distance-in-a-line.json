@@ -1,0 +1,5 @@
+{
+    "problemName": "shortest-distance-in-a-line",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT min(dist) as shortest\nfrom \n    (\n        SELECT p.x, (\n                        SELECT min(abs(p.x -x))\n            from Point\n            where x != p.x )as dist\n    FROM Point as p\n   ) as t"
+}

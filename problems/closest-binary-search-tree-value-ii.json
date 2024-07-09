@@ -1,0 +1,5 @@
+{
+    "problemName": "closest-binary-search-tree-value-ii",
+    "language": "python",
+    "code": "# Definition for a binary tree node.\n# class TreeNode(object):\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution(object): \n    def closestKValues(self, root, target, k): \n        def helper(node, t, k, ans): \n            if not node: \n                return  \n            helper(node.left, t, k, ans) \n            if len(ans) < k: \n                ans.append(node.val) \n            else: \n                if abs(t-node.val) < abs(t-ans[0]): \n                    ans.pop(0) \n                    ans.append(node.val) \n            helper(node.right, t, k, ans) \n         \n        res = [] \n        helper(root, target, k, res) \n        return res"
+}

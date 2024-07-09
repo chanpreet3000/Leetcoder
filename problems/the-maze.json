@@ -1,0 +1,5 @@
+{
+    "problemName": "the-maze",
+    "language": "python3",
+    "code": "\n\nclass Solution:\n    def hasPath(self, maze: List[List[int]], start: List[int], destination: List[int]) -> bool:\n        m=len(maze)\n        n=len(maze[0])\n        di=[[0,-1],[0,1],[1,0],[-1,0]]\n        g = destination\n        visited=set([])\n        def dfs(x, y):\n            if (x, y) in visited:\n                return False\n            visited.add((x, y))\n            if x == g[0] and y == g[1]:\n                return True\n            for d in di:\n                nx, ny = x, y\n                while 0<= nx + d[0] < m and 0<= ny + d[1] < n and maze[nx + d[0]][ny + d[1]] == 0:\n                    nx += d[0]\n                    ny += d[1]\n                if dfs(nx, ny):\n                    return True\n            return False\n        return dfs(start[0], start[1])\n        "
+}

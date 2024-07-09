@@ -1,0 +1,5 @@
+{
+    "problemName": "finding-the-topic-of-each-post",
+    "language": "mysql",
+    "code": "SELECT \n    P.post_id, \n    IFNULL(GROUP_CONCAT(DISTINCT K.topic_id ORDER BY K.topic_id), 'Ambiguous!') AS topic\nFROM Posts AS P\nLEFT JOIN Keywords AS K\nON CONCAT(' ', LOWER(P.content), ' ') LIKE CONCAT('% ', LOWER(K.word), ' %')\nGROUP BY P.post_id"
+}

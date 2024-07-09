@@ -1,0 +1,5 @@
+{
+    "problemName": "rotate-function",
+    "language": "python3",
+    "code": "class Solution:\n    def maxRotateFunction(self, nums: List[int]) -> int:\n        summation=0\n        currentsum0=0\n        prevsum=0\n        sol=0\n        \n        for i in range(len(nums)):\n            summation+=nums[i]\n            currentsum0+=nums[i]*i\n            \n        answer=currentsum0\n        #print(currentsum0, summation)\n        prevsum=currentsum0\n        \n        for i in range(1,len(nums)):\n            prevsum=prevsum+summation-len(nums)*nums[len(nums)-i]\n            #print(prevsum)\n            answer=max(answer, prevsum)\n            \n        return answer"
+}

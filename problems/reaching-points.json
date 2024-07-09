@@ -1,0 +1,5 @@
+{
+    "problemName": "reaching-points",
+    "language": "python3",
+    "code": "class Solution:\n    def reachingPoints(self, sx: int, sy: int, tx: int, ty: int) -> bool:\n        while tx > sx and ty > sy:\n            tx, ty = tx % ty, ty % tx\n        \n        if tx == sx and ty == sy:\n            return True\n        \n        if tx == sx and ty > sy and (ty - sy) % tx == 0:\n            return True\n        \n        return ty == sy and tx > sx and (tx - sx) % ty == 0\n        \n            "
+}

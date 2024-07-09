@@ -1,0 +1,5 @@
+{
+    "problemName": "employee-free-time",
+    "language": "python3",
+    "code": "\"\"\"\n# Definition for an Interval.\nclass Interval:\n    def __init__(self, start: int = None, end: int = None):\n        self.start = start\n        self.end = end\n\"\"\"\nimport heapq\nclass Solution:\n    def employeeFreeTime(self, schedule: '[[Interval]]') -> '[Interval]':\n        \n        heap = []\n        for item in list(itertools.chain(*schedule)):\n            heap.append((item.start, item.end))\n\n        heapq.heapify(heap)\n\n        start, end = heapq.heappop(heap)\n        freeTime = []\n        while heap:\n            curr_start, curr_end = heapq.heappop(heap)\n            # next work interval start time > end\n            # [end, curr_start] is free time for all employees\n            if curr_start > end:\n                freeTime.append(Interval(end, curr_start))\n                start, end = curr_start, curr_end\n            # else update end to maximum \n            else:\n                end = max(end, curr_end)\n\n        return freeTime"
+}

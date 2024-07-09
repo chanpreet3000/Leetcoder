@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-domino-rotations-for-equal-row",
+    "language": "python3",
+    "code": "class Solution:\n    def minDominoRotations(self, tops: List[int], bottoms: List[int]) -> int:\n        poss_num = {}\n        for i in range(len(tops)):\n            if tops[i] not in poss_num:\n                poss_num[tops[i]] = 0\n            if bottoms[i] not in poss_num:\n                poss_num[bottoms[i]] = 0\n            \n            if tops[i] == bottoms[i]:\n                poss_num[tops[i]] += 1\n            else:\n                poss_num[tops[i]] += 1\n                poss_num[bottoms[i]] += 1\n        ans = float('inf')\n        print(poss_num)\n        for num in poss_num:\n            if poss_num[num] == len(tops):\n                print(num)\n                ans = min(ans, len(tops) - tops.count(num), len(bottoms) - bottoms.count(num))\n        if ans == float('inf'):\n            ans = -1\n        return ans\n            \n        "
+}

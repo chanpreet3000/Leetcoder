@@ -1,0 +1,5 @@
+{
+    "problemName": "tasks-count-in-the-weekend",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\n\n\nselect\ncount(case when  weekday(submit_date)>=5 then 1 else null end) as weekend_cnt ,\ncount(case when  weekday(submit_date)<5 then 1 else null end) as working_cnt \nfrom Tasks"
+}

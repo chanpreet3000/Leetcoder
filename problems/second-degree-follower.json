@@ -1,0 +1,5 @@
+{
+    "problemName": "second-degree-follower",
+    "language": "mysql",
+    "code": "SELECT DISTINCT Follow.follower, FC.num\nFROM Follow\nJOIN (SELECT followee, count(*) AS num\nFROM Follow\nGROUP BY followee) AS FC\nON Follow.follower = FC.followee\nORDER BY Follow.follower"
+}

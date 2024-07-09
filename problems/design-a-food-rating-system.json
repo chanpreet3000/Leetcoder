@@ -1,0 +1,5 @@
+{
+    "problemName": "design-a-food-rating-system",
+    "language": "python3",
+    "code": "from sortedcontainers import SortedList\n\nclass FoodRatings:\n\n    def __init__(self, foods: List[str], cuisines: List[str], ratings: List[int]):\n        self.mp = {}\n        self.data = defaultdict(SortedList)\n        for food, cuisine, rating in zip(foods, cuisines, ratings): \n            self.mp[food] = (cuisine, rating)\n            self.data[cuisine].add((-rating, food))\n\n    def changeRating(self, food: str, newRating: int) -> None:\n        cuisine, rating = self.mp[food]\n        self.mp[food] = cuisine, newRating\n        self.data[cuisine].remove((-rating, food))\n        self.data[cuisine].add((-newRating, food))\n\n    def highestRated(self, cuisine: str) -> str:\n        return self.data[cuisine][0][1]\n\n# Your FoodRatings object will be instantiated and called as such:\n# obj = FoodRatings(foods, cuisines, ratings)\n# obj.changeRating(food,newRating)\n# param_2 = obj.highestRated(cuisine)"
+}

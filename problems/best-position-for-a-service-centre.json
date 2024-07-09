@@ -1,0 +1,5 @@
+{
+    "problemName": "best-position-for-a-service-centre",
+    "language": "java",
+    "code": "class Solution {\n    public double getMinDistSum(int[][] positions) {\n        double min = Double.MAX_VALUE;\n        double x = 50.0;\n        double y = 50.0;\n        double delta = 50.0;\n        double minX = x;\n        double minY = y;\n        \n        while (delta >= 10e-4) {\n            for (double i = x-delta; i<=x+delta; i+=delta/100) {\n                for (double j = y-delta; j<=y+delta; j+=delta/100) {\n                    double d = dist(positions, i, j);\n                    if (d <= min) {\n                        min = d;\n                        minX = i;\n                        minY = j;\n                    }\n                }\n            }\n            x = minX;\n            y = minY;\n            delta /=100;\n        }\n        return min;\n    }\n    private double dist(int[][] positions, double x, double y) {\n        double ans = 0;\n        for (int[] p: positions) {\n            ans += Math.sqrt(Math.pow(p[0]-x, 2) + Math.pow(p[1]-y, 2));\n        }\n        return ans;\n    }\n}"
+}

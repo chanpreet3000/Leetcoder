@@ -1,0 +1,5 @@
+{
+    "problemName": "sort-the-olympic-table",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT *\nFROM Olympic\nORDER BY gold_medals DESC, silver_medals DESC, bronze_medals DESC, country ASC"
+}

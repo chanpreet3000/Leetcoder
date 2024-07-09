@@ -1,0 +1,5 @@
+{
+    "problemName": "count-square-sum-triples",
+    "language": "java",
+    "code": "class Solution {\n    public int countTriples(int n) {\n        int answer = 0;\n        int k = n * n;\n        for (int i = 1; i < n; i++) {\n            int t = i * i;\n            for (int j = 1; j < n; j++) {\n                int p = j * j;\n                int sum = t + p;\n                if(sum > k){\n                    continue;\n                }\n                if(Math.sqrt(sum) - (long)Math.sqrt(sum) == 0){\n                    answer++;\n                }\n            }\n        }\n        return answer;\n    }\n}"
+}

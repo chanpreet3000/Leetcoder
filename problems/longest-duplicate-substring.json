@@ -1,0 +1,5 @@
+{
+    "problemName": "longest-duplicate-substring",
+    "language": "python3",
+    "code": "class Solution:\n    def longestDupSubstring(self, s: str) -> str:\n        '''\n        BS + check res\n        longest, 有最长的字眼, 同时有需要repeat.\n        \n        banana\n           ===\n        '''\n        def check(k):\n            visited = set()\n            for i in range(len(s) - k + 1):\n                sub_str = s[i:i+k]\n                if sub_str in visited:\n                    return sub_str\n                visited.add(sub_str)\n        \n        left, right = 0, len(s)\n        while left + 1 < right:\n            mid = (left + right) // 2\n            if check(mid):\n                left = mid\n            else:\n                right = mid\n        res = \"\"\n        r_res = check(right)\n        l_res = check(left)\n        if r_res:\n            res = r_res\n        elif l_res:\n            res = l_res\n        return res\n"
+}

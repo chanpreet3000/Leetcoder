@@ -1,0 +1,5 @@
+{
+    "problemName": "game-play-analysis-iii",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nselect player_id, event_date, sum(games_played) over(partition by player_id order by player_id, event_date) as games_played_so_far\nfrom Activity"
+}

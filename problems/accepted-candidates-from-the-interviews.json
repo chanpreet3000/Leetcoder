@@ -1,0 +1,5 @@
+{
+    "problemName": "accepted-candidates-from-the-interviews",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect candidate_id from\n(select candidate_id,years_of_exp,sum(score) as sum from candidates as c\njoin rounds as r\non r.interview_id = c.interview_id\ngroup by 1) as a\nwhere years_of_exp >= 2 and sum > 15;"
+}

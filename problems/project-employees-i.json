@@ -1,0 +1,5 @@
+{
+    "problemName": "project-employees-i",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nSelect p.project_id, round(avg(e.experience_years),2) as 'average_years'\nfrom project as p\njoin employee as e\nON p.employee_id = e.employee_id\ngroup by p.project_id;"
+}

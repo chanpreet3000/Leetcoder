@@ -1,0 +1,5 @@
+{
+    "problemName": "prison-cells-after-n-days",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<int> prisonAfterNDays(vector<int>& cells, int n) {\n        string cur = \"00000000\";\n        map<int,string> mp;\n        int count = 0;\n        while(count<14){\n            for(int i=1;i<7;i++){\n                if(cells[i-1]==cells[i+1]){\n                    cur[i]= '1';\n                }else{\n                    cur[i] = '0';\n                }\n            }\n            cells[0] = cells[7] = 0;\n            for(int i=1;i<7;i++){\n                cells[i] = cur[i]-'0';\n            }\n            mp[count++]=cur;\n        }\n        vector<int> ans;\n        for(auto e:mp[(n-1)%14]){\n            ans.push_back(e-'0');\n        }\n        return ans;\n    }\n};"
+}

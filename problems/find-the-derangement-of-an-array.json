@@ -1,0 +1,5 @@
+{
+    "problemName": "find-the-derangement-of-an-array",
+    "language": "python",
+    "code": "class Solution(object):\n    def findDerangement(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: int\n        \"\"\"\n        # for number n, n can put on any n-1 index pos, if n put on i, there are 2 possibilities\n        # i on n: like n and i swap, then remaining n-2 has dp[n-2] ways. Ex: 1, 2, 3, 4,  n=4, i=1\n        # i not on n: Ex: now it's 4, _, _, _, ; 1, 2, 3 put on 3 slots and all of them have 1 unavalible, so equivalent to dp[3], put 1, 2, 3 on 3 slots\n        if n==1:\n            return 0\n        # dp+1\n        dp=[0 for _ in range(n+1)]\n        \n        # initialization\n        dp[2]=1\n        \n        \n        # dp\n        for i in range(3, n+1):\n            dp[i]=(i-1)*(dp[i-1]+dp[i-2])%(10**9+7)\n        \n        \n        return dp[-1]%(10**9+7)\n        "
+}

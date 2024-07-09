@@ -1,0 +1,5 @@
+{
+    "problemName": "friends-of-appropriate-ages",
+    "language": "python3",
+    "code": "# age[y] > age[x]\n# age[y] > 100 && age[x] < 100\n# the above two conditions can be merged to one as: age[y] > age[x] \n\nfrom collections import Counter\nclass Solution:\n    def numFriendRequests(self, ages: List[int]) -> int:   \n        c = Counter(ages)\n        \n        def request(a, b):  # a send request to b\n            # return not (b <= 0.5 * a + 7 or b > a or b > 100 and a < 100)\n            return not (b <= 0.5 * a + 7 or b > a) # only need two conditions, THEY ARE OR RELATIONSHIP\n        \n        return sum(int(request(a, b)) * c[a] * (c[b] - (a == b)) for a in c for b in c)\n        #return sum(int(request(a, b)) * c[a] * c[b] for a in c for b in c if a != b) # wrong\n        # the same age does not mean the same person. that is why a! = b cannot work!!!\n        # how to remove duplicates, "
+}

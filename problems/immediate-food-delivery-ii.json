@@ -1,0 +1,5 @@
+{
+    "problemName": "immediate-food-delivery-ii",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\n# if the customer's preferred delivery date is the same as the order date, then the order is called immediate, otherwise, it is called scheduled.\n\n# the first order of a customer is the order with the earliest order date that the customer made. It is guaranteed that a customer has precisely one first order.\n\n# write an sql query to find the percentage of immediate orders in the first orders of all customers\n\nselect \nround(sum(case when customer_pref_delivery_date=order_date then 1 else 0 end)*100/ count(distinct delivery_id),2) as immediate_percentage\nfrom(\nselect customer_id, delivery_id, order_date, customer_pref_delivery_date\nfrom\n(select customer_id, delivery_id, order_date, customer_pref_delivery_date,\nrank()over(partition by customer_id order by order_date) as rnk\nfrom delivery)cte\nwhere rnk=1)a"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "stream-of-characters",
+    "language": "python3",
+    "code": "class StreamChecker:\n\n    def __init__(self, words: List[str]):\n        self.streams = []\n        self.word_trie = {}\n        for word in words:\n            curr_trie = self.word_trie\n            for i in reversed(range(len(word))):\n                curr_char = word[i]\n                if curr_char not in curr_trie:\n                    curr_trie[curr_char] = {}\n                curr_trie = curr_trie[curr_char]\n            curr_trie[\"#\"] = True\n\n    def query(self, letter: str) -> bool:\n        self.streams.append(letter)\n        curr_trie = self.word_trie\n        for i in reversed(range(len(self.streams))):\n            curr_char = self.streams[i]\n            if curr_char not in curr_trie:\n                return False\n            curr_trie = curr_trie[curr_char]\n            if \"#\" in curr_trie:\n                return True\n        return False\n            \n        \n        \n\n\n# Your StreamChecker object will be instantiated and called as such:\n# obj = StreamChecker(words)\n# param_1 = obj.query(letter)"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "all-the-pairs-with-the-maximum-number-of-common-followers",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nWith cte as (\nselect user1_id, user2_id, count(*) as cnt from\n\t(select r1.user_id  as user1_id, r2.user_id as user2_id\n\tfrom relations r1 join relations r2 \n\ton r1.user_id <> r2.user_id and r1.follower_id =r2.follower_id\n\t)x\ngroup by user1_id, user2_id\nhaving user1_id < user2_id)\n\nselect user1_id, user2_id\nfrom cte where cnt = (select max(cnt) from cte)"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-days-in-a-month",
+    "language": "java",
+    "code": "class Solution {\n    \n    public int numberOfDays(int year, int month) {\n        Map<Integer, Integer> monthDayMap = new HashMap<>();\n        monthDayMap.put(1, 31);\n        monthDayMap.put(2, 28);\n        monthDayMap.put(3, 31);\n        monthDayMap.put(4, 30);\n        monthDayMap.put(5, 31);\n        monthDayMap.put(6, 30);\n        monthDayMap.put(7, 31);\n        monthDayMap.put(8, 31);\n        monthDayMap.put(9, 30);\n        monthDayMap.put(10, 31);\n        monthDayMap.put(11, 30);\n        monthDayMap.put(12, 31);\n        \n        int numOfDays = monthDayMap.get(month);\n        // Handle differently for leap year\n        if (month == 2 && (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)) {\n            numOfDays++;\n        }\n        return numOfDays;\n    }\n}"
+}

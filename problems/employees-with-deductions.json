@@ -1,0 +1,5 @@
+{
+    "problemName": "employees-with-deductions",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT\n  E.employee_id\nFROM\n  Employees E\n  LEFT JOIN Logs L ON E.employee_id = L.employee_id\nGROUP BY\n  E.employee_id,\n  E.needed_hours\nHAVING\n  (SUM(CEIL(IFNULL(TIMESTAMPDIFF(SECOND, L.in_time, L.out_time),0) / 60)) / 60) < E.needed_hours;"
+}

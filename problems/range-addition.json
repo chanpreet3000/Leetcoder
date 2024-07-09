@@ -1,0 +1,5 @@
+{
+    "problemName": "range-addition",
+    "language": "python3",
+    "code": "class Solution:\n    def getModifiedArray(self, length: int, updates: List[List[int]]) -> List[int]:\n        ans = [0] * length\n        \n        for start, end, inc in updates:\n            ans[start] += inc\n            if end < length - 1:\n                ans[end + 1] -= inc\n                \n        for i in range(length - 1):\n            \n            ans[i + 1] += ans[i]\n            \n        return ans"
+}

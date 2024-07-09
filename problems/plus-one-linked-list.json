@@ -1,0 +1,5 @@
+{
+    "problemName": "plus-one-linked-list",
+    "language": "python3",
+    "code": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\nclass Solution:\n    def plusOne(self, head: ListNode) -> ListNode:\n        pseudo_node = ListNode(0)\n        pseudo_node.next = head\n        last_digit = pseudo_node\n        \n        while head:\n            if head.val !=9:\n                last_digit = head\n            head = head.next\n            \n        last_digit.val += 1\n        last_digit = last_digit.next\n        \n        while last_digit:\n            last_digit.val = 0\n            last_digit = last_digit.next \n        \n        if pseudo_node.val:\n            return pseudo_node\n        else:\n            return pseudo_node.next"
+}

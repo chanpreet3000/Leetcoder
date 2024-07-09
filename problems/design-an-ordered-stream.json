@@ -1,0 +1,5 @@
+{
+    "problemName": "design-an-ordered-stream",
+    "language": "python3",
+    "code": "class OrderedStream:\n\n    def __init__(self, n: int):\n        self.n = n\n        self.ptr = 0\n        self.ordered = [None for _ in range(n)]\n\n    def insert(self, idKey: int, value: str) -> List[str]:\n        self.ordered[idKey-1] = value\n        res = []\n        while self.ptr < self.n and self.ordered[self.ptr] != None:\n            res.append(self.ordered[self.ptr])\n            self.ptr += 1\n            \n        return res\n        \n\n\n# Your OrderedStream object will be instantiated and called as such:\n# obj = OrderedStream(n)\n# param_1 = obj.insert(idKey,value)"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "smallest-good-base",
+    "language": "python3",
+    "code": "import math\n\nclass Solution:\n        \n    def smallestGoodBase(self, n: str) -> str:\n        def wherePredicateZero(predicate: Callable[int, int], low: int, high: int) -> Optional[int]:\n            while low < high:\n                k = (low + high) // 2\n                sign = predicate(k)\n                if sign == 0:\n                    return k\n                elif sign > 0:\n                    high = k - 1\n                else:\n                    low = k + 1\n            if predicate(low) == 0:\n                return low\n            return None\n        \n        N = int(n)\n        for L in reversed(range(2, math.ceil(math.log2(N)) + 1)):\n            def predicate(k: int) -> int:\n                lhs = k ** L\n                rhs = N * (k - 1) + 1\n                return (lhs > rhs) - (lhs < rhs)\n            \n            k = wherePredicateZero(predicate, 2, N)\n            if k is not None:\n                return str(k)\n"
+}

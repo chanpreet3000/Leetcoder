@@ -1,0 +1,5 @@
+{
+    "problemName": "count-pairs-in-two-arrays",
+    "language": "java",
+    "code": "class Solution {\n    public long countPairs(int[] nums1, int[] nums2) {\n        int[] diff = new int[nums1.length];\n        for(int i=0; i<nums1.length; i++){\n            diff[i] = nums1[i]-nums2[i];\n        }\n        Arrays.sort(diff);\n        long ans = 0;\n        int i=0, j=nums1.length-1;\n        while(i<j){\n            if(diff[i]+diff[j]>0){\n                ans += (j-i);\n                j--;\n            }else{\n                i++;\n            }\n        }\n        return ans;\n    }\n}"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "first-letter-to-appear-twice",
+    "language": "java",
+    "code": "class Solution {\n    public char repeatedCharacter(String s) {\n        Set<Character> set = new HashSet();\n        for(char c:s.toCharArray()){\n            if(set.contains(c))\n                return c;\n            set.add(c);\n        }\n        return ' ';\n    }\n}"
+}

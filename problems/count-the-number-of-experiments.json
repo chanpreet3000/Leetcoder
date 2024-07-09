@@ -1,0 +1,5 @@
+{
+    "problemName": "count-the-number-of-experiments",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith a as (select 'IOS' as platform, 'Programming' as experiment_name\nunion\nselect 'Android' as platform, 'Reading' as experiment_name\nunion\nselect 'Web' as platform, 'Sports' as experiment_name)\n\n\n\nselect e1.platform, e1.experiment_name,count(e.experiment_id) as num_experiments from\n(select a1.platform, a2.experiment_name from a as a1\ncross join a as a2) as e1\nleft join experiments as e\non e.platform = e1.platform and e.experiment_name = e1.experiment_name\ngroup by 1,2\n"
+}

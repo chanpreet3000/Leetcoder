@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-average-pass-ratio",
+    "language": "python",
+    "code": "class Solution(object):\n    def maxAverageRatio(self, classes, extraStudents):\n        \"\"\"\n        :type classes: List[List[int]]\n        :type extraStudents: int\n        :rtype: float\n        \"\"\"\n        heap=[]\n\n        for i,j in classes:\n            i,j=i*1.0,j*1.0\n            profit=(i+1)/(j+1)-(i/j)\n            heap.append((-profit,i,j))\n        heapify(heap)\n        for _ in range(extraStudents):\n            a,b,c=heappop(heap)\n            b+=1\n            c+=1\n            profit=(b+1)/(c+1)-(b/c)\n            heappush(heap,((-profit, b, c)))\n        return sum([a/b for _,a,b in heap])/len(heap)"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "highest-grade-for-each-student",
+    "language": "mysql",
+    "code": "SELECT student_id, course_id, grade\nFROM\n(SELECT student_id, course_id, grade, ROW_NUMBER() OVER (PARTITION BY student_id ORDER BY grade DESC, course_id ASC) AS rnn\n                                               FROM Enrollments) AS abc\n                                               WHERE rnn=1\n                                               ORDER BY student_id ASC\n                                                \n                                              \n                                                \n                                                \n                                                \n\n\n"
+}

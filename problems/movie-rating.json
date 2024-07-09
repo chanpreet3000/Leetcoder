@@ -1,0 +1,5 @@
+{
+    "problemName": "movie-rating",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n# Find the name of the user who has rated the greatest number of movies. \n(SELECT\n    name AS results\nFROM\n    Users AS U\nJOIN\n    MovieRating AS MR\nUSING\n    (user_id)\nGROUP BY\n    MR.user_id\nORDER BY\n    COUNT(user_id) DESC,\n    name\nLIMIT 1)\nUNION ALL\n(SELECT\n    title AS results        \nFROM\n    Movies AS M\nJOIN\n    MovieRating AS MR\nUSING\n    (movie_id)\nWHERE\n    YEAR(created_at) = '2020'\n    AND\n    MONTH(created_at) = '02'\nGROUP BY\n    MR.movie_id\nORDER BY\n    AVG(rating) DESC,\n    title\nLIMIT 1)"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "the-most-frequently-ordered-products-for-each-customer",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith cte as (\n    select customer_id, product_id,\n    COUNT(order_date) as prod_cnt\n    from orders\n    group by customer_id, product_id\n    ),\ncte_rnk as (\n    select customer_id, product_id, prod_cnt,\n    RANK() OVER(partition by customer_id order by prod_cnt DESC) as rnk\n    from cte\n)\nselect a.customer_id, a.product_id, b.product_name\nfrom cte_rnk a\njoin products b\non a.product_id = b.product_id\nwhere rnk = 1\n\n"
+}

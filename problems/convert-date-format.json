@@ -1,0 +1,5 @@
+{
+    "problemName": "convert-date-format",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect DATE_FORMAT(day,\"%W, %M %e, %Y\") as day\nfrom Days"
+}

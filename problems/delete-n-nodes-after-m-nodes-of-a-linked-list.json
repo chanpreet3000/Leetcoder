@@ -1,0 +1,5 @@
+{
+    "problemName": "delete-n-nodes-after-m-nodes-of-a-linked-list",
+    "language": "java",
+    "code": "/**\n * Definition for singly-linked list.\n * public class ListNode {\n *     int val;\n *     ListNode next;\n *     ListNode() {}\n *     ListNode(int val) { this.val = val; }\n *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }\n * }\n */\nclass Solution {\n    public ListNode deleteNodes(ListNode head, int m, int n) {\n       \n        int i = 0;\n        ListNode current = head;\n        ListNode temp = head;\n        \n        while(current != null){       \n            int mCount = m, nCount = n;\n            while(current != null && mCount != 0){\n                temp = current;\n                current = current.next;\n                mCount--;\n            }\n            \n            while(current != null && nCount != 0){\n                current = current.next;\n                nCount--;\n            }\n            \n            temp.next = current;\n        }\n        \n        return head;\n    }\n}"
+}

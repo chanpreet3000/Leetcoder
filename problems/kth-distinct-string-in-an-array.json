@@ -1,0 +1,5 @@
+{
+    "problemName": "kth-distinct-string-in-an-array",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    string kthDistinct(vector<string>& arr, int k) {\n        \n        map<string, int> mp ;\n        \n        \n        for(auto x : arr)\n            mp[x]++ ;\n        \n        vector<string> v ;\n        \n        for(auto x : arr)\n        {\n            if(mp[x] == 1)\n                v.push_back(x) ;\n        }\n        \n        if(k > v.size())\n            return \"\" ;\n        \n        return v[k - 1] ;\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-window-subsequence",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    string minWindow(string s1, string s2) {\n        \n        vector<vector<int>> vec(26);\n        for (int i = 0; i < s1.size(); ++i) vec[s1[i] - 'a'].push_back(i);\n        \n        int minL = INT_MAX;\n        string res;\n        for (int pos : vec[s2[0] - 'a']) {\n            bool ok = true;\n            int p0 = pos;\n            for (int i = 1; i < s2.size() && ok; ++i) {\n                int vi = s2[i] - 'a';\n                int index = lower_bound(vec[vi].begin(), vec[vi].end(), \n                                  pos + 1) - vec[vi].begin();\n                if (index == vec[vi].size()) {\n                    ok = false;\n                } else {\n                    pos = vec[vi][index];\n                }\n            }\n            if (ok) {\n                if (pos - p0 < minL) {\n                    minL = pos - p0;\n                    res = s1.substr(p0, pos - p0 + 1);\n                }\n            }\n        }\n        return res;\n    }\n};"
+}

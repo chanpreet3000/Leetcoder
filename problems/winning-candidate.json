@@ -1,0 +1,5 @@
+{
+    "problemName": "winning-candidate",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith v as (select candidateId\nfrom Vote group by candidateId order by count(candidateId) desc\nlimit 1)\nselect c.name as name from v\nleft join Candidate c\non v.candidateId=c.id;"
+}

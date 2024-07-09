@@ -1,0 +1,5 @@
+{
+    "problemName": "triangle-judgement",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nSELECT\n      x,\n      y,\n      z,\n      (CASE\n      WHEN x+y > z AND y+z > x AND x+z > y THEN 'Yes'\n      ELSE 'No'\n      END) AS triangle\nFROM Triangle\n      "
+}

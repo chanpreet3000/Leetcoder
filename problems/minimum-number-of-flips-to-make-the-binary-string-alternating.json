@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-number-of-flips-to-make-the-binary-string-alternating",
+    "language": "python3",
+    "code": "class Solution:\n    def minFlips(self, s: str) -> int:\n        s1 = s + s\n        n = len(s)\n        str1, str2 = \"\", \"\"\n        for i in range(len(s1)):\n            if i%2:\n                str1+=\"1\"\n                str2+=\"0\"\n            else:\n                str1+=\"0\"\n                str2+=\"1\"\n        l = 0\n        res, res1, res2 = len(s1), 0, 0\n        for r in range(len(s1)):\n            if s1[r]!=str1[r]:\n                res1+=1\n            if s1[r]!=str2[r]:\n                res2+=1\n            if r-l+1>n:\n                if s1[l]!=str1[l]:\n                    res1-=1\n                if s1[l]!=str2[l]:\n                    res2-=1\n                l+=1\n            if r-l+1==n:\n                res = min(res, res1, res2)\n        return res"
+}

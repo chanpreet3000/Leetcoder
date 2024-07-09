@@ -1,0 +1,5 @@
+{
+    "problemName": "product-of-two-run-length-encoded-arrays",
+    "language": "python3",
+    "code": "# two pointer techs\n# with further encoding of the output\nclass Solution:\n    def findRLEArray(self, encoded1: List[List[int]], encoded2: List[List[int]]) -> List[List[int]]:\n        prods = []\n\n        e1_index = 0\n        e2_index = 0\n\n        while e1_index < len(encoded1) and e2_index < len(encoded2):\n            e1_val, e1_freq = encoded1[e1_index]\n            e2_val, e2_freq = encoded2[e2_index]\n\n            prod_val = e1_val * e2_val\n            prod_freq = min(e1_freq, e2_freq)\n\n            encoded1[e1_index][1] -= prod_freq\n            encoded2[e2_index][1] -= prod_freq\n\n            if encoded1[e1_index][1] == 0:\n                e1_index += 1\n\n            if encoded2[e2_index][1] == 0:\n                e2_index += 1\n\n            if not prods or prods[-1][0] != prod_val:\n                prods.append([prod_val, prod_freq])  # append a new one\n            else:\n                prods[-1][1] += prod_freq\n\n        return prods"
+}

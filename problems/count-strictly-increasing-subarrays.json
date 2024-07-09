@@ -1,0 +1,5 @@
+{
+    "problemName": "count-strictly-increasing-subarrays",
+    "language": "python3",
+    "code": "# 8:38-\n\nclass Solution:\n    def countSubarrays(self, nums: List[int]) -> int:\n        def nums2subarraylengths(nums):\n            runs = []\n            prev = -float('inf')\n            run = 0\n            for num in nums:\n                if prev >= num:\n                    runs.append(run)\n                    run = 0\n                run += 1\n                prev = num\n            runs.append(run)\n            return runs\n        def length2count(l):\n            return l * (l+1) // 2\n        return sum([length2count(l) for l in nums2subarraylengths(nums)])"
+}

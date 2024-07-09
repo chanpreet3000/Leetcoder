@@ -1,0 +1,5 @@
+{
+    "problemName": "array-of-doubled-pairs",
+    "language": "python",
+    "code": "class Solution(object):\n    def canReorderDoubled(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: bool\n        \"\"\"\n        v_map = {}\n        arr.sort(key=lambda x: abs(x))\n        for n in arr:\n            v_map[n] = v_map.get(n, 0) + 1\n        for n in arr:\n            if v_map[n] <= 0:\n                continue\n            if 2 * n in v_map and v_map[2 * n] > 0:\n                v_map[n] -= 1\n                v_map[2 * n] -= 1\n            else:\n                return False\n        return True"
+}

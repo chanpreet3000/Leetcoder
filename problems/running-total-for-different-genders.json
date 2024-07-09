@@ -1,0 +1,5 @@
+{
+    "problemName": "running-total-for-different-genders",
+    "language": "mysql",
+    "code": "SELECT DISTINCT\n    gender, \n    day, \n    SUM(score_points) OVER(PARTITION BY gender ORDER BY day) AS total\nFROM Scores\nORDER BY gender, day"
+}

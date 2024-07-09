@@ -1,0 +1,5 @@
+{
+    "problemName": "all-the-matches-of-the-league",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT a.team_name AS home_team,\n       b.team_name AS away_team\nFROM Teams a, Teams b\nWHERE a.team_name != b.team_name"
+}

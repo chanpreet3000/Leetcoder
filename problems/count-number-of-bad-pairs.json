@@ -1,0 +1,5 @@
+{
+    "problemName": "count-number-of-bad-pairs",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    long long countBadPairs(vector<int>& nums) {\n        long long n = nums.size();\n        unordered_map<unsigned long long, long long> m;\n        for(long long i = 0; i < n; i++) {\n            m[nums[i] - i]++;\n        }\n        long long good = 0, total = (n - 1) * n / 2;\n        \n        for(auto it: m) {\n            if(it.second) good += it.second * (it.second - 1) / 2;\n        }\n        return total - good;\n    }\n};"
+}

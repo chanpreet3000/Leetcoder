@@ -1,0 +1,5 @@
+{
+    "problemName": "consecutive-available-seats",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\n\nselect distinct a.seat_id\nfrom \nCinema a\njoin\nCinema b\non abs(a.seat_id -b.seat_id) = 1\nand a.free=1 and  b.free =1\norder by 1"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "league-statistics",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT team_name, \n\nCOUNT(*) as matches_played, \n\nSUM(team_id = home_team_id AND home_team_goals > away_team_goals) * 3 +\nSUM(team_id = away_team_id AND home_team_goals < away_team_goals) * 3 +\nSUM(team_id = home_team_id AND home_team_goals = away_team_goals) +\nSUM(team_id = away_team_id AND home_team_goals = away_team_goals) as points,\n\nSUM((team_id = home_team_id) * home_team_goals) +\nSUM((team_id = away_team_id) * away_team_goals) as goal_for,\n\nSUM((team_id = home_team_id) * away_team_goals) +\nSUM((team_id = away_team_id) * home_team_goals ) as goal_against, \n\nSUM((team_id = home_team_id) * (home_team_goals - away_team_goals)) +\nSUM((team_id = away_team_id) * (away_team_goals - home_team_goals)) as goal_diff \n\nFROM Teams JOIN Matches\nON team_id = home_team_id OR team_id = away_team_id\nGROUP BY team_id\nORDER BY points DESC, goal_diff DESC, team_name ASC;"
+}

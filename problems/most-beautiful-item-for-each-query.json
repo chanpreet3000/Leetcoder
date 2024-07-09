@@ -1,0 +1,5 @@
+{
+    "problemName": "most-beautiful-item-for-each-query",
+    "language": "python3",
+    "code": "class Solution:\n    def maximumBeauty(self, items: List[List[int]], queries: List[int]) -> List[int]:\n        items.sort()\n        ans = {}\n        queriescopy = sorted(queries)\n        curr = 0\n        i = 0\n        lenItems = len(items)\n        for q in queriescopy:\n            while i < lenItems and items[i][0] <= q:\n                curr = max(curr, items[i][1])\n                i += 1\n            ans[q] = curr\n        return [ans[q] for q in queries]"
+}

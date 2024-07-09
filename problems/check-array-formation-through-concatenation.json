@@ -1,0 +1,5 @@
+{
+    "problemName": "check-array-formation-through-concatenation",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    bool canFormArray(vector<int>& arr, vector<vector<int>>& pieces) {\n        map<int, int>mp;\n            \n            for(int i=0; i<arr.size(); i++){\n                    mp.insert({arr[i], i});\n            }\n            \n            for(auto x:pieces){\n                    int n = x.size();\n                    int idx = mp[x[0]];\n                    int i=0; \n                    while(i<n && idx<arr.size()){\n                            \n                            if(x[i] != arr[idx]) return false;\n                            i++;\n                            idx++;\n                    }\n                    if(i != n) return false;\n            }\n            return true;\n    }\n};"
+}

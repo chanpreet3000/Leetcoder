@@ -1,0 +1,5 @@
+{
+    "problemName": "valid-palindrome-iii",
+    "language": "python3",
+    "code": "class Solution:\n    def __init__(self):\n        self.memo = {}\n        \n    def longestPalindromeSubseq(self, s: str) -> int:\n        if not s:\n            return 0\n        \n        if len(s) == 1:\n            return 1\n\n        if s in self.memo:\n            return self.memo[s]\n\n        if s[0] == s[-1]:\n            self.memo[s] = 2 + self.longestPalindromeSubseq(s[1:len(s)-1])\n        else:\n            self.memo[s] = max(self.longestPalindromeSubseq(s[1:]), self.longestPalindromeSubseq(s[:len(s)-1]))\n\n        return self.memo[s]\n        \n    def isValidPalindrome(self, s: str, k: int) -> bool:\n        print(self.longestPalindromeSubseq(s), k, len(s))\n        return self.longestPalindromeSubseq(s) + k >= len(s)"
+}

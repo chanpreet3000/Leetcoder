@@ -1,0 +1,5 @@
+{
+    "problemName": "the-change-in-global-rankings",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nselect \ntp.team_id, tp.name,\n  CAST( row_number()over(order by tp.points desc, tp.name) as signed) -  CAST( row_number()over(order by (tp.points+pc.points_change) desc, tp.name) as signed)  as rank_diff\nfrom teampoints tp\njoin PointsChange  pc\non tp.team_id=pc.team_id\n\n"
+}

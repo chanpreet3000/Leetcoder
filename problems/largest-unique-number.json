@@ -1,0 +1,5 @@
+{
+    "problemName": "largest-unique-number",
+    "language": "python3",
+    "code": "class Solution:\n    def largestUniqueNumber(self, nums: List[int]) -> int:\n        nums.sort(reverse=True)\n        \n        # ret = []\n        hm = {}\n        \n        for n in nums:\n            if n in hm: hm[n] = 0\n            else: hm[n] = 1\n        \n        # print(hm)\n        \n        # for key in hm:\n        #     if not hm[key]: del hm[key]\n        \n        ret = []\n        for key in hm:\n            if hm[key]: return key\n        return -1\n        \n        # return list(hm.keys)[0] if hm else -1\n        # return ret[0] if ret else -1\n        \n        # return list(hm.keys())[0] if hm else -1\n        "
+}

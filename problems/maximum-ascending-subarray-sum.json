@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-ascending-subarray-sum",
+    "language": "java",
+    "code": "class Solution {\n    public int maxAscendingSum(int[] nums) {\n        int maxSum = 0;\n        int currentSum = 0;\n        int previousNum = -1;\n        for(int num : nums) {\n            if (num <= previousNum) {\n                currentSum = 0;\n            }\n            \n            currentSum += num;\n            previousNum = num;\n            \n            if (currentSum > maxSum) {\n                maxSum = currentSum;\n            }\n        }\n        \n        \n        return maxSum;\n    }\n}"
+}

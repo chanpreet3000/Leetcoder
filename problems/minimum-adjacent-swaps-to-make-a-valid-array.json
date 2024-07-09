@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-adjacent-swaps-to-make-a-valid-array",
+    "language": "java",
+    "code": "class Solution {\n    // Method1 - Array: TC=O(n), SC=O(1)\n    public int minimumSwaps(int[] nums) {\n        int n = nums.length;\n        // index of smallest and largest num\n        int min = 0, max = n-1;\n        for (int i = 1; i < n; i++) {\n            // traverse from right for max\n            if (nums[max] < nums[n-1-i]) {max = n-1-i;}\n            // traverse from left for min\n            if (nums[min] > nums[i]) {min = i;}\n        }\n        // special case: if min is on right of max, one swap instead of two can swap them\n        return n-1-max+min-(min>max?1:0);\n    }\n}"
+}

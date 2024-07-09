@@ -1,0 +1,5 @@
+{
+    "problemName": "count-apples-and-oranges",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nselect sum(apt_cut) as apple_count, sum(org_cut) as orange_count\nfrom\n(select box_id, \n    (case when C.apple_count is null then B.apple_count else (B.apple_count + C.apple_count) end) as apt_cut, \n    (case when C.orange_count is null then B.orange_count else (B.orange_count + C.orange_count) end) as org_cut\nfrom\nBoxes B left join Chests C on B.chest_id = C.chest_id) temp"
+}

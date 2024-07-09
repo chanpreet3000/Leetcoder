@@ -1,0 +1,5 @@
+{
+    "problemName": "count-number-of-nice-subarrays",
+    "language": "python3",
+    "code": "class Solution:\n    def numberOfSubarrays(self, nums: List[int], k: int) -> int:\n        def AtMostK(nums, k):\n            window_start = 0\n            odds = 0\n            res = 0\n            for window_end in range(len(nums)):\n                num = nums[window_end]\n                odds += num % 2\n                while odds > k:\n                    left_num = nums[window_start]\n                    window_start += 1\n                    odds -= left_num % 2\n                res += window_end - window_start + 1\n                \n            return res\n        return AtMostK(nums, k) - AtMostK(nums, k - 1)"
+}

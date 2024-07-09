@@ -1,0 +1,5 @@
+{
+    "problemName": "divide-array-in-sets-of-k-consecutive-numbers",
+    "language": "python3",
+    "code": "class Solution:\n    def isPossibleDivide(self, nums: List[int], k: int) -> bool:\n        nums.sort()\n        h = {}\n        for i in nums:\n            try:\n                h[i]+=1\n            except:\n                h[i]=1\n        for i in nums:\n            if h[i]!=0:\n                p = h[i]\n                for j in range(i,i+k):\n                    if j not in h:\n                        return False\n                    h[j]-=p\n                    if h[j]<0:\n                        return False\n            #print(h)\n        return True"
+}

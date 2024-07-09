@@ -1,0 +1,5 @@
+{
+    "problemName": "remove-duplicates-from-an-unsorted-linked-list",
+    "language": "python3",
+    "code": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\nimport collections\nclass Solution:\n    def deleteDuplicatesUnsorted(self, head: ListNode) -> ListNode:\n        temp = head\n        count = collections.defaultdict(int)\n        while temp:\n            count[temp.val] += 1\n            temp = temp.next\n        res = dummy = ListNode(0, head)\n        while dummy and dummy.next:\n            if count[dummy.next.val] > 1:\n                dummy.next = dummy.next.next\n            else:\n                dummy = dummy.next\n        return res.next"
+}

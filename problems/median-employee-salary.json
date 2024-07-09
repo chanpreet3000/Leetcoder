@@ -1,0 +1,5 @@
+{
+    "problemName": "median-employee-salary",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nwith cte as (\nselect *, row_number() over(partition by company order by salary) as rn, count(id) over(partition by company) as cnt\nfrom employee)\n\nselect id, company, salary\nfrom cte\nwhere rn between cnt/2 and (cnt/2)+1\n"
+}

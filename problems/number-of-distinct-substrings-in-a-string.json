@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-distinct-substrings-in-a-string",
+    "language": "java",
+    "code": "class Solution {\n    public int countDistinct(String s) {\n        int n = s.length();\n        long base = 26;\n        int count = 0;\n        \n        for (int len = 1; len <= n; len++) {\n            long power = 1;\n            for (int i = 0; i < len - 1; i++) {\n                power *= base;\n            }\n            \n            HashSet<Long> set = new HashSet<>();\n            long hash = 0;\n            for (int i = 0; i < n; i++) {\n                if (i - len >= 0) {\n                    hash -= (s.charAt(i - len) - 'a') * power;\n                }\n                \n                hash = hash * base + (s.charAt(i) - 'a');\n                if (i >= len - 1)\n                    set.add(hash);\n            }\n            count += set.size();\n        }\n        return count;\n    }\n}"
+}

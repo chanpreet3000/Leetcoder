@@ -1,0 +1,5 @@
+{
+    "problemName": "orders-with-maximum-quantity-above-average",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n# max quantity> average quantity of all order imbamanced\n# a cte with two variables, avg of the quantity partitioned by order_id and also calculate dense_rank of the quantity in desc order\n# check in the condition where rnk=1 and print ids\n\n\nwith cte as \n(\nselect order_id    , avg(quantity) over(partition by order_id) as avg_q , max(quantity) over(partition by order_id) as amx_q\nfrom OrdersDetails\n) \n\nselect order_id\nfrom cte \nwhere amx_q > (select max(avg_q) from cte limit 1)\ngroup by 1"
+}

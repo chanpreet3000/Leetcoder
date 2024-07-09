@@ -1,0 +1,5 @@
+{
+    "problemName": "flip-equivalent-binary-trees",
+    "language": "python3",
+    "code": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n  def flipEquiv(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:\n    def canSwap(root1, root2):\n      if not root1 and not root2: return True\n      if root1 is None or root2 is None: return False\n\n      canSwapLeft = canSwap(root1.left, root2.left)\n      canSwapRight = canSwap(root1.right, root2.right)\n      canSwapLeftRight = canSwap(root1.left, root2.right)\n      canSwapRightLeft = canSwap(root1.right, root2.left)\n\n      return root1.val == root2.val and ((canSwapLeft and canSwapRight) or (canSwapLeftRight and canSwapRightLeft))\n\n    canSwap = canSwap(root1, root2)\n\n    return canSwap"
+}

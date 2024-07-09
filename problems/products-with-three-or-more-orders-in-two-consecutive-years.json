@@ -1,0 +1,5 @@
+{
+    "problemName": "products-with-three-or-more-orders-in-two-consecutive-years",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith cte\nas (select product_id, year(purchase_date) as year, count(order_id) as orders\nfrom orders\ngroup by 1,2)\n\nselect \ndistinct c1.product_id\nfrom cte c1\njoin cte c2 #last year\non c1.year-1=c2.year\nand c1.product_id=c2.product_id\nwhere c1.orders>=3\nand c2.orders>=3"
+}

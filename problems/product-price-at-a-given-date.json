@@ -1,0 +1,5 @@
+{
+    "problemName": "product-price-at-a-given-date",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nWITH temp AS\n(SELECT *\nFROM products\nWHERE (product_id, change_date) IN\n(SELECT product_id, MAX(change_date)\n FROM products\n WHERE change_date <=\"2019-08-16\"\n GROUP BY product_id))\n \n \nSELECT distinct a.product_id,ifnull(temp.new_price,10) as price \nFROM products as a\nLEFT JOIN temp\non a.product_id = temp.product_id;"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "min-cost-to-connect-all-points",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int minCostConnectPoints(vector<vector<int>>& points) {\n        int p = 0, res = 0;\n        vector<int> dp(points.size(), INT_MAX);\n        dp[0] = -1;\n        for (int i = 1; i < points.size(); i++) {\n            for (int j = 0; j < points.size(); j++) {\n                if (dp[j] == -1) continue;\n                dp[j] = min(dp[j], f(points[p], points[j]));\n            }\n            int m = INT_MAX, k = -1;\n            for (int j = 0; j < points.size(); j++) {\n                if (dp[j] == -1) continue;\n                if (dp[j] < m) {\n                    m = dp[j];\n                    k = j;\n                }\n            }\n            res += dp[k];\n            dp[k] = -1;\n            p = k;\n        }\n        return res;\n    }\n    \nprivate:\n    inline int f(vector<int>& p, vector<int>& q) {\n        return abs(p[0] - q[0]) + abs(p[1] - q[1]);\n    }\n};"
+}

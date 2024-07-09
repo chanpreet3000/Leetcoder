@@ -1,0 +1,5 @@
+{
+    "problemName": "restaurant-growth",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT\n    B.visited_on,\n    SUM(A.amount) AS amount,\n    ROUND(SUM(A.amount)/7,2) AS average_amount\nFROM\n    Customer AS A\nJOIN\n    (SELECT\n        DISTINCT visited_on\n     FROM\n        Customer) AS B  \nWHERE\n    DATEDIFF(B.visited_on,A.visited_on) BETWEEN 0 AND 6\nGROUP BY\n    B.visited_on\nHAVING\n    COUNT(DISTINCT A.visited_on) = 7"
+}

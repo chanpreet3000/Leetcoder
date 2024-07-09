@@ -1,0 +1,5 @@
+{
+    "problemName": "count-unhappy-friends",
+    "language": "java",
+    "code": "class Solution {\n    public int unhappyFriends(int n, int[][] preferences, int[][] pairs) {\n     int[][] order=new int[n][n];\n     for(int i=0;i<n;++i)\n      for(int j=0;j<preferences[i].length;++j){\n      order[i][preferences[i][j]]=j;\n      }\n      int[] match=new int[n];\n      for(int[] pair:pairs){\n      match[pair[0]]=pair[1];\n      match[pair[1]]=pair[0];\n      }\n      int unhappyCount=0;\n      for(int i=0;i<n;++i){\n      int matchI=match[i],index=order[i][matchI];\n      for(int k=0;k<index;++k){\n      int u=preferences[i][k],v=match[u];\n      if(order[u][v]>order[u][i]){\n      ++unhappyCount;\n      break;\n      }\n      }\n      }\n      return unhappyCount;\n    }\n}"
+}

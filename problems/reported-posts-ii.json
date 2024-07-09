@@ -1,0 +1,5 @@
+{
+    "problemName": "reported-posts-ii",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nWITH CTE AS\n(SELECT ROUND((COUNT(DISTINCT r.post_id))/ (IFNULL(COUNT(DISTINCT a.post_id),0)) * 100,2) AS average_daily_percent\nFROM Actions a\nLEFT JOIN Removals r\nUSING(post_id)\nWHERE extra = \"spam\"\nGROUP BY action_date)\n\nSELECT ROUND(AVG(average_daily_percent),2) AS average_daily_percent\nFROM CTE\n\n\n"
+}

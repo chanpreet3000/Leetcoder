@@ -1,0 +1,5 @@
+{
+    "problemName": "missing-ranges",
+    "language": "python3",
+    "code": "class Solution:\n    def findMissingRanges(self, nums: List[int], lower: int, upper: int) -> List[str]:\n        \n        # Use Pointers\n\n        def findRange(lower, upper):\n            if lower == upper:\n                return str(lower)\n            return str(lower) + \"->\" + str(upper)\n        \n        \n        res = []\n        prev = lower-1\n        for i in range(len(nums)+1):\n            nxt = nums[i] if i < len(nums) else upper + 1\n            if prev+1 <= nxt-1:\n                res.append(findRange(prev+1, nxt-1))\n            prev=nxt\n        return res\n                "
+}

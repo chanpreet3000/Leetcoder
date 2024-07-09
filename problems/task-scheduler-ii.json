@@ -1,0 +1,5 @@
+{
+    "problemName": "task-scheduler-ii",
+    "language": "python3",
+    "code": "class Solution:\n    def taskSchedulerII(self, tasks: List[int], space: int) -> int:\n        \n        time = 0\n        executions = {}\n        \n        for task in tasks:\n            last = executions.get(task, float('-inf'))\n            elapsed = time - last - 1\n            if elapsed < space:\n                time += space - elapsed\n                \n            executions[task] = time\n            time += 1\n            \n            \n        return time   \n        "
+}

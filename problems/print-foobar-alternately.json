@@ -1,0 +1,5 @@
+{
+    "problemName": "print-foobar-alternately",
+    "language": "java",
+    "code": "class FooBar {\n    private int n;\n    private Semaphore semoFoo = new Semaphore(1), semoBar = new Semaphore(0);\n    public FooBar(int n) {\n        this.n = n;\n    }\n\n    public void foo(Runnable printFoo) throws InterruptedException {\n        \n        for (int i = 0; i < n; i++) {\n            semoFoo.acquire();\n        \t// printFoo.run() outputs \"foo\". Do not change or remove this line.\n        \tprintFoo.run();\n            semoBar.release();\n        }\n    }\n\n    public void bar(Runnable printBar) throws InterruptedException {\n        \n        for (int i = 0; i < n; i++) {\n            semoBar.acquire();\n            // printBar.run() outputs \"bar\". Do not change or remove this line.\n        \tprintBar.run();\n            semoFoo.release();\n        }\n    }\n}"
+}

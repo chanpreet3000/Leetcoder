@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-number-of-ways-to-partition-an-array",
+    "language": "cpp",
+    "code": "#define ll long long\nclass Solution {\npublic:\n    int waysToPartition(vector<int>& nums, int k) {\n        ll s = accumulate(nums.begin(), nums.end(), 0ll);\n        ll ans = 0;\n        ll p = 0;\n        map<ll, ll> m, g;\n        for(int i = 0; i + 1 < nums.size(); i++)\n        {\n            p += nums[i];\n            g[2 * p]++;\n            if(2 * p == s) ans++;\n        }\n       // cout << ans << '\\n';\n      //  g[2 * s]++;\n        p = 0;\n        for(int i = 0; i < nums.size(); i++)\n        {\n            ll d = k - nums[i];\n            ans = max(ans, g[s - d] + m[s + d]);\n            p += nums[i];\n            g[2 * p]--;\n            m[2 * p]++;\n        }\n        return ans;\n    }\n};"
+}
