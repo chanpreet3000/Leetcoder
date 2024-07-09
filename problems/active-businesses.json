@@ -1,0 +1,5 @@
+{
+    "problemName": "active-businesses",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\n# 1. Calculate occurences for average activity.\n\nWITH CTE AS\n(SELECT event_type, AVG(occurences) as avg_t\nFROM Events e\nGROUP BY event_type)\n\nSELECT e.business_id\nFROM Events e\nJOIN CTE \nON e.event_type = CTE.event_type\nAND e.occurences > CTE.avg_t\nGROUP BY business_id\nHAVING COUNT(DISTINCT e.event_type) > 1\n"
+}

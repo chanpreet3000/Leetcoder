@@ -1,0 +1,5 @@
+{
+    "problemName": "connecting-cities-with-minimum-cost",
+    "language": "python3",
+    "code": "class Solution:\n    def minimumCost(self, n: int, connections: List[List[int]]) -> int:\n        \n        def find(city):\n            \n            if parent[city]!=city:\n                parent[city]=find(parent[city])\n            return parent[city]\n        \n        def union(city1, city2):\n            \n            city1, city2 = find(city1), find(city2)\n            if city1 == city2:\n                return False\n            parent[city2]=city1\n            return True\n        \n        parent = {city: city for city in range(1, n+1)}\n        connections.sort(key = lambda x: x[2])\n        total = 0\n        cnt = 0\n        \n        for city1, city2, cost in connections:\n            if union(city1, city2):\n                cnt += 1\n                total += cost\n        \n        return total if cnt+1 ==n else -1"
+}

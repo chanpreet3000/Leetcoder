@@ -1,0 +1,5 @@
+{
+    "problemName": "binary-tree-longest-consecutive-sequence",
+    "language": "java",
+    "code": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n    int max=0;\n    public int longestConsecutive(TreeNode root) {\n        dfs(root,Integer.MIN_VALUE,1);\n        return max;\n    }\n    public void dfs(TreeNode root, int parentVal,int len){\n        if(root==null)\n            return;\n        if(parentVal==root.val-1){\n            len++;\n        }else{\n            len=1;\n        }\n        max=Math.max(len,max);\n        dfs(root.left,root.val,len);\n        dfs(root.right,root.val,len);\n    }\n}"
+}

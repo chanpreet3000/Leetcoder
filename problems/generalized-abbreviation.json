@@ -1,0 +1,5 @@
+{
+    "problemName": "generalized-abbreviation",
+    "language": "python3",
+    "code": "class Solution:\n    def generateAbbreviations(self, word: str) -> List[str]:\n        \n        abbrevs = []\n        \n        for res in self.generateAbbreviationsRec(word):\n            \n            abbrevs.append(\"\".join([str(r) for r in res]))\n            \n        return abbrevs\n    \n    @cache\n    def generateAbbreviationsRec(self, word):\n        \n        if len(word) == 1:\n            \n            return [[word], [1]]\n        \n        else:\n            \n            res = []\n            \n            for r in self.generateAbbreviationsRec(word[1:]):\n                \n                res.append([word[0]] + r)\n                \n                if isinstance(r[0], int):\n                    \n                    res.append([r[0] + 1] + r[1:])\n                    \n                else:\n                    \n                    res.append([1] + r)\n                    \n            return res\n                \n                \n                "
+}

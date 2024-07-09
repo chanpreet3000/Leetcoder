@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-number-of-frogs-croaking",
+    "language": "python3",
+    "code": "class Solution:\n    def minNumberOfFrogs(self, croakOfFrogs: str) -> int:\n        croaks = {'c':0, 'r':0, 'o':0, 'a':0, 'k':0}\n        min_frogs = 0\n        frogs = 0\n        \n        for c in croakOfFrogs:\n            croaks[c] += 1\n            \n            # condition for a valid croak\n            if not (croaks['c'] >= croaks['r'] >= croaks['o'] >= croaks['a'] >= croaks['k']):\n                return -1\n            \n            # beginning of a frog croak, add a frog\n            if c == 'c':\n                frogs += 1\n            # end of a frog croak, substract a frog\n            elif c == 'k':\n                frogs -= 1\n            \n            min_frogs = max(min_frogs, frogs)\n            \n        return min_frogs if frogs == 0 else -1"
+}

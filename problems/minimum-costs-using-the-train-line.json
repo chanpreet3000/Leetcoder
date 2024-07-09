@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-costs-using-the-train-line",
+    "language": "java",
+    "code": "class Solution {\n    public long[] minimumCosts(int[] regular, int[] express, int expressCost) {\n        int N = regular.length;\n        long[] res = new long[N];                \n        long[] dp = new long[2];\n        dp[0] = 0;\n        dp[1] = expressCost;\n        \n                \n        for (int i = 1; i <= N; i++) {            \n            long[] tempDp = new long[2];\n                        \n            tempDp[0] = Math.min( regular[i-1] + dp[0], regular[i-1] + dp[1]  );\n            tempDp[1] = Math.min( expressCost + express[i-1] + dp[0], express[i-1] + dp[1]  );\n                        \n            res[i-1] = Math.min(tempDp[0],tempDp[1]);\n            dp = tempDp;\n        }\n                \n        return res;\n    }\n}"
+}

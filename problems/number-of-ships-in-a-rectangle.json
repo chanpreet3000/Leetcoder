@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-ships-in-a-rectangle",
+    "language": "python3",
+    "code": "# \"\"\"\n# This is Sea's API interface.\n# You should not implement it, or speculate about its implementation\n# \"\"\"\n#class Sea:\n#    def hasShips(self, topRight: 'Point', bottomLeft: 'Point') -> bool:\n#\n#class Point:\n#\tdef __init__(self, x: int, y: int):\n#\t\tself.x = x\n#\t\tself.y = y\n\nclass Solution:\n    def countShips(self, sea: 'Sea', topRight: 'Point', bottomLeft: 'Point') -> int:\n        x1, y1 = bottomLeft.x, bottomLeft.y\n        x2, y2 = topRight.x, topRight.y\n        \n        if x1 > x2 or y1 > y2 or not sea.hasShips(topRight, bottomLeft): \n            return 0\n        \n        if x1 == x2 and y1 == y2:\n            return 1\n        \n        x, y = (x1 + x2) // 2, (y1 + y2) // 2\n        return self.countShips(sea, Point(x, y2), Point(x1, y + 1)) + \\\n               self.countShips(sea, Point(x2, y2), Point(x + 1,y + 1)) + \\\n               self.countShips(sea, Point(x, y), Point(x1, y1)) + \\\n               self.countShips(sea, Point(x2, y), Point(x + 1, y1))\n"
+}

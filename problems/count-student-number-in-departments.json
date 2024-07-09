@@ -1,0 +1,5 @@
+{
+    "problemName": "count-student-number-in-departments",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nwith t as(\nselect dept_name,ifnull(count(s.dept_id),0) as student_number\nfrom department d\nleft join student s\non s.dept_id = d.dept_id\ngroup by d.dept_id\n)\n\nselect t.dept_name,t.student_number\nfrom t\norder by t.student_number desc,t.dept_name\n\n\n"
+}

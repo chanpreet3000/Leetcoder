@@ -1,0 +1,5 @@
+{
+    "problemName": "word-pattern-ii",
+    "language": "python",
+    "code": "class Solution(object):\n    def wordPatternMatch(self, pattern, s):\n        \"\"\"\n        :type pattern: str\n        :type s: str\n        :rtype: bool\n        \"\"\"\n        def isMatch(p, s, d, seen):\n            if not p and not s: return True\n            if not p or not s: return False\n            c = p[0]\n            if c in d:\n                if not s.startswith(d[c]): return False\n                return isMatch(p[1:], s[len(d[c]):], d, seen)\n            else:\n                for k in range(len(s)):\n                    if s[:k + 1] in seen: continue\n                    d[c] = s[:k + 1]\n                    seen.add(s[:k + 1])\n                    if isMatch(p[1:], s[k + 1:], d, seen): return True\n                    seen.remove(s[:k + 1])\n                    del d[c]\n            return False\n        return isMatch(pattern, s, {}, set())"
+}

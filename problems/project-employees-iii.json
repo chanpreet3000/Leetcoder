@@ -1,0 +1,5 @@
+{
+    "problemName": "project-employees-iii",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith prep as(\nselect\nt1.*,\nt2.name,\nt2.experience_years,\ndense_rank() over(partition by t1.project_id order by t2.experience_years desc) as rnk\nfrom\nproject as t1\nleft join employee as t2 on t1.employee_id = t2.employee_id)\nselect\nproject_id,\nemployee_id\nfrom prep\nwhere rnk = 1"
+}

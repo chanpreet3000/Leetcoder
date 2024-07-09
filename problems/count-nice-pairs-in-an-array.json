@@ -1,0 +1,5 @@
+{
+    "problemName": "count-nice-pairs-in-an-array",
+    "language": "python3",
+    "code": "class Solution:\n    import math\n    def rev(self, num):\n        res = 0\n        while num > 0:\n            res *= 10\n            res += num%10\n            num //= 10\n        return res\n    \n    def countNicePairs(self, nums: List[int]) -> int:\n        mp ={}\n        ans = 0\n        for i in range(len(nums)):\n            num = nums[i]\n            target = num - self.rev(num)\n            if target not in mp:\n                mp[target] = 0\n            mp[target] += 1\n        print(mp)\n        ans = 0\n        for v in mp.values():\n            ans += v*(v-1)//2\n            # if mp[key] >= 2:\n            #     n = math.factorial(mp[key])\n            #     k = math.factorial(2)\n            #     ans += (n/(2*math.factorial(mp[key]-2)))\n        \n        return ans % (10**9 + 7)"
+}

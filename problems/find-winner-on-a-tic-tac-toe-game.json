@@ -1,0 +1,5 @@
+{
+    "problemName": "find-winner-on-a-tic-tac-toe-game",
+    "language": "python",
+    "code": "class Solution(object):\n    def tictactoe(self, moves):\n        \"\"\"\n        :type moves: List[List[int]]\n        :rtype: str\n        \"\"\"\n        grid = [[0 for _ in range(3)] for _ in range(3)]\n        for i, m in enumerate(moves):\n            grid[m[0]][m[1]] = 1 if i % 2 == 0 else -1\n        for i in range(3):\n            if sum(grid[i]) == 3:\n                return \"A\"\n            if sum(grid[i]) == -3:\n                return \"B\"\n            if sum([grid[j][i] for j in range(3)]) == 3:\n                return \"A\"\n            if sum([grid[j][i] for j in range(3)]) == -3:\n                return \"B\"\n        if sum([grid[i][i] for i in range(3)]) == 3:\n            return \"A\"\n        if sum([grid[i][i] for i in range(3)]) == -3:\n            return \"B\"\n        if sum([grid[i][2 - i] for i in range(3)]) == 3:\n            return \"A\"\n        if sum([grid[i][2 - i] for i in range(3)]) == -3:\n            return \"B\"\n        if len(moves) == 9:\n            return \"Draw\"\n        return \"Pending\""
+}

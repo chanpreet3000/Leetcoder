@@ -1,0 +1,5 @@
+{
+    "problemName": "array-nesting",
+    "language": "cpp",
+    "code": "class Solution {\n    vector<int>graph;\n    bool vis[100005] = {};\n    bool par[100005] = {};\n    \n    int dfs(int node) {\n        vis[node] = 1;\n        if(par[node])\n            return 0;\n        par[node] = 1;\n        return 1 + dfs(graph[node]);\n    }\n    \npublic:\n    int arrayNesting(vector<int>& nums) {\n        int n = nums.size();\n        int ans = 0;\n        graph.resize(n);\n        for(int i=0;i<n;i++) {\n            graph[i] = nums[i];\n        }\n        for(int i=0;i<n;i++) {\n            if(vis[i])\n                continue;\n            ans = max(ans, dfs(i));\n        }\n        return ans;\n    }\n};"
+}

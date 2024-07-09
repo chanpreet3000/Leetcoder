@@ -1,0 +1,5 @@
+{
+    "problemName": "flatten-2d-vector",
+    "language": "python3",
+    "code": "class Vector2D:\n\n    def __init__(self, vec: List[List[int]]):\n        self.vector = [x for row in vec for x in row]\n        self.position = 0\n    def next(self) -> int:\n        self.position+=1\n        return self.vector[self.position-1]\n\n    def hasNext(self) -> bool:\n        return self.position<len(self.vector)\n        \n\n\n# Your Vector2D object will be instantiated and called as such:\n# obj = Vector2D(vec)\n# param_1 = obj.next()\n# param_2 = obj.hasNext()"
+}

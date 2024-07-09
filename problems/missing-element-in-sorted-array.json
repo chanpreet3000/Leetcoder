@@ -1,0 +1,5 @@
+{
+    "problemName": "missing-element-in-sorted-array",
+    "language": "java",
+    "code": "class Solution {\n    public int missingElement(int[] nums, int k) {\n        int missingNum = 0; \n        for (int i = 1; i< nums.length; i++) {            \n            int tempNum = nums[i] - nums[i-1] - 1;            \n            if ( missingNum + tempNum >= k ) return nums[i-1] + k - missingNum;\n             missingNum = missingNum + tempNum;\n        }\n        return nums[nums.length - 1] + k - missingNum;\n        \n    }\n}"
+}

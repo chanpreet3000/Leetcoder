@@ -1,0 +1,5 @@
+{
+    "problemName": "3sum-smaller",
+    "language": "java",
+    "code": "// algorithm: Arrays.sort() + opposite-direction pointers (if we found out nums[i] + nums[lo] + nums[hi] < target, then all third numbers in (j, k] satisfy sum < target)\n// refer to https://leetcode.com/problems/3sum-smaller/discuss/68819/*Java*-straightforward-O(n2)-solution-with-explanations\n// time complexiy: O(nlogn+n^2)--O(n^2)\n// space complexity: O(1) for heap memory, O(logn)->O(n) for stack memory\n\nclass Solution {\n    public int threeSumSmaller(int[] nums, int target) {\n        Arrays.sort(nums);\n        \n        int res = 0;\n        for (int i = 0; i + 2 < nums.length; i++) {\n            int j = i + 1;\n            int k = nums.length - 1;\n            while (j < k) {\n                int sum = nums[i] + nums[j] + nums[k];\n                \n                if (sum < target) {\n                    res += k - j;\n                    j++;\n                }\n                else {\n                    k--;\n                }\n            }\n        }\n        return res;\n    }\n}"
+}

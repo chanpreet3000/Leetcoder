@@ -1,0 +1,5 @@
+{
+    "problemName": "the-number-of-users-that-are-eligible-for-discount",
+    "language": "mysql",
+    "code": "CREATE FUNCTION getUserIDs(startDate DATE, endDate DATE, minAmount INT) RETURNS INT\nBEGIN\n  RETURN (\n      # Write your MySQL query statement below.\n      SELECT COUNT(DISTINCT user_id)\n      FROM Purchases\n      WHERE amount >= minAmount\n      AND time_stamp BETWEEN startDate AND endDate\n  );\nEND"
+}

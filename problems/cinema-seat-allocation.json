@@ -1,0 +1,5 @@
+{
+    "problemName": "cinema-seat-allocation",
+    "language": "python3",
+    "code": "class Solution:\n    def maxNumberOfFamilies(self, n: int, reservedSeats: List[List[int]]) -> int:\n        res = 0\n        rows = collections.defaultdict(list)\n        for s in reservedSeats:\n            rows[s[0]].append(s[1])\n        res += 2 * (n - len(rows))\n        for row in rows:\n            seat = rows[row]\n            if len(seat) == 1:\n                if seat[0] in [1,10]:\n                    res += 2\n                else:\n                    res += 1\n            else:\n                help = [0]*10\n                for s in seat:\n                    help[s-1] += 1\n                temp = res\n                if help[1:5] == [0,0,0,0]:\n                    res += 1\n                if help[5:9] == [0,0,0,0]:\n                    res += 1\n                if temp == res and help[3:7] == [0,0,0,0]:\n                    res += 1\n        return res\n                    "
+}

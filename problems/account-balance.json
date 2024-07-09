@@ -1,0 +1,5 @@
+{
+    "problemName": "account-balance",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect\n    account_id\n    , day\n    , sum(case when type = 'Deposit' then amount else -1*amount end) over (partition by account_id order by day) as balance\nfrom transactions\norder by 1,2"
+}

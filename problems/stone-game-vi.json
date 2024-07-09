@@ -1,0 +1,5 @@
+{
+    "problemName": "stone-game-vi",
+    "language": "python3",
+    "code": "class Solution:\n    def stoneGameVI(self, a: List[int], b: List[int]) -> int:\n        comb = []\n        for i in range(len(a)):\n            comb.append((a[i] + b[i], i))\n        \n        comb.sort()\n        alice = 0\n        al = True\n        for i in range(len(comb)):\n            if al:\n                alice += a[comb[-i-1][1]]\n            else:\n                alice -= b[comb[-i-1][1]]\n            al = not al\n        return int(alice / abs(alice)) if alice != 0 else alice"
+}

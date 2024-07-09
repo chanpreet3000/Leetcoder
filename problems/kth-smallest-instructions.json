@@ -1,0 +1,5 @@
+{
+    "problemName": "kth-smallest-instructions",
+    "language": "python3",
+    "code": "class Solution:\n    def kthSmallestPath(self, destination: List[int], k: int) -> str:\n        row, col = destination[0], destination[1]\n        ans = \"\"\n        while row > 0 and col > 0:\n            pre = math.comb(row+col-1, row)\n            if k > pre:\n                k-=pre\n                ans += \"V\"\n                row -=1\n            else:\n                ans += \"H\"\n                col-=1\n                \n        ans += \"H\"*col + \"V\"*row\n        \n        return ans\n    "
+}

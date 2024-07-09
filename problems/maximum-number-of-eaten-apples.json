@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-number-of-eaten-apples",
+    "language": "java",
+    "code": "class Solution {\n    public int eatenApples(int[] apples, int[] days) {\n        \n        int n = apples.length;\n        Queue<int[]> pq = new PriorityQueue<>((int[] a, int[] b) -> a[1] - b[1]);\n        int ans = 0;\n        \n        for (int i = 0; i < n; i++) {\n            while (!pq.isEmpty() && (pq.peek()[1] <= i || pq.peek()[0] < 1)) {\n                pq.poll();\n            }\n            if (apples[i] > 0) {\n                pq.add(new int[]{apples[i], i + days[i]});\n            }\n            if (!pq.isEmpty()) {\n                int[] curr = pq.poll();\n                ans++;\n                if (curr[0] > 1) {\n                    pq.add(new int[]{curr[0]-1, curr[1]});\n                }\n            }\n        }\n        \n        int day = n;\n        while (!pq.isEmpty()) {\n            int[] curr = pq.poll();\n            if (curr[1] > day) {\n                ans += Math.min(curr[0], curr[1] - day);\n                day = day + Math.min(curr[0], curr[1] - day);\n            }\n        }\n        \n        return ans;\n        \n    }\n}"
+}

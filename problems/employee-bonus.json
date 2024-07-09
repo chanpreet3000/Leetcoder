@@ -1,0 +1,5 @@
+{
+    "problemName": "employee-bonus",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSelect e.name,b.bonus from Employee e \nleft join Bonus b \non e.empId=b.empId\nwhere b.bonus<1000 or b.bonus is null\n"
+}
