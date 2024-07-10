@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-cost-to-hire-k-workers",
+    "language": "python3",
+    "code": "class Solution:\n    def mincostToHireWorkers(self, quality: List[int], wage: List[int], K: int) -> float:\n        # first sort the workers according to their minimum pay ratio\n        workers = sorted((float(w) / q, q) for w, q in zip(wage, quality)) # -> creates a list of tuples of ratio and quality\n        res = float('inf') # set the initial res to infinity so that any combination will be less\n        qsum = 0 # keep track of the current quality sum\n        heap = []\n        for r, q in workers:\n            heapq.heappush(heap, -q)\n            qsum += q\n            if len(heap) > K: qsum += heapq.heappop(heap)\n            if len(heap) == K: res = min(res, qsum * r)\n        return res\n        \n        "
+}

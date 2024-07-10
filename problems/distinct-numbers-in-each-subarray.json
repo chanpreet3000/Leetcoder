@@ -1,0 +1,5 @@
+{
+    "problemName": "distinct-numbers-in-each-subarray",
+    "language": "java",
+    "code": "class Solution {\n    public int[] distinctNumbers(int[] nums, int k) {\n        Map<Integer, Integer> map = new HashMap<>();\n        int[] ans = new int[nums.length - k + 1];\n        int iterator = 0;\n        int start = 0;\n        \n        for (int end = 0; end < nums.length; end++) {\n            int endNum = nums[end];\n            map.put(endNum, map.getOrDefault(endNum, 0) + 1);\n            \n            if (end - start + 1 == k) {\n                ans[iterator] = map.size();\n                iterator++;\n                \n                int startNum = nums[start];\n                map.put(startNum, map.get(startNum) - 1);\n                if (map.get(startNum) == 0) {\n                    map.remove(startNum);\n                }\n                start++;\n            }\n        }\n        \n        return ans;        \n    }\n}"
+}

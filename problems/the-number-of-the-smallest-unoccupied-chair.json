@@ -1,0 +1,5 @@
+{
+    "problemName": "the-number-of-the-smallest-unoccupied-chair",
+    "language": "java",
+    "code": "class Solution {\n    public int smallestChair(int[][] times, int targetFriend) {\n        PriorityQueue<Integer> empty = new PriorityQueue<>();\n        int[][] ts = new int[times.length][3];\n        for (int i = 0; i < times.length; i++) {\n            empty.offer(i);\n            ts[i] = new int[]{i, times[i][0], times[i][1]};\n        }\n        Arrays.sort(ts, (a, b) -> a[1] - b[1]);\n        PriorityQueue<int[]> used = new PriorityQueue<>((a, b) -> a[1] - b[1]);\n        for (int i = 0; i < ts.length; i++) {\n            int people = ts[i][0], start = ts[i][1], end = ts[i][2];\n            while (!used.isEmpty() && used.peek()[1] <= start) {\n                int chair = used.poll()[0];\n                empty.offer(chair);\n            }\n            int chair = empty.poll();\n            if (people == targetFriend)\n                return chair;\n            used.offer(new int[]{chair, end});\n        }\n        return -1;\n    }\n}"
+}

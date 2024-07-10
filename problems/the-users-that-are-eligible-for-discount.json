@@ -1,0 +1,5 @@
+{
+    "problemName": "the-users-that-are-eligible-for-discount",
+    "language": "mysql",
+    "code": "CREATE PROCEDURE getUserIDs(startDate DATE, endDate DATE, minAmount INT)\nBEGIN\n\n\t# Write your MySQL query statement below.\n    select distinct user_id\n    from purchases\n    where amount >= minAmount and (time_stamp>=startDate and time_stamp<=endDate)\n    order by user_id;\nEND\n"
+}

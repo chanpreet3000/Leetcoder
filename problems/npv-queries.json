@@ -1,0 +1,5 @@
+{
+    "problemName": "npv-queries",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect q.id, q.year, coalesce(n.npv,0) as npv\nfrom Queries q left join NPV n using(id,year)\n"
+}

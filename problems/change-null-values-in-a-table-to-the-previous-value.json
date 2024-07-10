@@ -1,0 +1,5 @@
+{
+    "problemName": "change-null-values-in-a-table-to-the-previous-value",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith temp as (\nselect *, count(drink) over(order by row_no) category from \n(select *, row_number()over() row_no from coffeeshop) a\n)\n\nselect id,\nfirst_value(drink)over(partition by category) drink from temp"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-score-after-splitting-a-string",
+    "language": "python3",
+    "code": "class Solution:\n    def maxScore(self, s: str) -> int:\n        \n        lv = 0\n        rv = sum([1 for i in s if i==\"1\"])\n        score = 0\n        \n        for i in range(len(s)-1):\n            # flip i\n            if s[i] == \"0\":\n                lv += 1\n            else:\n                rv -= 1\n            score = max(score, lv+rv)\n        \n        return score"
+}

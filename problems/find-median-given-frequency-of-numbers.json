@@ -1,0 +1,5 @@
+{
+    "problemName": "find-median-given-frequency-of-numbers",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n/*\n1. median_rank = sum(freq)/2\n2. running fre for each num\n3. select when [2] ~= [1]\n*/\n\nWITH t AS (\n    SELECT *\n        , SUM(frequency) OVER(ORDER BY num) AS fre_upper\n        , SUM(frequency) OVER(ORDER BY num) - frequency AS fre_lower\n        , SUM(frequency)  over ()  /2 AS med\n    FROM Numbers\n)\nSELECT \n    ROUND(AVG(num), 1) AS median\nFROM t\nWHERE med <= fre_upper AND med >= fre_lower\n\n "
+}

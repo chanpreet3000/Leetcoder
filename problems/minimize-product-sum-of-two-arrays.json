@@ -1,0 +1,5 @@
+{
+    "problemName": "minimize-product-sum-of-two-arrays",
+    "language": "python3",
+    "code": "class Solution:\n    def minProductSum(self, nums1: List[int], nums2: List[int]) -> int:\n        \n        nums1.sort()\n        nums2_sort = sorted(nums2, reverse=True)\n        sum_val = 0\n        for i in range(0,len(nums1)):\n            sum_val = sum_val + nums1[i]*nums2_sort[i]\n            \n        return sum_val\n            \n            \n        \n         "
+}

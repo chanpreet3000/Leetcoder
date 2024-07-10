@@ -1,0 +1,5 @@
+{
+    "problemName": "rle-iterator",
+    "language": "java",
+    "code": "class RLEIterator {\n    int size;\n    int[] encoding = null;\n    int cur;\n    \n    public RLEIterator(int[] encoding) {\n        this.size = encoding.length;\n        this.encoding = encoding;\n        this.cur = 0;\n    }\n    \n    public int next(int n) {\n        int result = -1;\n        while (n != 0 && this.cur < this.size) {\n            int count = this.encoding[this.cur];\n            if (n <= count) {\n                this.encoding[this.cur] = count - n;\n                result = this.encoding[this.cur + 1];\n                n = 0;\n                break;\n            } else { // count < n\n                this.encoding[this.cur] = 0;\n                n = n - count;\n                this.cur = this.cur + 2;\n            }\n        }\n\n        return result;\n    }\n}\n\n/**\n * Your RLEIterator object will be instantiated and called as such:\n * RLEIterator obj = new RLEIterator(encoding);\n * int param_1 = obj.next(n);\n */"
+}

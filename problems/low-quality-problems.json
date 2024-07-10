@@ -1,0 +1,5 @@
+{
+    "problemName": "low-quality-problems",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nselect problem_id from Problems\nwhere (likes)/(likes+dislikes)<0.6\norder by problem_id"
+}

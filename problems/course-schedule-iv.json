@@ -1,0 +1,5 @@
+{
+    "problemName": "course-schedule-iv",
+    "language": "python3",
+    "code": "import collections\nclass Solution:\n    def checkIfPrerequisite(self, n: int, A: List[List[int]], Q: List[List[int]]) -> List[bool]:\n        G = defaultdict(list)\n        ind = [0] * n\n        P = [set() for _ in range(n)]\n        for i, j in A:\n            G[i].append(j)\n            ind[j] += 1\n            P[j].add(i)\n        q = deque(i for i in range(n) if not ind[i])\n        while q:\n            i = q.popleft()\n            for j in G[i]:\n                P[j] |= P[i]\n                ind[j] -= 1\n                if ind[j] == 0:\n                    q.append(j)\n        return [i in P[j] for i, j in Q]\n"
+}

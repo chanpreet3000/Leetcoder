@@ -1,0 +1,5 @@
+{
+    "problemName": "strong-friendship",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\n\n\n\nwith cte as (\n    select user1_id u1, user2_id u2 from Friendship \n    union all\n    select user2_id u1, user1_id u2 from Friendship\n)\n\n\nselect c1.u1 as user1_id, c1.u2 as user2_id, count(distinct c2.u2) as common_friend\nfrom cte c1\njoin cte c2 on c1.u1 = c2.u1 and c1.u2 != c2.u2 # this join matches the first user of c1 to the first user of c2 and makes sure the second users are different, the common friend\njoin cte c3 on c1.u2 = c3.u1 and c2.u2 = c3.u2 # this join makes sure that the second user of c1 matches first of c3 and the second user of c3 is the common friend with c2 table\nwhere c1.u1 < c1.u2\ngroup by 1, 2\nhaving count(distinct c2.u2) >= 3"
+}

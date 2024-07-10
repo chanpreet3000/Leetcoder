@@ -1,0 +1,5 @@
+{
+    "problemName": "market-analysis-ii",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith t as(\n    select o2.seller_id, o2.item_id\n    from orders o1\n    left join orders o2 on o1.seller_id = o2.seller_id and o1.order_date<o2.order_date\n    group by o2.seller_id,o2.order_date having count(o2.order_id) =1\n)\n\nselect u.user_id as seller_id, case when u.favorite_brand = i.item_brand then \"yes\" else \"no\" end as '2nd_item_fav_brand' \nfrom users u left join t on u.user_id = t.seller_id\nLEFT JOIN Items i\nON t.item_id = i.item_id\n\n"
+}

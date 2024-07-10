@@ -1,0 +1,5 @@
+{
+    "problemName": "find-missing-observations",
+    "language": "javascript",
+    "code": "/**\n * @param {number[]} rolls\n * @param {number} mean\n * @param {number} n\n * @return {number[]}\n */\nvar missingRolls = function(rolls, mean, n) {\n    var sum = mean*(rolls.length+n);\n    var diff = sum-rolls.reduce((s,c)=>s+=c,0);\n    if (diff/n>6||diff/n<1)\n        return [];\n    var arr = [];\n    for (let i = 1; i <= n; i++) {\n        let cur = Math.max(1,diff-6*(n-i)); \n        diff -= cur;\n        arr.push(cur);\n    }\n    return arr;\n};"
+}

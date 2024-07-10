@@ -1,0 +1,5 @@
+{
+    "problemName": "decode-xored-permutation",
+    "language": "python3",
+    "code": "from functools import reduce\nclass Solution:\n    def decode(self, encoded: List[int]) -> List[int]:\n        ans = [reduce(lambda x, y: x ^ y, encoded[1::2], ((len(encoded) - 1) // 2) % 2)]\n        for n in encoded:\n            ans.append(n ^ ans[-1])\n        return ans\n"
+}

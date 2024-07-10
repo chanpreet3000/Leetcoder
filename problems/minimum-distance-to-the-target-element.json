@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-distance-to-the-target-element",
+    "language": "python3",
+    "code": "class Solution:\n    def getMinDistance(self, nums: List[int], target: int, start: int) -> int:\n        ans = float('inf')\n        \n        for i, num in enumerate(nums):\n            if (num == target):\n                ans = min(ans, abs(i - start))\n        return ans"
+}

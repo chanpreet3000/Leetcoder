@@ -1,0 +1,5 @@
+{
+    "problemName": "products-price-for-each-store",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nselect product_id, \nmax(case when store = 'store1' then price else null end) as 'store1', \nmax(case when store = 'store2' then price else null end) as 'store2',\nmax(case when store = 'store3' then price else null end) as 'store3'\nfrom Products\ngroup by product_id\n\n\n"
+}

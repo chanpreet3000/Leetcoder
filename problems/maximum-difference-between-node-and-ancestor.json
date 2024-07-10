@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-difference-between-node-and-ancestor",
+    "language": "java",
+    "code": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n    public int maxAncestorDiff(TreeNode root) {\n        if(root == null) return 0;\n        return helper(root, root.val, root.val);\n    }\n    \n    private int helper(TreeNode root, int min, int max) {\n        if(root == null) return max - min;\n        \n        min = Math.min(min, root.val);\n        max = Math.max(max, root.val);        \n        \n        int left = helper(root.left, min, max);\n        \n        int right = helper(root.right, min, max);\n        \n        return Math.max(left, right);\n    }\n}"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "replace-employee-id-with-the-unique-identifier",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect \nu.unique_id, e.name \nfrom  Employees e left join EmployeeUNI u ON e.id = u.id\n"
+}

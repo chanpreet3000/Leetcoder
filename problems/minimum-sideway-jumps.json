@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-sideway-jumps",
+    "language": "python3",
+    "code": "class Solution:\n    def minSideJumps(self, obstacles: List[int]) -> int:\n        dp =[1,0,1]\n        for e in obstacles:\n            if e:\n                dp[e-1] =float('inf')\n            for lane in range(3):\n                if lane !=e-1:\n                    dp[lane]= min(dp[lane],dp[(lane+1)%3]+1,dp[(lane+2)%3]+1)\n        return min(dp)"
+}

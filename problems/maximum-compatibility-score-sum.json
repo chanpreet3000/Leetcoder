@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-compatibility-score-sum",
+    "language": "java",
+    "code": "class Solution {\n    int max;\n    public int maxCompatibilitySum(int[][] students, int[][] mentors) {\n        boolean[] visited = new boolean[students.length];\n        count(students, mentors, visited, 0, 0);\n        return max;\n    }\n    \n    private void count(int[][] students, int[][] mentors, boolean[] visited, int pos, int score){\n        if(pos >= students.length){\n            max = Math.max(max, score);\n            return;\n        }\n        for(int i = 0; i < mentors.length; i++){\n            if(!visited[i]){\n                visited[i] = true;\n                count(students, mentors, visited, pos + 1, score + getScore(students[pos], mentors[i]));\n                visited[i] = false;\n            }\n        }\n    }\n    \n    private int getScore(int[] a, int[] b){\n        int count = 0;\n        for(int i = 0; i < b.length; i++){\n            if(a[i] == b[i])\n                count++;\n        }\n        return count;\n    }\n}"
+}

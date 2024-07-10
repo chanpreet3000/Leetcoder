@@ -1,0 +1,5 @@
+{
+    "problemName": "constrained-subsequence-sum",
+    "language": "python3",
+    "code": "class Solution:\n    def constrainedSubsetSum(self, nums: List[int], k: int) -> int:\n        deque = collections.deque()\n        for i in range(len(nums)):\n            nums[i] += deque[0] if deque else 0\n            while len(deque) and nums[i] > deque[-1]:\n                deque.pop()\n            if nums[i] > 0:\n                deque.append(nums[i])\n            if i >= k and deque and deque[0] == nums[i - k]:\n                deque.popleft()\n        return max(nums)"
+}

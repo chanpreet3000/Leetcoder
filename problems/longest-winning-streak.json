@@ -1,0 +1,5 @@
+{
+    "problemName": "longest-winning-streak",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith recursive cte as(\n    select player_id, result, 1 streak, r\n\n    from (\n        select player_id, match_day, result, 1 streak, row_number() over (partition by player_id order by match_day) r\n        from Matches) m\n    where result = 'Win'\n    \n    union\n    \n    select m.player_id, m.result,  c.streak + 1, m.r\n    from  (\n        select player_id, match_day, result, 1 streak, row_number() over (partition by player_id order by match_day) r\n        from Matches) m\n    join cte c on c.player_id = m.player_id and c.r + 1 = m.r and m.result = 'Win'\n    \n)\n,\n\ncte1 as(\nselect player_id, max(streak) s\nfrom cte\ngroup by player_id\n)\n\nselect distinct m.player_id, ifnull(c.s, 0) longest_streak\nfrom Matches m\nleft join cte1 c on c.player_id = m.player_id\n"
+}

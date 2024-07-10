@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-unique-subjects-taught-by-each-teacher",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect teacher_id,count(distinct subject_id) as cnt\nfrom teacher\ngroup by 1"
+}

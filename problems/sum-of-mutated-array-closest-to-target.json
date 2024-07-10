@@ -1,0 +1,5 @@
+{
+    "problemName": "sum-of-mutated-array-closest-to-target",
+    "language": "python3",
+    "code": "import bisect\n\n\nclass Solution:\n    def findBestValue(self, arr: List[int], target: int) -> int:\n        ans = 0\n        arr.sort()\n        n = len(arr)\n        prefix_sum = [0]\n        for i in range(n):\n            prefix_sum.append(prefix_sum[-1]+arr[i])\n\n        l, r = 0, max(arr)\n        while l <= r:\n            m = (l+r)//2\n            t = bisect.bisect_left(arr, m)\n            cur = prefix_sum[t]+(n-t)*m\n            if cur == target:\n                ans = m\n                break\n            elif cur < target:\n                l = m+1\n            else:\n                r = m-1\n        if ans != m:\n            ans = r\n        small = sum(num if num < ans else ans for num in arr)\n        big = sum(num if num < (ans+1) else (ans+1) for num in arr)\n\n\n        return ans if abs(target-small) <= abs(big-target) else ans+1\n"
+}

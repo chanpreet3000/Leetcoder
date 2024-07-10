@@ -1,0 +1,5 @@
+{
+    "problemName": "falling-squares",
+    "language": "python3",
+    "code": "class Solution:\n    def fallingSquares(self, positions: List[List[int]]) -> List[int]:\n        height = [0]\n        pos = [0]\n        res = []\n        max_h = 0\n        for left, side in positions:\n            i = bisect.bisect_right(pos, left)\n            j = bisect.bisect_left(pos, left + side)\n            high = max(height[i - 1:j] or [0]) + side\n            pos[i:j] = [left, left + side]\n            height[i:j] = [high, height[j - 1]]\n            max_h = max(max_h, high)\n            res.append(max_h)\n        return res"
+}

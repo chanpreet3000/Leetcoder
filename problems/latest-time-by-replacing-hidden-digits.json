@@ -1,0 +1,5 @@
+{
+    "problemName": "latest-time-by-replacing-hidden-digits",
+    "language": "golang",
+    "code": "func maximumTime(time string) string {\n    result := \"\"\n\tQ := \"?\"\n\n\ttimeSplit := strings.Split(time, \":\")\n\thourStr := timeSplit[0]\n\tif hourStr == \"??\" {\n\t\tresult += \"23\"\n\t} else if string(hourStr[0]) == Q {\n\t\tonesStr := string(hourStr[1])\n\t\tif onesStr == \"0\" || onesStr == \"1\" || onesStr == \"2\" || onesStr == \"3\" {\n\t\t\tresult += \"2\"\n\t\t} else {\n\t\t\tresult += \"1\"\n\t\t}\n\n\t\tresult += onesStr\n\t} else if string(hourStr[1]) == Q {\n\t\ttensStr := string(hourStr[0])\n\t\tresult += tensStr\n\t\tif tensStr == \"2\" {\n\t\t\tresult += \"3\"\n\t\t} else {\n\t\t\tresult += \"9\"\n\t\t}\n\t} else {\n\t\tresult += hourStr\n\t}\n\n\tresult += \":\"\n\n\tminuteStr := timeSplit[1]\n\tif string(minuteStr[0]) == Q {\n\t\tresult += \"5\"\n\t} else {\n\t\tresult += string(minuteStr[0])\n\t}\n\n\tif string(minuteStr[1]) == Q {\n\t\tresult += \"9\"\n\t} else {\n\t\tresult += string(minuteStr[1])\n\t}\n\n\treturn result\n}"
+}

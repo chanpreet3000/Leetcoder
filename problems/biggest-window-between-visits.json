@@ -1,0 +1,5 @@
+{
+    "problemName": "biggest-window-between-visits",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nWITH nv AS(\nSELECT user_id, visit_date, LEAD(visit_date) OVER(Partition BY user_id ORDER BY visit_date) next_visit\nFROM UserVisits)\n\nSELECT user_id, MAX(DATEDIFF(COALESCE(next_visit,'2021-1-1'),visit_date)) biggest_window\nFROM nv\nGROUP BY user_id"
+}

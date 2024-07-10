@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-number-of-swaps-to-make-the-string-balanced",
+    "language": "python3",
+    "code": "class Solution:\n    def minSwaps(self, s: str) -> int:\n        \n        close, maxClose = 0, 0\n        \n        for c in s:\n            if c == \"[\":\n                close -= 1\n                \n            else:\n                close += 1\n                \n            maxClose = max(close, maxClose)\n            \n        return (maxClose + 1) // 2\n        "
+}

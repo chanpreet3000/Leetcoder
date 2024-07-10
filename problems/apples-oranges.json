@@ -1,0 +1,5 @@
+{
+    "problemName": "apples-oranges",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith apple as \n(select sale_date, sold_num from Sales where fruit= \"apples\"),\norange as\n(select sale_date, sold_num from Sales where fruit=\"oranges\" )\nselect  a.sale_date,a.sold_num - o.sold_num as diff \nfrom apple a join orange o on a.sale_Date = o.sale_date"
+}

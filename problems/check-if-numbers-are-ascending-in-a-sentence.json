@@ -1,0 +1,5 @@
+{
+    "problemName": "check-if-numbers-are-ascending-in-a-sentence",
+    "language": "python3",
+    "code": "class Solution:\n    def areNumbersAscending(self, s: str) -> bool:\n        numbers = []\n        for match in re.finditer(\"\\d+\", s):\n            numbers.append(match.group())\n        \n        numbers = [int(num) for num in numbers]\n        \n        if numbers == sorted(numbers) and len(numbers) == len(set(numbers)):\n            return True\n        else:\n            return False"
+}

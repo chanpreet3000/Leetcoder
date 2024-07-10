@@ -1,0 +1,5 @@
+{
+    "problemName": "web-crawler",
+    "language": "java",
+    "code": "/**\n * // This is the HtmlParser's API interface.\n * // You should not implement it, or speculate about its implementation\n * interface HtmlParser {\n *     public List<String> getUrls(String url) {}\n * }\n */\n\nclass Solution {\n    public List<String> crawl(String startUrl, HtmlParser htmlParser) {\n        Set<String> set = new HashSet<>();\n        Queue<String> queue = new LinkedList<>();\n        String hostname = getHostname(startUrl);\n        \n        queue.offer(startUrl);\n        set.add(startUrl);\n        \n        while (!queue.isEmpty()) {\n            String currentUrl = queue.poll();\n            for (String url : htmlParser.getUrls(currentUrl)) {\n                if (url.contains(hostname) && !set.contains(url)) {\n                    queue.offer(url);\n                    set.add(url);\n                }\n            }\n        }\n        \n        return new ArrayList<String>(set);\n    }\n    \n    private String getHostname(String Url) {\n        String[] ss = Url.split(\"/\");\n        return ss[2];\n    }\n    \n}"
+}

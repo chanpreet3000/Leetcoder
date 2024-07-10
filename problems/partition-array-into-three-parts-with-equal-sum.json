@@ -1,0 +1,5 @@
+{
+    "problemName": "partition-array-into-three-parts-with-equal-sum",
+    "language": "python3",
+    "code": "class Solution:\n    def canThreePartsEqualSum(self, arr: List[int]) -> bool:\n        total = sum(arr)\n        count = 0\n            \n        if total%3 != 0:\n            return False\n        else:\n            totalSum = total/3\n            add = 0\n            for x in range(len(arr)):\n                add += arr[x]\n                if add == totalSum:\n                    count += 1\n                    add = 0\n                    if count == 3:\n                        return True\n        return False\n        "
+}

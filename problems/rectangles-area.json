@@ -1,0 +1,5 @@
+{
+    "problemName": "rectangles-area",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nSELECT P1.id AS p1, P2.id AS p2, ABS(P1.x_value - P2.x_value)*ABS(P1.y_value - P2.y_value) AS area\nFROM Points P1, Points P2\nWHERE  p1.id < p2.id\nAND P1.x_value != P2.x_value AND P1.y_value != P2.y_value\nORDER BY area DESC, P1.id, P2.id\n"
+}

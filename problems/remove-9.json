@@ -1,0 +1,5 @@
+{
+    "problemName": "remove-9",
+    "language": "java",
+    "code": "class Solution {\n    public int newInteger(int n) {\n        StringBuilder sb = new StringBuilder();\n        while(n >= 9){\n            sb.insert(0,n%9);\n            n /= 9;\n        }\n        sb.insert(0,n);\n        return Integer.parseInt(sb.toString());\n    }\n}"
+}

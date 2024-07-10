@@ -1,0 +1,5 @@
+{
+    "problemName": "game-play-analysis-iv",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nselect round(count(case when next_event_date = date_add(event_date, interval 1 day) then  player_id end)\n/\ncount(player_id),2) as fraction\nfrom\n(select \nplayer_id, event_date, \nlead(event_date) over (partition by player_id order by event_date asc ) as next_event_date,\n dense_rank () over (partition by player_id order by event_date asc) rnk\nfrom activity\norder by event_date asc) A\nwhere rnk = 1"
+}

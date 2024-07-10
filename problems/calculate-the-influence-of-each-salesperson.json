@@ -1,0 +1,5 @@
+{
+    "problemName": "calculate-the-influence-of-each-salesperson",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect salesperson_id,name,ifnull(sum(price),0) as total from\n(select sp.salesperson_id,sp.name,c.customer_id,s.sale_id,s.price from \nSalesperson sp\nleft join\nCustomer c\non sp.salesperson_id = c.salesperson_id\nleft join\nSales s\non c.customer_id = s.customer_id) T\ngroup by salesperson_id\n"
+}

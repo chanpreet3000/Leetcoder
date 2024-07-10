@@ -1,0 +1,5 @@
+{
+    "problemName": "lowest-common-ancestor-of-a-binary-tree-iv",
+    "language": "java",
+    "code": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {\n    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode[] nodes) {\n        Set<TreeNode> set = new HashSet<>();\n        for(TreeNode node: nodes) set.add(node);\n        return dfs(set, root);\n    }\n    \n    public TreeNode dfs(Set<TreeNode> set, TreeNode root){\n        if(root == null || set.contains(root)) return root;\n        TreeNode left = dfs(set, root.left);\n        TreeNode right = dfs(set, root.right);\n        if(left != null && right != null) return root;\n        if(left != null) return left;\n        if(right != null) return right;\n        return null;\n    }\n}"
+}

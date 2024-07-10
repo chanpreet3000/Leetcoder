@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-score-of-a-good-subarray",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int maximumScore(vector<int>& nums, int k) {\n        int n = nums.size();\n        \n        int m = nums[k];\n        \n        int l = k;\n        int r = k;\n        int res = 0;\n        while(l >=0 && r < n){\n            while(l != 0 && nums[l-1] >= m)\n                l--;\n            while(r != n-1 && nums[r+1] >= m)\n                r++;\n            res = max(res, (r-l+1)*m);\n            if(l == 0 && r == n-1)\n                return res;\n            int lm = l == 0 ? INT_MIN : nums[l-1];\n            int rm = r == n-1 ? INT_MIN : nums[r+1];\n            if(lm <= rm){\n                m = rm;\n                r++;\n            }\n            else{\n                m = lm;\n                l--;\n            }\n        }\n        return res;\n        \n    }\n};"
+}

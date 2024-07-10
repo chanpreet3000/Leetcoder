@@ -1,0 +1,5 @@
+{
+    "problemName": "first-and-last-call-on-the-same-day",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nWITH cte1 AS (\n    SELECT caller_id AS user_id, recipient_id, call_time FROM Calls\n    UNION \n    SELECT recipient_id AS user_id, caller_id AS recipient_id, call_time FROM Calls\n),\ncte AS (\n    SELECT user_id, recipient_id, DATE(call_time) AS call_dt,\n        RANK() OVER (PARTITION BY user_id, DATE(call_time) ORDER BY call_time) AS ra,\n        RANK() OVER (PARTITION BY user_id, DATE(call_time) ORDER BY call_time DESC) AS rd\n    FROM cte1\n)\nSELECT DISTINCT user_id\nFROM cte\nWHERE ra = 1 OR rd = 1\nGROUP BY user_id, call_dt\nHAVING COUNT(DISTINCT recipient_id) = 1\n;"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "average-selling-price",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect p.product_id product_id, round(sum(us.units*p.price)/(sum(us.units)),2) average_price\nfrom prices p\nleft join unitssold us\non us.product_id = p.product_id \nwhere us.purchase_date between p.start_date and p.end_date\ngroup by p.product_id;"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "word-frequency",
+    "language": "bash",
+    "code": "# Read from the file words.txt and output the word frequency list to stdout.\ncat words.txt | tr ' ' '\\n' | sed '/^$/d' -  | sort | uniq -c | sort -nr | awk '{print $2\" \"$1}'"
+}

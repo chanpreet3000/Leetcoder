@@ -1,0 +1,5 @@
+{
+    "problemName": "the-first-day-of-the-maximum-recorded-degree-in-each-city",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect city_id, min(day) as day, degree\nfrom (\nselect city_id, day, degree,\nrank() over(partition by city_id order by degree desc) as degree_rnk\nfrom Weather) t\nwhere degree_rnk = 1\ngroup by 1"
+}

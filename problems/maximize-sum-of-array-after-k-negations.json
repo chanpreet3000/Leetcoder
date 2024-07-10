@@ -1,0 +1,5 @@
+{
+    "problemName": "maximize-sum-of-array-after-k-negations",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int largestSumAfterKNegations(vector<int>& nums, int k) {\n        int len{(int)nums.size()};\n        int sum{0};\n        sort(nums.begin(), nums.end());\n        for(int i=0; i<len && k > 0; i++)\n        {\n            if(nums[i] < 0)\n                nums[i] *= -1, k--;\n        }\n        \n        for(int i=0; i<len; i++)\n            sum+=nums[i];\n        \n        if(k%2)\n        {\n            int mn = *min_element(nums.begin(), nums.end());\n            sum -= mn*2; \n        }\n        return sum;\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-interval-to-include-each-query",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<int> minInterval(vector<vector<int>>& intervals, vector<int>& queries) {\n        unordered_map<int,int> res;\n        priority_queue<pair<int,int>> pq;\n        vector<int> qq;\n        for(auto q : queries) qq.push_back(q);\n        sort(intervals.begin(),intervals.end());\n        sort(qq.begin(),qq.end());\n        \n        int i=0;\n        \n        for(auto q : qq){\n            \n            while(i<intervals.size() && intervals[i][0]<=q){\n                pq.push({intervals[i][0]-intervals[i][1]-1,intervals[i][1]});\n                i++;\n            }\n            \n            while(!pq.empty() && pq.top().second<q) pq.pop();\n            \n            if(pq.empty()) res[q] = -1;\n            else{\n                res[q] = -1*pq.top().first;\n            }\n            \n        }\n        \n        vector<int> result;\n        \n        for(auto q : queries)\n            result.push_back(res[q]);\n        \n        return result;\n    }\n};"
+}

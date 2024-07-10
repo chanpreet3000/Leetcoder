@@ -1,0 +1,5 @@
+{
+    "problemName": "find-cumulative-salary-of-an-employee",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith a as (\nselect *\nfrom employee\nwhere (id,month) not in (select id, max(month) as month from employee group by id)\norder by id,month desc)\n\nselect a.id, a.month,sum(a.salary + ifnull(e1.salary,0) + ifnull(e2.salary,0)) as salary\nfrom a\nleft join employee e1\non a.id = e1.id and a.month - 1 = e1.month\nleft join employee e2\non a.id = e2.id and a.month - 2 = e2.month\ngroup by a.id, a.month\norder by a.id, a.month desc"
+}

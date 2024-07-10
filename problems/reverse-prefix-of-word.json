@@ -1,0 +1,5 @@
+{
+    "problemName": "reverse-prefix-of-word",
+    "language": "java",
+    "code": "class Solution {\n    public String reversePrefix(String word, char ch) {\n        int index = -1;\n        for (int i = 0; i < word.length(); i++) {\n            if (word.charAt(i) == ch) {\n                index = i;\n                break;\n            }\n        }\n        if (index == -1) {\n            return word;\n        }\n        StringBuilder sb = new StringBuilder();\n        String s = sb.append(word.substring(0, index + 1)).reverse().toString();\n        if (index < word.length() - 1) {\n            s += word.substring(index + 1);\n        }\n        return s;\n    }\n}"
+}

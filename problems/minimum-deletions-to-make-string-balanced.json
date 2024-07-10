@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-deletions-to-make-string-balanced",
+    "language": "java",
+    "code": "class Solution {\n    public int minimumDeletions(String s) {\n        int n = s.length();\n        int[] count = new int[n];\n        int res = n;\n        int sum = 0;\n        for (int i = n - 1; i >= 0; i--) {\n            count[i] = sum;\n            if (s.charAt(i) == 'a') sum++;\n        }\n        sum = 0;\n        for (int i = 0; i < n; i++) {\n            res = Math.min(count[i] + sum, res);\n            if (s.charAt(i) == 'b') sum++;\n        }\n        return res;\n    }\n}"
+}

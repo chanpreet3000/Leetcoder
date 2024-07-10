@@ -1,0 +1,5 @@
+{
+    "problemName": "customers-who-bought-all-products",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\n# WITH t AS(\n#     SELECT COUNT(DISTINCT(product_key))\n#     FROM Product)\n#     )\n\n\n# SELECT customer_id\n# FROM Customer, Product\n# WHERE customer_id IN(\n\n# SELECT customer_id, COUNT(DISTINCT(product_key))\n# FROM Customer \n# GROUP BY customer_id\n# WHERE COUNT(DISTINCT(product_key)) =(\n# SELECT\n# COUNT(DISTINCT(product_key))\n# FROM Product))\n\nSELECT customer_id\nFROM Customer \nGROUP BY customer_id \nHAVING COUNT(DISTINCT(product_key)) = (SELECT COUNT(DISTINCT(product_key)) FROM Product)"
+}

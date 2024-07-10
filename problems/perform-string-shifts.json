@@ -1,0 +1,5 @@
+{
+    "problemName": "perform-string-shifts",
+    "language": "java",
+    "code": "class Solution {\n  public String stringShift(String s, int[][] shift) {\n    int n = s.length();\n    int net = 0;\n    for (int[] sft : shift) {\n      if (sft[0] == 0) {\n        net -= sft[1];\n      } else {\n        net += sft[1];\n      }\n    }\n    net = (net % n - n) % n;  // left shift only\n    int i = -net;\n    StringBuilder sb = new StringBuilder();\n    int count = 0;\n    while (count++ < n) {\n      sb.append(s.charAt(i));\n      i = (i + 1) % n;\n    }\n    return sb.toString();\n  }\n}"
+}

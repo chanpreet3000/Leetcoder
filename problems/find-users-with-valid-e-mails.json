@@ -1,0 +1,5 @@
+{
+    "problemName": "find-users-with-valid-e-mails",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect *\nfrom users\nwhere regexp_like(mail, '^[A-Za-z]+[A-Za-z0-9_.-]*@leetcode\\\\.com')"
+}

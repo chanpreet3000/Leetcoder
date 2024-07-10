@@ -1,0 +1,5 @@
+{
+    "problemName": "four-divisors",
+    "language": "python3",
+    "code": "class Solution:\n    def sumFourDivisors(self, nums: List[int]) -> int:\n        def getDivisors(num):\n            divs = set()\n            for i in range(1, int(math.sqrt(num)) + 1):\n                if num % i == 0:\n                    divs.add(i)\n                    divs.add(num // i)\n            return divs\n        \n        res = 0\n        for num in nums:\n            divs = getDivisors(num)\n            if len(divs) == 4:\n                res += sum(divs)\n        return res"
+}

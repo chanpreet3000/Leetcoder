@@ -1,0 +1,5 @@
+{
+    "problemName": "friend-requests-ii-who-has-the-most-friends",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith all_id as (\nselect requester_id,accepter_id\nfrom requestaccepted\nunion\nselect accepter_id, requester_id\nfrom requestaccepted)\nselect requester_id as id, count(accepter_id)as num from all_id\ngroup by 1\norder by 2 desc\nlimit 1"
+}

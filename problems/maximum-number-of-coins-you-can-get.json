@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-number-of-coins-you-can-get",
+    "language": "swift",
+    "code": "class Solution {\n    func maxCoins(_ piles: [Int]) -> Int {\n        let sorted = piles.sorted()\n        let n = sorted.count/3\n        var m = 0\n        var j = n\n        while j < sorted.count {\n            m += sorted[j]\n            j += 2\n        }\n        return m\n    }\n}"
+}

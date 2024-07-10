@@ -1,0 +1,5 @@
+{
+    "problemName": "find-the-closest-palindrome",
+    "language": "java",
+    "code": "class Solution {\n    public String nearestPalindromic(String n) {\n        long l=Long.valueOf(n);\n        long order=(long)Math.pow(10,n.length()/2);\n        long small=l/order*order-1;\n        long large=l/order*order+order;\n        long orig=Get(l);\n        long smaller=Get(small);\n        long larger=Get(large);\n        if(orig<l)smaller=Math.max(smaller,orig);\n        if(orig>l)larger=Math.min(larger,orig);\n        if(Math.abs(smaller-l)<=Math.abs(larger-l))\n        {\n            return String.valueOf(smaller);\n        }\n        else\n        {\n            return String.valueOf(larger);\n        }\n    }\n    \n    private long Get(long n)\n    {\n        char[] c=String.valueOf(n).toCharArray();\n        int mid=(c.length-1)/2;\n        for(int i=0;i<=mid;i++)\n        {\n            c[c.length-1-i]=c[i];\n        }\n        \n        return Long.valueOf(String.valueOf(c));\n    }\n}"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "get-equal-substrings-within-budget",
+    "language": "java",
+    "code": "class Solution {\n    public int equalSubstring(String s, String t, int maxCost) {\n        int j = 0, ans = 0, cost = 0;\n        for (int i = 0; i < s.length(); i++) {\n            cost += Math.abs(s.charAt(i) - t.charAt(i));\n            while (cost > maxCost) {\n                cost -= Math.abs(s.charAt(j) - t.charAt(j));\n                j++;\n            }\n            ans = Math.max(i+1-j, ans);\n        }\n        return ans;\n    }\n}"
+}

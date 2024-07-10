@@ -1,0 +1,5 @@
+{
+    "problemName": "compute-the-rank-as-a-percentage",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect student_id, department_id, round(ifnull((ranking-1)*100/(ct-1),0),2) as percentage\nfrom \n(select student_id, department_id, mark, rank() over (partition by department_id order by mark desc) as ranking from students) a join (select department_id, count(student_id) as ct from students group by department_id) b using(department_id)"
+}

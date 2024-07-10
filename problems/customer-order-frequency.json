@@ -1,0 +1,5 @@
+{
+    "problemName": "customer-order-frequency",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith cte as \n(\n    select \n        date_format(order_date, '%Y-%m') as 'ym',\n        customer_id,\n        sum(quantity * price) as 'spending'\n    from orders\n    left join product\n    using (product_id)\n    where order_date between '2020-06-01' and '2020-07-31'\n    group by date_format(order_date, '%Y-%m'), customer_id\n)\n\n# select *\n# from cte\n\nselect distinct customer_id, name\nfrom cte\nleft join customers \nusing (customer_id)\nwhere ((customer_id in (select customer_id from cte where ym = '2020-06' and spending >= 100)) and (customer_id in (select customer_id from cte where ym = '2020-07' and spending >= 100)))"
+}

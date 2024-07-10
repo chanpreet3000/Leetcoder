@@ -1,0 +1,5 @@
+{
+    "problemName": "arrange-table-by-gender",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith step1 as(\nselect user_id, \n       gender, \n       row_number() over(partition by gender order by user_id) as rnk,\ncase when gender = 'female' then 1\n     when gender = 'other' then 2\n     else 3 end as gender_row\nfrom Genders)\n\n\nselect user_id, gender\nfrom step1\norder by rnk, gender_row"
+}

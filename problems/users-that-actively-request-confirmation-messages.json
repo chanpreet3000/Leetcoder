@@ -1,0 +1,5 @@
+{
+    "problemName": "users-that-actively-request-confirmation-messages",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith cte as(\nselect c.user_id, c.time_stamp, lag(time_stamp) over (partition by c.user_id order by c.time_stamp) as lag_time \nfrom Confirmations c)\n\nselect distinct cte.user_id\nfrom cte\nwhere timestampdiff(second, cte.lag_time, cte.time_stamp) <= 60*24*60\n"
+}

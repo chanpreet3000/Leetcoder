@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-number-of-occurrences-of-a-substring",
+    "language": "python3",
+    "code": "class Solution:\n    def maxFreq(self, s: str, maxLetters: int, minSize: int, maxSize: int) -> int:\n        count_map = {}\n        for i in range(len(s)-(minSize-1)):\n            t = s[i:i+minSize]\n            if len(set(t)) <= maxLetters:\n                count_map[t] = count_map.get(t, 0) + 1 \n        counts = count_map.values()\n        return 0 if len(counts) == 0 else max(counts)\n            "
+}

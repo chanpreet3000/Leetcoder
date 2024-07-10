@@ -1,0 +1,5 @@
+{
+    "problemName": "flower-planting-with-no-adjacent",
+    "language": "java",
+    "code": "class Solution {\n    public int[] gardenNoAdj(int n, int[][] paths) {\n        List<List<Integer>> graph = new ArrayList<>();\n        for (int i = 0; i < n; ++i)\n            graph.add(new ArrayList<Integer>());\n        for (int i = 0; i < paths.length; ++i) {\n            graph.get(paths[i][0] - 1).add(paths[i][1] - 1);\n            graph.get(paths[i][1] - 1).add(paths[i][0] - 1);\n        \n        }\n        \n        int[] flowers = new int[n];\n        \n        for (int i = 0; i < n; ++i) {\n            int flower = 0;\n            for (Integer j : graph.get(i))\n                flower |= (1 << flowers[j]);\n            for (int c = 1; c <= 4 && flowers[i] == 0; ++c)\n                if ((flower & (1 << c))== 0)\n                    flowers[i] = c;\n        }\n        return flowers;\n    }\n}"
+}

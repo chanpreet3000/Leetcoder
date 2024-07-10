@@ -1,0 +1,5 @@
+{
+    "problemName": "valid-palindrome-iv",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    bool makePalindrome(string s) {\n        \n        int left=0;\n        int right = s.length()-1;\n        int cnt=0;\n        while(left<right){\n            if(s[left]!=s[right]){\n                cnt++;\n            }\n            if(cnt>2) return false;\n            \n            \n            left++;\n            right--;\n        }\n        return true;\n        \n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "three-divisors",
+    "language": "javascript",
+    "code": "/**\n * @param {number} n\n * @return {boolean}\n */\nvar isThree = function(n) {\n    if(n < 4) return false;\n\n    let lim = Math.sqrt(n);\n    if(lim === ~~lim) {\n        for(let i = 2; i <= 7 && i <= Math.sqrt(lim); i++) if(lim % i === 0) return false;\n        return true;\n    }\n    return false;\n};"
+}

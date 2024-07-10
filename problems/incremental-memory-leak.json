@@ -1,0 +1,5 @@
+{
+    "problemName": "incremental-memory-leak",
+    "language": "python",
+    "code": "class Solution(object):\n    \n    def memLeak(self, memory1, memory2):\n        \n        sub = 1\n        \n        while memory1 >= sub or memory2 >= sub:\n            \n            if memory1 >= memory2:\n                \n                memory1 -= sub\n                \n            else:\n                \n                memory2 -= sub\n                \n            sub += 1\n            \n        return [sub, memory1, memory2]\n        "
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "single-row-keyboard",
+    "language": "python3",
+    "code": "class Solution:\n    def calculateTime(self, keyboard: str, word: str) -> int:\n        d = {ch:i for i, ch in enumerate(keyboard)}\n        ret = d[word[0]]\n        for i in range(1, len(word)):\n            ret += abs(d[word[i]] - d[word[i-1]])\n        return ret"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "list-the-products-ordered-in-a-period",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect product_name,\nsum(o.unit) as unit\nfrom orders o\njoin products p\non p.product_id=o.product_id\nwhere date_format(o.order_date,'%M-%Y') = 'February-2020'\ngroup by o.product_id\nhaving unit>=100"
+}

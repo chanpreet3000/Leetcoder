@@ -1,0 +1,5 @@
+{
+    "problemName": "the-dining-philosophers",
+    "language": "cpp",
+    "code": "#include <mutex>\n\nstd::mutex forks[5];\nclass DiningPhilosophers {\npublic:\n    DiningPhilosophers() {\n    }\n\n    void wantsToEat(int philosopher,\n                    function<void()> pickLeftFork,\n                    function<void()> pickRightFork,\n                    function<void()> eat,\n                    function<void()> putLeftFork,\n                    function<void()> putRightFork) {\n      int leftForkNum = philosopher % 5;\n      int rightForkNum = (philosopher + 1) % 5;\n      \n      if (philosopher % 5 == 0) {\n        swap(leftForkNum, rightForkNum);\n      }\n      \n      // Acquire left fork then right fork\n      forks[leftForkNum].lock();\n      forks[rightForkNum].lock();\n      \n      pickLeftFork();\n      pickRightFork();\n      eat();\n      \n      putRightFork();\n      putLeftFork();\n      forks[rightForkNum].unlock();\n      forks[leftForkNum].unlock();\n\t\t\n    }\n};"
+}

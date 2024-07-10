@@ -1,0 +1,5 @@
+{
+    "problemName": "string-transforms-into-another-string",
+    "language": "java",
+    "code": "class Solution {\n    int[] m = new int[27];\n    int[] mark = new int[27];\n    public boolean canConvert(String str1, String str2) {\n        int n = str1.length();\n        for (int i = 0; i < n; i += 1) {\n            int t1 = str1.charAt(i) - 'a' + 1, t2 = str2.charAt(i) - 'a' + 1;\n            if (m[t1] != 0 && m[t1] != t2) return false;\n            m[t1] = t2;\n        }\n        for (int i = 1; i <= 26; i += 1) {\n            if (m[i] == 0) return true;\n        }\n        boolean hasCircle = false;\n        for (int i = 1; i <= 26; i += 1) {\n            if (m[i] == i) continue;\n            if (mark[i] == 0) {\n                mark[i] = 1;\n                int p = m[i];\n                while (mark[p] == 0) {\n                    mark[p] = 1;\n                    p = m[p];\n                }\n                if (p != i) return true; \n                else hasCircle = true;\n            }\n        }\n        return !hasCircle;\n    }\n}"
+}

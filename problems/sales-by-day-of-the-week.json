@@ -1,0 +1,5 @@
+{
+    "problemName": "sales-by-day-of-the-week",
+    "language": "mssql",
+    "code": "/* Write your T-SQL query statement below */\nselect  item_category  as Category, isnull([Monday],0) as Monday, isnull([Tuesday],0) as Tuesday, \n    isnull([Wednesday],0) as Wednesday, isnull([Thursday],0) as Thursday, isnull([Friday],0) as Friday, \n    isnull([Saturday],0) as Saturday, isnull([Sunday],0) as Sunday\nfrom (\n    select i. item_category , datename(weekday, order_date) as day,\n    sum(o.quantity) as total_quantity\n    from Orders o \n    full outer join Items i on o.item_id = i.item_id\n    group by i. item_category , datename(weekday, order_date)\n) AS SourceTable\nPivot\n(\n    sum(total_quantity)\n    for day in ([Monday], [Tuesday], [Wednesday], [Thursday], [Friday], [Saturday], [Sunday])\n) AS PivotTable;\n\n\n\n\n\n\n"
+}

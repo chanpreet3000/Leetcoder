@@ -1,0 +1,5 @@
+{
+    "problemName": "find-kth-largest-xor-coordinate-value",
+    "language": "python3",
+    "code": "import heapq\nfrom typing import List\n\n\nclass Solution:\n    def kthLargestValue(self, matrix: List[List[int]], k: int) -> int:\n        m, n = len(matrix), len(matrix[0])\n        tops = []\n\n        for i in range(m):\n            for j in range(1, n):\n                matrix[i][j] ^= matrix[i][j - 1]\n\n        for j in range(n):\n            for i in range(1, m):\n                matrix[i][j] ^= matrix[i - 1][j]\n\n        for i in range(m):\n            for j in range(n):\n                heapq.heappush(tops, matrix[i][j])\n                if len(tops) > k:\n                    heapq.heappop(tops)\n        # print(f'matrix-{matrix}')                    \n        # print(f'{tops}')\n        return tops[0]\n"
+}

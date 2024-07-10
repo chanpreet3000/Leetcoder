@@ -1,0 +1,5 @@
+{
+    "problemName": "most-visited-sector-in-a-circular-track",
+    "language": "java",
+    "code": "class Solution {\n    public List<Integer> mostVisited(int n, int[] A) {\n        List<Integer> res = new ArrayList<>();\n        for (int i = A[0]; i <= A[A.length - 1]; ++i)\n            res.add(i);\n        if (res.size() > 0) return res;\n        for (int i = 1; i <= A[A.length - 1]; ++i)\n            res.add(i);\n        for (int i = A[0]; i <= n; ++i)\n            res.add(i);\n        return res;\n    }\n}"
+}

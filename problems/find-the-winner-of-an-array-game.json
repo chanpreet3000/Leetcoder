@@ -1,0 +1,5 @@
+{
+    "problemName": "find-the-winner-of-an-array-game",
+    "language": "python3",
+    "code": "class Solution:\n    def getWinner(self, arr: List[int], k: int) -> int:\n        ct = 0\n        if k >= len(arr) -1:\n            return max(arr)\n        \n        ct = 0\n        back = 0\n        while arr:\n            if len(arr) == 1:\n                return arr[0]\n            \n            if arr[0] > arr[1]:\n                arr.pop(1)\n                ct += 1\n                \n            else:\n                arr.pop(0)\n                ct = 1\n            \n            back += 1\n            if ct == k:\n                return arr[0]\n        \n        \n            \n            \n            \n            "
+}

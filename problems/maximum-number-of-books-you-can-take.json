@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-number-of-books-you-can-take",
+    "language": "java",
+    "code": "class Solution {\n    public long maximumBooks(int[] books) {\n        int len=books.length;\n        long []dp=new long[len];\n        long maxbooks=0;\n        Stack<Integer> stack=new Stack<>();\n        \n        for(int i=0;i<len;i++){\n            while(!stack.isEmpty()&&books[stack.peek()]>=books[i]-i+stack.peek())\n                stack.pop();\n            dp[i]=(stack.isEmpty()?0:dp[stack.peek()])+summary(books[i])-summary(books[i]-i+(stack.isEmpty()?-1:stack.peek()));\n            maxbooks=Math.max(maxbooks,dp[i]);\n            stack.push(i);\n        }\n        return maxbooks;\n    }\n    private long summary(int n){\n        if(n<0)\n            return 0;\n        else\n            return (long)(long)n*(long)(n+1)/2;\n    }\n}"
+}

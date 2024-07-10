@@ -1,0 +1,5 @@
+{
+    "problemName": "diet-plan-performance",
+    "language": "javascript",
+    "code": "/**\n * @param {number[]} calories\n * @param {number} k\n * @param {number} lower\n * @param {number} upper\n * @return {number}\n */\nvar dietPlanPerformance = function(calories, k, lower, upper) {\n    let stack = [];\n    let current_sum = 0;\n    let points = 0;\n    for (let i = 0; i < k - 1; i++) {\n        stack.push(calories[i]);\n        current_sum += calories[i];\n    }\n    \n    for (let i = k - 1; i < calories.length; i++) {\n        if (k === 1) {\n            current_sum = calories[i];\n        }\n        else {\n            current_sum += calories[i];\n        }\n        if (current_sum < lower) {\n            points--;\n        }\n        else if (current_sum > upper) {\n            points++;\n        }\n        if (k !== 1) {\n          current_sum -= stack.shift();\n          stack.push(calories[i]);\n        }\n    }\n    \n    \n    return points;\n};"
+}

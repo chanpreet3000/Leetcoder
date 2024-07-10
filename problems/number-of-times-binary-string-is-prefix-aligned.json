@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-times-binary-string-is-prefix-aligned",
+    "language": "python3",
+    "code": "class Solution:\n    # The question is asking for number of steps in which the array looks like\n    # 1111...1000...0\n    # What we need to keep track of is whether the max seen we arrive at index i is equal to i+1 \n    def numTimesAllBlue(self, flips: List[int]) -> int:\n        max_seen, result = 0, 0\n        for i, flip in enumerate(flips):\n            max_seen = max(max_seen, flip)\n            if max_seen == i+1:\n                result += 1\n        return result\n        "
+}

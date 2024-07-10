@@ -1,0 +1,5 @@
+{
+    "problemName": "weather-type-in-each-country",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT c.country_name,\n       CASE\n       WHEN AVG(w.weather_state) <= 15 THEN 'Cold'\n       WHEN AVG(w.weather_state) >= 25 THEN 'Hot'\n       ELSE 'Warm'\n       END AS weather_type\nFROM Countries c\nJOIN Weather w\n    ON c.country_id = w.country_id\n    AND SUBSTR(day, 1, 7) = '2019-11'\nGROUP BY c.country_id;\n"
+}

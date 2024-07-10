@@ -1,0 +1,5 @@
+{
+    "problemName": "smallest-common-region",
+    "language": "java",
+    "code": "class Solution {\n        private String LCA(HashMap<String, String> map, String r1, String r2) {\n            String p1 = r1;\n            String p2 = r2;\n            while(!p1.equals(p2))\n            {\n                p1 = map.containsKey(p1) ? map.get(p1) : r2;\n                p2 = map.containsKey(p2) ? map.get(p2) : r1;\n            }\n            return p1;\n        }\n        public String findSmallestRegion(List<List<String>> regions, String region1, String region2) {\n            HashMap<String, String> map = new HashMap<>();\n            for(List<String> r : regions)\n            {\n                for(int i = 1; i < r.size(); i ++)\n                    map.put(r.get(i), r.get(0));\n            }\n            return LCA(map, region1, region2);\n        }\n    }"
+}

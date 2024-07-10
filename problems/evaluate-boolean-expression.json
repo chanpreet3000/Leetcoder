@@ -1,0 +1,5 @@
+{
+    "problemName": "evaluate-boolean-expression",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect left_operand, operator, right_operand,\n(case when operator = '>' and v1.value > v2.value then 'true'\n     when operator = '<' and v1.value < v2.value then 'true'\n     when operator = '=' and v1.value = v2.value then 'true' else 'false' end) as value\nfrom Expressions e left join Variables v1 on e.left_operand = v1.name\nleft join Variables v2 on e.right_operand = v2.name\n"
+}

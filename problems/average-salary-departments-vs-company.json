@@ -1,0 +1,5 @@
+{
+    "problemName": "average-salary-departments-vs-company",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith cte1 as(\nselect\n    date_format(pay_date, '%Y-%m') as pay_month,\n    avg(amount) as comavg\nfrom\n    Salary\ngroup by\n    pay_month),\n    \ncte2 as (\nselect\n    date_format(pay_date, '%Y-%m') as pay_month,\n    department_id,\n    avg(amount) as depavg\nfrom\n    Salary join Employee using(employee_id)\ngroup by\n    pay_month, department_id)\n\nselect\n    pay_month, department_id,\n    case\n        when depavg > comavg then 'higher'\n        when depavg = comavg then 'same'\n        when depavg < comavg then 'lower'\n    end\n    as comparison\nfrom\n    cte1 join cte2 using(pay_month)"
+}

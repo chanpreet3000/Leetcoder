@@ -1,0 +1,5 @@
+{
+    "problemName": "warehouse-manager",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect warehouse.name as warehouse_name,\nsum(products.width * products.height * products.length * warehouse.units) as volume\nfrom warehouse join products on warehouse.product_id = products.product_id\ngroup by warehouse.name order by warehouse.name;"
+}

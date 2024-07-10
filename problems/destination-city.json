@@ -1,0 +1,5 @@
+{
+    "problemName": "destination-city",
+    "language": "python3",
+    "code": "class Solution:\n    '''\n    idea: get set of all incoming cities and outgoing cities from paths\n    '''\n    def destCity(self, paths: List[List[str]]) -> str:\n        pin, pout = set(), set()\n        for c1, c2 in paths:\n            pin.add(c1)\n            pin.add(c2)\n            pout.add(c1)\n        for c in pin:\n            if c not in pout:\n                return c\n"
+}

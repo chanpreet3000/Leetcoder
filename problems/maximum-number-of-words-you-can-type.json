@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-number-of-words-you-can-type",
+    "language": "python3",
+    "code": "class Solution:\n    def canBeTypedWords(self, text: str, brokenLetters: str) -> int:\n        c1 = []\n        text = text.split(' ')\n        brokenLetters = [x for x in list(brokenLetters)]\n        for i in text:\n            i = [x for x in list(i)]\n            print(i)\n            c2 = 0\n            for j in brokenLetters:\n                if j in i:\n                    c2 = c2 + 1\n            c1.append(c2)\n        c3 = 0\n        for x in c1:\n            if x == 0:\n                c3 += 1\n        return c3"
+}

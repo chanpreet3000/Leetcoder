@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-comments-per-post",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect a.sub_id as post_id, count(b.sub_id) number_of_comments \nfrom (select distinct * from Submissions \n            where parent_id is null)   a\nleft outer join (select distinct * from Submissions \n            where parent_id is not null) b on a.sub_id = b.parent_id\nwhere a.parent_id is null\ngroup by a.sub_id\norder by 1 "
+}

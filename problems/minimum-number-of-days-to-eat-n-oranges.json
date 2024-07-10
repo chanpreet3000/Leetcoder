@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-number-of-days-to-eat-n-oranges",
+    "language": "python3",
+    "code": "class Solution:\n    def minDays(self, n: int) -> int:\n        cache = {0: 0, 1: 1}\n        \n        def dfs(o_left):\n            if o_left in cache:\n                return cache[o_left]\n            \n            even = 1 + (o_left % 2) + dfs(o_left // 2)\n            odd = 1 + (o_left % 3) + dfs(o_left // 3)\n            res = min(even, odd)\n            cache[o_left] = res \n            return res\n        return dfs(n)\n"
+}

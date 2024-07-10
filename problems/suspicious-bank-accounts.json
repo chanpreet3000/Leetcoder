@@ -1,0 +1,5 @@
+{
+    "problemName": "suspicious-bank-accounts",
+    "language": "mysql",
+    "code": "with cte as (\nselect *\nfrom (\n    select a.account_id, \n        DATE_FORMAT(day, \"%Y%m\") as month, \n        sum(amount) as total_income, \n        if(sum(amount) >max_income, 'YES', 'NO') as suspicious\n    from transactions a\n    left join accounts b on a.account_id=b.account_id\n    where type='Creditor'\n    group by 1,2) c\nwhere suspicious='YES')\n\n\nselect distinct a.account_id\nfrom cte a\njoin cte b on a.account_id=b.account_id and b.month-a.month=1\n\n"
+}

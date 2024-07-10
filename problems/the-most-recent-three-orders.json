@@ -1,0 +1,5 @@
+{
+    "problemName": "the-most-recent-three-orders",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT a.name as customer_name,a.customer_id,b.order_id,b.order_date\nFROM Customers as a\nJOIN Orders as b\nON a.customer_id=b.customer_id\nWHERE\n(\n    SELECT COUNT(*) FROM Orders as c\n    WHERE b.customer_id=c.customer_id AND b.order_date<c.order_date\n)<=2\nORDER BY customer_name,customer_id,order_date DESC;"
+}

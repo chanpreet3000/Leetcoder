@@ -1,0 +1,5 @@
+{
+    "problemName": "report-contiguous-dates",
+    "language": "mysql",
+    "code": "SELECT\n    period_state, MIN(tx_dt) AS start_date, MAX(tx_dt) AS end_date\nFROM (\n    SELECT\n        period_state, tx_dt, rnk_state, \n        RANK() OVER (ORDER BY tx_dt) AS rnk_tot, \n        RANK() OVER (ORDER BY tx_dt) - rnk_state AS rnk_grp\n    FROM\n    (\n        SELECT 'failed' AS period_state, fail_date AS tx_dt, RANK() OVER (ORDER BY fail_date) AS rnk_state \n        FROM Failed WHERE fail_date BETWEEN '2019-01-01' AND '2019-12-31'\n        UNION\n        SELECT 'succeeded' AS period_state, success_date AS tx_dt, RANK() OVER (ORDER BY success_date) AS rnk_state\n        FROM Succeeded WHERE success_date BETWEEN '2019-01-01' AND '2019-12-31'\n    ) st\n) sub\nGROUP BY period_state, rnk_grp\nORDER BY start_date;\n"
+}

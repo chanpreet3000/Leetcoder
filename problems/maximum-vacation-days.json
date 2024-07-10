@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-vacation-days",
+    "language": "python3",
+    "code": "class Solution:\n    def maxVacationDays(self, flights, days):\n        \"\"\"\n        :type flights: List[List[int]]\n        :type days: List[List[int]]\n        :rtype: int\n        \"\"\"\n        m=len(flights)\n        a,s=[[i] for i in range(m)],[-1000]*m\n        s[0]=0\n        for i in range(m):\n            for j in range(m):\n                if flights[i][j]: \n                    a[j].append(i)\n        for j in range(len(days[0])): \n            s=[max([s[k] for k in a[i]])+days[i][j] for i in range(m)]\n        return max(s)\n        "
+}

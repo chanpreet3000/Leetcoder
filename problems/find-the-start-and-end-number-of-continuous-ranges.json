@@ -1,0 +1,5 @@
+{
+    "problemName": "find-the-start-and-end-number-of-continuous-ranges",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSELECT min(log_id) as start_id, \n       max(log_id) as end_id\nFROM (SELECT log_id, \n             RANK() OVER(ORDER BY log_id) as num\n      FROM Logs) a\nGROUP BY log_id - num"
+}

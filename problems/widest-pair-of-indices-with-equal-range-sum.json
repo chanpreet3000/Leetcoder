@@ -1,0 +1,5 @@
+{
+    "problemName": "widest-pair-of-indices-with-equal-range-sum",
+    "language": "java",
+    "code": "class Solution {\n    public int widestPairOfIndices(int[] nums1, int[] nums2) {\n        Map<Integer, Integer> hm = new HashMap<>();\n        hm.put(0, -1);\n        int result = 0, sum = 0;\n        for(int i = 0; i < nums1.length; i++) {\n            sum += (nums1[i] - nums2[i]);\n            result = Math.max(result, i - hm.getOrDefault(sum, 1000000));\n            hm.put(sum, hm.getOrDefault(sum, i));\n        }\n        return result;\n    }\n}"
+}

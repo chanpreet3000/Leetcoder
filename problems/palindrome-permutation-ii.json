@@ -1,0 +1,5 @@
+{
+    "problemName": "palindrome-permutation-ii",
+    "language": "python3",
+    "code": "class Solution:\n    def generatePalindromes(self, s: str) -> List[str]:\n        results = []\n        counter = collections.Counter(s)\n        odd_count,odd_char = 0,''\n        for c in counter:\n            if counter[c]%2==1:\n                odd_count+=1\n                odd_char=c\n                counter[odd_char]-=1\n        if odd_count>1:\n            return []\n        \n        def helper(ps,counter):\n            if len(ps)==len(s):\n                results.append(ps)\n                return\n            for c in counter:\n                if counter[c]>0:\n                    ps = c+ps+c\n                    counter[c]-=2\n                    helper(ps,counter)\n                    ps = ps[1:-1]\n                    counter[c]+=2\n        \n        helper(odd_char,counter)\n        return results"
+}

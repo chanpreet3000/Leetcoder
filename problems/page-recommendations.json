@@ -1,0 +1,5 @@
+{
+    "problemName": "page-recommendations",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\n# valid friends\n# SELECT user2_id FROM Friendship\n# WHERE user1_id = 1\n\n# already liked pages by user 1\n# SELECT page_id FROM Likes\n# WHERE user_id = 1\n\n\nSELECT distinct(page_id) as recommended_page FROM Likes\nWHERE (user_id in\n    (SELECT user2_id FROM Friendship WHERE user1_id = 1)\n    \n    or user_id in\n    (SELECT user1_id FROM Friendship WHERE user2_id = 1))\n\n    and page_id not in\n        (SELECT page_id FROM Likes WHERE user_id = 1)"
+}

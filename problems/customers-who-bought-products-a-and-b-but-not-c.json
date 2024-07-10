@@ -1,0 +1,5 @@
+{
+    "problemName": "customers-who-bought-products-a-and-b-but-not-c",
+    "language": "mysql",
+    "code": "\n\nwith cte as\n(select customer_id, customer_name\nfrom Customers\nwhere customer_id in \n(select customer_id from orders where product_name = 'A') \nand customer_id in (select customer_id from orders where product_name = 'B'))\n\nselect * \nfrom cte \nwhere customer_id not in\n(select customer_id from orders where product_name = 'C')\norder by customer_id"
+}

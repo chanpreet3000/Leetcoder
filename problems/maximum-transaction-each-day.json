@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-transaction-each-day",
+    "language": "mysql",
+    "code": "select transaction_id from transactions \nwhere (date(day),amount) in\n(select date(day) as day,max(amount) as max_amt \nfrom transactions \ngroup by 1)\norder by 1"
+}

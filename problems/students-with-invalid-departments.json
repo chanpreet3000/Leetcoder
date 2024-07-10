@@ -1,0 +1,5 @@
+{
+    "problemName": "students-with-invalid-departments",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\n\nSELECT DISTINCT id, name\nFROM (\nSELECT s.id, s.name, d.name AS d_name\nFROM Students s\nLEFT JOIN Departments d\nON s.department_id = d.id\n) temp\nWHERE d_name IS NULL"
+}

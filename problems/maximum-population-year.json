@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-population-year",
+    "language": "java",
+    "code": "class Solution {\n    public int maximumPopulation(int[][] logs) {\n        int res[] = new int[101];\n        for(int[] log:logs){\n            res[log[0]-1950]++;\n            res[log[1]-1950]--;\n        }\n        int max = res[0];\n        int year = 1950;\n        for(int i=1;i<101;i++){\n            res[i]+=res[i-1];\n            if(res[i]>max){\n                max = res[i];\n                year = i+1950;\n            }\n        }\n        return year;\n    }\n}"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "project-employees-ii",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith al as\n(select project_id, count(employee_id) as p from project group by project_id)\n(select project_id from al where p in(select max(p)from al) )"
+}

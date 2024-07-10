@@ -1,0 +1,5 @@
+{
+    "problemName": "sort-transformed-array",
+    "language": "python3",
+    "code": "# *** RICHARD ***\n\nclass Solution:\n    def sortTransformedArray(self, nums: List[int], a: int, b: int, c: int) -> List[int]:\n        \n        \n        \n        res = []\n        for num in nums:\n            res.append(a * num * num + b * num + c)\n            \n        res.sort()\n        return res\n        "
+}

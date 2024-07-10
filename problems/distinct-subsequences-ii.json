@@ -1,0 +1,5 @@
+{
+    "problemName": "distinct-subsequences-ii",
+    "language": "java",
+    "code": "class Solution {\n    long MOD = 1000000007 ;\n    public int distinctSubseqII(String s) {\n        \n        long [] dp = new long[s.length() + 1];\n        \n        dp[0] = 1;\n        dp[1] = 2;\n        \n        int [] lastOccurence = new int[26];\n        \n        lastOccurence[s.charAt(0) - 'a'] = 1;\n        \n        \n        for(int i = 2; i < dp.length; i++){\n            dp[i] = (2 * dp[i-1]) % MOD ;\n            \n            int ch = s.charAt(i-1) - 'a';\n            \n            if(lastOccurence[ch] != 0){\n                dp[i] = (dp[i] - dp[lastOccurence[ch]-1] + MOD) % MOD ;\n                \n               \n            }\n             lastOccurence[ch] = i ;\n        }\n        return (int) dp[s.length()] - 1;\n    }\n}"
+}

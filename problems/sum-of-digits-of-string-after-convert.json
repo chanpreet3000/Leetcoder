@@ -1,0 +1,5 @@
+{
+    "problemName": "sum-of-digits-of-string-after-convert",
+    "language": "python",
+    "code": "class Solution(object):\n    def getLucky(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        num = \"\"\n        intnum = 0\n        for i in s:\n            num += str(ord(i)-96)\n        for a in range(k):\n            for j in num:\n                intnum += int(j)\n            num = str(intnum)\n            intnum = 0\n        return num\n                "
+}

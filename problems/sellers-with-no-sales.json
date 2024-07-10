@@ -1,0 +1,5 @@
+{
+    "problemName": "sellers-with-no-sales",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith t1 as\n(select distinct s.seller_id, seller_name\nfrom seller s left join orders o\non s.seller_id = o.seller_id\nwhere year(sale_date) = 2020)\n\n\nselect seller_name\nfrom seller \nwhere seller_id not in (select seller_id from t1)\norder by 1"
+}

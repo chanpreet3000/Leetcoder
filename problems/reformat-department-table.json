@@ -1,0 +1,5 @@
+{
+    "problemName": "reformat-department-table",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect id,\n\nmax(case when month = 'Jan' then revenue else null end) as Jan_Revenue,\nmax(case when month = 'Feb' then revenue else null end) as Feb_Revenue,\nmax(case when month = 'Mar' then revenue else null end) as Mar_Revenue,\nmax(case when month = 'Apr' then revenue else null end) as Apr_Revenue,\nmax(case when month = 'May' then revenue else null end) as May_Revenue,\nmax(case when month = 'Jun' then revenue else null end) as Jun_Revenue,\nmax(case when month = 'Jul' then revenue else null end) as Jul_Revenue,\nmax(case when month = 'Aug' then revenue else null end) as Aug_Revenue,\nmax(case when month = 'Sep' then revenue else null end) as Sep_Revenue,\nmax(case when month = 'Oct' then revenue else null end) as Oct_Revenue,\nmax(case when month = 'Nov' then revenue else null end) as Nov_Revenue,\nmax(case when month = 'Dec' then revenue else null end) as Dec_Revenue\n\nfrom\nDepartment\ngroup by 1\n"
+}

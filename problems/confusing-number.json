@@ -1,0 +1,5 @@
+{
+    "problemName": "confusing-number",
+    "language": "python3",
+    "code": "class Solution:\n    def confusingNumber(self, n: int) -> bool:\n        rot = {'0':'0','1':'1','6':'9','8':'8','9':'6'}\n        try:\n            m = int(''.join(rot[d] for d in str(n)[::-1]))\n            return m != n\n        except:\n            return False"
+}

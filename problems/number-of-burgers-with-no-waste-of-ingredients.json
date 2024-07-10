@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-burgers-with-no-waste-of-ingredients",
+    "language": "python",
+    "code": "class Solution(object):\n    def numOfBurgers(self, tomatoSlices, cheeseSlices):\n        # jumbo*4 + small*2 = tomato\n        # jumbo + small = cheese\n        \n        # small = cheese - jumbo\n        # jumbo*4 + (cheese - jumbo)*2 = tomato\n        # jumbo*4 cheese*2 - jumbo*2 = tomato\n        # jumbo = (tomato - cheese*2) / 2\n        \n        jumbo = (float(tomatoSlices) - 2*cheeseSlices) / 2\n        small = (cheeseSlices - jumbo)\n        \n        if int(jumbo) == jumbo and int(small) == small and jumbo >= 0 and small >= 0:\n            return [int(jumbo),int(small)]\n        return []"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "day-of-the-week",
+    "language": "python3",
+    "code": "class Solution:\n    \n    def dayOfTheWeek(self, d: int, m: int, y: int) -> str:\n        days = [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\", \"Sunday\"]\n        from datetime import datetime\n        return days[datetime(y, m, d).weekday()]"
+}

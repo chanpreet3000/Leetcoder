@@ -1,0 +1,5 @@
+{
+    "problemName": "count-substrings-with-only-one-distinct-letter",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int countLetters(string s) {\n        if(s.size() == 1) return 1;\n        int res = 0, back = 0; \n        for(int i=0;i<s.size();++i)\n            if(s[i]!=s[i+1])\n                res += (i - back + 1) * (i - back + 2) / 2 , back = i + 1;\n        return res;\n    }\n};"
+}

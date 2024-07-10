@@ -1,0 +1,5 @@
+{
+    "problemName": "create-a-session-bar-chart",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nWITH temp1 AS (\n    SELECT *,\n        CASE WHEN duration < 5*60 THEN '[0-5>'\n             WHEN duration < 10*60 THEN '[5-10>'\n             WHEN duration < 15*60 THEN '[10-15>'\n             ELSE '15 or more' END AS bin\n    FROM Sessions ),\n   \n   temp2 AS (\n    SELECT '[0-5>' AS bin\n    UNION\n    SELECT '[5-10>' AS bin\n    UNION\n    SELECT '[10-15>' AS bin\n    UNION\n    SELECT '15 or more' AS bin)\n\nSELECT temp2.bin, COUNT(DISTINCT temp1.session_id) AS total\nFROM temp2\nLEFT JOIN temp1\nON temp2.bin = temp1.bin\nGROUP BY 1\n"
+}

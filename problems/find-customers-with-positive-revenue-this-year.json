@@ -1,0 +1,5 @@
+{
+    "problemName": "find-customers-with-positive-revenue-this-year",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nselect customer_id from Customers where year = 2021\ngroup by customer_id\nhaving SUM(revenue)>0"
+}

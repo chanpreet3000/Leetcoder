@@ -1,0 +1,5 @@
+{
+    "problemName": "freedom-trail",
+    "language": "python3",
+    "code": "class Solution:\n    def findRotateSteps(self, ring: str, key: str) -> int:\n        memo = {}\n        def dfs(ri, ki): # ri: ring index, ki: key index\n            if ki == len(key):\n                return 0\n            if (ri, ki) in memo:\n                return memo[(ri, ki)]\n            left = right = 0\n            while ring[(ri-left) % len(ring)] != key[ki]:\n                left += 1\n            while ring[(ri+right) % len(ring)] != key[ki]:\n                right += 1\n            cost = min(dfs((ri-left) % len(ring), ki + 1) + left, dfs((ri+right) % len(ring), ki + 1) + right) + 1\n            memo[(ri, ki)] = cost\n            return cost\n        \n        return dfs(0, 0)"
+}

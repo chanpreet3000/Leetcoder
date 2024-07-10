@@ -1,0 +1,5 @@
+{
+    "problemName": "sales-analysis-i",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nwith seller_price as\n(select seller_id, sum(price) price\nfrom Sales\ngroup by seller_id)\n\nselect seller_id\nfrom seller_price\nwhere price = (select max(price) from seller_price )"
+}

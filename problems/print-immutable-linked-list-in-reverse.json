@@ -1,0 +1,5 @@
+{
+    "problemName": "print-immutable-linked-list-in-reverse",
+    "language": "c",
+    "code": "/**\n * Definition for ImmutableListNode.\n * struct ImmutableListNode {\n *     struct ImmutableListNode* (*getNext)(struct ImmutableListNode*); // return the next node.\n *     void (*printValue)(struct ImmutableListNode*); // print the value of the node.\n * };\n */\n\nvoid printLinkedListInReverse(struct ImmutableListNode* head) {\n    struct ImmutableListNode** stack = malloc(1000 * sizeof(struct ImmutableListNode*));\n    int idx = 0;\n    struct ImmutableListNode* temp = head;\n\n    while(temp){\n        stack[idx] = temp;\n        temp = temp->getNext(temp);\n        idx++;\n    }\n    \n    for(int i = idx-1; i >= 0; i--){\n        temp = stack[i];\n        temp->printValue(temp);\n    }\n}"
+}

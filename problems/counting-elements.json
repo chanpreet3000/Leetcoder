@@ -1,0 +1,5 @@
+{
+    "problemName": "counting-elements",
+    "language": "python3",
+    "code": "class Solution:\n    def countElements(self, arr: List[int]) -> int:\n        has = set(arr)\n        count = 0\n        for num in arr:\n            if (num+1) in has:\n                count+=1\n        return count\n        "
+}

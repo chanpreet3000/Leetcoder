@@ -1,0 +1,5 @@
+{
+    "problemName": "find-minimum-time-to-finish-all-jobs-ii",
+    "language": "java",
+    "code": "class Solution {\n    public int minimumTime(int[] jobs, int[] workers) {\n        Arrays.sort(jobs);\n        Arrays.sort(workers);\n        int days = 0;\n        for (int i = 0; i < jobs.length; i++) {\n            int d = jobs[i] / workers[i];\n            if (jobs[i] % workers[i] != 0) {\n                d += 1;\n            }\n            days = Math.max(days, d);\n        }\n        return days;\n    }\n}\n\n/*\n4:48\n\njobs with time needed and\nworkers with time per day\n\nequal length\n\nfind bijection between workers and jobs\nthat minimizes time until all finished.\n\nwe take the smallest job and the slowest worker (greedy).\n\nWhy is that valid strategy?\nIf we use a faster worker for this job, then this won't be a bottleneck,\nbut we have to use the slowest worker somewhere and this will be even\nworse.\n\nsort jobs, sort workers, use corresponting assignment\nO(n log n) time, O(1) space\n\nOnly way to improve seems to find worst combination without sorting everything.\n\nsome cases: identical jobs strictly decreasing workers\n\n*/"
+}

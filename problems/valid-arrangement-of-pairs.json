@@ -1,0 +1,5 @@
+{
+    "problemName": "valid-arrangement-of-pairs",
+    "language": "python3",
+    "code": "class Solution:\n    def validArrangement(self, pairs: List[List[int]]) -> List[List[int]]:\n        adj = collections.defaultdict(list)\n        degree = collections.defaultdict(int)\n\n        for a, b in pairs:\n            adj[a].append(b)\n            degree[a] -= 1\n            degree[b] += 1\n            \n        # print(adj)\n            \n        def dfs(cur):\n            # print(prev, cur)\n            \n            while adj[cur]:\n                dfs(adj[cur].pop())\n                    \n            res.append(cur)\n        \n        start = pairs[0][0]\n        for a, b in pairs:\n            if degree[a] == -1:\n                start = a\n                break\n            \n        res = []\n        dfs(start)\n        return [[res[i], res[i - 1]] for i in range(len(res) - 1, 0, -1)]\n\n        \n        "
+}

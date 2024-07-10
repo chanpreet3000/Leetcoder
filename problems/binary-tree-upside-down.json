@@ -1,0 +1,5 @@
+{
+    "problemName": "binary-tree-upside-down",
+    "language": "python3",
+    "code": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def upsideDownBinaryTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:\n        if not root:\n            return None\n        def helper(node):\n            right = None\n            if node.right:\n                _, right = helper(node.right)\n            if node.left:\n                lr, left = helper(node.left)\n                left.left = right\n                left.right = node\n                node.left = None\n                node.right = None\n                return lr, node\n            else:\n                return node, node\n        r, l = helper(root)\n        return r\n        "
+}

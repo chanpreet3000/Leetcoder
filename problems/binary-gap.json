@@ -1,0 +1,5 @@
+{
+    "problemName": "binary-gap",
+    "language": "python3",
+    "code": "class Solution:\n    def binaryGap(self, n: int) -> int:\n        binStr = bin(n)[2:]\n        maxDist = 0\n        # locate the first 1\n        iter1 = 0\n        isFirstFound = False\n        while (iter1 < len(binStr) and not isFirstFound):\n            if (binStr[iter1] == '1'):\n                leftInd = iter1\n                isFirstFound = True\n                           \n            iter1 += 1\n        while (iter1 < len(binStr)):\n            if (binStr[iter1] == '1'):\n                rightInd = iter1\n                curDist = rightInd-leftInd\n                maxDist = max(curDist, maxDist)\n                leftInd = iter1\n            iter1 += 1\n        \n        return (maxDist)"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "merge-similar-items",
+    "language": "javascript",
+    "code": "/**\n * @param {number[][]} items1\n * @param {number[][]} items2\n * @return {number[][]}\n */\nvar mergeSimilarItems = function(items1, items2) {\n    const ret = []\n    const itemsMap = {}\n    for (let item of items1) {\n        itemsMap[item[0]] = item[1]\n    }\n    for (let item of items2) {\n        if (itemsMap[item[0]]) itemsMap[item[0]] += item[1]   \n        else itemsMap[item[0]] = item[1]\n    }\n    \n    for (const key in itemsMap) {\n        ret.push([key, itemsMap[key]])\n    }     \n   \n    return ret\n};"
+}

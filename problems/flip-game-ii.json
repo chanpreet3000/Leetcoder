@@ -1,0 +1,5 @@
+{
+    "problemName": "flip-game-ii",
+    "language": "java",
+    "code": "class Solution {\n    public boolean canWin(String currentState) {\n        for (int i = 1; i < currentState.length(); i++) {\n            if (currentState.charAt(i) == '+' && currentState.charAt(i - 1) == '+') {\n                char[] chars = currentState.toCharArray();\n                chars[i] = '-';\n                chars[i - 1] = '-';\n                if (!canWin(String.valueOf(chars))) {\n                    return true;\n                }\n            }\n        }\n        return false;\n    }\n}"
+}

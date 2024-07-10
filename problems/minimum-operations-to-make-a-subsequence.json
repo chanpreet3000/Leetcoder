@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-operations-to-make-a-subsequence",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    \n    void helper(vector<int>& arr,int ele){\n        int l = 0;\n        int r = arr.size()-1;\n        while(l <= r){\n            int m = (l+r)/2;\n            if(arr[m] < ele){\n                l = m+1;\n            }\n            else{\n                r = m-1;\n            }\n        }\n        if(l < arr.size()){\n            arr[l] = ele;\n        }\n        else\n            arr.push_back(ele);\n    }\n    int minOperations(vector<int>& target, vector<int>& arr) {\n        unordered_map<int,int> map;\n        for(int i = 0;i<target.size();i++){\n            map[target[i]] = i+1;\n        }\n        vector<int> dp;\n        for(int i = 0;i<arr.size();i++){\n            if(map[arr[i]]){\n                helper(dp,map[arr[i]]);\n            }\n        }\n        return target.size() - dp.size();\n    }\n};"
+}

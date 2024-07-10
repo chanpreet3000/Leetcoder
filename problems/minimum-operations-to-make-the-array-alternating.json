@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-operations-to-make-the-array-alternating",
+    "language": "cpp",
+    "code": "class Solution\n{\npublic:\n    int minimumOperations(vector<int> &nums)\n    {\n        int mark[100001][2] = {}, i, j, k, res = 0;\n        for (i = 0; i < nums.size(); i++)\n            mark[nums[i]][i & 1]++;\n        for (i = 1, j = k = 0; i <= 100000; i++)\n            res = max(res, max(mark[i][0] + k, mark[i][1] + j)), j = max(j, mark[i][0]), k = max(k, mark[i][1]);\n        return nums.size() - res;\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-trusted-contacts-of-a-customer",
+    "language": "mssql",
+    "code": "/* Write your T-SQL query statement below */\nwith temp\nas\n(\nselect customer_id, customer_name, isnull(count(contact_name),0) as trusted_customers, sum(trusted_contacts_cnt) as trusted_contacts_cnt\nfrom\n(select c.customer_id, c.customer_name, cc.contact_name, case when contact_name in (select distinct customer_name from customers) then 1 else 0 end as trusted_contacts_cnt\nfrom customers c left join contacts cc\non c.customer_id = cc.user_id)temp\n    group by customer_id, customer_name\n\n )\n \n select invoice_id, customer_name,price,trusted_customers as contacts_cnt,trusted_contacts_cnt\n from temp join invoices\n on temp.customer_id = invoices.user_id\n order by invoice_id\n "
+}

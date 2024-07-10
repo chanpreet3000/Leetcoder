@@ -1,0 +1,5 @@
+{
+    "problemName": "product-sales-analysis-i",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nSelect product_name, s.year, price from Sales s join Product p on s.product_id = p.product_id;"
+}

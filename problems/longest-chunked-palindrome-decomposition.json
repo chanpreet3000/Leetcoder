@@ -1,0 +1,5 @@
+{
+    "problemName": "longest-chunked-palindrome-decomposition",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int longestDecomposition(string text)\n    {\n        string one = \"\", two = \"\";\n        int res = 0;\n        int n = text.size();\n        \n        for (int i = 0; i < text.size(); i++)\n        {\n            one += text[i];\n            two = text[n - i - 1] + two;\n            \n            if (one == two)\n            {\n                res++;\n                one = two = \"\";\n            }\n        }\n        \n        return res;\n    }\n};"
+}

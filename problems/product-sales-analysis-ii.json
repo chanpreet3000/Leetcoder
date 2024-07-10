@@ -1,0 +1,5 @@
+{
+    "problemName": "product-sales-analysis-ii",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nselect p.product_id, sum(quantity) as total_quantity\nfrom Sales s \nleft join Product p on s.product_id = p.product_id  \ngroup by p.product_id"
+}
