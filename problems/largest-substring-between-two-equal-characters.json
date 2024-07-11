@@ -1,0 +1,5 @@
+{
+    "problemName": "largest-substring-between-two-equal-characters",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int maxLengthBetweenEqualCharacters(string s) {\n        unordered_map<char, int> mp;\n        int longest = -1;\n        for (int i = 0; i < s.size(); ++i) {\n            auto it = mp.find(s[i]);\n            if (it == mp.end()) {\n                mp[s[i]] = i;\n            } else {\n                longest = max(longest, i - it->second - 1);\n            }\n        }\n        return longest;\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "count-the-number-of-fair-pairs",
+    "language": "cpp",
+    "code": "class Solution {\n    long long solve(vector<int> &nums, int target) {\n        int i = 0, j = nums.size() - 1;\n        long long ans = 0;\n        while(i < j) {\n            while(i < j && nums[i] + nums[j] > target) {\n                j--;\n            }\n            ans += j - i;\n            cout << ans << endl;\n            i++;\n        }\n        return ans;\n    }\npublic:\n    long long countFairPairs(vector<int>& nums, int lower, int upper) {\n        sort(nums.begin(), nums.end());\n        return solve(nums, upper) - solve(nums, lower - 1);\n    }\n};"
+}

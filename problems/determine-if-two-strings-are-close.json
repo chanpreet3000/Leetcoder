@@ -1,0 +1,5 @@
+{
+    "problemName": "determine-if-two-strings-are-close",
+    "language": "python3",
+    "code": "class Solution:\n    def closeStrings(self, word1: str, word2: str) -> bool:\n        word1_freq = collections.Counter(word1)\n        word2_freq = collections.Counter(word2)\n        if word1_freq.keys() != word2_freq.keys():\n            return False\n        word1_counts = collections.Counter(word1_freq.values())\n        word2_counts = collections.Counter(word2_freq.values())\n        return word1_counts == word2_counts"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "queries-quality-and-percentage",
+    "language": "mysql",
+    "code": "-- find quality and poor query for each entry\n\nselect query_name, \nround(avg(rating/position),2) as quality,\nround(100.0*sum(case when rating < 3 then 1 else 0 end)/count(*),2)poor_query_percentage\nfrom Queries\ngroup by query_name"
+}

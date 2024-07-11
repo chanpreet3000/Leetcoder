@@ -1,0 +1,5 @@
+{
+    "problemName": "ad-free-sessions",
+    "language": "mysql",
+    "code": "select session_id from playback\nwhere session_id not in (\nselect distinct session_id\nfrom playback a join ads b\non a.customer_id = b.customer_id and (b.timestamp between a.start_time and a.end_time));"
+}

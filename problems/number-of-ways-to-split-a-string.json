@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-ways-to-split-a-string",
+    "language": "cpp",
+    "code": "class Solution {\n\tpublic:\n\tint M = pow(10, 9) + 7;\n\n\tint numWays(string s) {\n\t\tlong n = s.length();\n\t\n\t\tint oneCount = count(s.begin(), s.end(), '1');\n\t\tif (oneCount%3) return 0;\n\t\n\t\tif (oneCount == 0) \n\t\t\treturn (((n - 2)*(n - 1))/2)%M;\n\t\n\t\toneCount = oneCount/3;\n\t\tlong cnt = 0, z1 = 0, z2 = 0;\n\t\n\t\tfor(auto c: s){\n\t\t\tif (c == '1') cnt++;\n\t\t\n\t\t\tif (cnt == oneCount) \n\t\t    \tz1++;\n\t\t\telse if(cnt == 2*oneCount) \n\t\t    \tz2++;\n\t\t}\n\n\t\treturn (z1*z2)%M;\n\t}\n};"
+}

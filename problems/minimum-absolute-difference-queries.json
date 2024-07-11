@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-absolute-difference-queries",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<int> minDifference(vector<int>& nums, vector<vector<int>>& queries) {\n        vector<vector<int>> prefix(101, vector<int>(nums.size()+1, 0));\n        for(int i = 0; i < nums.size(); i++){\n            for(int j = 1; j <= 100; j++){\n                prefix[j][i+1] = prefix[j][i] + (nums[i] == j);\n            }\n        }\n        vector<int> ans;\n        for(auto& q: queries){\n            int l = q[0], r = q[1];\n            int prev = -1;\n            int mn = INT_MAX;\n            for(int i = 1; i <= 100; i++){\n                if(prefix[i][r+1] - prefix[i][l] > 0){\n                    if(prev != -1){\n                        mn = min(mn, i - prev);\n                    }\n                    prev = i;\n                }\n            }\n            if(mn == INT_MAX){\n                ans.push_back(-1);\n            }\n            else{\n                ans.push_back(mn);\n            }\n        }\n        return ans;\n    }\n};"
+}

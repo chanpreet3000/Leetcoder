@@ -1,0 +1,5 @@
+{
+    "problemName": "design-phone-directory",
+    "language": "python3",
+    "code": "from collections import deque\nclass PhoneDirectory:\n\n    def __init__(self, maxNumbers: int):\n        self.avaliable = deque()\n        for i in range(maxNumbers):\n            self.avaliable.append(i)\n        self.used = set()\n\n    def get(self) -> int:\n        if len(self.avaliable) == 0:\n            return -1\n        number = self.avaliable.popleft()\n        self.used.add(number)\n        return number\n        \n    def check(self, number: int) -> bool:\n        if number in self.used:\n            return False\n        return True\n        \n    def release(self, number: int) -> None:\n        if number in self.used:\n            self.used.discard(number)\n            self.avaliable.append(number)\n        \n\n\n# Your PhoneDirectory object will be instantiated and called as such:\n# obj = PhoneDirectory(maxNumbers)\n# param_1 = obj.get()\n# param_2 = obj.check(number)\n# obj.release(number)"
+}

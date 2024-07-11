@@ -1,0 +1,5 @@
+{
+    "problemName": "find-the-missing-ids",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\r\n\r\nwith recursive cte as(\r\n    select 1 as ids\r\n    union all\r\n    select ids+1 from cte\r\n    where ids < (select max(customer_id) from customers)\r\n)\r\n\r\nselect * from cte \r\nwhere ids not in (select customer_id from customers)\r\norder by 1\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+}

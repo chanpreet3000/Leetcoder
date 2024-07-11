@@ -1,0 +1,5 @@
+{
+    "problemName": "palindrome-removal",
+    "language": "python3",
+    "code": "class Solution:\n    def minimumMoves(self, arr: List[int]) -> int:\n        N=len(arr)\n        @cache\n        def dfs(lf=0,rt=N-1):\n            # print(lf,rt)\n            if lf>rt:return 1\n            if lf==rt:\n                return 1\n            N=len(arr)\n            ret=1<<31\n            for i in range(lf,rt):\n                ret=min(ret,dfs(lf,i)+dfs(i+1,rt))\n            while lf<rt and arr[lf]==arr[rt]:\n                ret=min(ret,dfs(lf+1,rt-1)) # merge\n                lf+=1\n                rt-=1\n            return ret\n        return dfs(0,N-1)\n                "
+}

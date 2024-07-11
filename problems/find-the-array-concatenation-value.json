@@ -1,0 +1,5 @@
+{
+    "problemName": "find-the-array-concatenation-value",
+    "language": "python3",
+    "code": "class Solution:\n    def findTheArrayConcVal(self, nums: List[int]) -> int:\n\n        result = 0\n        left, right = 0, len(nums) - 1\n        while left < right:\n            result += int(str(nums[left]) + str(nums[right]))\n            left += 1\n            right -= 1\n        \n        if left == right:\n            result += nums[left]\n        \n        return result"
+}

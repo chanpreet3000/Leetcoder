@@ -1,0 +1,5 @@
+{
+    "problemName": "dice-roll-simulation",
+    "language": "golang",
+    "code": "func dieSimulator(n int, rollMax []int) int {\n    const mod int = 1e9 + 7\n\tconst m = 6\n\tf := make([][m][]int, n)\n\tfor i := range f {\n\t\tfor j := range f[i] {\n\t\t\tf[i][j] = make([]int, rollMax[j])\n\t\t}\n\t}\n\tfor j := range f[0] {\n\t\tfor k := range f[0][j] {\n\t\t\tf[0][j][k] = 1\n\t\t}\n\t}\n\tfor i := 1; i < n; i++ {\n\t\tfor last, mx0 := range rollMax {\n\t\t\tfor left := 0; left < mx0; left++ {\n\t\t\t\tres := 0\n\t\t\t\tfor j, mx := range rollMax {\n\t\t\t\t\tif j != last {\n\t\t\t\t\t\tres += f[i-1][j][mx-1]\n\t\t\t\t\t} else if left > 0 {\n\t\t\t\t\t\tres += f[i-1][j][left-1]\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tf[i][last][left] = res % mod\n\t\t\t}\n\t\t}\n\t}\n\n\tans := 0\n\tfor j, mx := range rollMax {\n\t\tans += f[n-1][j][mx-1]\n\t}\n\treturn ans % mod\n}"
+}

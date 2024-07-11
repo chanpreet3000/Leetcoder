@@ -1,0 +1,5 @@
+{
+    "problemName": "arithmetic-subarrays",
+    "language": "python3",
+    "code": "class Solution:\n    def checkArithmeticSubarrays(self, nums: List[int], l: List[int], r: List[int]) -> List[bool]:\n        numQueries = len(l)\n        result = []\n        # For each query, while loop\n        for i in range(numQueries):\n            subarray=nums[l[i]:r[i]+1]\n            subarray.sort()\n            print(subarray)\n            if (len(subarray) < 2):\n                result.append(False)\n            else:\n                # Check each number in subarray is equidistant from the last\n                diff=subarray[1]-subarray[0]\n                arithmetic=True\n                for j in range(1, len(subarray)):\n                    if subarray[j] - subarray[j-1] != diff:\n                        arithmetic=False\n                result.append(arithmetic)\n        \n        return result\n\n\n\n"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "k-th-smallest-prime-fraction",
+    "language": "python",
+    "code": "class Solution(object):\n    def kthSmallestPrimeFraction(self, arr, k):\n        \"\"\"\n        :type arr: List[int]\n        :type k: int\n        :rtype: List[int]\n        \"\"\"\n        fracs = {}\n        for i in range(len(arr)):\n            for j in range(i, len(arr)):\n                temp = float(arr[i])/float(arr[j])\n                fracs.update({temp : [arr[i],arr[j]]})\n        ascend = fracs.keys()\n        ascend.sort()\n        return fracs.get(ascend[k-1])"
+}

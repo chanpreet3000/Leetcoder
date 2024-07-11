@@ -1,0 +1,5 @@
+{
+    "problemName": "spiral-matrix-iii",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<vector<int>> spiralMatrixIII(int R, int C, int r, int c) {\n        vector<vector<int>> res = {{r, c}};\n        int dx = 0, dy = 1, tmp;\n        for (int n = 0; res.size() < R * C; n++) {\n            for (int i = 0; i < n / 2 + 1; i++) {\n                r += dx, c += dy;\n                if (0 <= r && r < R && 0 <= c && c < C)\n                    res.push_back({r, c});\n            }\n            tmp = dx, dx = dy, dy = -tmp;\n        }\n        return res;\n    }\n};"
+}

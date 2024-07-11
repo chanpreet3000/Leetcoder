@@ -1,0 +1,5 @@
+{
+    "problemName": "magical-string",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int magicalString(int n) {\n        char No_toRepeat='2';\n        int  repeats=2;\n        string magic = \"1\";\n        int i = 0,repeats_Idx=1;\n        int count = 1;\n        map<char,char> inverter = {{'1','2'},{'2','1'}};\n        while(magic.size()<n){\n            while(repeats&&magic.size()<n){\n                if(No_toRepeat=='1')\n                    count++;\n                magic.push_back(No_toRepeat);\n                repeats--;\n            }\n        No_toRepeat=inverter[magic.back()];\n        repeats_Idx++;\n        repeats = int(magic[repeats_Idx] - '0');\n        }\n        return count;\n    }\n};\n"
+}

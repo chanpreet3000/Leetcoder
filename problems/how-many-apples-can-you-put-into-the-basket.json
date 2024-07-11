@@ -1,0 +1,5 @@
+{
+    "problemName": "how-many-apples-can-you-put-into-the-basket",
+    "language": "python3",
+    "code": "class Solution:\n    def maxNumberOfApples(self, weight: List[int]) -> int:\n        if sum(weight) <= 5000:\n            return len(weight)\n        \n        weight.sort()\n        \n        curr_weight = 0\n        idx = 0\n        while curr_weight <= 5000:\n            curr_weight += weight[idx]\n            idx += 1\n        \n        return idx-1"
+}

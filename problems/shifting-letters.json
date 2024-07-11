@@ -1,0 +1,5 @@
+{
+    "problemName": "shifting-letters",
+    "language": "java",
+    "code": "class Solution {\n    public String shiftingLetters(String S, int[] shifts) {\n        StringBuilder ans = new StringBuilder();\n        int X = 0;\n        for (int shift: shifts)\n            X = (X + shift) % 26;\n\n        for (int i = 0; i < S.length(); ++i) {\n            int index = S.charAt(i) - 'a';\n            ans.append((char) ((index + X) % 26 + 97));\n            X = Math.floorMod(X - shifts[i], 26);\n        }\n\n        return ans.toString();\n    }\n}"
+}
