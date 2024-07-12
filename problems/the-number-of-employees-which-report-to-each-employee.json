@@ -1,0 +1,5 @@
+{
+    "problemName": "the-number-of-employees-which-report-to-each-employee",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\r\nselect a.employee_id,b.name, a.reports_count, a.average_age from(select reports_to as employee_id, count(*) as reports_count, round(avg(age)) as 'average_age'\r\nfrom Employees\r\ngroup by 1) a join Employees b using(employee_id)\r\norder by 1"
+}

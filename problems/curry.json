@@ -1,0 +1,5 @@
+{
+    "problemName": "curry",
+    "language": "javascript",
+    "code": "/**\n * @param {Function} fn\n * @return {Function}\n */\nvar curry = function(fn) {\n    const totalArgs = fn.length;\n    let passedArgs = [];\n\n    return function curried(...args) {\n        passedArgs = [...passedArgs, ...args];\n\n        if (passedArgs.length === fn.length) {\n            return fn(...passedArgs);\n        } else {\n            return curried;\n        }\n    };\n};\n\n/**\n * function sum(a, b) { return a + b; }\n * const csum = curry(sum);\n * csum(1)(2) // 3\n */"
+}

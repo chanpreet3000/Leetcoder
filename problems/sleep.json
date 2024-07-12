@@ -1,0 +1,5 @@
+{
+    "problemName": "sleep",
+    "language": "javascript",
+    "code": "/**\n * @param {number} millis\n */\nasync function sleep(millis) {\n  await new Promise(resolve => setTimeout(resolve, millis));\n}\n\n/** \n * let t = Date.now()\n * sleep(100).then(() => console.log(Date.now() - t)) // 100\n */"
+}

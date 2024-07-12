@@ -1,0 +1,5 @@
+{
+    "problemName": "return-length-of-arguments-passed",
+    "language": "javascript",
+    "code": "/**\n * @return {number}\n */\nvar argumentsLength = function(...args) {\n return args.length\n};\n\n/**\n * argumentsLength(1, 2, 3); // 3\n */"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-unique-good-subsequences",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int numberOfUniqueGoodSubsequences(string binary) {\n        int mod = 1000000007, zeros = 0, ones = 0;\n        for (auto ch : binary)\n            if (ch == '1')\n                ones = (zeros + ones + 1) % mod;\n            else\n                zeros = (zeros + ones) % mod;\n        return (ones + zeros + (zeros || binary[0] == '0')) % mod;\n    }  \n};"
+}

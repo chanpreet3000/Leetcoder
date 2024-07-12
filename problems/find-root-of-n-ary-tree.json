@@ -1,0 +1,5 @@
+{
+    "problemName": "find-root-of-n-ary-tree",
+    "language": "cpp",
+    "code": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    vector<Node*> children;\n\n    Node() {}\n\n    Node(int _val) {\n        val = _val;\n    }\n\n    Node(int _val, vector<Node*> _children) {\n        val = _val;\n        children = _children;\n    }\n};\n*/\n\nclass Solution {\npublic:\n    Node* findRoot(vector<Node*> tree) {\n        //indegree=0\n        map<Node*, int> inDeg;\n        for(auto it:tree) inDeg[it]=0;\n        for(auto it:tree){\n            for(auto i:it->children){\n                inDeg[i]++;\n            }\n        }\n        Node* root;\n        for(auto it:inDeg){\n            if(it.second==0){\n                root=it.first;\n                break;\n            }\n        }\n        return root;\n    }\n};"
+}

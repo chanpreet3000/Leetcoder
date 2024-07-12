@@ -1,0 +1,5 @@
+{
+    "problemName": "flatten-deeply-nested-array",
+    "language": "javascript",
+    "code": "/**\n * @param {any[]} arr\n * @param {number} depth\n * @return {any[]}\n */\nvar flat = function (arr, n) {\n    if (n == 0) {\n        return arr;\n    }\n    let ans =[]\n    for(let i = 0;i<arr.length;i++){\n        if(n>0 && Array.isArray(arr[i])){\n            ans.push(...flat(arr[i],n-1))\n        }else{\n            ans.push(arr[i]);\n        }\n    }\n    return ans;\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "filter-elements-from-array",
+    "language": "javascript",
+    "code": "/**\n * @param {number[]} arr\n * @param {Function} fn\n * @return {number[]}\n */\nvar filter = function(arr, fn) {\n   const filteredArr = []\n   for(let i = 0, len = arr.length-1; i <= len; i+=1) {\n       const item = arr[i]\n       if (fn(item, i)) {\n           filteredArr.push(item)\n       }\n   }\n   return filteredArr \n};"
+}

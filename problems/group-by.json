@@ -1,0 +1,5 @@
+{
+    "problemName": "group-by",
+    "language": "javascript",
+    "code": "/**\n * @param {Function} fn\n * @return {Array}\n */\nArray.prototype.groupBy = function(fn) {\n    const res = {};\n    for(let item of this){\n        const key = fn(item);\n        res[key] = res[key] ?? []\n        res[key].push(item)\n    }\n    return res;\n};\n\n/**\n * [1,2,3].groupBy(String) // {\"1\":[1],\"2\":[2],\"3\":[3]}\n */"
+}

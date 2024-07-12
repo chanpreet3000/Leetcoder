@@ -1,0 +1,5 @@
+{
+    "problemName": "timeout-cancellation",
+    "language": "javascript",
+    "code": "/**\n * @param {Function} fn\n * @param {Array} args\n * @param {number} t\n * @return {Function}\n */\nvar cancellable = function(fn, args, t) {\n    const timeout = setTimeout(() => fn(...args),t)\n    const cancelFn = () => clearTimeout(timeout)\n    return cancelFn\n};\n\n/**\n *  const result = []\n *\n *  const fn = (x) => x * 5\n *  const args = [2], t = 20, cancelT = 50\n *\n *  const start = performance.now() \n *\n *  const log = (...argsArr) => {\n *      const diff = Math.floor(performance.now() - start);\n *      result.push({\"time\": diff, \"returned\": fn(...argsArr))\n *  }\n *       \n *  const cancel = cancellable(log, args, t);\n *\n *  const maxT = Math.max(t, cancelT)\n *           \n *  setTimeout(() => {\n *     cancel()\n *  }, cancelT)\n *\n *  setTimeout(() => {\n *     console.log(result) // [{\"time\":20,\"returned\":10}]\n *  }, maxT + 15)\n */"
+}

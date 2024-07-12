@@ -1,0 +1,5 @@
+{
+    "problemName": "function-composition",
+    "language": "javascript",
+    "code": "/**\n * @param {Function[]} functions\n * @return {Function}\n */\nvar compose = function(functions) {\n\treturn (x) =>{\n        const pipe = (...fns) => x => fns.reduceRight((y, f) => f(y), x); \n        return pipe(...functions)(x);\n    }\n};\n\n/**\n * const fn = compose([x => x + 1, x => 2 * x])\n * fn(4) // 9\n */"
+}

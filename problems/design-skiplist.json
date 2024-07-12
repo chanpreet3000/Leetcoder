@@ -1,0 +1,5 @@
+{
+    "problemName": "design-skiplist",
+    "language": "java",
+    "code": "class Skiplist {\n    int[] arr;\n    \n    public Skiplist() {\n        arr = new int[20001];\n    }\n    \n    public boolean search(int target) {\n        if (arr[target] > 0) {\n            return true;\n        } else {\n            return false;\n        }\n    }\n    \n    public void add(int num) {\n        arr[num]++;\n    }\n    \n    public boolean erase(int num) {\n        if (arr[num] > 0) {\n            arr[num]--;\n            return true;\n        } else {\n            return false;\n        }\n    }\n}\n\n/**\n * Your Skiplist object will be instantiated and called as such:\n * Skiplist obj = new Skiplist();\n * boolean param_1 = obj.search(target);\n * obj.add(num);\n * boolean param_3 = obj.erase(num);\n */"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "sort-by",
+    "language": "javascript",
+    "code": "/**\n * @param {Array} arr\n * @param {Function} fn\n * @return {Array}\n */\nvar sortBy = function(arr, fn) {\n    return arr.sort((a, b) => fn(a) - fn(b));\n};\n\n//https://leetcode.com/problems/sort-by/solutions/3624653/1-line-full-thorough-explanation-bread/?envType=study-plan-v2&envId=30-days-of-javascript"
+}

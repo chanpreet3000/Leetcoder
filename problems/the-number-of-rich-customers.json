@@ -1,0 +1,5 @@
+{
+    "problemName": "the-number-of-rich-customers",
+    "language": "mysql",
+    "code": "select count(distinct customer_id) as rich_count\nfrom store \nwhere amount > 500;"
+}

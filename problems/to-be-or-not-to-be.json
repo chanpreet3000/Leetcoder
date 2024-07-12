@@ -1,0 +1,5 @@
+{
+    "problemName": "to-be-or-not-to-be",
+    "language": "javascript",
+    "code": "/**\n * @param {string} val\n * @return {Object}\n */\nvar expect = function(val) {\n    return {\n        toBe(toBeVal) {\n            if (val !== toBeVal) {\n                throw new Error(\"Not Equal\");\n            }\n            return true;\n        },\n        notToBe(notToBeVal) {\n            if (val === notToBeVal) {\n                throw new Error(\"Equal\");\n            }\n            return true;\n        }\n    }\n};\n\n/**\n * expect(5).toBe(5); // true\n * expect(5).notToBe(5); // throws \"Equal\"\n */"
+}

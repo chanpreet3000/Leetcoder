@@ -1,0 +1,5 @@
+{
+    "problemName": "queens-that-can-attack-the-king",
+    "language": "python3",
+    "code": "class Solution:\n    def queensAttacktheKing(self, queens: List[List[int]], king: List[int]) -> List[List[int]]:\n        res = []\n        d = (-1, 0, 1)\n        q = {(i, j) for i, j in queens}\n        for i in d:\n            for j in d:\n                for k in range(8):\n                    x, y = king[0] + i * k, king[1] + j * k\n                    if (x, y) in q:\n                        res.append([x, y])\n                        break\n        return res\n        "
+}

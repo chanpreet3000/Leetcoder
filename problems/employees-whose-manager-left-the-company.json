@@ -1,0 +1,5 @@
+{
+    "problemName": "employees-whose-manager-left-the-company",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\r\nselect employee_id\r\nfrom Employees\r\nwhere salary < 30000 and manager_id not in \r\n(select employee_id from Employees)\r\norder by employee_id;"
+}

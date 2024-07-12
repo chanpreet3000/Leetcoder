@@ -1,0 +1,5 @@
+{
+    "problemName": "array-reduce-transformation",
+    "language": "javascript",
+    "code": "/**\n * @param {number[]} nums\n * @param {Function} fn\n * @param {number} init\n * @return {number}\n */\nvar reduce = function(nums, fn, init) {\n    let sum = init\n    const length = nums.length\n    for (let i = 0; i < length; i++) {\n        sum = fn(sum, nums[i])\n    }\n    return sum\n};"
+}

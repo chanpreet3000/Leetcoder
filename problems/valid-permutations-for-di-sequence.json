@@ -1,0 +1,5 @@
+{
+    "problemName": "valid-permutations-for-di-sequence",
+    "language": "python3",
+    "code": "class Solution:\n    def numPermsDISequence(self, s: str) -> int:\n        dp = [1] * (len(s) + 1)\n        for a, b in zip('I' + s, s):\n            dp = list(itertools.accumulate(dp[:-1] if a == b else dp[-1:0:-1]))\n        return dp[0] % (10**9 + 7)"
+}

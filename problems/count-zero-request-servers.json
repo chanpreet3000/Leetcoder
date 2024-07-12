@@ -1,0 +1,5 @@
+{
+    "problemName": "count-zero-request-servers",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<int> countServers(int n, vector<vector<int>>& logs, int x, vector<int>& queries) {\n        int n1 = queries.size();\n        int n2 = logs.size();\n        vector<pair<int,int>> v(n1),v1(n2);\n        vector<int> ans(n1);\n        for(int i=0;i<n1;i++){\n            v[i]={queries[i],i};\n        }\n        for(int i=0;i<n2;i++){\n            v1[i]={logs[i][1],logs[i][0]};\n        }\n        sort(v.begin(),v.end());\n        sort(v1.begin(),v1.end());\n        unordered_map<int,int> mp;\n        int i=0,j=0;\n        for(int k=0;k<n1;k++){\n            int start = max(0,v[k].first-x);\n            int end = v[k].first;\n            while(j<n2 && v1[j].first<=end){\n                mp[v1[j].second]++;\n                j++;\n            }\n            while(i<n2 && v1[i].first<start){\n                if(mp[v1[i].second]==1){mp.erase(v1[i].second);}\n                else{mp[v1[i].second]--;}\n                i++;\n            }\n            ans[v[k].second]=n-mp.size();\n        }\n        return ans;\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "generate-fibonacci-sequence",
+    "language": "typescript",
+    "code": "function* fibGenerator(): Generator<number, any, number> {\n    let first = 0;\n    let second = 1;\n    yield first;\n    yield second;\n\n    while (true) {\n        const next = first + second;\n        yield next;\n\n        first = second;\n        second = next;\n\n    }\n};\n\n/**\n * const gen = fibGenerator();\n * gen.next().value; // 0\n * gen.next().value; // 1\n */"
+}

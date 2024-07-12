@@ -1,0 +1,5 @@
+{
+    "problemName": "is-object-empty",
+    "language": "javascript",
+    "code": "/**\n * @param {Object | Array} obj\n * @return {boolean}\n */\nvar isEmpty = function(obj) {\n    return JSON.stringify(obj) == '{}' || JSON.stringify(obj) == '[]'\n};"
+}

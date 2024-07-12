@@ -1,0 +1,5 @@
+{
+    "problemName": "closest-dessert-cost",
+    "language": "python3",
+    "code": "class Solution:\n    def closestCost(self, baseCosts: List[int], toppingCosts: List[int], target: int) -> int:\n        prev = baseCosts\n        costs = set(baseCosts)\n\n        for toppingCost in toppingCosts:\n            cur = []\n            for cost in prev:\n                cur.append(cost)\n                cur.append(cost + toppingCost)\n                cur.append(cost + 2 * toppingCost) \n            prev = cur\n            costs = costs.union(cur)\n\n        mini, res = float(\"inf\"), 0\n        for cost in sorted(costs):\n            if abs(cost - target) < mini:\n                res, mini = cost, abs(cost - target)\n\n        return res"
+}

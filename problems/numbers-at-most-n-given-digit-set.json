@@ -1,0 +1,5 @@
+{
+    "problemName": "numbers-at-most-n-given-digit-set",
+    "language": "python3",
+    "code": "class Solution:\n    def atMostNGivenDigitSet(self, digits: List[str], n: int) -> int:\n        digits = set(int(d) for d in digits)\n        dLen = len(digits)\n        nStr = str(n)\n        nLen = len(nStr)\n        \n        res = sum(dLen**i for i in range(1, nLen)) # lower dimensions\n        \n        def helper(firstDigit, slots):\n            if slots == 1:\n                return sum(d <= firstDigit for d in digits)\n\n            return sum(d < firstDigit for d in digits) * dLen**(slots - 1)\n        \n        for i in range(nLen):\n            curDigit = int(nStr[i])\n\n            res += helper(curDigit, nLen - i)\n            \n            if not curDigit in digits: # makes no sense to continue\n                break\n    \n        return res"
+}

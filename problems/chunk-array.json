@@ -1,0 +1,5 @@
+{
+    "problemName": "chunk-array",
+    "language": "javascript",
+    "code": "/**\n * @param {Array} arr\n * @param {number} size\n * @return {Array[]}\n */\nvar chunk = function(arr, size) {\n    \n    let array=[]\n    for (let i = 0; i <= arr.length; i++) {\n        if(i % size === 0) {\n            const newArray = arr.slice(i, i + size)\n    //         if ((arr.length % size) !== 0 && newArray.length < size) {\n    //                 array.push(newArray)\n\n    // }\n            if(newArray.length === 0) {\n            continue\n            }\n        array.push(newArray)\n\n        }\n\n    }\n    return array\n};"
+}

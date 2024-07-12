@@ -1,0 +1,5 @@
+{
+    "problemName": "bitwise-ors-of-subarrays",
+    "language": "python3",
+    "code": "class Solution:\n    def subarrayBitwiseORs(self, A: List[int]) -> int:\n        my_set = set(A)\n        curr = 0\n        prev = set()\n        prev.add(A[0])\n        for num in A[1:]:\n            temp = set()\n            for p in prev:\n                temp.add(num | p)\n                my_set.add(num | p)\n            prev = temp\n            prev.add(num)\n\n        return len(my_set)"
+}

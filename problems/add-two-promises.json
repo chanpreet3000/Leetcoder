@@ -1,0 +1,5 @@
+{
+    "problemName": "add-two-promises",
+    "language": "javascript",
+    "code": "//m2\n//use Promise.then()\n/**\n * @param {Promise} promise1\n * @param {Promise} promise2\n * @return {Promise}\n */\nvar addTwoPromises = async function(promise1, promise2) {\n    let ret = 0;\n    try{\n        return promise1.then((val1) => {\n            return promise2.then((val2) => {\n                return val1+val2;\n            });\n        })\n    }catch(err){\n        console.error(err);\n        throw error;\n    }\n};\n\n/**\n * addTwoPromises(Promise.resolve(2), Promise.resolve(2))\n *   .then(console.log); // 4\n */"
+}

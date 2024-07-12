@@ -1,0 +1,5 @@
+{
+    "problemName": "allow-one-function-call",
+    "language": "javascript",
+    "code": "/**\n * @param {Function} fn\n * @return {Function}\n */\nvar once = function(fn) {\n    let called = false;\n    return function(...args){\n        if(!called) {\n            called = true;\n            return fn(...args);\n        }\n        return undefined;\n    }\n};\n\n/**\n * let fn = (a,b,c) => (a + b + c)\n * let onceFn = once(fn)\n *\n * onceFn(1,2,3); // 6\n * onceFn(2,3,6); // returns undefined without calling fn\n */"
+}

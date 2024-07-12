@@ -1,0 +1,5 @@
+{
+    "problemName": "counter",
+    "language": "javascript",
+    "code": "/**\n * @param {number} n\n * @return {Function} counter\n */\nvar createCounter = function(n) {\n    return function() {\n        let initial = n;\n        return n++;\n    };\n};\n\n/** \n * const counter = createCounter(10)\n * counter() // 10\n * counter() // 11\n * counter() // 12\n */"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "array-prototype-last",
+    "language": "typescript",
+    "code": "declare global {\n    interface Array<T> {\n        last(): T | -1;\n    }\n}\n\nArray.prototype.last = function() {\n    if(this.length === 0)\n        return -1;\n    const iterator = this.values();\n    let acccumulator;\n    for (const value of iterator) {\n        acccumulator = value;\n    }\n    return acccumulator;\n\n};\n\n\n  const arr = [1, 2, 3];\n  arr.last(); // 3\n \n\nexport {};"
+}

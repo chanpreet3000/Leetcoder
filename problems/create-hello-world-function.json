@@ -1,0 +1,5 @@
+{
+    "problemName": "create-hello-world-function",
+    "language": "javascript",
+    "code": "/**\n * @return {Function}\n */\nvar createHelloWorld = function() {\n    return function(...args) {\n        return \"Hello World\";\n    }\n};\n\n/**\n * const f = createHelloWorld();\n * f(); // \"Hello World\"\n */"
+}

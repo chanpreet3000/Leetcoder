@@ -1,0 +1,5 @@
+{
+    "problemName": "compact-object",
+    "language": "javascript",
+    "code": "/**\n * @param {Object} obj\n * @return {Object}\n */\nvar compactObject = function(obj) {\n    if (obj === null) return null;\n    if (Array.isArray(obj)) return obj.filter(Boolean).map(compactObject);\n    if (typeof obj != \"object\") return obj;\n\n    const compacted = {};\n    for (const key in obj){\n        let value = compactObject(obj[key]);\n        if (Boolean(value)) compacted[key] = value;\n    }\n\n    return compacted;\n};\n//https://leetcode.com/problems/compact-object/solutions/3567296/simple-easy-full-thorough-explanation-beginner-friendly/?envType=study-plan-v2&envId=30-days-of-javascript"
+}

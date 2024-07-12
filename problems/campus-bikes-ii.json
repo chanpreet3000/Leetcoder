@@ -1,0 +1,5 @@
+{
+    "problemName": "campus-bikes-ii",
+    "language": "python3",
+    "code": "class Solution:\n    def assignBikes(self, workers, bikes):\n        def dis(i, j):\n            return abs(workers[i][0] - bikes[j][0]) + abs(workers[i][1] - bikes[j][1])\n        h = [[0, 0, 0]]\n        seen = set()\n        while True:\n            cost, i, taken = heapq.heappop(h)\n            if (i, taken) in seen: continue\n            seen.add((i, taken))\n            if i == len(workers):\n                return cost\n            for j in range(len(bikes)):\n                if taken & (1 << j) == 0:\n                    heapq.heappush(h, [cost + dis(i, j), i + 1, taken | (1 << j)])"
+}

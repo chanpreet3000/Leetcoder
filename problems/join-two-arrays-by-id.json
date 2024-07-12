@@ -1,0 +1,5 @@
+{
+    "problemName": "join-two-arrays-by-id",
+    "language": "javascript",
+    "code": "/**\n * @param {Array} arr1\n * @param {Array} arr2\n * @return {Array}\n */\nvar join = function(arr1, arr2) {\n    let tmp = {};\n    for (let i = 0; i < arr1.length; i++) { tmp[arr1[i].id] = arr1[i]; }\n    for (let i = 0; i < arr2.length; i++) {\n        let obj = tmp[arr2[i].id];\n        if (obj === undefined) { obj = {}; }\n        for (const [key, value] of Object.entries(arr2[i])) {\n            obj[key] = value;\n        }\n        tmp[arr2[i].id] = obj;\n    }\n\n    return Object.values(tmp);\n};"
+}

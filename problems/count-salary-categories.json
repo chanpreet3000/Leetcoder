@@ -1,0 +1,5 @@
+{
+    "problemName": "count-salary-categories",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\r\nSELECT \"Low Salary\" as category,\r\nCount(income) as accounts_count\r\nFROM Accounts\r\nWHERE income < 20000\r\n\r\nUNION\r\n\r\nSELECT \"Average Salary\" as category,\r\nCount(income) as accounts_count\r\nFROM Accounts\r\nWHERE income >= 20000 && income <= 50000\r\n\r\nUNION\r\n\r\nSELECT \"High Salary\" as category,\r\nCount(income) as accounts_count\r\nFROM Accounts\r\nWHERE income > 50000;"
+}

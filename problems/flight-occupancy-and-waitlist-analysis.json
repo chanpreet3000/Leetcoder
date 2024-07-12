@@ -1,0 +1,5 @@
+{
+    "problemName": "flight-occupancy-and-waitlist-analysis",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\nWITH c1 AS (\nSELECT\n  flight_id\n ,COUNT(passenger_id) AS bookings\nFROM Passengers\nGROUP BY 1\n)\n\nSELECT\n  f.flight_id\n  ,CASE WHEN c1.bookings <= f.capacity THEN bookings\n        WHEN c1.bookings > f.capacity THEN f.capacity \n        ELSE 0 END AS booked_cnt\n  ,IF(c1.bookings >= f.capacity, c1.bookings - f.capacity, 0) AS waitlist_cnt\nFROM Flights f\nLEFT JOIN c1\nON f.flight_id = c1.flight_id\nGROUP BY 1\nORDER BY 1"
+}

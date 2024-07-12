@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-operations-to-make-a-uni-value-grid",
+    "language": "java",
+    "code": "class Solution {\n    public int minOperations(int[][] grid, int x) {\n        int[] arr = new int[grid.length * grid[0].length];\n        int index = 0;\n        int remainder = grid[0][0]%x;\n        for (int i = 0; i < grid.length; i++) {\n            for (int j = 0; j < grid[0].length; j++) {\n                if(grid[i][j]%x != remainder) return -1;\n                arr[index++] = grid[i][j];\n            }\n        }   \n        Arrays.sort(arr);\n        int median = arr[(arr.length - 1) / 2];\n        int steps = 0;\n        \n        for (int num : arr) {\n            if (num == median) {\n                continue;\n            }\n            steps += (Math.abs(num - median) / x);\n        }\n            // if (Math.abs(num - median) % x != 0) {\n            //     return -1;\n            // }\n        \n        return steps;\n    }\n}"
+}

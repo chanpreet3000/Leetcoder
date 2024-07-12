@@ -1,0 +1,5 @@
+{
+    "problemName": "apply-transform-over-each-element-in-array",
+    "language": "javascript",
+    "code": "/**\n * @param {number[]} arr\n * @param {Function} fn\n * @return {number[]}\n */\nvar map = function(arr, fn) {\n    const mappedArr = []\n    for(let i = 0, len = arr.length-1; i <= len; i+=1) {\n        const item = arr[i]\n        const mappedItem = fn(item, i)\n        mappedArr.push(mappedItem)\n    }\n    return mappedArr\n};"
+}
