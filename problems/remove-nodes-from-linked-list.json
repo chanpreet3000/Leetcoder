@@ -1,0 +1,5 @@
+{
+    "problemName": "remove-nodes-from-linked-list",
+    "language": "cpp",
+    "code": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode() : val(0), next(nullptr) {}\n *     ListNode(int x) : val(x), next(nullptr) {}\n *     ListNode(int x, ListNode *next) : val(x), next(next) {}\n * };\n */\nclass Solution {\npublic:\n    ListNode* removeNodes(ListNode* head) {\n        if(!head || !head->next)\n            return head;\n\n        ListNode* newnode = removeNodes(head->next);\n        if(newnode->val > head->val)\n            return newnode;\n        \n        head->next = newnode;\n\n        return head;\n    }\n};"
+}

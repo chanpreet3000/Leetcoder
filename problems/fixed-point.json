@@ -1,0 +1,5 @@
+{
+    "problemName": "fixed-point",
+    "language": "c",
+    "code": "int fixedPoint(int* arr, int arrSize){\n    int flag=0,value;\n    for(int i=0;i<arrSize;i++){\n        if(arr[i]==i){\n            value=i;\n            flag=1;\n            break;\n        }\n    }\n    if(flag==0){\n        return -1;\n    }else{\n        return value;\n    }\n}"
+}

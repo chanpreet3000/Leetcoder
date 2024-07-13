@@ -1,0 +1,5 @@
+{
+    "problemName": "count-nodes-equal-to-sum-of-descendants",
+    "language": "java",
+    "code": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n\n    int ans;\n\n    int traverse(TreeNode node) {\n        if (node == null) {\n            return 0;\n        }\n        int left = traverse(node.left);\n        int right = traverse(node.right);\n        if (node.val == left + right) {\n            ++ans;\n        }\n        return left + right + node.val;\n    }\n\n    public int equalToDescendants(TreeNode root) {\n        if (root == null) {\n            return 0;\n        }\n        ans = 0;\n        traverse(root);\n        return ans;\n    }\n}"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "soup-servings",
+    "language": "java",
+    "code": "class Solution {\n        private int[] optionA = {100, 75, 50, 25};\n        private int[] optionB = {0, 25, 50, 75};\n\n        private double solve(int a, int b, double[][] dp) {\n        if (a == 0 && b == 0)\n            return 0.5;\n        if (a == 0)\n            return 1;\n        if (b == 0)\n            return 0;\n\n        if (dp[a][b] != -1)\n            return dp[a][b];\n\n        double ans = 0;\n        for (int k = 0; k < 4; k++) {\n            int rema = a - optionA[k];\n            int remb = b - optionB[k];\n            ans += 0.25 * solve(Math.max(0, rema), Math.max(0, remb), dp);\n        }\n\n        return dp[a][b] = ans;\n    }\n\n    public double soupServings(int n) {\n        if (n >= 4800)\n            return 1;\n        double[][] dp = new double[n + 1][n + 1];\n        for (double[] row : dp) {\n            Arrays.fill(row, -1);\n        }\n        return solve(n, n, dp);\n\n    }\n}"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "concatenate-the-name-and-the-profession",
+    "language": "mssql",
+    "code": "/* Write your T-SQL query statement below */\r\nselect\r\n  Person.person_id, concat(Person.name,'(',substring(Person.profession,1,1),')') as \"name\"\r\nfrom Person\r\norder by Person.person_id desc"
+}

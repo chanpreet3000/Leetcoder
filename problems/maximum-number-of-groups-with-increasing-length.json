@@ -1,0 +1,5 @@
+{
+    "problemName": "maximum-number-of-groups-with-increasing-length",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    \n    int maxIncreasingGroups(vector<int>& nums) {\n        sort(nums.begin(), nums.end());\n        long long total = 0, count = 0;\n        for (int i = 0; i < nums.size(); ++i) {\n            total += nums[i];\n            if (total >= ((count+1)*(count+2))/2) count++;\n        }\n        return count;\n    }\n};"
+}

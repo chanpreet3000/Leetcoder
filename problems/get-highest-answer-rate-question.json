@@ -1,0 +1,5 @@
+{
+    "problemName": "get-highest-answer-rate-question",
+    "language": "mysql",
+    "code": "# Write your MySQL query statement below\n\nwith cte as(\n    select question_id, \n    sum(case when action = 'answer' then 1 else 0 end) / \n    sum(case when action = 'show' then 1 else 0 end) as answer_rate\n    from SurveyLog\n    group by 1\n)\n\nselect question_id as survey_log\nfrom cte \nwhere answer_rate = (select max(answer_rate) from cte)\norder by question_id asc\nlimit 1"
+}

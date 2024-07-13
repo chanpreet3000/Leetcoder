@@ -1,0 +1,5 @@
+{
+    "problemName": "longest-substring-of-all-vowels-in-order",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int longestBeautifulSubstring(string word) {\n        unordered_set<char>st;\n        int ans=0;\n        int len=0;\n\n        string s=\"aeiou\";\n        unordered_map<char,int>mp;\n        int cnt=0;\n        for(auto it:s) mp[it]=cnt++;\n\n        for(auto it:word){\n            if(st.size()==0&&it=='a') st.insert(mp[it]) , len++;\n\n            else if(st.size()&&(st.count(mp[it])||st.count(mp[it]-1))) st.erase(*st.begin()),st.insert(mp[it]),len++;\n            else {\n                if(st.size()&&*st.begin()==4)\n                ans=max(ans,len);\n\n                len=0;\n\n                st.clear();\n                if(it=='a') st.insert(mp[it]),len++;\n}\n        }\n\n          if(st.size()&&*st.begin()==4)\n                ans=max(ans,len);\n\n        \n        return ans;\n    }\n\n    \n};"
+}

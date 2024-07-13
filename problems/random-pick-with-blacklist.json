@@ -1,0 +1,5 @@
+{
+    "problemName": "random-pick-with-blacklist",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    map<int, int> mp;\n    int n, k;\n    // n = 7\n    // blacklist = [2, 3, 5]\n    // mp[0] = 0\n    // mp[2] = 4\n    // mp[3] = 6\n    Solution(int n, vector<int>& blacklist) : n(n), k(blacklist.size()) {\n        sort(blacklist.begin(), blacklist.end());\n        int x = 0, r = 0;\n        for(int i=0; i<blacklist.size(); i++){\n            mp[x] = r;\n            x += blacklist[i] - r;\n            r = blacklist[i] + 1;\n        }\n        mp[x] = r;\n        \n        // for(auto &[l,r] : mp){\n        //     cout << l << ' ' << r << endl;\n        // }\n        \n    }\n    \n    int pick() {\n        int x = rand() % (n - k);\n        auto it = prev(mp.upper_bound(x));\n        return it->second + x - it->first;\n    }\n};\n\n/**\n * Your Solution object will be instantiated and called as such:\n * Solution* obj = new Solution(n, blacklist);\n * int param_1 = obj->pick();\n */"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-ways-to-wear-different-hats-to-each-other",
+    "language": "cpp",
+    "code": "class Solution {\nprivate:\nconst int MOD=1e9+7;\n    long f(int mask,int i, int &n, vector<vector<int> > &h, vector<vector<int> > &dp){\n        if(mask==(1<<n)-1){\n            return 1;\n        }\n\n        if(i>=40){\n            return 0;\n        }\n\n        if(dp[mask][i]!=-1)return dp[mask][i];\n\n\n\n        long ans=f(mask,i+1,n,h,dp);\n        for(int j=0;j<h[i].size();j++){\n            if(mask&(1<<h[i][j]))continue;\n\n            else ans+=f(mask|(1<<h[i][j]), i+1, n, h, dp);\n        }\n\n        return dp[mask][i]=ans%MOD;\n    }\npublic:\n    int numberWays(vector<vector<int>>& hats) {\n        vector<vector<int> > h(40);\n        int n=hats.size();\n\n        for(int i=0;i<hats.size();i++){\n            for(auto it:hats[i]){\n                h[it-1].push_back(i);\n            }\n        }\n\n        vector<vector<int> > dp(2001,vector<int> (41,-1));\n\n        return f(0,0,n,h, dp);//{mask, hatnumber};\n\n    }\n};"
+}

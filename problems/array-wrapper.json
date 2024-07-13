@@ -1,0 +1,5 @@
+{
+    "problemName": "array-wrapper",
+    "language": "javascript",
+    "code": "/**\n * @param {number[]} nums\n */\nvar ArrayWrapper = function(nums) {\n  this.nums = nums;\n\n};\n\nArrayWrapper.prototype.valueOf = function() {\n    return this.nums.reduce((acc, item) => acc + item, 0);\n}\n\nArrayWrapper.prototype.toString = function() {\n    const res = this.nums.flatMap((item) => item);\n    return `[${res}]`;\n}\n\n/**\n * const obj1 = new ArrayWrapper([1,2]);\n * const obj2 = new ArrayWrapper([3,4]);\n * obj1 + obj2; // 10\n * String(obj1); // \"[1,2]\"\n * String(obj2); // \"[3,4]\"\n */"
+}

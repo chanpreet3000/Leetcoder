@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-music-playlists",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int numMusicPlaylists(int n, int goal, int k) {\n        memo = vector<vector<long long>>(goal + 1, vector<long long>(n + 1, -1));\n        return helper(goal, n, k, n);\n    }\nprivate:\n    vector<vector<long long>> memo;\n    int mod = 1e9 + 7;\n    long long helper(int i, int j, int k, int n) {\n        if (i + j == 0) return 1;\n        if (!i || !j) return 0;\n        if (memo[i][j] != -1) return memo[i][j];\n        long long res = 0;\n        res += ((helper(i - 1, j - 1, k, n) % mod) * ((n - j + 1) % mod)) % mod;\n        res %= mod;\n        if (j > k) res += ((helper(i - 1, j, k, n) % mod) * ((j - k) % mod)) % mod;\n        return memo[i][j] = res % mod;\n    }\n};"
+}

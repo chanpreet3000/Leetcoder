@@ -1,0 +1,5 @@
+{
+    "problemName": "counter-ii",
+    "language": "javascript",
+    "code": "/**\n * @param {integer} init\n * @return { increment: Function, decrement: Function, reset: Function }\n */\nvar createCounter = function(init) {\n    var n=init\n    return{\n        increment:()=>++n,\n        decrement:()=>--n,\n        reset:()=>n=init,\n    }\n};\n\n/**\n * const counter = createCounter(5)\n * counter.increment(); // 6\n * counter.reset(); // 5\n * counter.decrement(); // 4\n */"
+}

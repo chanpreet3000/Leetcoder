@@ -1,0 +1,5 @@
+{
+    "problemName": "memoize",
+    "language": "javascript",
+    "code": "/**\n * @param {Function} fn\n */\nfunction memoize(fn) {\n    const hash = {}\n    return function(...args) {\n        const key = args.join()\n        if (hash[key] !== undefined) {\n            return hash[key]\n        }\n        hash[key] = fn(...args)\n        return hash[key]\n    }\n}\n\n\n/** \n * let callCount = 0;\n * const memoizedFn = memoize(function (a, b) {\n *\t callCount += 1;\n *   return a + b;\n * })\n * memoizedFn(2, 3) // 5\n * memoizedFn(2, 3) // 5\n * console.log(callCount) // 1 \n */"
+}

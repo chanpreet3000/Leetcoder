@@ -1,0 +1,5 @@
+{
+    "problemName": "web-crawler-multithreaded",
+    "language": "python",
+    "code": "# \"\"\"\n# This is HtmlParser's API interface.\n# You should not implement it, or speculate about its implementation\n# \"\"\"\n#class HtmlParser(object):\n#    def getUrls(self, url):\n#        \"\"\"\n#        :type url: str\n#        :rtype List[str]\n#        \"\"\"\nfrom concurrent import futures\n\nclass Solution(object):\n    def crawl(self, startUrl, htmlParser):\n        \"\"\"\n        :type startUrl: str\n        :type htmlParser: HtmlParser\n        :rtype: List[str]\n        \"\"\"\n        v = set([startUrl])\n        shost = startUrl[7:].split('/')[0]\n        with futures.ThreadPoolExecutor(max_workers=16) as executor:\n            q = deque([executor.submit(htmlParser.getUrls, startUrl)])\n            while q:\n                for url in q.popleft().result():\n                    host = url[7:].split('/')[0]\n                    if host == shost and url not in v:\n                        v.add(url)\n                        q.append(executor.submit(htmlParser.getUrls, url))\n        return list(v)"
+}

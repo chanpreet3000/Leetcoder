@@ -1,0 +1,5 @@
+{
+    "problemName": "loud-and-rich",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<vector<int>> adj;\n\n    \n    vector<int> loudAndRich(vector<vector<int>>& richer, vector<int>& quiet) {\n        int n = quiet.size();\n        adj.resize(n);\n        vector<int>ans(n,0);\n        vector<int>indeg(n,0);\n        for(auto x : richer){\n            adj[x[0]].push_back(x[1]);\n            indeg[x[1]]++;\n        }\n        queue<pair<int,int>>q;\n        for(int i = 0;i<n;i++){\n            ans[i] = i;\n            if(indeg[i] == 0){\n                q.push({i,i});\n            }\n        }\n            \n        while(!q.empty()){\n            auto f = q.front();\n            q.pop();\n            for(int x: adj[f.first]){\n                indeg[x]--;\n                if(quiet[ans[f.first]] < quiet[ans[x]]){\n                    ans[x] = ans[f.first];\n                }\n                if(indeg[x] ==0){\n                    q.push({x,ans[x]});\n                }\n            }\n        }\n        \n\n        return ans;\n    }\n};"
+}

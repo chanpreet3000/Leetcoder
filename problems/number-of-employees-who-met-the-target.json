@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-employees-who-met-the-target",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int numberOfEmployeesWhoMetTarget(vector<int>& hours, int target) {\n        int n = hours.size();\n        int count =0;\n        for(int i=0;i<n;i++){\n            if(hours[i]>=target){\n                count++;\n            }\n        }\n        return count;\n    }\n};"
+}

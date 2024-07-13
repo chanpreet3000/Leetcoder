@@ -1,0 +1,5 @@
+{
+    "problemName": "monotone-increasing-digits",
+    "language": "java",
+    "code": "class Solution {\n    public int monotoneIncreasingDigits(int n) {\n        String temp = Integer.toString(n);\n        int[] digits = new int[temp.length()];\n        for (int i = 0; i < temp.length(); i++) {\n            digits[i] = temp.charAt(i) - '0';\n        }\n        for (int i = digits.length - 2; i >= 0; i--) {\n            if (digits[i] > digits[i + 1]) {\n                for (int j = i + 1; j < digits.length; j++) {\n                    digits[j] = 9;\n                }\n                digits[i] -= 1;\n            }\n        }\n        int result = 0;\n        for (int i = 0; i < digits.length; i++) {\n            result = result * 10 + digits[i];\n        }\n        return result;\n    }\n}"
+}

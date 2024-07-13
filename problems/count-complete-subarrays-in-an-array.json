@@ -1,0 +1,5 @@
+{
+    "problemName": "count-complete-subarrays-in-an-array",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int countCompleteSubarrays(vector<int>& A) {\n        int n = A.size(), k = unordered_set<int>(A.begin(), A.end()).size(), res = 0, i = 0;\n        unordered_map<int, int> count;\n        for (int j = 0; j < n; ++j) {\n            k -= count[A[j]]++ == 0;\n            while (k == 0)\n                k += --count[A[i++]] == 0;\n            res += i;\n        }\n        return res;\n    }\n};"
+}

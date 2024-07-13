@@ -1,0 +1,5 @@
+{
+    "problemName": "verify-preorder-sequence-in-binary-search-tree",
+    "language": "python3",
+    "code": "class Solution:\n    def verifyPreorder(self, preorder: List[int]) -> bool:\n        stack = []\n        minval = 0\n        for num in preorder:\n            if num < minval:\n                return False\n            while stack and stack[-1]<num:\n                minval = stack.pop()\n            stack.append(num)\n        return True"
+}

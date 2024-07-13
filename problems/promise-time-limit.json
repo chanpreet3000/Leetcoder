@@ -1,0 +1,5 @@
+{
+    "problemName": "promise-time-limit",
+    "language": "javascript",
+    "code": "/**\n * @param {Function} fn\n * @param {number} t\n * @return {Function}\n */\nvar timeLimit = function(fn, t) {\n    //the Promise.race method is amazing!!!\n\treturn async function(...args) {\n        let func = fn(...args);\n        let newPromise = new Promise((resolve,reject) => {\n            setTimeout(()=>{\n                reject(\"Time Limit Exceeded\");\n            },t);\n        });\n\n        return Promise.race([func, newPromise]);\n    }\n};\n\n/**\n * const limited = timeLimit((t) => new Promise(res => setTimeout(res, t)), 100);\n * limited(150).catch(console.log) // \"Time Limit Exceeded\" at t=100ms\n */"
+}

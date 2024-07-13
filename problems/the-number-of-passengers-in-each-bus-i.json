@@ -1,0 +1,5 @@
+{
+    "problemName": "the-number-of-passengers-in-each-bus-i",
+    "language": "mysql",
+    "code": "with cte as ( \r\n    select distinct passenger_id, min(b.arrival_time) over (partition by p.passenger_id) as bus_time\r\n    from Buses b cross join Passengers p\r\n        on p.arrival_time <= b.arrival_time\r\n    )\r\n\r\nselect bus_id, ifnull(count(cte.passenger_id),0) as passengers_cnt\r\nfrom buses b left join cte \r\n    on b.arrival_time = cte.bus_time\r\ngroup by 1\r\norder by 1 ASC"
+}

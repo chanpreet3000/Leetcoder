@@ -1,0 +1,5 @@
+{
+    "problemName": "construct-the-longest-new-string",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int longestString(int x, int y, int z) {\n        string X = \"AA\",Y=\"BB\",Z=\"AB\";\n        string ans;\n        \n        while(x!=0 and y!=0){\n            ans+=X;\n            ans+=Y;\n            x--;\n            y--;\n        }\n        int flag=-1;\n        \n        if(x!=0){\n            ans+=X;\n            flag=0;\n            \n        }\n        if(y!=0){\n            ans+=Y;\n            flag=1;\n            \n        }\n        int n = ans.size();\n        if(ans[n-1]=='A'){\n            while(z!=0){\n                string temp = Z + ans;\n                ans = temp;\n                z--;\n            }\n        }\n        if(ans[n-1]=='B'){\n            while(z!=0){\n                ans+=Z;\n                z--;\n            }\n        }\n        return ans.size();\n        \n    }\n};"
+}

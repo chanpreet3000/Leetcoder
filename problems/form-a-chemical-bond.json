@@ -1,0 +1,5 @@
+{
+    "problemName": "form-a-chemical-bond",
+    "language": "mssql",
+    "code": "/* Write your T-SQL query statement below */\r\nwith metal as\r\n(\r\n  select a.symbol as metal from \"Elements\" a where a.type = 'Metal'\r\n),\r\nnonmetal as\r\n(\r\n  select a.symbol as nonmetal from \"Elements\" a where a.type = 'Nonmetal'\r\n)\r\nselect \r\n  metal, nonmetal\r\nfrom metal\r\ncross join nonmetal"
+}

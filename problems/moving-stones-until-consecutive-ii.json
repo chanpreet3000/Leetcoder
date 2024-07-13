@@ -1,0 +1,5 @@
+{
+    "problemName": "moving-stones-until-consecutive-ii",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    vector<int> numMovesStonesII(vector<int>& st) {\n        sort(st.begin(),st.end());\n        int mi=1,j=0,n=st.size();\n        for (int i=0,j=0;j<n;j++){\n            while(st[j]-st[i]+1>n) i++;\n            if (n-j+i==2 && n+st[i]==st[j]+2) mi=max(mi,n-2);\n            else mi=max(mi,j-i+1);\n        }\n        int mx=max(st[n-1]-st[1],st[n-2]-st[0])+2-n;\n        mi=n-mi;\n        return {mi,mx};\n    }\n};"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "splitting-a-string-into-descending-consecutive-values",
+    "language": "python3",
+    "code": "class Solution:\n    def splitString(self, s: str) -> bool:\n\n        def solve(n,last):\n\n            if n>=len(s):\n                return True\n            \n            for i in range(n,len(s)):\n                if last-int(s[n:i+1])==1:\n                    if solve(i+1,int(s[n:i+1])):\n                        return True\n                \n            return False\n        \n        for i in range(len(s)-1):\n            if solve(i+1,int(s[:i+1])):\n                return True\n        return False"
+}

@@ -1,0 +1,5 @@
+{
+    "problemName": "minimum-money-required-before-transactions",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    long long minimumMoney(vector<vector<int>>& transactions) {\n        long long loss=0;\n        int ans=0;\n        for(int i=0; i<transactions.size(); i++){\n            if(transactions[i][0] >= transactions[i][1]){\n                loss+=transactions[i][0]-transactions[i][1];\n                ans= max(ans,transactions[i][1]);\n            }\n            else{\n                ans= max(ans,transactions[i][0]);\n            }\n        }\n        return loss+(long long)ans;\n    }\n};"
+}

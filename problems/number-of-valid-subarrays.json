@@ -1,0 +1,5 @@
+{
+    "problemName": "number-of-valid-subarrays",
+    "language": "cpp",
+    "code": "class Solution {\npublic:\n    int validSubarrays(vector<int>& nums) {\n        deque<int> ids;\n        int res = 0;\n        for (int i = 0; i < nums.size(); i++) {\n            while (!ids.empty() && nums[ids.back()] > nums[i]) {\n                res += i - ids.back();\n                ids.pop_back();\n            }\n            ids.push_back(i);\n        }\n\n        while (!ids.empty()) {\n            res += nums.size() - ids.back();\n            ids.pop_back();\n        }\n\n        return res;\n    }\n};"
+}

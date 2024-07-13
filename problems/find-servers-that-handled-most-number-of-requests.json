@@ -1,0 +1,5 @@
+{
+    "problemName": "find-servers-that-handled-most-number-of-requests",
+    "language": "cpp",
+    "code": "class Solution {\n    using ii=pair<int,int>;\npublic:\n    vector<int> busiestServers(int n, vector<int>& arr1, vector<int>& arr2) {\n    int k=arr1.size();\n    vector<int> cnt(n,0);\n    set<int> st;\n    priority_queue<ii,vector<ii>,greater<ii>>pq;\n    for(int i=0;i<min(n,k);i++){\n        st.insert(i);\n    }\n    for(int i=0;i<k;i++){\n        while(!pq.empty() && pq.top().first<=arr1[i]){\n            st.insert(pq.top().second);\n            pq.pop();\n        }\n        if(st.size()){\n            auto it=st.lower_bound(i%n);\n            if(it==st.end()) it=st.begin();\n            int j=*it;\n            st.erase(j);\n            pq.push({arr1[i]+arr2[i],j});\n            cnt[j]++;\n        }\n    }\n    int mx=*max_element(cnt.begin(),cnt.end());\n    // cout<<\"**\"<<mx<<endl;\n    vector<int> ans;\n    for(int i=0;i<n;i++){\n        if(cnt[i]==mx) ans.push_back(i);\n    }\n    return ans;\n    }\n};"
+}
