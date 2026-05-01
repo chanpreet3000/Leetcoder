@@ -1,5 +1,6 @@
 import {getElementByXPath, pasteHelper, selectAllHelper, sleep} from "../utils/utils.js";
 import {
+  IS_QUESTION_PREMIUM,
   IS_SOLUTION_ACCEPTED_DIV_XPATH,
   QUESTIONS_CODE_DIV_XPATH,
   QUESTIONS_LANGUAGE_BTN_XPATH,
@@ -19,6 +20,7 @@ class LeetcoderSolver {
   }
 
   static async #solveProblemWithName(problemName) {
+    Logger.warn(`[NAVIGATING]\t\t\t:${problemName}`);
     const {page} = await getBrowserDetails();
     await page.goto(`https://leetcode.com/problems/${problemName}`, {
       waitUntil: "networkidle2",
@@ -35,14 +37,28 @@ class LeetcoderSolver {
         }
       } catch (_) {
       }
+
+      try {
+        const acceptedDiv = await getElementByXPath(page, IS_QUESTION_PREMIUM, 1, 0.1);
+        const acceptedText = await acceptedDiv[0].evaluate((ele) => ele.textContent);
+        if (acceptedText.includes("Subscribe")) {
+          Logger.error(`[PREMIUM_QUESTION]\t\t:${problemName}. Marking this as solved.`);
+          await FileManager.setSolvedProblemSet(problemName);
+          return;
+        }
+      } catch (_) {
+      }
+
       Logger.success(`[SOLVING]\t\t\t:${problemName}`);
 
       const {code, language} = await FileManager.getProblemDetails(problemName);
+      Logger.warn(`[LOADED_SOLUTION]\t\t:${problemName} (language: ${language}, ${code.length} chars)`);
 
       // Copy code to clipboard
       clipboardy.writeSync(code);
 
       //Change the language to the code language
+      Logger.warn(`[SWITCHING_LANGUAGE]\t\t:${language}`);
       const allLanguagesBtn = await getElementByXPath(page, QUESTIONS_LANGUAGE_BTN_XPATH, 5, 0);
       await allLanguagesBtn[0].click();
 
@@ -81,9 +97,11 @@ class LeetcoderSolver {
       // Paste the code in the editor
       await pasteHelper(page);
 
+      Logger.warn(`[SUBMITTING]\t\t\t:${problemName}`);
       const submit_btn = await getElementByXPath(page, QUESTIONS_SUBMIT_DIV_XPATH, 5, 0);
       await submit_btn[0].click();
 
+      Logger.warn(`[AWAITING_VERDICT]\t\t:${problemName}`);
       const isSolutionAccepted = await getElementByXPath(page, IS_SOLUTION_ACCEPTED_DIV_XPATH, 15, 0);
       const solutionAcceptedText = await isSolutionAccepted[0].evaluate((ele) => ele.textContent);
 
@@ -113,6 +131,7 @@ class LeetcoderSolver {
   static async solve() {
     Logger.error('<<<< Starting Leetcoder Solver >>>>');
     const allProblemsName = await FileManager.getAllProblemsNames();
+    Logger.success(`[QUEUED]\t\t\t:${allProblemsName.length} problems to process`);
     await this.#solveProblems(allProblemsName);
     Logger.error('<<<< Exiting Leetcoder Solver >>>>');
   }

@@ -3,7 +3,7 @@
 1) Works on new dynamic layout only.
 2) Only works on Windows. Do raise a PR if you can solve this problem for mac-os.
 3) Use Responsibly
-4) Last checked and working on 09-07-2024.
+4) Last checked and working on 2026-05-01.
 5) Currently, No Data is being sent to anything external to your system.
 
 # Leetcoder
@@ -28,11 +28,14 @@ Automatically login, solve and scrape Leetcode questions seamlessly. With its ad
 4. ### Resume Solving from Where You Left Off
    Leetcoder remembers the last problem it solved, so it can resume solving questions right from where you left off.
 
+5. ### Progress logging
+   While the solver runs, the terminal shows timestamped messages (via `utils/Logger.js`) so you can follow each step: queue size, navigation, loaded solution (language and length), language switch, submit, and verdict. Outcomes use clear tags such as `[ACCEPTED]`, `[ALREADY_SOLVED]`, `[PREMIUM_QUESTION]` (skipped and recorded so the run can continue), `[SOLVED_EARLIER]`, and `[FAILED]` with error details.
+
 ## Usage Disclaimer
 
 Leetcoder should be used responsibly and solely for educational purposes. This bot is not intended to be used for
 unethical purposes, such as solving or faking solved problems on Leetcode for the purpose of gaining unfair advantages.
-Always follow Leetcode\'s terms of service and community guidelines when using this tool.
+Always follow Leetcode's terms of service and community guidelines when using this tool.
 
 ## Getting Started
 

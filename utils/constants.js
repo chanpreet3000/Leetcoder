@@ -9,15 +9,15 @@ export const SCRAPER_SUBMITTED_CODE_DIV_XPATH =
 export const QUESTIONS_CODE_DIV_XPATH =
   "/html/body/div[1]/div[2]/div/div/div[4]/div/div/div[8]/div/div[2]/div[1]/div/div/div[1]/div[2]/div[1]/div[5]";
 export const QUESTIONS_SUBMIT_DIV_XPATH =
-  "/html/body/div[1]/div[2]/div/div/div[3]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[3]/div[3]/div/button";
+  "/html/body/div[1]/div[2]/div/div/div[3]/nav/div[2]/div/div[1]/div/div/div[2]/div/div[2]/div/div[3]/div[3]/div/button";
 export const QUESTIONS_SUBMIT_ACCEPTED_XPATH =
   "/html/body/div[1]/div[2]/div/div/div[4]/div/div/div[4]/div/div[1]/div[1]/div[2]";
 export const QUESTIONS_LANGUAGE_BTN_XPATH =
-  "/html/body/div[1]/div[2]/div/div/div[4]/div/div/div[8]/div/div[1]/div[1]/div[1]/div/div/div[1]/div/button";
+  "/html/body/div[1]/div[2]/div/div/div[4]/div/div/div[8]/div/div[1]/div[1]/div[1]/button";
 export const QUESTIONS_LANGUAGE_DIV_XPATH =
-  "/html/body/div[1]/div[2]/div/div/div[4]/div/div/div[8]/div/div[1]/div[1]/div[1]/div/div/div[2]/div/div/div/div/div/div/div";
+  "/html/body/div[7]/div/div/div/div";
 export const IS_SOLUTION_ACCEPTED_DIV_XPATH= "/html/body/div[1]/div[2]/div/div/div[4]/div/div/div[11]/div/div/div/div[2]/div/div[1]/div[1]/div[1]/span";
-
+export const IS_QUESTION_PREMIUM = "/html/body/div[1]/div[2]/div/div/div[4]/div[2]/div/div[2]"
 
 export const LEETCODER_ASCII_ART = `
      _                    _                _           
