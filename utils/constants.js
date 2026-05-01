@@ -28,7 +28,7 @@ export const LEETCODER_ASCII_ART = `
     \\_____/\\___|\\___|\\___|\\__\\___\\___/ \\__,_|\\___|_|
     
     Developed by : Chanpreet Singh, Aryan Singh, Himanshu Upreti
-    Github Link : https://github.com/chanpreet3000/leetcode-bot
+    Github Link : https://github.com/chanpreet3000/Leetcoder
     `;
 
 export const LEETCODER_MODE_QUESTION = `
@@ -38,4 +38,4 @@ export const LEETCODER_MODE_QUESTION = `
      [other] Exit.
     `;
 
-export const EXITING_LEETCODER = `Thanks for using Leetcoder. Please report any bugs/issues Github Link : https://github.com/chanpreet3000/leetcode-bot`;
+export const EXITING_LEETCODER = `Thanks for using Leetcoder. Please report any bugs/issues Github Link : https://github.com/chanpreet3000/Leetcoder`;
