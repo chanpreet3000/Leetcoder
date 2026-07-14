@@ -7,7 +7,7 @@
 
 <h1 align="center">Leetcoder</h1>
 
-<h2 align="center">Last verified working on 1 May 2026</h2>
+<h2 align="center">Last verified working on 15 July 2026</h2>
 
 <p align="center">
   <img src="https://img.shields.io/badge/maintenance-active-success?style=for-the-badge" alt="Actively maintained" />
@@ -39,14 +39,14 @@ Stars and PRs are welcome. Even a short issue with a screenshot often saves hour
 3. **Use responsibly** and in line with LeetCode’s terms.
 4. **Privacy:** no data is sent anywhere outside your machine by this tool (see your own Chrome/network setup as usual).
 
-> **Verified working:** **1 May 2026** — if you’re reading this months later, check the “Last commit” badge above; regular commits usually mean the layout selectors are still being kept in sync.
+> **Verified working:** **15 July 2026** — if you’re reading this months later, check the “Last commit” badge above; regular commits usually mean the layout selectors are still being kept in sync.
 
 Leetcoder is built to make problem-solving and scraping more efficient. With its automated flow, **Leetcoder can solve on the order of ~200 problems in about an hour** (network and UI permitting).
 
 ## Features
 
 1. ### Automated problem solving  
-   Automates solving LeetCode questions from your saved solutions.
+   Automates solving LeetCode questions from your saved solutions, in any language LeetCode supports (C++, Java, Python, Go, Rust, and more).
 
 2. ### Seamless login  
    Handles authentication via a persistent Chrome profile.
@@ -76,7 +76,18 @@ Leetcoder is for **educational use**. Do not use it to misrepresent your progres
    ; Chrome → chrome://version/ → Executable Path
    GOOGLE_CHROME_EXECUTABLE_PATH=C:/Program Files/Google/Chrome/Application/chrome.exe
    ```
-5. Run: `node index.js`
+5. Run: `yarn run start`, then pick a mode:
+   ```text
+   [L] Login to LeetCode   ← run this first
+   [1] Start Leetcode Bot.
+   [2] Scrape Solved Leetcode Problems.
+   ```
+
+### First run: log in
+
+Pick **`L`** on the first run. A Chrome window opens on the LeetCode login page — log in, then **close the window**. Your session is saved to the local Chrome profile, so run `yarn run start` again and pick `1` or `2` to start.
+
+> Log in again with `L` whenever your session expires. The login window and the bot can't run at the same time, so it's a separate step.
 
 ### Where data lives
 

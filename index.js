@@ -1,6 +1,7 @@
 import Logger from "./utils/Logger.js";
 import readline from 'readline';
 import LeetcoderAuthenticator from "./leetcoder/LeetcoderAuthenticator.js";
+import LeetcoderLogin from "./leetcoder/LeetcoderLogin.js";
 import {EXITING_LEETCODER, LEETCODER_ASCII_ART, LEETCODER_MODE_QUESTION} from "./utils/constants.js";
 import LeetcoderSolver from "./leetcoder/LeetcoderSolver.js";
 import {closeBrowser} from "./managers/BrowserManager.js";
@@ -19,9 +20,11 @@ const question = (query) => {
   try {
     Logger.success(LEETCODER_ASCII_ART);
     Logger.success(LEETCODER_MODE_QUESTION);
-    const type = await question('Select mode (1, 2 or other): ');
+    const type = await question('Select mode (L, 1, 2 or other): ');
 
-    if (type === '1') {
+    if (type.toLowerCase() === 'l') {
+      await LeetcoderLogin.loginUser();
+    } else if (type === '1') {
       await LeetcoderAuthenticator.loginUser();
       await LeetcoderSolver.solve();
     } else if (type === '2') {

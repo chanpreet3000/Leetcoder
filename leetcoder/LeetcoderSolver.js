@@ -2,6 +2,7 @@ import {getElementByXPath, pasteHelper, selectAllHelper, sleep} from "../utils/u
 import {
   IS_QUESTION_PREMIUM,
   IS_SOLUTION_ACCEPTED_DIV_XPATH,
+  LANGUAGE_DISPLAY_MAP,
   QUESTIONS_CODE_DIV_XPATH,
   QUESTIONS_LANGUAGE_BTN_XPATH,
   QUESTIONS_LANGUAGE_DIV_XPATH,
@@ -59,29 +60,27 @@ class LeetcoderSolver {
 
       //Change the language to the code language
       Logger.warn(`[SWITCHING_LANGUAGE]\t\t:${language}`);
+      const targetLabel = LANGUAGE_DISPLAY_MAP[language];
+      if (!targetLabel) {
+        throw new Error(`Unsupported language "${language}" for ${problemName}. Add it to LANGUAGE_DISPLAY_MAP in utils/constants.js.`);
+      }
+
       const allLanguagesBtn = await getElementByXPath(page, QUESTIONS_LANGUAGE_BTN_XPATH, 5, 0);
       await allLanguagesBtn[0].click();
 
       const allLanguagesDivName = await getElementByXPath(page, QUESTIONS_LANGUAGE_DIV_XPATH, 5, 0);
+      let languageSelected = false;
       for (let index = 0; index < allLanguagesDivName.length; index++) {
         const element = allLanguagesDivName[index];
         const text = await element.evaluate((el) => el.textContent);
-        let b = false;
-        if (text === "C++" && language === "cpp") {
-          b = true;
-        } else if (text === "Java" && language === "java") {
-          b = true;
-        } else if (text === "Python" && language === "python") {
-          b = true;
-        } else if (text === "Python3" && language === "python3") {
-          b = true;
-        } else if (text === "MySQL" && language === "mysql") {
-          b = true;
-        }
-        if (b) {
+        if (text.trim() === targetLabel) {
           await element.click();
+          languageSelected = true;
           break;
         }
+      }
+      if (!languageSelected) {
+        throw new Error(`Language "${targetLabel}" (${language}) was not found in the editor dropdown for ${problemName}.`);
       }
 
       await sleep(1);
