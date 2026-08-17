@@ -63,6 +63,7 @@ export const LEETCODER_MODE_QUESTION = `
      [L] Login to LeetCode (do this first / whenever your session expires).
      [1] Start Leetcode Bot.
      [2] Scrape Solved Leetcode Problems.
+     [3] Solve Daily Challenge.
      [other] Exit.
     `;
 

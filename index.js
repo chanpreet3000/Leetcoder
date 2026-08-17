@@ -20,7 +20,7 @@ const question = (query) => {
   try {
     Logger.success(LEETCODER_ASCII_ART);
     Logger.success(LEETCODER_MODE_QUESTION);
-    const type = await question('Select mode (L, 1, 2 or other): ');
+    const type = await question('Select mode (L, 1, 2, 3 or other): ');
 
     if (type.toLowerCase() === 'l') {
       await LeetcoderLogin.loginUser();
@@ -32,7 +32,7 @@ const question = (query) => {
       await LeetcoderScraper.scrapeAcceptedSolutions();
     } else if (type === '3') {
       await LeetcoderAuthenticator.loginUser();
-      await LeetcoderScraper.scrapeAcceptedSolutionsGlobally();
+      await LeetcoderSolver.solveDailyChallenge();
     }
   } catch (err) {
     Logger.error('Something went wrong!', err);
