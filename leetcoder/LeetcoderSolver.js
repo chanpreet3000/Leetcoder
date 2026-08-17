@@ -134,6 +134,40 @@ class LeetcoderSolver {
     await this.#solveProblems(allProblemsName);
     Logger.error('<<<< Exiting Leetcoder Solver >>>>');
   }
+
+  static async solveDailyChallenge() {
+    Logger.error('<<<< Starting Leetcoder Daily Challenge Solver >>>>');
+    
+    // Fetch daily challenge from LeetCode GraphQL API
+    const response = await fetch('https://leetcode.com/graphql', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: `
+          query questionOfToday {
+            activeDailyCodingChallengeQuestion {
+              question {
+                titleSlug
+              }
+            }
+          }
+        `
+      })
+    });
+    const result = await response.json();
+    const problemName = result.data.activeDailyCodingChallengeQuestion.question.titleSlug;
+    
+    Logger.success(`[DAILY_CHALLENGE]\t\t: ${problemName}`);
+    
+    const checkIfSolved = await this.#checkIfSolvedEarlier(problemName);
+    if (!checkIfSolved) {
+      await this.#solveProblemWithName(problemName);
+    } else {
+      Logger.success(`[SOLVED_EARLIER]\t\t:${problemName}`);
+    }
+    
+    Logger.error('<<<< Exiting Leetcoder Daily Challenge Solver >>>>');
+  }
 }
 
 export default LeetcoderSolver;
