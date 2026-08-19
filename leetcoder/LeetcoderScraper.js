@@ -45,17 +45,35 @@ class LeetcoderScraper {
       const language = details.lang.name;
       const problemName = details.question.titleSlug;
 
-      if (!code) return; // sometimes empty if error
+      if (!code) return false; // sometimes empty if error
 
-      if (ALLOWED_LANGUAGES.length > 0 && !ALLOWED_LANGUAGES.includes(language.toLowerCase())) {
-         Logger.warn(`[SKIPPED_LANG]\t\t: ${problemName} (${language} is not in ALLOWED_LANGUAGES)`);
-         return;
+      const langAliases = {
+        'python': 'python3', 'python3': 'python3',
+        'javascript': 'javascript', 'typescript': 'typescript',
+        'java': 'java', 'cpp': 'cpp', 'c': 'c',
+        'csharp': 'csharp', 'golang': 'golang', 'go': 'golang',
+        'ruby': 'ruby', 'swift': 'swift', 'kotlin': 'kotlin',
+        'rust': 'rust', 'scala': 'scala', 'php': 'php',
+        'dart': 'dart', 'mysql': 'mysql', 'mssql': 'mssql'
+      };
+
+      if (ALLOWED_LANGUAGES.length > 0) {
+        const normalizedAllowed = ALLOWED_LANGUAGES.map(l => langAliases[l.toLowerCase()] || l.toLowerCase());
+        const normalizedLang = langAliases[language.toLowerCase()] || language.toLowerCase();
+        
+        if (!normalizedAllowed.includes(normalizedLang)) {
+          Logger.warn(`[SKIPPED_LANG]\t\t: ${problemName} (${language} is not in ALLOWED_LANGUAGES)`);
+          return false;
+        }
       }
+      
       let fileContent = { problemName, language, code };
       await FileManager.saveScrapedSolution(fileContent);
       Logger.success(`[SAVED]\t\t\t: ${problemName} (${language})`);
+      return true;
     } catch (err) {
       Logger.error(`[ERROR]\t\t\t: Failed to scrape submission ${id}`, err);
+      return false;
     }
   }
 
@@ -157,8 +175,7 @@ class LeetcoderScraper {
       return false;
     }
 
-    await this.#scrapeAndSaveCodeFromSubmissionId(accepted.id, page);
-    return true;
+    return await this.#scrapeAndSaveCodeFromSubmissionId(accepted.id, page);
   }
 
   static async fetchEditorialSolution(problemSlug) {
