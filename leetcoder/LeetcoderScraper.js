@@ -68,7 +68,7 @@ class LeetcoderScraper {
       }
       
       let fileContent = { problemName, language, code };
-      await FileManager.saveScrapedSolution(fileContent);
+      await FileManager.saveProblem(fileContent);
       Logger.success(`[SAVED]\t\t\t: ${problemName} (${language})`);
       return true;
     } catch (err) {

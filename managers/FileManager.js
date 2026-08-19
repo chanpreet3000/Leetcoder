@@ -27,9 +27,10 @@ class FileManager {
     }
   }
 
-  static async saveProblem(problemName, data) {
+  static async saveProblem(fileContent) {
+    const problemName = fileContent.problemName;
     await fs.mkdir('./problems', {recursive: true});
-    await fs.writeFile(`./problems/${problemName}.json`, JSON.stringify(data, null, 4));
+    await fs.writeFile(`./problems/${problemName}.json`, JSON.stringify(fileContent, null, 4));
   }
 
 
