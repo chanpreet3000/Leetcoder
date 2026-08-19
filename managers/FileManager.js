@@ -18,6 +18,21 @@ class FileManager {
     Logger.warn(`[PROBLEM_DETAILS]\t\t:`, obj);
     return obj;
   }
+  static async problemExists(problemName) {
+    try {
+      await fs.access(`./problems/${problemName}.json`);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  static async saveProblem(fileContent) {
+    const problemName = fileContent.problemName;
+    await fs.mkdir('./problems', {recursive: true});
+    await fs.writeFile(`./problems/${problemName}.json`, JSON.stringify(fileContent, null, 4));
+  }
+
 
   static async #ensureSolvedProblemSetFile() {
     try {

@@ -19,6 +19,9 @@ export const GOOGLE_CHROME_EXECUTABLE_PATH = process.env.GOOGLE_CHROME_EXECUTABL
 
 export const USER_EMAIL = process.env.USER_EMAIL || 'temp@temp.com';
 
+const languagesStr = process.env.ALLOWED_LANGUAGES || "";
+export const ALLOWED_LANGUAGES = languagesStr ? languagesStr.split(",").map(s => s.trim().toLowerCase()) : [];
+
 /**
  * Chrome Profile directory
  */

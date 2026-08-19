@@ -13,6 +13,8 @@ import clipboardy from "clipboardy";
 import Logger from "../utils/Logger.js";
 import FileManager from "../managers/FileManager.js";
 import {getBrowserDetails} from "../managers/BrowserManager.js";
+import { ALLOWED_LANGUAGES } from "../data.js";
+import LeetcoderScraper from "./LeetcoderScraper.js";
 
 class LeetcoderSolver {
   static async #checkIfSolvedEarlier(problemName) {
@@ -57,6 +59,26 @@ class LeetcoderSolver {
 
       // Copy code to clipboard
       clipboardy.writeSync(code);
+
+      const langAliases = {
+        'python': 'python3', 'python3': 'python3',
+        'javascript': 'javascript', 'typescript': 'typescript',
+        'java': 'java', 'cpp': 'cpp', 'c': 'c',
+        'csharp': 'csharp', 'golang': 'golang', 'go': 'golang',
+        'ruby': 'ruby', 'swift': 'swift', 'kotlin': 'kotlin',
+        'rust': 'rust', 'scala': 'scala', 'php': 'php',
+        'dart': 'dart', 'mysql': 'mysql', 'mssql': 'mssql'
+      };
+
+      if (ALLOWED_LANGUAGES.length > 0) {
+        const normalizedAllowed = ALLOWED_LANGUAGES.map(l => langAliases[l.toLowerCase()] || l.toLowerCase());
+        const normalizedLang = langAliases[language.toLowerCase()] || language.toLowerCase();
+        
+        if (!normalizedAllowed.includes(normalizedLang)) {
+          Logger.warn(`[SKIPPED_LANG]\t\t:${problemName} (${language} is not in ALLOWED_LANGUAGES)`);
+          return;
+        }
+      }
 
       //Change the language to the code language
       Logger.warn(`[SWITCHING_LANGUAGE]\t\t:${language}`);
@@ -138,34 +160,66 @@ class LeetcoderSolver {
   static async solveDailyChallenge() {
     Logger.error('<<<< Starting Leetcoder Daily Challenge Solver >>>>');
     
-    // Fetch daily challenge from LeetCode GraphQL API
-    const response = await fetch('https://leetcode.com/graphql', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        query: `
-          query questionOfToday {
-            activeDailyCodingChallengeQuestion {
-              question {
-                titleSlug
+    let problemName;
+    try {
+      const {page} = await getBrowserDetails();
+      if (!page.url().includes('leetcode.com')) {
+        await page.goto('https://leetcode.com/', { waitUntil: 'domcontentloaded', timeout: 60000 });
+      }
+      problemName = await page.evaluate(async () => {
+        const response = await fetch('https://leetcode.com/graphql', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            query: `
+              query questionOfToday {
+                activeDailyCodingChallengeQuestion {
+                  question {
+                    titleSlug
+                  }
+                }
               }
-            }
-          }
-        `
-      })
-    });
-    const result = await response.json();
-    const problemName = result.data.activeDailyCodingChallengeQuestion.question.titleSlug;
+            `
+          })
+        });
+        const result = await response.json();
+        return result.data.activeDailyCodingChallengeQuestion.question.titleSlug;
+      });
+    } catch (err) {
+      Logger.error('[DAILY_CHALLENGE]\t\t: Failed to fetch today\'s problem from LeetCode API.', err);
+      Logger.error('<<<< Exiting Leetcoder Daily Challenge Solver >>>>');
+      return;
+    }
     
     Logger.success(`[DAILY_CHALLENGE]\t\t: ${problemName}`);
     
     const checkIfSolved = await this.#checkIfSolvedEarlier(problemName);
-    if (!checkIfSolved) {
-      await this.#solveProblemWithName(problemName);
-    } else {
+    if (checkIfSolved) {
       Logger.success(`[SOLVED_EARLIER]\t\t:${problemName}`);
+      Logger.error('<<<< Exiting Leetcoder Daily Challenge Solver >>>>');
+      return;
     }
-    
+
+    // Check if local solution file exists; if not, try to fetch one
+    const solutionExists = await FileManager.problemExists(problemName);
+    if (!solutionExists) {
+      Logger.warn(`[AUTO_SCRAPING]\t\t: Solution not found locally, checking your submissions...`);
+      let scraped = await LeetcoderScraper.scrapeSingleProblem(problemName);
+      
+      if (!scraped) {
+        Logger.warn(`[AUTO_SCRAPING]\t\t: No personal submission found, fetching editorial solution...`);
+        scraped = await LeetcoderScraper.fetchEditorialSolution(problemName);
+      }
+
+      if (!scraped) {
+        Logger.error(`[NO_SOLUTION]\t\t\t: Could not find any solution for "${problemName}".`);
+        Logger.error('<<<< Exiting Leetcoder Daily Challenge Solver >>>>');
+        return;
+      }
+      Logger.success(`[SOLUTION_READY]\t\t: Solution saved for ${problemName}, proceeding to submit...`);
+    }
+
+    await this.#solveProblemWithName(problemName);
     Logger.error('<<<< Exiting Leetcoder Daily Challenge Solver >>>>');
   }
 }

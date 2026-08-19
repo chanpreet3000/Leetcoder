@@ -20,7 +20,7 @@ export const getElementBySelector = async (element, selector, timeoutDelay = 30,
   return await element.$$(selector);
 };
 
-let cntrlKey = process.platform === "win32" ? "Control" : "Meta";
+let cntrlKey = process.platform === "darwin" ? "Meta" : "Control";
 
 export const selectAllHelper = async (page) => {
   await page.keyboard.down(cntrlKey);
