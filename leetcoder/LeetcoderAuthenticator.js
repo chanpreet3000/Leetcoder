@@ -7,7 +7,8 @@ class LeetcoderAuthenticator {
   static #loginUserHandler = async () => {
     const {page} = await getBrowserDetails();
     await page.goto(`https://leetcode.com/accounts/login/`, {
-      waitUntil: "networkidle2",
+      waitUntil: "domcontentloaded",
+      timeout: 60000,
     });
 
     try {

@@ -6,8 +6,21 @@ import path from 'path';
 class FileManager {
   static async getAllProblemsNames() {
     const fileList = await fs.readdir('./problems');
-    const files = fileList.map(file => file.split(".")[0]);
-    Logger.success(`Total Problems found ${files.length}`, files);
+    const files = [];
+
+    for (const file of fileList) {
+      if (path.extname(file) !== '.json') {
+        continue;
+      }
+
+      const problemName = path.basename(file, '.json');
+      const data = JSON.parse(await fs.readFile(path.join('./problems', file), 'utf-8'));
+      if (data.language === 'java' && typeof data.code === 'string' && data.code.trim().length > 0) {
+        files.push(problemName);
+      }
+    }
+
+    Logger.success(`Total Java solutions found ${files.length}`, files);
     return files;
   }
 

@@ -1,4 +1,4 @@
-import {getElementByXPath, pasteHelper, selectAllHelper, sleep} from "../utils/utils.js";
+import {getElementBySelector, getElementByXPath, pasteHelper, selectAllHelper, sleep} from "../utils/utils.js";
 import {
   IS_QUESTION_PREMIUM,
   IS_SOLUTION_ACCEPTED_DIV_XPATH,
@@ -8,6 +8,7 @@ import {
   QUESTIONS_LANGUAGE_DIV_XPATH,
   QUESTIONS_SUBMIT_ACCEPTED_XPATH,
   QUESTIONS_SUBMIT_DIV_XPATH,
+  QUESTION_DIFFICULTY_SELECTOR,
 } from "../utils/constants.js";
 import clipboardy from "clipboardy";
 import Logger from "../utils/Logger.js";
@@ -15,6 +16,43 @@ import FileManager from "../managers/FileManager.js";
 import {getBrowserDetails} from "../managers/BrowserManager.js";
 
 class LeetcoderSolver {
+  static #lastSubmissionAt = null;
+
+  static #getRandomDelaySeconds(difficulty) {
+    const baseDelayMinutes = {
+      easy: 10,
+      medium: 25,
+      hard: 35,
+    }[difficulty];
+
+    if (!baseDelayMinutes) {
+      throw new Error(`Unsupported problem difficulty "${difficulty}". Expected Easy, Medium, or Hard.`);
+    }
+
+    const variation = 1 + (Math.random() * 0.3 - 0.15);
+    return baseDelayMinutes * 60 * variation;
+  }
+
+  static async #waitBeforeSubmission(page, problemName) {
+    const difficultyElements = await getElementBySelector(page, QUESTION_DIFFICULTY_SELECTOR, 10, 0);
+    const difficultyText = await difficultyElements[0].evaluate((element) => element.textContent.trim().toLowerCase());
+    const targetDelaySeconds = this.#getRandomDelaySeconds(difficultyText);
+
+    if (this.#lastSubmissionAt === null) {
+      Logger.warn(`[SUBMISSION_DELAY]\t\t:${problemName} (${difficultyText}, no previous submission)`);
+      return;
+    }
+
+    const elapsedSeconds = (Date.now() - this.#lastSubmissionAt) / 1000;
+    const remainingSeconds = targetDelaySeconds - elapsedSeconds;
+    if (remainingSeconds > 0) {
+      Logger.warn(`[SUBMISSION_DELAY]\t\t:${problemName} (${difficultyText}, waiting ${Math.ceil(remainingSeconds / 60)} minutes)`);
+      await sleep(remainingSeconds);
+    } else {
+      Logger.warn(`[SUBMISSION_DELAY]\t\t:${problemName} (${difficultyText}, interval already elapsed)`);
+    }
+  }
+
   static async #checkIfSolvedEarlier(problemName) {
     const solvedProblemSet = await FileManager.getSolvedProblemSet()
     return solvedProblemSet.has(problemName);
@@ -96,9 +134,11 @@ class LeetcoderSolver {
       // Paste the code in the editor
       await pasteHelper(page);
 
+      await this.#waitBeforeSubmission(page, problemName);
       Logger.warn(`[SUBMITTING]\t\t\t:${problemName}`);
       const submit_btn = await getElementByXPath(page, QUESTIONS_SUBMIT_DIV_XPATH, 5, 0);
       await submit_btn[0].click();
+      this.#lastSubmissionAt = Date.now();
 
       Logger.warn(`[AWAITING_VERDICT]\t\t:${problemName}`);
       const isSolutionAccepted = await getElementByXPath(page, IS_SOLUTION_ACCEPTED_DIV_XPATH, 15, 0);
@@ -129,6 +169,7 @@ class LeetcoderSolver {
 
   static async solve() {
     Logger.error('<<<< Starting Leetcoder Solver >>>>');
+    this.#lastSubmissionAt = null;
     const allProblemsName = await FileManager.getAllProblemsNames();
     Logger.success(`[QUEUED]\t\t\t:${allProblemsName.length} problems to process`);
     await this.#solveProblems(allProblemsName);
@@ -159,6 +200,13 @@ class LeetcoderSolver {
     
     Logger.success(`[DAILY_CHALLENGE]\t\t: ${problemName}`);
     
+    const javaProblemNames = await FileManager.getAllProblemsNames();
+    if (!javaProblemNames.includes(problemName)) {
+      Logger.warn(`[NO_JAVA_SOLUTION]\t\t:${problemName}. Skipping daily challenge.`);
+      Logger.error('<<<< Exiting Leetcoder Daily Challenge Solver >>>>');
+      return;
+    }
+
     const checkIfSolved = await this.#checkIfSolvedEarlier(problemName);
     if (!checkIfSolved) {
       await this.#solveProblemWithName(problemName);
@@ -171,4 +219,3 @@ class LeetcoderSolver {
 }
 
 export default LeetcoderSolver;
-

@@ -1,4 +1,6 @@
 import dotenv from 'dotenv';
+import path from 'path';
+import {existsSync, statSync} from 'fs';
 
 dotenv.config();
 
@@ -15,7 +17,11 @@ dotenv.config();
  *
  *
  */
-export const GOOGLE_CHROME_EXECUTABLE_PATH = process.env.GOOGLE_CHROME_EXECUTABLE_PATH || "C:/Program Files/Google/Chrome/Application/chrome.exe";
+const configuredChromePath = process.env.GOOGLE_CHROME_EXECUTABLE_PATH || "C:/Program Files/Google/Chrome/Application/chrome.exe";
+export const GOOGLE_CHROME_EXECUTABLE_PATH =
+  existsSync(configuredChromePath) && statSync(configuredChromePath).isDirectory()
+    ? path.join(configuredChromePath, 'chrome.exe')
+    : configuredChromePath;
 
 export const USER_EMAIL = process.env.USER_EMAIL || 'temp@temp.com';
 

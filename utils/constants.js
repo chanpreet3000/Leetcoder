@@ -18,6 +18,7 @@ export const QUESTIONS_LANGUAGE_DIV_XPATH =
   "/html/body/div[8]/div/div/div/div";
 export const IS_SOLUTION_ACCEPTED_DIV_XPATH= "/html/body/div[1]/div[2]/div/div/div[4]/div/div/div[11]/div/div/div/div[2]/div/div[1]/div[1]/div[1]/span";
 export const IS_QUESTION_PREMIUM = "/html/body/div[1]/div[2]/div/div/div[4]/div[2]/div/div[2]"
+export const QUESTION_DIFFICULTY_SELECTOR = '[class*="text-difficulty-"]';
 
 // Maps LeetCode's language slug (stored in each ./problems/*.json) to the label
 // shown in the editor's dropdown. Add an entry to support a new language.

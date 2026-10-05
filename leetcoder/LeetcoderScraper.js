@@ -10,13 +10,48 @@ import {getBrowserDetails} from "../managers/BrowserManager.js";
 import FileManager from "../managers/FileManager.js";
 
 class LeetcoderScraper {
+  static async #extractSubmittedCodeFromDom(page) {
+    await page.waitForSelector('pre code, .view-lines, .CodeMirror-code', {timeout: 10000});
+    const code = await page.evaluate(() => {
+      const preCode = document.querySelector('pre code');
+      if (preCode && preCode.textContent) {
+        return preCode.textContent;
+      }
+
+      const monacoLines = Array.from(document.querySelectorAll('.view-lines .view-line'));
+      if (monacoLines.length > 0) {
+        return monacoLines.map((line) => line.textContent || '').join('\n');
+      }
+
+      const codeMirrorLines = Array.from(document.querySelectorAll('.CodeMirror-code > div'));
+      if (codeMirrorLines.length > 0) {
+        return codeMirrorLines
+          .map((line) => Array.from(line.querySelectorAll('span')).map((span) => span.textContent || '').join(''))
+          .join('\n');
+      }
+
+      return '';
+    });
+
+    return code.replace(/\r\n/g, '\n').replace(/\u200b/g, '').trimEnd();
+  }
+
+  static #isCodeReadable(code) {
+    if (typeof code !== 'string' || code.trim().length === 0) {
+      return false;
+    }
+    const nonPrintable = code.match(/[\x00-\x08\x0E-\x1F\x7F]/g);
+    return !nonPrintable || nonPrintable.length < 3;
+  }
+
   static async #scrapeAndSaveCodeFromSubmissionId(id) {
     const {browser} = await getBrowserDetails();
     const page = await browser.newPage();
 
     try {
       await page.goto(`https://leetcode.com/submissions/detail/${id}/`, {
-        waitUntil: "networkidle2",
+        waitUntil: "domcontentloaded",
+        timeout: 60000,
       });
 
       const statusDiv = await getElementByXPath(page, "//*[@id='result_state']", 3, 0);
@@ -34,14 +69,20 @@ class LeetcoderScraper {
       const languageDiv = await getElementByXPath(page, SCRAPER_SUBMITTED_CODE_LANGUAGE_XPATH, 3, 0);
       const languageDivValue = await languageDiv[0].evaluate((el) => el.textContent);
 
-      // Get Code from the code  div
-      const codeDiv = await getElementByXPath(page, SCRAPER_SUBMITTED_CODE_DIV_XPATH, 3, 0);
-      await codeDiv[0].click();
+      let copiedText = await this.#extractSubmittedCodeFromDom(page);
+      if (!this.#isCodeReadable(copiedText)) {
+        Logger.warn(`[SCRAPER_FALLBACK_CLIPBOARD]\t:${nameDivValue}`);
+        const codeDiv = await getElementByXPath(page, SCRAPER_SUBMITTED_CODE_DIV_XPATH, 3, 0);
+        await codeDiv[0].click();
+        await selectAllHelper(page);
+        await copyHelper(page);
+        copiedText = clipboardy.readSync().replace(/\r\n/g, '\n').trimEnd();
+      }
 
-      await selectAllHelper(page);
-      await copyHelper(page);
+      if (!this.#isCodeReadable(copiedText)) {
+        throw new Error(`Unable to capture readable code for ${nameDivValue} (submission ${id}).`);
+      }
 
-      const copiedText = clipboardy.readSync();
       let fileContent = {problemName: nameDivValue, language: languageDivValue, code: copiedText};
       await FileManager.saveScrapedSolution(fileContent);
     } catch (err) {

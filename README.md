@@ -46,7 +46,7 @@ Leetcoder is built to make problem-solving and scraping more efficient. With its
 ## Features
 
 1. ### Automated problem solving  
-   Automates solving LeetCode questions from your saved solutions, in any language LeetCode supports (C++, Java, Python, Go, Rust, and more).
+   Automates solving LeetCode questions from your saved Java solutions. Problem JSON files using another language are skipped.
 
 2. ### Seamless login  
    Handles authentication via a persistent Chrome profile.
@@ -56,6 +56,8 @@ Leetcoder is built to make problem-solving and scraping more efficient. With its
 
 4. ### Resume where you left off  
    Remembers solved problem names so runs can continue after interruption.
+
+   Before each submission, the solver reads the difficulty badge shown on LeetCode and waits from the previous submission: Easy is 10 minutes, Medium is 25 minutes, and Hard is 35 minutes. Each interval is randomized by ±15%; time already spent working on the next problem counts toward the interval.
 
 ## Usage disclaimer
 
@@ -76,6 +78,7 @@ Leetcoder is for **educational use**. Do not use it to misrepresent your progres
    ; Chrome → chrome://version/ → Executable Path
    GOOGLE_CHROME_EXECUTABLE_PATH=C:/Program Files/Google/Chrome/Application/chrome.exe
    ```
+   This must point to `chrome.exe`, or to the Chrome `Application` directory; when a directory is provided, Leetcoder automatically uses `chrome.exe` inside it.
 5. Run: `yarn run start`, then pick a mode:
    ```text
    [L] Login to LeetCode   ← run this first
@@ -88,6 +91,10 @@ Leetcoder is for **educational use**. Do not use it to misrepresent your progres
 Pick **`L`** on the first run. A Chrome window opens on the LeetCode login page — log in, then **close the window**. Your session is saved to the local Chrome profile, so run `yarn run start` again and pick `1` or `2` to start.
 
 > Log in again with `L` whenever your session expires. The login window and the bot can't run at the same time, so it's a separate step.
+
+If Google displays **“This browser or app may not be secure”**, do not try to sign in from mode `1`. Mode `1` uses Puppeteer for automation, which Google may reject during OAuth. Exit the program, select **`L`**, complete the sign-in in the regular Chrome window it opens, close that window after LeetCode is logged in, and then select **`1`** again. Google account security checks cannot be safely bypassed by the bot.
+
+If login takes longer than usual, the browser can continue loading while Leetcoder waits for the login page to become ready. Keep the browser open and complete sign-in; Leetcoder then waits for the logged-in account avatar.
 
 ### Where data lives
 
