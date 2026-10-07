@@ -13,7 +13,13 @@ class BrowserManager {
         executablePath: GOOGLE_CHROME_EXECUTABLE_PATH,
         userDataDir: CHROME_PROFILE_PATH,
         defaultViewport: null,
-        args: ["--start-maximized"],
+        protocolTimeout: 0, // long submission waits must not abort a call Chrome is slow to answer
+        args: [
+          "--start-maximized",
+          "--disable-background-timer-throttling",
+          "--disable-backgrounding-occluded-windows",
+          "--disable-renderer-backgrounding",
+        ],
       });
 
       [BrowserManager.page] = await BrowserManager.browser.pages();

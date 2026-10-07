@@ -1,8 +1,30 @@
 import chalk from "chalk";
 
 class Logger {
+  static #timestampFormatter = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Asia/Kolkata",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hourCycle: "h23",
+  });
+
+  static #getTimestamp() {
+    const parts = Object.fromEntries(
+      this.#timestampFormatter
+        .formatToParts(new Date())
+        .filter(({ type }) => type !== "literal")
+        .map(({ type, value }) => [type, value]),
+    );
+
+    return `${parts.year}-${parts.month}-${parts.day} ${parts.hour}:${parts.minute}:${parts.second} IST`;
+  }
+
   static logMessage(type, message, obj = null) {
-    const timestamp = new Date().toISOString();
+    const timestamp = this.#getTimestamp();
     let log = `[${timestamp}]\t${message}`;
 
     if (type === 'error' && obj instanceof Error) {

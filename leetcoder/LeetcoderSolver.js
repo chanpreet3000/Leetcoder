@@ -13,10 +13,12 @@ import {
 import clipboardy from "clipboardy";
 import Logger from "../utils/Logger.js";
 import FileManager from "../managers/FileManager.js";
-import {getBrowserDetails} from "../managers/BrowserManager.js";
+import {closeBrowser, getBrowserDetails} from "../managers/BrowserManager.js";
+import LeetcoderAuthenticator from "./LeetcoderAuthenticator.js";
 
 class LeetcoderSolver {
-  static #lastSubmissionAt = null;
+  static #delayPending = false; // the last problem was accepted, so the next submission must wait
+  static #needLogin = false;    // Chrome was closed, so the next problem starts with a login check
 
   static #getRandomDelaySeconds(difficulty) {
     const baseDelayMinutes = {
@@ -33,24 +35,9 @@ class LeetcoderSolver {
     return baseDelayMinutes * 60 * variation;
   }
 
-  static async #waitBeforeSubmission(page, problemName) {
+  static async #readDifficulty(page) {
     const difficultyElements = await getElementBySelector(page, QUESTION_DIFFICULTY_SELECTOR, 10, 0);
-    const difficultyText = await difficultyElements[0].evaluate((element) => element.textContent.trim().toLowerCase());
-    const targetDelaySeconds = this.#getRandomDelaySeconds(difficultyText);
-
-    if (this.#lastSubmissionAt === null) {
-      Logger.warn(`[SUBMISSION_DELAY]\t\t:${problemName} (${difficultyText}, no previous submission)`);
-      return;
-    }
-
-    const elapsedSeconds = (Date.now() - this.#lastSubmissionAt) / 1000;
-    const remainingSeconds = targetDelaySeconds - elapsedSeconds;
-    if (remainingSeconds > 0) {
-      Logger.warn(`[SUBMISSION_DELAY]\t\t:${problemName} (${difficultyText}, waiting ${Math.ceil(remainingSeconds / 60)} minutes)`);
-      await sleep(remainingSeconds);
-    } else {
-      Logger.warn(`[SUBMISSION_DELAY]\t\t:${problemName} (${difficultyText}, interval already elapsed)`);
-    }
+    return difficultyElements[0].evaluate((element) => element.textContent.trim().toLowerCase());
   }
 
   static async #checkIfSolvedEarlier(problemName) {
@@ -60,11 +47,12 @@ class LeetcoderSolver {
 
   static async #solveProblemWithName(problemName) {
     Logger.warn(`[NAVIGATING]\t\t\t:${problemName}`);
-    const {page} = await getBrowserDetails();
+    let {page} = await getBrowserDetails();
     await page.goto(`https://leetcode.com/problems/${problemName}`, {
       waitUntil: "networkidle2",
     });
 
+    let accepted = false;
     try {
       try {
         const acceptedDiv = await getElementByXPath(page, QUESTIONS_SUBMIT_ACCEPTED_XPATH, 4);
@@ -89,6 +77,21 @@ class LeetcoderSolver {
       }
 
       Logger.success(`[SOLVING]\t\t\t:${problemName}`);
+
+      if (this.#delayPending) {
+        // note this problem's difficulty, then wait with Chrome closed and come back to it
+        const difficulty = await this.#readDifficulty(page);
+        const delaySeconds = this.#getRandomDelaySeconds(difficulty);
+        Logger.warn(`[SUBMISSION_DELAY]\t\t:${problemName} (${difficulty}, browser closed, waiting ${Math.ceil(delaySeconds / 60)} minutes)`);
+        await closeBrowser();
+        this.#needLogin = true;
+        await sleep(delaySeconds);
+        await LeetcoderAuthenticator.loginUser();
+        this.#needLogin = false;
+        this.#delayPending = false;
+        ({page} = await getBrowserDetails());
+        await page.goto(`https://leetcode.com/problems/${problemName}`, {waitUntil: "networkidle2"});
+      }
 
       const {code, language} = await FileManager.getProblemDetails(problemName);
       Logger.warn(`[LOADED_SOLUTION]\t\t:${problemName} (language: ${language}, ${code.length} chars)`);
@@ -134,11 +137,9 @@ class LeetcoderSolver {
       // Paste the code in the editor
       await pasteHelper(page);
 
-      await this.#waitBeforeSubmission(page, problemName);
       Logger.warn(`[SUBMITTING]\t\t\t:${problemName}`);
       const submit_btn = await getElementByXPath(page, QUESTIONS_SUBMIT_DIV_XPATH, 5, 0);
       await submit_btn[0].click();
-      this.#lastSubmissionAt = Date.now();
 
       Logger.warn(`[AWAITING_VERDICT]\t\t:${problemName}`);
       const isSolutionAccepted = await getElementByXPath(page, IS_SOLUTION_ACCEPTED_DIV_XPATH, 15, 0);
@@ -147,6 +148,8 @@ class LeetcoderSolver {
       if (solutionAcceptedText === 'Accepted') {
         Logger.success(`[ACCEPTED]\t\t\t:${problemName}`);
         await FileManager.setSolvedProblemSet(problemName);
+        accepted = true;
+        this.#delayPending = true;
       } else {
         throw new Error(`${problemName} ${solutionAcceptedText}. Looks like the solution is old, contact the developer to fix this.`);
       }
@@ -154,22 +157,34 @@ class LeetcoderSolver {
     } catch (err) {
       Logger.error(`[FAILED]\t\t: Failed to solve the ${problemName} problem with error`, err);
     }
+    return accepted;
   }
 
+  // After an accepted submission the next problem is opened first so its difficulty can be read;
+  // Chrome is then closed for the delay and reopened (logging in again) to paste and submit.
   static async #solveProblems(problemNames) {
     for (const problemName of problemNames) {
-      const checkIfSolved = await this.#checkIfSolvedEarlier(problemName);
-      if (!checkIfSolved) {
-        await this.#solveProblemWithName(problemName);
-      } else {
+      if (await this.#checkIfSolvedEarlier(problemName)) {
         Logger.success(`[SOLVED_EARLIER]\t\t:${problemName}`);
+        continue;
+      }
+
+      try {
+        if (this.#needLogin) {
+          await LeetcoderAuthenticator.loginUser();
+          this.#needLogin = false;
+        }
+        await this.#solveProblemWithName(problemName);
+      } catch (err) {
+        Logger.error(`[FAILED]\t\t: ${problemName} aborted, restarting the browser`, err);
+        await closeBrowser().catch(() => {});
+        this.#needLogin = true;
       }
     }
   }
 
   static async solve() {
     Logger.error('<<<< Starting Leetcoder Solver >>>>');
-    this.#lastSubmissionAt = null;
     const allProblemsName = await FileManager.getAllProblemsNames();
     Logger.success(`[QUEUED]\t\t\t:${allProblemsName.length} problems to process`);
     await this.#solveProblems(allProblemsName);

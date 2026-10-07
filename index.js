@@ -7,6 +7,9 @@ import LeetcoderSolver from "./leetcoder/LeetcoderSolver.js";
 import {closeBrowser} from "./managers/BrowserManager.js";
 import LeetcoderScraper from "./leetcoder/LeetcoderScraper.js";
 
+// puppeteer rejects from its own event handlers; log them instead of crashing the whole run
+process.on("unhandledRejection", (err) => Logger.error("Unhandled rejection", err));
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
