@@ -3,7 +3,7 @@ import fs from 'fs';import os from 'os';import path from 'path';import {execFile
 const STUBS=`import java.util.*;import java.util.stream.*;
 class ListNode{int val;ListNode next;ListNode(){}ListNode(int v){val=v;}ListNode(int v,ListNode n){val=v;next=n;}}
 class TreeNode{int val;TreeNode left,right;TreeNode(){}TreeNode(int v){val=v;}TreeNode(int v,TreeNode l,TreeNode r){val=v;left=l;right=r;}}
-class Node{public int val;public List<Node> neighbors,children;public Node left,right,next,random,prev,child;public Node(){}public Node(int v){val=v;}}
+class Node{public int val;public List<Node> neighbors,children;public Node left,right,next,random,prev,child,parent;public Node(){}public Node(int v){val=v;}}
 `;
 const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'jv-'));let ok=0;
 const secs=fs.readFileSync(process.argv[2],'utf8').split(/^\/\/\/\/ /m).slice(1);
