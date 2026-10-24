@@ -17,10 +17,15 @@ dotenv.config();
  *
  *
  */
-const configuredChromePath = process.env.GOOGLE_CHROME_EXECUTABLE_PATH || "C:/Program Files/Google/Chrome/Application/chrome.exe";
+// [default executable, executable inside a Chrome directory/bundle]
+const [defaultChromePath, chromeBinary] = {
+  win32: ["C:/Program Files/Google/Chrome/Application/chrome.exe", 'chrome.exe'],
+  darwin: ["/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", 'Contents/MacOS/Google Chrome'],
+}[process.platform] ?? ["google-chrome"];
+const configuredChromePath = process.env.GOOGLE_CHROME_EXECUTABLE_PATH || defaultChromePath;
 export const GOOGLE_CHROME_EXECUTABLE_PATH =
-  existsSync(configuredChromePath) && statSync(configuredChromePath).isDirectory()
-    ? path.join(configuredChromePath, 'chrome.exe')
+  chromeBinary && existsSync(configuredChromePath) && statSync(configuredChromePath).isDirectory()
+    ? path.join(configuredChromePath, chromeBinary)
     : configuredChromePath;
 
 export const USER_EMAIL = process.env.USER_EMAIL || 'temp@temp.com';
@@ -41,3 +46,7 @@ export const LEETCODER_SCRAPED_SOLUTIONS_PATH = `${LEETCODER_DATA_PATH}/ScrapedS
  * Solved Problems are stored in this location so that the bot can continue solving from the unsolved problems.
  */
 export const SOLVED_PROBLEMS_PATH = `${LEETCODER_DATA_PATH}/SolvedProblems.json`;
+/**
+ * Problems that failed or were skipped (with the reason) so they can be fixed; cleared per problem once it is accepted.
+ */
+export const FAILED_PROBLEMS_PATH = `${LEETCODER_DATA_PATH}/FailedProblems.json`;
