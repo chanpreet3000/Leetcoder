@@ -35,7 +35,7 @@ Stars and PRs are welcome. Even a short issue with a screenshot often saves hour
 ## Important notes
 
 1. Works on **LeetCode’s newer dynamic layout** only.
-2. **Windows only** for now. PRs that add solid macOS support are very welcome.
+2. Supports **Windows** and **macOS**.
 3. **Use responsibly** and in line with LeetCode’s terms.
 4. **Privacy:** no data is sent anywhere outside your machine by this tool (see your own Chrome/network setup as usual).
 
@@ -57,7 +57,6 @@ Leetcoder is built to make problem-solving and scraping more efficient. With its
 4. ### Resume where you left off  
    Remembers solved problem names so runs can continue after interruption.
 
-   Before each submission, the solver reads the difficulty badge shown on LeetCode and waits from the previous submission: Easy is 10 minutes, Medium is 25 minutes, and Hard is 35 minutes. Each interval is randomized by ±15%; time already spent working on the next problem counts toward the interval.
 
 ## Usage disclaimer
 
@@ -78,7 +77,7 @@ Leetcoder is for **educational use**. Do not use it to misrepresent your progres
    ; Chrome → chrome://version/ → Executable Path
    GOOGLE_CHROME_EXECUTABLE_PATH=C:/Program Files/Google/Chrome/Application/chrome.exe
    ```
-   This must point to `chrome.exe`, or to the Chrome `Application` directory; when a directory is provided, Leetcoder automatically uses `chrome.exe` inside it.
+   On macOS the default is `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`, so you can usually omit this line. This must point to the Chrome executable, or to the Chrome `Application` directory (Windows) / `Google Chrome.app` bundle (macOS); when a directory is provided, Leetcoder automatically uses the executable inside it.
 5. Run: `yarn run start`, then pick a mode:
    ```text
    [L] Login to LeetCode   ← run this first
@@ -96,17 +95,27 @@ If Google displays **“This browser or app may not be secure”**, do not try t
 
 If login takes longer than usual, the browser can continue loading while Leetcoder waits for the login page to become ready. Keep the browser open and complete sign-in; Leetcoder then waits for the logged-in account avatar.
 
+### Checking a run
+
+- Modes `1`–`3` first confirm you are logged in and exit straight away with a hint if not (run `L`). They also check the LeetCode page layout on `two-sum` before submitting anything. Mode `C` runs only that check.
+- Every failed or skipped problem goes into `FailedProblems.json` with its verdict and details. Entries are marked `"kind": "solution"` (the stored code needs fixing, e.g. Wrong Answer) or `"kind": "infra"` (rate limit, timeout or page problem; a rerun may pass). Infra failures also save a screenshot and the page HTML in `failures/`. An entry is removed once that problem is accepted.
+- A `solution` failure is not resubmitted while its code is unchanged; edit `problems/<name>.json` and it is retried on the next run. Mode `F` lists every failed or skipped problem with its reason, and lets you skip problems for good (or un-skip them with `-name`).
+- Submissions are spaced at least 12 seconds apart to avoid rate limits. The bot also waits out LeetCode rate limits (HTTP 429), relaunches Chrome if it crashes, and stops after 5 infra failures in a row.
+- On macOS, start long runs with `caffeinate -dis npm start` so the Mac does not sleep mid-run (sleep stalls Chrome and shows up as timeouts, especially on battery).
+- `npm test` runs offline self-checks.
+
 ### Where data lives
 
 | Kind | Path |
 |------|------|
 | Scraped solutions | `./UserData/your_email/LeetcoderData/ScrapedSolutions` |
 | Solved problem list (resume) | `./UserData/your_email/LeetcoderData/SolvedProblems.json` |
+| Failed / skipped problems | `./UserData/your_email/LeetcoderData/FailedProblems.json` and `failures/` |
 | Chrome profile (stay logged in) | `./UserData/your_email/ProfileData` |
 
 ## Compatibility
 
-Leetcoder targets **Windows**. Behavior on macOS is not supported today — contributions to fix that are welcome.
+Leetcoder runs on **Windows** and **macOS**. On macOS, Chrome is found at `/Applications/Google Chrome.app` by default; set `GOOGLE_CHROME_EXECUTABLE_PATH` in `.env` (the `.app` bundle path also works) if yours lives elsewhere.
 
 ## Contributing
 

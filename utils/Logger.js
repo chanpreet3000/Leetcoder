@@ -2,7 +2,6 @@ import chalk from "chalk";
 
 class Logger {
   static #timestampFormatter = new Intl.DateTimeFormat("en-GB", {
-    timeZone: "Asia/Kolkata",
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
@@ -20,7 +19,7 @@ class Logger {
         .map(({ type, value }) => [type, value]),
     );
 
-    return `${parts.year}-${parts.month}-${parts.day} ${parts.hour}:${parts.minute}:${parts.second} IST`;
+    return `${parts.year}-${parts.month}-${parts.day} ${parts.hour}:${parts.minute}:${parts.second}`;
   }
 
   static logMessage(type, message, obj = null) {
