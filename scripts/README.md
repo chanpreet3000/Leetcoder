@@ -14,3 +14,5 @@ Run everything from the repo root. Scratch files go to `scripts/.work` (git-igno
 | `show-problem.mjs`, `show-signature.mjs`, `compare-signature.mjs` | Print a statement with the current code, the expected signature, or expected vs actual method lines. |
 
 `verify-examples.mjs` cannot run design, linked-list or tree problems and only reads single statement examples, so a pass is not a guarantee.
+
+To port the remaining non-Java solutions to Java, see [convert/README.md](convert/README.md).
