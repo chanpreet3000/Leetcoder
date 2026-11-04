@@ -32,14 +32,25 @@ export const gql = async (page, query, variables = {}) => {
     await page.goto("https://leetcode.com/", {waitUntil: "domcontentloaded", timeout: 60000});
   }
   for (let attempt = 0; ; attempt++) {
-    const {status, json} = await page.evaluate(async (query, variables) => {
-      const res = await fetch("/graphql", {
-        method: "POST",
-        headers: {"content-type": "application/json"},
-        body: JSON.stringify({query, variables}),
-      });
-      return {status: res.status, json: res.ok ? await res.json() : null};
-    }, query, variables);
+    let result;
+    try {
+      result = await page.evaluate(async (query, variables) => {
+        const res = await fetch("/graphql", {
+          method: "POST",
+          headers: {"content-type": "application/json"},
+          body: JSON.stringify({query, variables}),
+        });
+        return {status: res.status, json: res.ok ? await res.json() : null};
+      }, query, variables);
+    } catch (err) {
+      // a redirect right after the first page load destroys the page context; wait for it to settle and retry
+      if (attempt < 5 && /Execution context was destroyed|detached|Cannot find context/i.test(err.message)) {
+        await sleep(1);
+        continue;
+      }
+      throw err;
+    }
+    const {status, json} = result;
     if (status === 429 && attempt < 3) {
       await sleep(30 * 2 ** attempt);
       continue;

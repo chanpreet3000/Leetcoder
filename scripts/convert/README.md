@@ -15,5 +15,10 @@ Run everything from the repo root; working files go to `scripts/.work/convert` (
 5. Submit with the bot as usual, one problem at a time: `printf '1\n' | caffeinate -dis npm start` (or `npm start`,
    mode `1`). Failures land in the bucket; review them with mode `F`, fix the Java, and rerun.
 
+**Premium questions** (needs a Premium account): run `catalog.mjs --premium` and `fetch-snippets.mjs --browser`
+(premium statements and starters are hidden from logged-out requests). Questions with no local solution at all get
+their statement in the pack instead of source, and `write.py` creates their `problems/<slug>.json`. The solver attempts
+premium questions only when the logged-in account has Premium.
+
 Steps 1–3 are cheap to redo, so on another machine (or after more problems are solved) just rerun them: already
 converted problems are Java now and drop out of `todo.json` automatically.

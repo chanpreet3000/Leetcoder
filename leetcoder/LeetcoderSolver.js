@@ -206,6 +206,14 @@ class LeetcoderSolver {
     return true;
   }
 
+  static #premium = null;
+
+  // asked once per run: premium questions are only submittable with a Premium subscription
+  static async #hasPremium(page) {
+    if (this.#premium === null) this.#premium = !!(await gql(page, "{userStatus{isPremium}}")).userStatus?.isPremium;
+    return this.#premium;
+  }
+
   // Returns the failure kind ('solution' | 'infra') or null when the problem was accepted or skipped.
   static async #solveProblemWithName(problemName) {
     let page, code;
@@ -220,10 +228,9 @@ class LeetcoderSolver {
         await FileManager.setSolvedProblemSet(problemName);
         return null;
       }
-      if (question.isPaidOnly) {
-        Logger.warn(`[PREMIUM_QUESTION]\t\t:${problemName}. Marking this as solved.`);
-        await FileManager.recordProblemIssue(problemName, 'skipped', 'premium-only question');
-        await FileManager.setSolvedProblemSet(problemName);
+      if (question.isPaidOnly && !(await this.#hasPremium(page))) {
+        // not cached as solved, so it is attempted once the account has Premium
+        Logger.warn(`[PREMIUM_QUESTION]\t\t:${problemName}. Skipped: this account has no Premium.`);
         return null;
       }
 

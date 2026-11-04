@@ -1,5 +1,5 @@
 # python3 scripts/convert/write.py <file.java>: the file holds "//// <slug>" sections of Java code; each one replaces
-# problems/<slug>.json (language -> java). Without javac this is the only gate: it rejects a section whose class or
+# problems/<slug>.json (language -> java), creating it for a question that had no solution yet. Without javac this is the only gate: it rejects a section whose class or
 # public method names differ from LeetCode's Java starter, or whose braces/parens/brackets do not balance.
 import json, os, re, sys
 
@@ -26,8 +26,8 @@ for sec in secs:
         bad += 1
         continue
     p = f'problems/{slug}.json'
-    raw = open(p).read()
-    data = json.loads(raw)
+    raw = open(p).read() if os.path.exists(p) else '\n'
+    data = json.loads(raw) if raw.strip() else {'problemName': slug}
     data['language'], data['code'] = 'java', code
     open(p, 'w').write(json.dumps(data, indent=4, ensure_ascii=False) + ('\n' if raw.endswith('\n') else ''))
     ok += 1
