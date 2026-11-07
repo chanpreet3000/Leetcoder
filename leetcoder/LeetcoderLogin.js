@@ -7,6 +7,7 @@ class LeetcoderLogin {
   static loginUser = () => {
     return new Promise((resolve, reject) => {
       const profileDir = path.resolve(CHROME_PROFILE_PATH);
+      const startedAt = Date.now();
 
       Logger.success('Opening a normal Chrome window for you to log in...');
       Logger.success('  1. Log in to LeetCode.');
@@ -19,6 +20,8 @@ class LeetcoderLogin {
           '--no-first-run',
           '--no-default-browser-check',
           '--start-maximized',
+          // puppeteer launches Chrome with a mock keychain on macOS; cookies must be encrypted the same way or the bot sees a logged-out profile
+          '--use-mock-keychain',
           'https://leetcode.com/accounts/login/',
         ],
         {stdio: 'ignore'}
@@ -30,7 +33,11 @@ class LeetcoderLogin {
       });
 
       chrome.on('exit', () => {
-        Logger.success('Chrome closed. Login saved to your profile.');
+        if (Date.now() - startedAt < 5000) {
+          Logger.error('Chrome exited immediately; another Chrome is probably using this profile (is Leetcoder already running?). Close it and retry.');
+          return resolve();
+        }
+        Logger.success('Chrome closed. Modes 1-3 check the login before they start.');
         resolve();
       });
     });
